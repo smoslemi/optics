@@ -1,0 +1,6 @@
+1 P_back(rin1:variable:rcw1) Mode=1 Pol=0
+2 P_fwd(rin2:variable:rcw1) Mode=1 Pol=0
+3 P_fwd(rout1:variable:rcw1) Mode=1 Pol=0
+4 P_fwd(rout2:variable:rcw1) Mode=1 Pol=0
+5 P_fwd(rin22:variable:rcw2) Mode=1 Pol=0
+6 P_fwd(rout21:variable:rcw2) Mode=1 Pol=0

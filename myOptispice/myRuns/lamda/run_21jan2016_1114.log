@@ -1,0 +1,442 @@
+Running OptiSPICE 5.1 (compiled on: Jan  5 2016 10:28:02) 
+
+Copyright 2015 Optiwave Systems Inc. All rights reserved.
+
+	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
+
+Processing Netlist file: OneRingLam_in_add.sp
+
+Options ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8 
+Options DCCAP=1 TNOM=27 
+Param P=[ { PI 3.14159265358979 } ] 
+Param P=[ { FourPI '4*3.1415926' } ] 
+Param P=[ { PIover2 '3.1415926/2.0' } ] 
+Param P=[ { Noffset 3.0e-4 } ] 
+Param P=[ { Non '3.0 + Noffset' } ] 
+Param P=[ { Noff '3.012 + Noffset' } ] 
+INDSOURCE EL_Type=V_SOU Name=v1 Nodes=[ Mag1 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v2 Nodes=[ Phi1 0 ] dcMode dcValue=0 
+INDSOURCE EL_Type=V_SOU Name=v3 Nodes=[ Mag2 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v4 Nodes=[ Phi2 0 ] dcMode dcValue=0 
+INDSOURCE EL_Type=V_SOU Name=vcar Nodes=[ vc 0 ] dcMode dcValue=1557.81 
+CWSOURCE Name=Rcw1 Nodes=[ Mag1 Phi1 R1in ] MoName=CWmodel lambda=lam CarrierFreqNode=vc 
+CWSOURCE Name=Rcw2 Nodes=[ Mag2 Phi2 R1add ] MoName=CWmodel lambda=lam 
+OpticalRing Name=ring1 Nodes=[ R1in R1dr R1th R1add ] MoName=RingModel1 
+MIRROR Name=Rmir1 Nodes=[ R1dr ] MoName=Mmodel 
+MIRROR Name=Rmir2 Nodes=[ R1th ] MoName=Mmodel 
+Model Name=Mmodel type=MIRROR Ref=0.0 
+Model Name=CWmodel type=CWSOURCE lambda=lam 
+Model Name=XCmodel1 type=XCOUPLER Conjugate=0 c=C 
+Model Name=RingFilter1 type=MultiLayerFilter FilterType=Explicit N0=Non NF=Non TotalAtten=gain Index=[ Non ] 
+Model Name=RingModel1 type=OptRing XC_model=XCmodel1 RingModel=RingFilter1 Radius=r 
+Param P=[ { gain '1' } ] 
+Param P=[ { r '10' } ] 
+Param P=[ { C '0.25' } ] 
+Param P=[ { lam 1557.81 } ] 
+DC Parm=vcar Start=1550 Stop=1566 Step=.005 
+Monitor Type=OptPower Name=ring1 Port=1 dir=IN Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=2 dir=IN Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=3 dir=IN Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=4 dir=IN Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=1 dir=OUT Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=2 dir=OUT Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=3 dir=OUT Pol=TE P0db=1 
+Monitor Type=OptPower Name=ring1 Port=4 dir=OUT Pol=TE P0db=1 
+END
+
+Assigning node numbers and stamping
+
+
+Main Circuit Paras:
+
+Creating: v1
+
+Creating: v2
+
+Creating: v3
+
+Creating: v4
+
+Creating: vcar
+
+Creating: Rcw1
+	New Link: r1in                                                         Link: 0x7ffd684112f0
+
+Creating: Rcw2
+	New Link: r1add                                                        Link: 0x7ffd684116e0
+
+Creating: ring1
+	New Link: r1th                                                         Link: 0x7ffd68412330
+	New Link: ring1:1-2in                                                  Link: 0x7ffd68412370
+	New Link: ring1:1-2out                                                 Link: 0x7ffd684123b0
+	New Link: ring1:2-2in                                                  Link: 0x7ffd68412710
+	New Link: ring1:2-2out                                                 Link: 0x7ffd68412750
+	New Link: r1dr                                                         Link: 0x7ffd685060f0
+
+Creating: Rmir1
+
+Creating: Rmir2
+
+Circuit after element assignment
+
+Element hash table
+	Key: ring1:xc1                                                    	val: 	1753278464
+	Key: ring1:xc2                                                    	val: 	1753285120
+	Key: ring1:filter-2:exp                                           	val: 	1761634816
+	Key: vcar                                                         	val: 	1750095968
+	Key: v1                                                           	val: 	1749094560
+	Key: v2                                                           	val: 	1750092608
+	Key: v3                                                           	val: 	1750093728
+	Key: rcw1                                                         	val: 	1761629184
+	Key: v4                                                           	val: 	1750094848
+	Key: rcw2                                                         	val: 	1753269248
+	Key: ring1                                                        	val: 	1753274880
+	Key: ring1:filter-1:exp                                           	val: 	1753291776
+	Key: rmir2                                                        	val: 	1761641472
+	Key: rmir1                                                        	val: 	1761638400
+
+Delay Element hash table
+
+OptFFT Element hash table
+
+Noise Element hash table
+
+Optical Element hash table
+	Key: ring1:xc1                                                    	val: 	1753278464
+	Key: ring1:xc2                                                    	val: 	1753285120
+	Key: ring1:filter-2:exp                                           	val: 	1761634816
+	Key: rcw1                                                         	val: 	1761629184
+	Key: rcw2                                                         	val: 	1753269248
+	Key: ring1:filter-1:exp                                           	val: 	1753291776
+	Key: rmir1                                                        	val: 	1761638400
+	Key: rmir2                                                        	val: 	1761641472
+	Key: ring1                                                        	val: 	1753274880
+
+Source Optical Element hash table
+	Key: rcw1                                                         	val: 	1761629184
+	Key: rcw2                                                         	val: 	1753269248
+
+Elec Init Conditions
+
+
+Tracing optical sources
+	source: rcw1 (variable:rcw1)  -> ring1:xc1
+		-- branch 1:  
+		-- branch 2:   -> ring1:filter-2:exp (1) 
+		-- Return Branch:  -> ring1:xc2
+		-- branch 1:  
+		-- branch 2:   -> rmir1 (1)  -> ring1:xc2
+		-- branch 1:   -> ring1:filter-1:exp (1) 
+		-- Return Branch:  -> ring1:xc1
+		-- Through Branch:  -> ring1:xc2		-- branch 2:   -> rcw2 (1) 
+
+		-- Through Branch:  -> ring1:xc1
+		-- branch 1:   -> rmir2 (1)  -> ring1:xc1		-- branch 2:   -> ring1:filter-1:exp (1) 
+	source: rcw2 (fixed:1557.81)  -> ring1:xc2
+		-- branch 1:   -> ring1:filter-2:exp (2) 
+		-- Return Branch:  -> ring1:xc2
+		-- Through Branch:  -> ring1:xc1
+		-- branch 1:   -> rcw1 (2) 
+
+		-- branch 2:  
+		-- branch 1:   -> rmir2 (2)  -> ring1:xc1		-- branch 2:   -> ring1:filter-1:exp (2) 
+		-- Return Branch:  -> ring1:xc1
+		-- Through Branch:  -> ring1:xc2
+		-- branch 2:   -> rmir1 (2)  -> ring1:xc2
+		-- branch 1:   -> ring1:filter-1:exp (2) 
+		-- branch 2:  
+
+Stamping: v1
+
+Stamping: v2
+
+Stamping: v3
+
+Stamping: v4
+
+Stamping: vcar
+
+Stamping: rcw1
+Created Optical Mode Shape 'Mode:1 n:1 x:5.0000000000000000e+01 y:5.0000000000000000e+01 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:1.5578099999999999e+03' (afdd0e1cb944dafd7fa6aa97097c4327d00ddbd0)
+Adding Optical Mode:   r1in:variable:rcw1 	      0x7ffd68413f80
+Adding Optical Mode:   r1in:fixed:1557.81 	      0x7ffd684148e0
+
+Stamping: rcw2
+Adding Optical Mode:  r1add:variable:rcw1 	      0x7ffd68415700
+Adding Optical Mode:  r1add:fixed:1557.81 	      0x7ffd68415ab0
+
+Stamping: ring1
+Adding Optical Mode: ring1:1-2in:variable:rcw1 	      0x7ffd68416d70
+Adding Optical Mode:   r1th:variable:rcw1 	      0x7ffd68416e70
+Adding Optical Mode: ring1:1-2out:variable:rcw1 	      0x7ffd68416ff0
+Stamping OptScatteringVtoV Instance: ring1:xc1:c(0)
+	E to E: r1in:variable:rcw1 | r1th:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:1-2in:fixed:1557.81 	      0x7ffd6841da10
+Adding Optical Mode:   r1th:fixed:1557.81 	      0x7ffd6841dd40
+Adding Optical Mode: ring1:1-2out:fixed:1557.81 	      0x7ffd6841de70
+Stamping OptScatteringVtoV Instance: ring1:xc1:c(1)
+	E to E: r1in:fixed:1557.81 | r1th:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:2-2in:variable:rcw1 	      0x7ffd684222d0
+Adding Optical Mode:   r1dr:variable:rcw1 	      0x7ffd684242d0
+Adding Optical Mode: ring1:2-2out:variable:rcw1 	      0x7ffd68424460
+Splitting OptNode (output flip): r1add:variable:rcw1
+	Inserting Extra OConn 'r1add:split:variable:rcw1'
+	New Link: r1add:split                                                  Link: 0x7ffd68424ac0
+Adding Optical Mode: r1add:split:variable:rcw1 	      0x7ffd68424680
+Stamping OptScatteringVtoV Instance: ring1:xc2:c(0)
+	E to E: ring1:2-2in:variable:rcw1 | ring1:2-2out:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:2-2in:fixed:1557.81 	      0x7ffd68429330
+Adding Optical Mode:   r1dr:fixed:1557.81 	      0x7ffd6842b330
+Adding Optical Mode: ring1:2-2out:fixed:1557.81 	      0x7ffd6842b4c0
+Splitting OptNode (output flip): r1add:fixed:1557.81
+Adding Optical Mode: r1add:split:fixed:1557.81 	      0x7ffd6842b6e0
+Stamping OptScatteringVtoV Instance: ring1:xc2:c(1)
+	E to E: ring1:2-2in:fixed:1557.81 | ring1:2-2out:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:filter-1:exp:inter1(0):variable:rcw1 	      0x7ffd68432460
+Adding Optical Mode: ring1:filter-1:exp:inter2(0):variable:rcw1 	      0x7ffd68432650
+Adding Optical Mode: ring1:filter-1:exp:inter3(0):variable:rcw1 	      0x7ffd68432aa0
+Splitting OptNode (output flip): ring1:2-2out:variable:rcw1
+	Inserting Extra OConn 'ring1:2-2out:split:variable:rcw1'
+	New Link: ring1:2-2out:split                                           Link: 0x7ffd68433890
+Adding Optical Mode: ring1:2-2out:split:variable:rcw1 	      0x7ffd684333f0
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:c(0):I1(0)
+	E to E: ring1:1-2out:variable:rcw1 | ring1:filter-1:exp:inter1(0):variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -380.172
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(0):td(0):c(0):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(0):td(0):c(0):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:c(0):I1(1)
+	E to E: ring1:filter-1:exp:inter3(0):variable:rcw1 | ring1:2-2out:split:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:filter-1:exp:inter1(0):fixed:1557.81 	      0x7ffd6843c550
+Adding Optical Mode: ring1:filter-1:exp:inter2(0):fixed:1557.81 	      0x7ffd6843c740
+Adding Optical Mode: ring1:filter-1:exp:inter3(0):fixed:1557.81 	      0x7ffd6843cb90
+Splitting OptNode (output flip): ring1:2-2out:fixed:1557.81
+Adding Optical Mode: ring1:2-2out:split:fixed:1557.81 	      0x7ffd6843d4e0
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:c(1):I1(0)
+	E to E: ring1:1-2out:fixed:1557.81 | ring1:filter-1:exp:inter1(0):fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -380.172
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(1):td(0):c(1):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(1):td(0):reverse:c(1):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(1):td(0):c(1):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-1:exp:c(1):td(0):reverse:c(1):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:c(1):I1(1)
+	E to E: ring1:filter-1:exp:inter3(0):fixed:1557.81 | ring1:2-2out:split:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:filter-2:exp:inter1(0):variable:rcw1 	      0x7ffd68704620
+Adding Optical Mode: ring1:filter-2:exp:inter2(0):variable:rcw1 	      0x7ffd68704810
+Adding Optical Mode: ring1:filter-2:exp:inter3(0):variable:rcw1 	      0x7ffd68704c60
+Splitting OptNode (input flip): ring1:2-2in:variable:rcw1
+	Inserting Extra OConn 'ring1:2-2in:split:variable:rcw1'
+	New Link: ring1:2-2in:split                                            Link: 0x7ffd68705a10
+Adding Optical Mode: ring1:2-2in:split:variable:rcw1 	      0x7ffd68705590
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:c(0):I1(0)
+	E to E: ring1:2-2in:split:variable:rcw1 | ring1:filter-2:exp:inter1(0):variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -380.172
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(0):td(0):c(0):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(0):td(0):c(0):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:c(0):I1(1)
+	E to E: ring1:filter-2:exp:inter3(0):variable:rcw1 | ring1:1-2in:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: ring1:filter-2:exp:inter1(0):fixed:1557.81 	      0x7ffd6870ed60
+Adding Optical Mode: ring1:filter-2:exp:inter2(0):fixed:1557.81 	      0x7ffd6870f450
+Adding Optical Mode: ring1:filter-2:exp:inter3(0):fixed:1557.81 	      0x7ffd6870f8a0
+Splitting OptNode (input flip): ring1:2-2in:fixed:1557.81
+Adding Optical Mode: ring1:2-2in:split:fixed:1557.81 	      0x7ffd687101d0
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:c(1):I1(0)
+	E to E: ring1:2-2in:split:fixed:1557.81 | ring1:filter-2:exp:inter1(0):fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -380.172
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(1):td(0):c(1):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(1):td(0):reverse:c(1):m(0):optmag:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(1):td(0):c(1):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=ring1:filter-2:exp:c(1):td(0):reverse:c(1):m(0):optphi:delay Del=3.1440819096808153e-13 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:c(1):I1(1)
+	E to E: ring1:filter-2:exp:inter3(0):fixed:1557.81 | ring1:1-2in:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Stamping: rmir1
+
+Stamping: rmir2
+
+Linking optical elements; 
+Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
+Mirror DetModes ... 
+		rmir1 input 0x7ffd68810320 output 0x7ffd68810320
+Mirror DetModes ... 
+		rmir2 input 0x7ffd6880e920 output 0x7ffd6880e920
+Oconn DetModes ...
+		ring1:xc2:split:r1add:4 input 0x7ffd6880c520 output 0x7ffd68810320
+Oconn DetModes ...
+		ring1:filter-1:exp:split:ring1:2-2out:2 input 0x7ffd68810320 output 0x7ffd68811d20
+Oconn DetModes ...
+		ring1:filter-2:exp:split:ring1:2-2in:1 input 0x7ffd69006b20 output 0x7ffd68810320
+
+Stamping free mode   optical elements; 
+Processing Mirror: rmir1 Version: 6 Switchable: 1
+Splitting OptNode (input flip): r1dr:variable:rcw1
+	Inserting Extra OConn 'r1dr:split:variable:rcw1'
+	New Link: r1dr:split                                                   Link: 0x7ffd68719b90
+Adding Optical Mode: r1dr:split:variable:rcw1 	      0x7ffd68719750
+Adding Optical Mode: rmir1:terminal:variable:rcw1 	      0x7ffd68719c70
+Stamping OptScatteringVtoV Instance: rmir1:vtov:c(0)
+	E to E: r1dr:split:variable:rcw1 | rmir1:terminal:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Splitting OptNode (input flip): r1dr:fixed:1557.81
+Adding Optical Mode: r1dr:split:fixed:1557.81 	      0x7ffd6871d060
+Adding Optical Mode: rmir1:terminal:fixed:1557.81 	      0x7ffd6871d240
+Stamping OptScatteringVtoV Instance: rmir1:vtov:c(1)
+	E to E: r1dr:split:fixed:1557.81 | rmir1:terminal:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Mirror: rmir2 Version: 6 Switchable: 1
+Adding Optical Mode: rmir2:terminal:variable:rcw1 	      0x7ffd68720b10
+Stamping OptScatteringVtoV Instance: rmir2:vtov:c(0)
+	E to E: r1th:variable:rcw1 | rmir2:terminal:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Adding Optical Mode: rmir2:terminal:fixed:1557.81 	      0x7ffd68723cd0
+Stamping OptScatteringVtoV Instance: rmir2:vtov:c(1)
+	E to E: r1th:fixed:1557.81 | rmir2:terminal:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Oconn: ring1:xc2:split:r1add:4
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+	Crossing OConn Output: 'ring1:xc2:split:r1add:4'
+Stamping OptScatteringVtoV Instance: ring1:xc2:split:r1add:4:c(0)
+	E to E: r1add:variable:rcw1 | r1add:split:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Stamping OptScatteringVtoV Instance: ring1:xc2:split:r1add:4:c(1)
+	E to E: r1add:fixed:1557.81 | r1add:split:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Oconn: ring1:filter-1:exp:split:ring1:2-2out:2
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+	Crossing OConn Output: 'ring1:filter-1:exp:split:ring1:2-2out:2'
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:split:ring1:2-2out:2:c(0)
+	E to E: ring1:2-2out:variable:rcw1 | ring1:2-2out:split:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Stamping OptScatteringVtoV Instance: ring1:filter-1:exp:split:ring1:2-2out:2:c(1)
+	E to E: ring1:2-2out:fixed:1557.81 | ring1:2-2out:split:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Oconn: ring1:filter-2:exp:split:ring1:2-2in:1
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+	Crossing OConn Input: 'ring1:filter-2:exp:split:ring1:2-2in:1'
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:split:ring1:2-2in:1:c(0)
+	E to E: ring1:2-2in:split:variable:rcw1 | ring1:2-2in:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Stamping OptScatteringVtoV Instance: ring1:filter-2:exp:split:ring1:2-2in:1:c(1)
+	E to E: ring1:2-2in:split:fixed:1557.81 | ring1:2-2in:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Oconn: rmir1:vtov:split:r1dr:1
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+Passing through mode
+		 Cf: (first 10)
+				1.0000000000000000e+00 
+
+		 Cb: (first 10) 
+				1.0000000000000000e+00 
+
+
+	Crossing OConn Input: 'rmir1:vtov:split:r1dr:1'
+Stamping OptScatteringVtoV Instance: rmir1:vtov:split:r1dr:1:c(0)
+	E to E: r1dr:split:variable:rcw1 | r1dr:variable:rcw1
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Stamping OptScatteringVtoV Instance: rmir1:vtov:split:r1dr:1:c(1)
+	E to E: r1dr:split:fixed:1557.81 | r1dr:fixed:1557.81
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Post Stamping: rcw2:c:1:m(0):optphi:iso
+
+Post Stamping: rcw2:c:1:m(0):optmag:iso
+
+Post Stamping: rcw1:c:0:m(0):optphi:iso
+
+Post Stamping: rcw1:c:0:m(0):optmag:iso
