@@ -1,0 +1,278 @@
+1 P_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+2 P_back(westin:fixed:1557.81) Mode=1 Pol=0
+3 P_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+4 P_back(westin:fixed:1557.81) Mode=1 Pol=0
+5 P_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+6 P_back(northout:fixed:1557.81) Mode=1 Pol=0
+7 P_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+8 P_back(northout:fixed:1557.81) Mode=1 Pol=0
+9 V(v22) Port = 1
+10 I(v22,1)
+11 I(v22,2)
+12 V(v3) Port = 1
+13 I(v3,1)
+14 I(v3,2)
+15 V(v4) Port = 1
+16 I(v4,1)
+17 I(v4,2)
+18 V(v6) Port = 1
+19 I(v6,1)
+20 I(v6,2)
+21 V(v8) Port = 1
+22 I(v8,1)
+23 I(v8,2)
+24 V(vt) Port = 1
+25 I(vt,1)
+26 I(vt,2)
+27 V(vsn1) Port = 1
+28 I(vsn1,1)
+29 V(vsn1) Port = 2
+30 I(vsn1,2)
+31 V(e1) Port = 1
+32 I(e1,1)
+33 I(e1,2)
+34 V(vsn2) Port = 1
+35 I(vsn2,1)
+36 V(vsn2) Port = 2
+37 I(vsn2,2)
+38 V(e2) Port = 1
+39 I(e2,1)
+40 I(e2,2)
+41 V(vsn34) Port = 1
+42 I(vsn34,1)
+43 V(vsn34) Port = 2
+44 I(vsn34,2)
+45 V(e3) Port = 1
+46 I(e3,1)
+47 I(e3,2)
+48 V(vsn56) Port = 1
+49 I(vsn56,1)
+50 V(vsn56) Port = 2
+51 I(vsn56,2)
+52 V(e4) Port = 1
+53 I(e4,1)
+54 I(e4,2)
+55 V(vsn7) Port = 1
+56 I(vsn7,1)
+57 V(vsn7) Port = 2
+58 I(vsn7,2)
+59 V(e5) Port = 1
+60 I(e5,1)
+61 I(e5,2)
+62 V(vsn8) Port = 1
+63 I(vsn8,1)
+64 V(vsn8) Port = 2
+65 I(vsn8,2)
+66 V(e6) Port = 1
+67 I(e6,1)
+68 I(e6,2)
+69 V(cw1) Port = 1
+70 I(cw1,1)
+71 V(cw1) Port = 2
+72 I(cw1,2)
+73 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+74 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+75 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+76 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+77 Er_back(westin:fixed:1557.81) Mode=1 Pol=0
+78 Ei_back(westin:fixed:1557.81) Mode=1 Pol=0
+79 Er_back(westin:fixed:1557.81) Mode=1 Pol=1
+80 Ei_back(westin:fixed:1557.81) Mode=1 Pol=1
+81 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+82 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+83 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+84 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+85 Er_back(northout:fixed:1557.81) Mode=1 Pol=0
+86 Ei_back(northout:fixed:1557.81) Mode=1 Pol=0
+87 Er_back(northout:fixed:1557.81) Mode=1 Pol=1
+88 Ei_back(northout:fixed:1557.81) Mode=1 Pol=1
+89 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+90 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+91 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+92 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+93 Er_back(westin:fixed:1557.81) Mode=1 Pol=0
+94 Ei_back(westin:fixed:1557.81) Mode=1 Pol=0
+95 Er_back(westin:fixed:1557.81) Mode=1 Pol=1
+96 Ei_back(westin:fixed:1557.81) Mode=1 Pol=1
+97 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+98 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+99 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+100 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+101 Er_back(n12:fixed:1557.81) Mode=1 Pol=0
+102 Ei_back(n12:fixed:1557.81) Mode=1 Pol=0
+103 Er_back(n12:fixed:1557.81) Mode=1 Pol=1
+104 Ei_back(n12:fixed:1557.81) Mode=1 Pol=1
+105 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+106 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+107 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+108 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+109 Er_back(n15:fixed:1557.81) Mode=1 Pol=0
+110 Ei_back(n15:fixed:1557.81) Mode=1 Pol=0
+111 Er_back(n15:fixed:1557.81) Mode=1 Pol=1
+112 Ei_back(n15:fixed:1557.81) Mode=1 Pol=1
+113 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+114 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+115 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+116 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+117 Er_back(northout:fixed:1557.81) Mode=1 Pol=0
+118 Ei_back(northout:fixed:1557.81) Mode=1 Pol=0
+119 Er_back(northout:fixed:1557.81) Mode=1 Pol=1
+120 Ei_back(northout:fixed:1557.81) Mode=1 Pol=1
+121 Er_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+122 Ei_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+123 Er_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+124 Ei_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+125 Er_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+126 Ei_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+127 Er_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+128 Ei_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+129 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+130 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+131 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+132 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+133 Er_back(n12:fixed:1557.81) Mode=1 Pol=0
+134 Ei_back(n12:fixed:1557.81) Mode=1 Pol=0
+135 Er_back(n12:fixed:1557.81) Mode=1 Pol=1
+136 Ei_back(n12:fixed:1557.81) Mode=1 Pol=1
+137 Er_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+138 Ei_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+139 Er_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+140 Ei_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+141 Er_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+142 Ei_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+143 Er_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+144 Ei_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+145 Er_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+146 Ei_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+147 Er_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+148 Ei_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+149 Er_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+150 Ei_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+151 Er_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+152 Ei_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+153 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+154 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=0
+155 Er_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+156 Ei_fwd(westin:fixed:1557.81) Mode=1 Pol=1
+157 Er_back(westin:fixed:1557.81) Mode=1 Pol=0
+158 Ei_back(westin:fixed:1557.81) Mode=1 Pol=0
+159 Er_back(westin:fixed:1557.81) Mode=1 Pol=1
+160 Ei_back(westin:fixed:1557.81) Mode=1 Pol=1
+161 Er_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+162 Ei_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+163 Er_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+164 Ei_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+165 Er_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+166 Ei_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+167 Er_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+168 Ei_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+169 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+170 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+171 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+172 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+173 Er_back(n15:fixed:1557.81) Mode=1 Pol=0
+174 Ei_back(n15:fixed:1557.81) Mode=1 Pol=0
+175 Er_back(n15:fixed:1557.81) Mode=1 Pol=1
+176 Ei_back(n15:fixed:1557.81) Mode=1 Pol=1
+177 Er_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+178 Ei_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+179 Er_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+180 Ei_fwd(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+181 Er_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+182 Ei_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=0
+183 Er_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+184 Ei_back(r1:1-2out:fixed:1557.81) Mode=1 Pol=1
+185 Er_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+186 Ei_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+187 Er_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+188 Ei_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+189 Er_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+190 Ei_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+191 Er_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+192 Ei_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+193 V(r1:filter-1:exp) Port = 3
+194 I(r1:filter-1:exp,3)
+195 I(r1:filter-1:exp,4)
+196 Er_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+197 Ei_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+198 Er_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+199 Ei_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+200 Er_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+201 Ei_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+202 Er_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+203 Ei_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+204 Er_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+205 Ei_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+206 Er_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+207 Ei_fwd(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+208 Er_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+209 Ei_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=0
+210 Er_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+211 Ei_back(r1:1-2in:fixed:1557.81) Mode=1 Pol=1
+212 V(r1:filter-2:exp) Port = 3
+213 I(r1:filter-2:exp,3)
+214 I(r1:filter-2:exp,4)
+215 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+216 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+217 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+218 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+219 Er_back(northout:fixed:1557.81) Mode=1 Pol=0
+220 Ei_back(northout:fixed:1557.81) Mode=1 Pol=0
+221 Er_back(northout:fixed:1557.81) Mode=1 Pol=1
+222 Ei_back(northout:fixed:1557.81) Mode=1 Pol=1
+223 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+224 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=0
+225 Er_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+226 Ei_fwd(n12:fixed:1557.81) Mode=1 Pol=1
+227 Er_back(n12:fixed:1557.81) Mode=1 Pol=0
+228 Ei_back(n12:fixed:1557.81) Mode=1 Pol=0
+229 Er_back(n12:fixed:1557.81) Mode=1 Pol=1
+230 Ei_back(n12:fixed:1557.81) Mode=1 Pol=1
+231 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+232 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=0
+233 Er_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+234 Ei_fwd(n15:fixed:1557.81) Mode=1 Pol=1
+235 Er_back(n15:fixed:1557.81) Mode=1 Pol=0
+236 Ei_back(n15:fixed:1557.81) Mode=1 Pol=0
+237 Er_back(n15:fixed:1557.81) Mode=1 Pol=1
+238 Ei_back(n15:fixed:1557.81) Mode=1 Pol=1
+239 Er_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+240 Ei_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+241 Er_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+242 Ei_fwd(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+243 Er_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+244 Ei_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=0
+245 Er_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+246 Ei_back(r1:2-2out:fixed:1557.81) Mode=1 Pol=1
+247 Er_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+248 Ei_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+249 Er_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+250 Ei_fwd(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+251 Er_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+252 Ei_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=0
+253 Er_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+254 Ei_back(r1:2-2out:split:fixed:1557.81) Mode=1 Pol=1
+255 Er_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+256 Ei_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+257 Er_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+258 Ei_fwd(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+259 Er_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+260 Ei_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=0
+261 Er_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+262 Ei_back(r1:2-2in:split:fixed:1557.81) Mode=1 Pol=1
+263 Er_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+264 Ei_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+265 Er_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+266 Ei_fwd(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+267 Er_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+268 Ei_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=0
+269 Er_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+270 Ei_back(r1:2-2in:fixed:1557.81) Mode=1 Pol=1
+271 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+272 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=0
+273 Er_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+274 Ei_fwd(northout:fixed:1557.81) Mode=1 Pol=1
+275 Er_back(northout:fixed:1557.81) Mode=1 Pol=0
+276 Ei_back(northout:fixed:1557.81) Mode=1 Pol=0
+277 Er_back(northout:fixed:1557.81) Mode=1 Pol=1
+278 Ei_back(northout:fixed:1557.81) Mode=1 Pol=1

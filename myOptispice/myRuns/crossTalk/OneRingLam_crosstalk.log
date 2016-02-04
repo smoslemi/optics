@@ -1,0 +1,11 @@
+Running OptiSPICE 5.1 (compiled on: Jan  5 2016 10:28:02) 
+
+Copyright 2015 Optiwave Systems Inc. All rights reserved.
+
+	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
+
+Processing Netlist file: OneRingLam_crosstalk.sp
+
+************* FILE: "OneRingLam_crosstalk.sp"  ************
+
+Error: Can not open file OneRingLam_crosstalk.sp
