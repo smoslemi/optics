@@ -33,12 +33,14 @@ use POSIX;
 #my $spice_file1 = 'waveguide_smt_ex.log' ;
 
 my $spice_file1 = shift ;
+my $outFile = "plotData.csv";
 #my $spice_file1 ;
 
-my $file1_handle ;
+my ($file1_handle, $out_handle) ;
 my $phaseShift = 0 ;
 my $lineCnt = 0 ;
 my $dataSetCnt = 0 ;
+my $totalDataSetNum = 0 ;
 
 my @l_elements ;
 my @dataFiles;
@@ -57,28 +59,54 @@ print (`ls \*.2d_dat`) ;
 
 # extract structure params
 foreach my $f (<@dataFiles>) {# each file
-	print ("\n S8 <<$f>>\n"); 
+	print ("\nS1 Extract params from name of File <<$f>>  \n"); 
 	if ($f =~ m/\w+_L(.*)_LAM(.*)_NEFF(.*)_end/i){ # struc param
 		($length, $lam, $neff) = ($1,$2,$3);
-		print("S7 $length $lam $neff \n");
+		print("S2 $length $lam $neff \n");
 		$hashLength{$dataSetCnt} = $length;
 		$hashLambda{$dataSetCnt} = $lam;
 		$hashNeff{$dataSetCnt} = $neff;
 		$hashDataSet{$dataSetCnt} = $f;
 	} # struc param
 	open $file1_handle, "$f" or die ("\nERROR: Could not open file $f.\n");
+	    print ("\n===>S2 File <<$f>> under read \n"); 
 		foreach my $l(<$file1_handle>){ # each l at file1_handle
 			if ($lineCnt == 1){ #line count
 				@l_elements = split('\s+', $l);
-				print("S3 $length $lam $neff $l_elements[4]\n");
+				print("\n    ****S3 $length $lam $neff $l_elements[4]\n");
 				$hashPhaseShift{$dataSetCnt} = $l_elements[4];
 			} #line count
 			$lineCnt = $lineCnt + 1 ;
-			$dataSetCnt = $dataSetCnt + 1 ;
 		}  # each l at file1_handle
+		$lineCnt = 0;
+		$dataSetCnt = $dataSetCnt + 1 ;
 	close($file1_handle);	
 }# each file
 
+open  $out_handle, ">$outFile" or die ("ERROR can not open file $outFile\n");
+	print $out_handle "dataSetName,dataSetNumber,Lenght,Lambda,Neff,phaseShift\n";
+	my @hashDataSetKeys = (keys %hashDataSet); 
+	$totalDataSetNum = @hashDataSetKeys;
+	print("\nS9 Total Data set number = $totalDataSetNum or $dataSetCnt \n");
+	my $tempI = 0;
+	while ($tempI <$dataSetCnt){
+		print $out_handle "$tempI,$hashDataSet{$tempI},$hashLength{$tempI},$hashLambda{$tempI},$hashNeff{$tempI},$hashPhaseShift{$tempI}\n";
+		$tempI = $tempI + 1 ;
+	}
+
+close($out_handle);
+
+printHash(\%hashDataSet);
+
+
+#=begin
+sub printHash {
+   my $hashRef = shift ;
+   while ( my ($key, $value) =  each(%{$hashRef}) ) {
+         print "$key => $value\n";
+   }
+}
+#=end
 
 
 __END__
