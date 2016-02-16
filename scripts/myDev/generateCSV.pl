@@ -129,9 +129,18 @@ print "\n@lengthArray\n";
 print "\n@lamArray\n";
 print "\n@neffArray\n";
 
-#=begin
+@lengthArray = sort (@lengthArray);
+@lamArray = sort (@lamArray);
+@neffArray = sort (@neffArray);
+
 my $outIndi;
 my $outIndiHandle;
+
+
+
+
+# START Generate the individual files 
+## START Files for Phase shift vs Neff for sets of fixed length and lambda
 open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
 	foreach my $i (<@lengthArray>){ #i
 		foreach my $j (<@lamArray>){#j
@@ -139,28 +148,103 @@ open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n
 			$outIndi = join('_','out', "L$i", "LAM$j", 'NEFF', 'Phase') ;
 			$outIndi = join('.',"$outIndi",'log' ) ;
 			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
-			print $outIndiHandle "hello1\n";
+			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
 			print ("\n $i ,,,  $j\n");
 			foreach my $l(<$out_handle>){ # each l at $out_handle
+			    chomp($l);
 				@out_elements = split(',', $l);
 				#print ("\n $l $out_elements[2] => $i ,,, $out_elements[3] => $j\n");
 				if (($out_elements[2] eq $i) && ($out_elements[3] eq $j)){ # l and lam
-				    print "><><><><> $out_elements[0] $out_elements[2] $out_elements[3] $out_elements[4] $out_elements[5]\n";
+				    $out_elements[5] = &fixPhase($out_elements[5]);
+				    #print "><><><><> $out_elements[0] $out_elements[2] $out_elements[3] $out_elements[4] $out_elements[5]\n";
 					print $outIndiHandle "$out_elements[0] $out_elements[4] $out_elements[5]\n";
-					print $outIndiHandle "hello2\n";
+					#print $outIndiHandle "hello2\n";
 				} # l and lam
 			}# each l at $out_handle
          
 		}#j
 	} #i
-print $outIndiHandle "hello3\n";	
+#print $outIndiHandle "hello3\n";	
 close($outIndiHandle);	
 close($out_handle);	
-#=end
+## END Files for Phase shift vs Neff for sets of fixed length and lambda
 
+## START Files for Phase shift vs Lambda for sets of fixed length and neff
+open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+	foreach my $i (<@lengthArray>){ #i
+		foreach my $j (<@neffArray>){#j
+			open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+			$outIndi = join('_','out', "L$i", "NEFF$j", 'LAM', 'Phase') ;
+			$outIndi = join('.',"$outIndi",'log' ) ;
+			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
+			#print $outIndiHandle "hello1\n";
+			#print "\n>>>>$outIndi<<<<\n";
+			print ("\n $i ,,,  $j\n");
+			foreach my $l(<$out_handle>){ # each l at $out_handle
+			    chomp($l);
+				@out_elements = split(',', $l);
+				#print ("\n $l $out_elements[2] => $i ,,, $out_elements[3] => $j\n");
+				if (($out_elements[2] eq $i) && ($out_elements[4] eq $j)){ # l and neff
+				    $out_elements[5] = &fixPhase($out_elements[5]);
+				    #print "><><><><> $out_elements[0] $out_elements[2] $out_elements[3] $out_elements[4] $out_elements[5]\n";
+					print $outIndiHandle "$out_elements[0] $out_elements[3] $out_elements[5]\n";
+					#print $outIndiHandle "hello2\n";
+				} # l and neff
+			}# each l at $out_handle
+         
+		}#j
+	} #i
+#print $outIndiHandle "hello3\n";	
+close($outIndiHandle);	
+close($out_handle);	
+
+## END Files for Phase shift vs Lambda for sets of fixed length and neff
+
+## START Files for Phase shift vs Length for sets of fixed lambda and neff
+open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+	foreach my $i (<@lamArray>){ #i
+		foreach my $j (<@neffArray>){#j
+			open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+			$outIndi = join('_','out', "LAM$i", "NEFF$j", 'LENGTH', 'Phase') ;
+			$outIndi = join('.',"$outIndi",'log' ) ;
+			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
+			#print $outIndiHandle "hello1\n";
+			#print "\n>>>>$outIndi<<<<\n";
+			print ("\n $i ,,,  $j\n");
+			foreach my $l(<$out_handle>){ # each l at $out_handle
+			    chomp($l);
+				@out_elements = split(',', $l);
+				#print ("\n $l $out_elements[2] => $i ,,, $out_elements[3] => $j\n");
+				if (($out_elements[3] eq $i) && ($out_elements[4] eq $j)){ # lam and neff
+				    $out_elements[5] = &fixPhase($out_elements[5]);
+				    #print "><><><><> $out_elements[0] $out_elements[2] $out_elements[3] $out_elements[4] $out_elements[5]\n";
+					print $outIndiHandle "$out_elements[0] $out_elements[2] $out_elements[5]\n";
+					#print $outIndiHandle "hello2\n";
+				} # lam and neff
+			}# each l at $out_handle
+         
+		}#j
+	} #i
+#print $outIndiHandle "hello3\n";	
+close($outIndiHandle);	
+close($out_handle);	
+
+## END Files for Phase shift vs Lambda for sets of fixed length and neff
+# END Generate the individual files
 
 ##### SUB ROUTINES #####
+
+sub fixPhase{
+    my $x = shift ;
+	if ($x < 0){
+		$x = 6.28 + $x;
+	}
+	while ($out_elements[5]> 6.28){
+		$x = $x - 6.28;
+	}
+	return($x);
+}
 
 sub getDistinctParams{
     my @fullArray = @_ ;
