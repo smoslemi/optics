@@ -33,11 +33,12 @@ use POSIX;
 #my $spice_file1 = 'waveguide_smt_ex.log' ;
 
 my $spice_file1 = shift ;
+my $outFolder ;
 my $outFile = "plotData.csv";
 my $outLPhase = "plotDataLPashe.csv";
 my $outLamPhase = "plotDataLamPhase.csv";
 my $outNeffPhase = "plotDataNeffPhase.csv";
-#my $spice_file1 ;
+my $date_snap ;
 
 my ($file1_handle, $out_handle) ;
 my $phaseShift = 0 ;
@@ -57,8 +58,15 @@ my (@lengthArray, @lamArray, @neffArray);
 # get the file names
 #print (`ls \*.2d_dat`) ;
 my @dataFilesTotal = `ls \*.2d_dat` ;
-#`mkdir "outDir"`;
+
+chomp($date_snap = `date +%d%b%Y_%H%M_%S`);
+print "\n$date_snap\n";
+$outFolder=join('_','outDir', "$date_snap");
+print "\n$outFolder\n";
+
+`mkdir $outFolder`;
 #print ("\nS6 $dataFiles[1] \n") ;
+
 
 
 #read each file
@@ -95,7 +103,8 @@ foreach my $f (<@dataFiles>) {# each file
 	close($file1_handle);	
 }# each file
 
-open  $out_handle, ">outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+#open  $out_handle, ">outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+open  $out_handle, ">$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 	print $out_handle "dataSetName,dataSetNumber,Lenght,Lambda,Neff,phaseShift\n";
 	my @hashDataSetKeys = (keys %hashDataSet); 
 	
@@ -145,13 +154,13 @@ my $outIndiHandle;
 
 # START Generate the individual files 
 ## START Files for Phase shift vs Neff for sets of fixed length and lambda
-open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 	foreach my $i (<@lengthArray>){ #i
 		foreach my $j (<@lamArray>){#j
-			open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+			open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 			$outIndi = join('_','out', "L$i", "LAM$j", 'NEFF', 'Phase') ;
 			$outIndi = join('.',"$outIndi",'log' ) ;
-			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
+			open  $outIndiHandle, ">$outFolder/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
 			#print ("\n $i ,,,  $j\n");
@@ -175,13 +184,13 @@ close($out_handle);
 ## END Files for Phase shift vs Neff for sets of fixed length and lambda
 
 ## START Files for Phase shift vs Lambda for sets of fixed length and neff
-open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 	foreach my $i (<@lengthArray>){ #i
 		foreach my $j (<@neffArray>){#j
-			open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+			open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 			$outIndi = join('_','out', "L$i", "NEFF$j", 'LAM', 'Phase') ;
 			$outIndi = join('.',"$outIndi",'log' ) ;
-			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
+			open  $outIndiHandle, ">$outFolder/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
 			#print ("\n $i ,,,  $j\n");
@@ -206,13 +215,13 @@ close($out_handle);
 ## END Files for Phase shift vs Lambda for sets of fixed length and neff
 
 ## START Files for Phase shift vs Length for sets of fixed lambda and neff
-open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 	foreach my $i (<@lamArray>){ #i
 		foreach my $j (<@neffArray>){#j
-			open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n");
+			open  $out_handle, "$outFolder/$outFile" or die ("ERROR can not open file $outFile\n");
 			$outIndi = join('_','out', "LAM$i", "NEFF$j", 'LENGTH', 'Phase') ;
 			$outIndi = join('.',"$outIndi",'log' ) ;
-			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
+			open  $outIndiHandle, ">$outFolder/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
 			#print ("\n $i ,,,  $j\n");
