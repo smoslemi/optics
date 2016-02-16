@@ -124,14 +124,18 @@ close($out_handle);
 @neffArray =&getDistinctParams(@neffArrayTemp);
 
 #print "\n@lengthArrayTemp\n";
-print "\n@lengthArray\n";
-
-print "\n@lamArray\n";
-print "\n@neffArray\n";
+#print "\n@lengthArray\n";
+#print "\n@lamArray\n";
+#print "\n@neffArray\n";
 
 @lengthArray = sort (@lengthArray);
 @lamArray = sort (@lamArray);
 @neffArray = sort (@neffArray);
+
+print "\nSet of lengths used for simulation.:\n@lengthArray\n";
+print "\nSet of lambdas used for simulation.:\n@lamArray\n";
+print "\nSet of neffs used for simulation.:\n@neffArray\n";
+
 
 my $outIndi;
 my $outIndiHandle;
@@ -150,7 +154,7 @@ open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n
 			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
-			print ("\n $i ,,,  $j\n");
+			#print ("\n $i ,,,  $j\n");
 			foreach my $l(<$out_handle>){ # each l at $out_handle
 			    chomp($l);
 				@out_elements = split(',', $l);
@@ -180,7 +184,7 @@ open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n
 			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
-			print ("\n $i ,,,  $j\n");
+			#print ("\n $i ,,,  $j\n");
 			foreach my $l(<$out_handle>){ # each l at $out_handle
 			    chomp($l);
 				@out_elements = split(',', $l);
@@ -211,7 +215,7 @@ open  $out_handle, "outDir/$outFile" or die ("ERROR can not open file $outFile\n
 			open  $outIndiHandle, ">outDir/$outIndi" or die ("ERROR can not open file $outIndi\n");
 			#print $outIndiHandle "hello1\n";
 			#print "\n>>>>$outIndi<<<<\n";
-			print ("\n $i ,,,  $j\n");
+			#print ("\n $i ,,,  $j\n");
 			foreach my $l(<$out_handle>){ # each l at $out_handle
 			    chomp($l);
 				@out_elements = split(',', $l);
@@ -237,7 +241,7 @@ close($out_handle);
 
 sub fixPhase{
     my $x = shift ;
-	if ($x < 0){
+	if ($x < 0.0) {
 		$x = 6.28 + $x;
 	}
 	while ($out_elements[5]> 6.28){
