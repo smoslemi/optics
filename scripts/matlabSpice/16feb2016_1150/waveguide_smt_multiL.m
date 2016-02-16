@@ -11,7 +11,7 @@ display(base);
 
 system(pwd);
 
-cd('/Users/sanam/phd/myOptispice/myRuns/waveguide/16feb2016_1150');
+cd('/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/16feb2016_1150');
 
 system(pwd);
 
