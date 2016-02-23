@@ -1,0 +1,1783 @@
+Running OptiSPICE 5.1 (compiled on: Jan  5 2016 10:28:02) 
+
+Copyright 2015 Optiwave Systems Inc. All rights reserved.
+
+	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
+
+Processing Netlist file: waveguide_smt_L1.0_LAM1310_Neff2.3_end.sp
+
+************* FILE: "waveguide_smt_L1.0_LAM1310_Neff2.3_end.sp"  ************
+
+Title "CW Source check "
+
+Osp Jobcontrol Verbosity=DEBUG2
+
+.option ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8
+.OPTION DCCAP=1 TNOM=27
+
+.param NMODES=1
+
+* Voltage sources
+v1 Mag1 0 DC = 1 
+v2 Phi1 0 DC = 0 
+
+Osp CWSOURCE   Name=cw1 Nodes = [Mag1 Phi1 l1] MoName = CWmodel lambda = 1.310000e+03
+Osp WaveGuide  Name=wg1 Nodes = [l1 l2] MoName=WGmodel
+Osp MIRROR     Name=mir1 Nodes = [l2] MoName = Mmodel 
+
+Osp Model Name = Mmodel   type = MIRROR    Ref = 0
+Osp Model Name = CWmodel  type = CWSOURCE 
+Osp Model Name = WGmodel  type = WaveGuide  Length=1.000000e+00  IncludeTimeDelay=1  neff=[2.300000e+00]  N0=1.1 NF=1.1
+
+% IncludeTimeDelay=1 
+.tran .0001e-9 10e-9 nsolver=BACKE nmaxst=.05n nminst=.05n
+
+	
+.Monitor OptFields wg1 Format=MagPhi Port=1 dir=IN  Pol=TE
+.Monitor OptFields wg1 Format=MagPhi Port=2 dir=OUT Pol=TE
+%.Monitor OptFields wg2 Format=MagPhi Port=2 dir=OUT Pol=TE
+.end
+
+************* *************** ************
+
+Options ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8 
+Options DCCAP=1 TNOM=27 
+Param P=[ { NMODES 1 } ] 
+INDSOURCE EL_Type=V_SOU Name=v1 Nodes=[ Mag1 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v2 Nodes=[ Phi1 0 ] dcMode dcValue=0 
+CWSOURCE Name=cw1 Nodes=[ Mag1 Phi1 l1 ] MoName=CWmodel lambda=1.310000e+03 
+WaveGuide Name=wg1 Nodes=[ l1 l2 ] MoName=WGmodel 
+MIRROR Name=mir1 Nodes=[ l2 ] MoName=Mmodel 
+Model Name=Mmodel type=MIRROR Ref=0 
+Model Name=CWmodel type=CWSOURCE 
+Model Name=WGmodel type=WaveGuide Length=1.000000e+00 IncludeTimeDelay=1 neff=[ 2.300000e+00 ] N0=1.1 NF=1.1 
+Transient Tpoints=[ { .0001e-9 10e-9 } ] nsolver=BACKE nmaxst=.05n nminst=.05n 
+Monitor Type=OptFields Name=wg1 Format=MagPhi Port=1 dir=IN Pol=TE 
+Monitor Type=OptFields Name=wg1 Format=MagPhi Port=2 dir=OUT Pol=TE 
+END
+
+Assigning node numbers and stamping
+
+
+Main Circuit Paras:
+	Name=NMODES String=1 Ep = 0x0
+
+Creating: v1
+
+Creating: v2
+
+Creating: cw1
+	New Link: l1                                                           Link: 0x7f843b500960
+
+Creating: wg1
+	New Link: l2                                                           Link: 0x7f843b703e70
+
+Creating: mir1
+
+Circuit after element assignment
+
+Element hash table
+	Key: v1                                                           	val: 	997199040 
+	Key: v2                                                           	val: 	997201904 
+	Key: wg1:exp                                                      	val: 	1015030272
+	Key: mir1                                                         	val: 	1015033856
+	Key: cw1                                                          	val: 	1015021568
+	Key: wg1                                                          	val: 	1015027200
+
+Delay Element hash table
+
+OptFFT Element hash table
+
+Noise Element hash table
+
+Optical Element hash table
+	Key: wg1:exp                                                      	val: 	1015030272
+	Key: mir1                                                         	val: 	1015033856
+	Key: cw1                                                          	val: 	1015021568
+	Key: wg1                                                          	val: 	1015027200
+
+Source Optical Element hash table
+	Key: cw1                                                          	val: 	1015021568
+
+Elec Init Conditions
+
+
+Tracing optical sources
+	source: cw1 (fixed:1310)  -> wg1:exp (1) 
+		-- Return Branch:  -> cw1 (1) 
+
+		-- Through Branch:  -> mir1 (1)  -> wg1:exp (1) 
+
+
+Stamping: v1
+
+Stamping: v2
+
+Stamping: cw1
+Created Optical Mode Shape 'Mode:1 n:1 x:5.0000000000000000e+01 y:5.0000000000000000e+01 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:1.3100000000000000e+03' (1fe77265b9e153830a55683b4856c9c77d4eede3)
+Adding Optical Mode:        l1:fixed:1310 	      0x7f843b6004f0
+
+Stamping: wg1
+Adding Optical Mode: wg1:exp:inter1(0):fixed:1310 	      0x7f843b707650
+Adding Optical Mode: wg1:exp:inter2(0):fixed:1310 	      0x7f843b707800
+Adding Optical Mode: wg1:exp:inter3(0):fixed:1310 	      0x7f843b705460
+Adding Optical Mode:        l2:fixed:1310 	      0x7f843b501750
+Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(0)
+	E to E: l1:fixed:1310 | wg1:exp:inter1(0):fixed:1310
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -11.0315
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):c(0):m(0):optmag:delay Del=7.6719741895574963e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay Del=7.6719741895574963e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):c(0):m(0):optphi:delay Del=7.6719741895574963e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay Del=7.6719741895574963e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(1)
+	E to E: wg1:exp:inter3(0):fixed:1310 | l2:fixed:1310
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Stamping: mir1
+
+Linking optical elements; 
+Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
+Mirror DetModes ... 
+		mir1 input 0x7f843c802320 output 0x7f843c802320
+
+Stamping free mode   optical elements; 
+Processing Mirror: mir1 Version: 6 Switchable: 1
+Adding Optical Mode: mir1:terminal:fixed:1310 	      0x7f843b603c60
+Stamping OptScatteringVtoV Instance: mir1:vtov:c(0)
+	E to E: l2:fixed:1310 | mir1:terminal:fixed:1310
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Post Stamping: cw1:c:0:m(0):optphi:iso
+
+Post Stamping: cw1:c:0:m(0):optmag:iso
+
+Circuit after node assignment
+
+Element hash table (including internal elements)
+	Key: cw1:c:0:m(0):optphi:iso                                      	val: 	997223936 
+	Key: mir1:vtov                                                    	val: 	1023413760
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	997236032 
+	Key: wg1:exp:c(0):I1(0)                                           	val: 	1023410176
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	997240064 
+	Key: wg1                                                          	val: 	1015027200
+	Key: wg1:exp:c(0):I1(1)                                           	val: 	1006647296
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	997241696 
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	997238480 
+	Key: mir1:vtov:c(0)                                               	val: 	1023418880
+	Key: v1                                                           	val: 	997199040 
+	Key: v2                                                           	val: 	997201904 
+	Key: wg1:exp                                                      	val: 	1015030272
+	Key: cw1:c:0:m(0):optmag:iso                                      	val: 	997221824 
+	Key: cw1                                                          	val: 	1015021568
+	Key: mir1                                                         	val: 	1015033856
+
+Node hash table (size: 66)
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optmag                   	val: 	56        
+	Key: wg1:exp:inter3(0):fixed:1310:fwd:m(0):optphi                 	val: 	36        
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optmag                   	val: 	48        
+	Key: mir1:terminal:fixed:1310:rev:m(0):optmag                     	val: 	59        
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optmag                   	val: 	46        
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	63        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	65        
+	Key: wg1:exp:inter1(0):fixed:1310:fwd:m(0):optmag                 	val: 	26        
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay:i          	val: 	51        
+	Key: l2:fixed:1310:rev:m(0):optphi                                	val: 	45        
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optmag                   	val: 	54        
+	Key: wg1:exp:revphase(0:0):modei:m(0):optphi                      	val: 	41        
+	Key: mir1:terminal:fixed:1310:fwd:m(0):optmag                     	val: 	58        
+	Key: wg1:exp:inter2(0):fixed:1310:rev:m(0):optphi                 	val: 	33        
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optphi                      	val: 	39        
+	Key: cw1:l1:fixed:1310:modei:m(0):optphi                          	val: 	23        
+	Key: l1:fixed:1310:rev:m(0):optphi                                	val: 	17        
+	Key: v1:portcurrentnode:0                                         	val: 	3         
+	Key: v1:portcurrentnode:1                                         	val: 	5         
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	25        
+	Key: wg1:exp:inter3(0):fixed:1310:rev:m(0):optmag                 	val: 	35        
+	Key: l2:fixed:1310:fwd:m(0):optphi                                	val: 	44        
+	Key: wg1:exp:inter2(0):fixed:1310:fwd:m(0):optphi                 	val: 	32        
+	Key: v2:portcurrentnode:0                                         	val: 	9         
+	Key: v2:portcurrentnode:1                                         	val: 	11        
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay:i                  	val: 	50        
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay:i          	val: 	53        
+	Key: l1:fixed:1310:fwd:m(0):optphi                                	val: 	16        
+	Key: v1:i                                                         	val: 	7         
+	Key: wg1:exp:inter3(0):fixed:1310:fwd:m(0):optmag                 	val: 	34        
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	62        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	64        
+	Key: mag1                                                         	val: 	2         
+	Key: wg1:exp:inter1(0):fixed:1310:rev:m(0):optphi                 	val: 	29        
+	Key: cw1:portcurrentcurnode:0                                     	val: 	19        
+	Key: cw1:portcurrentcurnode:1                                     	val: 	21        
+	Key: v1:portcurrentcurnode:0                                      	val: 	4         
+	Key: v1:portcurrentcurnode:1                                      	val: 	6         
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optphi                   	val: 	57        
+	Key: v2:portcurrentcurnode:0                                      	val: 	10        
+	Key: l2:fixed:1310:rev:m(0):optmag                                	val: 	43        
+	Key: v2:portcurrentcurnode:1                                      	val: 	12        
+	Key: wg1:exp:revphase(0:0):modei:m(0):optmag                      	val: 	40        
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optphi                   	val: 	47        
+	Key: 0                                                            	val: 	-5        
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optphi                   	val: 	49        
+	Key: wg1:exp:inter2(0):fixed:1310:rev:m(0):optmag                 	val: 	31        
+	Key: wg1:exp:inter1(0):fixed:1310:fwd:m(0):optphi                 	val: 	28        
+	Key: mir1:terminal:fixed:1310:rev:m(0):optphi                     	val: 	61        
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optphi                   	val: 	55        
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optmag                      	val: 	38        
+	Key: cw1:l1:fixed:1310:modei:m(0):optmag                          	val: 	22        
+	Key: mir1:terminal:fixed:1310:fwd:m(0):optphi                     	val: 	60        
+	Key: l1:fixed:1310:rev:m(0):optmag                                	val: 	15        
+	Key: l2:fixed:1310:fwd:m(0):optmag                                	val: 	42        
+	Key: cw1:portcurrentnode:0                                        	val: 	18        
+	Key: cw1:portcurrentnode:1                                        	val: 	20        
+	Key: wg1:exp:inter2(0):fixed:1310:fwd:m(0):optmag                 	val: 	30        
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay:i                  	val: 	52        
+	Key: wg1:exp:inter3(0):fixed:1310:rev:m(0):optphi                 	val: 	37        
+	Key: l1:fixed:1310:fwd:m(0):optmag                                	val: 	14        
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	24        
+	Key: phi1                                                         	val: 	8         
+	Key: v2:i                                                         	val: 	13        
+	Key: wg1:exp:inter1(0):fixed:1310:rev:m(0):optmag                 	val: 	27        
+	Key: cw1:channel-fixed:1310                                       	val: 	1         
+
+Node array 
+	Key: 0                                                            	val: 	-5         Status: V node
+	Key: cw1:channel-fixed:1310                                       	val: 	1          Status: V node
+	Key: mag1                                                         	val: 	2          Status: V node
+	Key: v1:portcurrentnode:0                                         	val: 	3          Status: V node
+	Key: v1:portcurrentcurnode:0                                      	val: 	4          Status: I node
+	Key: v1:portcurrentnode:1                                         	val: 	5          Status: V node
+	Key: v1:portcurrentcurnode:1                                      	val: 	6          Status: I node
+	Key: v1:i                                                         	val: 	7          Status: I node
+	Key: phi1                                                         	val: 	8          Status: V node
+	Key: v2:portcurrentnode:0                                         	val: 	9          Status: V node
+	Key: v2:portcurrentcurnode:0                                      	val: 	10         Status: I node
+	Key: v2:portcurrentnode:1                                         	val: 	11         Status: V node
+	Key: v2:portcurrentcurnode:1                                      	val: 	12         Status: I node
+	Key: v2:i                                                         	val: 	13         Status: I node
+	Key: l1:fixed:1310:fwd:m(0):optmag                                	val: 	14         Status: O Mag node
+	Key: l1:fixed:1310:rev:m(0):optmag                                	val: 	15         Status: O Mag node
+	Key: l1:fixed:1310:fwd:m(0):optphi                                	val: 	16         Status: O Pha node (14)
+	Key: l1:fixed:1310:rev:m(0):optphi                                	val: 	17         Status: O Pha node (15)
+	Key: cw1:portcurrentnode:0                                        	val: 	18         Status: V node
+	Key: cw1:portcurrentcurnode:0                                     	val: 	19         Status: I node
+	Key: cw1:portcurrentnode:1                                        	val: 	20         Status: V node
+	Key: cw1:portcurrentcurnode:1                                     	val: 	21         Status: I node
+	Key: cw1:l1:fixed:1310:modei:m(0):optmag                          	val: 	22         Status: O Mag node
+	Key: cw1:l1:fixed:1310:modei:m(0):optphi                          	val: 	23         Status: O Pha node (22)
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	24         Status: I node
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	25         Status: I node
+	Key: wg1:exp:inter1(0):fixed:1310:fwd:m(0):optmag                 	val: 	26         Status: O Mag node
+	Key: wg1:exp:inter1(0):fixed:1310:rev:m(0):optmag                 	val: 	27         Status: O Mag node
+	Key: wg1:exp:inter1(0):fixed:1310:fwd:m(0):optphi                 	val: 	28         Status: O Pha node (26)
+	Key: wg1:exp:inter1(0):fixed:1310:rev:m(0):optphi                 	val: 	29         Status: O Pha node (27)
+	Key: wg1:exp:inter2(0):fixed:1310:fwd:m(0):optmag                 	val: 	30         Status: O Mag node
+	Key: wg1:exp:inter2(0):fixed:1310:rev:m(0):optmag                 	val: 	31         Status: O Mag node
+	Key: wg1:exp:inter2(0):fixed:1310:fwd:m(0):optphi                 	val: 	32         Status: O Pha node (30)
+	Key: wg1:exp:inter2(0):fixed:1310:rev:m(0):optphi                 	val: 	33         Status: O Pha node (31)
+	Key: wg1:exp:inter3(0):fixed:1310:fwd:m(0):optmag                 	val: 	34         Status: O Mag node
+	Key: wg1:exp:inter3(0):fixed:1310:rev:m(0):optmag                 	val: 	35         Status: O Mag node
+	Key: wg1:exp:inter3(0):fixed:1310:fwd:m(0):optphi                 	val: 	36         Status: O Pha node (34)
+	Key: wg1:exp:inter3(0):fixed:1310:rev:m(0):optphi                 	val: 	37         Status: O Pha node (35)
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optmag                      	val: 	38         Status: O Mag node
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optphi                      	val: 	39         Status: O Pha node (38)
+	Key: wg1:exp:revphase(0:0):modei:m(0):optmag                      	val: 	40         Status: O Mag node
+	Key: wg1:exp:revphase(0:0):modei:m(0):optphi                      	val: 	41         Status: O Pha node (40)
+	Key: l2:fixed:1310:fwd:m(0):optmag                                	val: 	42         Status: O Mag node
+	Key: l2:fixed:1310:rev:m(0):optmag                                	val: 	43         Status: O Mag node
+	Key: l2:fixed:1310:fwd:m(0):optphi                                	val: 	44         Status: O Pha node (42)
+	Key: l2:fixed:1310:rev:m(0):optphi                                	val: 	45         Status: O Pha node (43)
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optmag                   	val: 	46         Status: O Mag node
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optphi                   	val: 	47         Status: O Pha node (46)
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optmag                   	val: 	48         Status: O Mag node
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optphi                   	val: 	49         Status: O Pha node (48)
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay:i                  	val: 	50         Status: I node
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay:i          	val: 	51         Status: I node
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay:i                  	val: 	52         Status: I node
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay:i          	val: 	53         Status: I node
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optmag                   	val: 	54         Status: O Mag node
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optphi                   	val: 	55         Status: O Pha node (54)
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optmag                   	val: 	56         Status: O Mag node
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optphi                   	val: 	57         Status: O Pha node (56)
+	Key: mir1:terminal:fixed:1310:fwd:m(0):optmag                     	val: 	58         Status: O Mag node
+	Key: mir1:terminal:fixed:1310:rev:m(0):optmag                     	val: 	59         Status: O Mag node
+	Key: mir1:terminal:fixed:1310:fwd:m(0):optphi                     	val: 	60         Status: O Pha node (58)
+	Key: mir1:terminal:fixed:1310:rev:m(0):optphi                     	val: 	61         Status: O Pha node (59)
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	62         Status: O Mag node
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	63         Status: O Pha node (62)
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	64         Status: O Mag node
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	65         Status: O Pha node (64)
+
+Optical Node hash table
+	wg1:exp:inter3(0):fixed:1310
+		aliases: wg1:exp:inter3(0) -- wg1:exp:inter3(0) -- 
+	wg1:exp:inter2(0):fixed:1310
+		aliases: wg1:exp:inter2(0) -- wg1:exp:inter2(0) -- 
+	wg1:exp:inter1(0):fixed:1310
+		aliases: wg1:exp:inter1(0) -- wg1:exp:inter1(0) -- 
+	l2:fixed:1310
+		aliases: l2 -- l2 -- l2 -- l2 -- 
+	l1:fixed:1310
+		aliases: l1 -- l1 -- l1 -- 
+	mir1:terminal:fixed:1310
+		aliases: mir1:terminal -- mir1:terminal -- 
+
+Optical ModeShape hash table
+	Key: 1fe77265b9e153830a55683b4856c9c77d4eede3                     	val: 	997218976 
+
+Optical Link hash table
+	Key: l1                                                           l1                                                          	val: 	0x7f843b500960 
+			E1: 	0x7f843c800000 - cw1                                      	E2: 	0x7f843c802200 - wg1:exp                                 
+	Key: l2                                                           l2                                                          	val: 	0x7f843b703e70 
+			E1: 	0x7f843c802200 - wg1:exp                                  	E2: 	0x7f843c803000 - mir1                                    
+
+Source Optical Channel hash table
+	Key: fixed:1310                                                   	lambda: 	1310       dPhi_dt: 	0x7f843c800830 *dPhi_dt: 	0         
+
+Optical Matrices hash table
+
+Optical FSE Matrices hash table
+
+Monitor Statements
+	Name:                            wg1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     2 Node Num:      0
+	Name:                             v1 Type:               V Port:     1 Node Num:      2
+	Name:                             v1 Type:               I Port:     1 Node Num:      0
+	Name:                             v1 Type:               I Port:     2 Node Num:      0
+	Name:                             v2 Type:               V Port:     1 Node Num:      8
+	Name:                             v2 Type:               I Port:     1 Node Num:      0
+	Name:                             v2 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:               V Port:     1 Node Num:      2
+	Name:                            cw1 Type:               I Port:     1 Node Num:      0
+	Name:                            cw1 Type:               V Port:     2 Node Num:      8
+	Name:                            cw1 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:       OptFields Port:     3 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     2 Node Num:      0
+	Name:                        wg1:exp Type:       OptFields Port:     1 Node Num:      0
+	Name:                        wg1:exp Type:       OptFields Port:     2 Node Num:      0
+	Name:                           mir1 Type:       OptFields Port:     1 Node Num:      0
+
+Current Monitor Statements
+	Key: v2:Port-2                                                    	port: 	2          	num: 	12        
+	Key: v1:Port-1                                                    	port: 	1          	num: 	4         
+	Key: v1:Port-2                                                    	port: 	2          	num: 	6         
+	Key: cw1:Port-1                                                   	port: 	1          	num: 	19        
+	Key: v2:Port-1                                                    	port: 	1          	num: 	10        
+	Key: cw1:Port-2                                                   	port: 	2          	num: 	21        
+
+Sub-circuits
+
+
+Transient Simulation Started
+tscaling: 1e+08
+abstol: 1e-08 reltol: 1e-06 c_abstol: 1e-15 c_reltol: 1e-06
+DC Simulation Started
+DC Linear Initial Guess
+DC simulations:
+	DC var: 0.000000000000e+00
+		Elec pass (T ind):
+		DC iterations =  2 (extra -1). Cond 0.124008
+			Total num iter: 2
+		Elec pass (T dep). Evars Optical:
+		DC iterations =  1 (extra -1). Cond 0.124008
+			Total num iter: 3
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:1310
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+			Extra
+					(rev: 46,47):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 0 Rev: 0.393689
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 2.3 (2.3)T = 300.15
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.352941 	Tf = 0.935646 	Rb = 0.352941 	Tb = 0.935646 
+
+		 Layer (1) Phi= -11.0315 (-4.74836)  Atten = 1 N = 2.3 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:1310 (Es)
+			wg1:exp:inter1(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+					(rev: 27,29):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter2: wg1:exp:inter2(0):fixed:1310 (Es)
+			wg1:exp:inter2(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 31,33):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter3: wg1:exp:inter3(0):fixed:1310 (Es) dt = 7.67197e-15
+			wg1:exp:inter3(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 35,37):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 40,41):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+								Total Power Fwd: 0.692585 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 2.3 (2.3) N2 = 1.1
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.352941 	Tf = 0.935646 	Rb = -0.352941 	Tb = 0.935646 
+
+		 Output: l2:fixed:1310
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+								Total Power Fwd: 0.606311 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 7.7865997386e-01 1.5427884105e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		Final Evars non-Linear Scatter pass:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:1310
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+			Extra
+					(rev: 46,47):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 0 Rev: 0.393689
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 2.3 (2.3)T = 300.15
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.352941 	Tf = 0.935646 	Rb = 0.352941 	Tb = 0.935646 
+
+		 Layer (1) Phi= -11.0315 (-4.74836)  Atten = 1 N = 2.3 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:1310 (Es)
+			wg1:exp:inter1(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+					(rev: 27,29):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter2: wg1:exp:inter2(0):fixed:1310 (Es)
+			wg1:exp:inter2(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 31,33):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter3: wg1:exp:inter3(0):fixed:1310 (Es) dt = 7.67197e-15
+			wg1:exp:inter3(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 35,37):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 40,41):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+								Total Power Fwd: 0.692585 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 2.3 (2.3) N2 = 1.1
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.352941 	Tf = 0.935646 	Rb = -0.352941 	Tb = 0.935646 
+
+		 Output: l2:fixed:1310
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+								Total Power Fwd: 0.606311 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 7.7865997386e-01 1.5427884105e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		DC iterations =  2 (extra -1). Cond 0.124008
+			Total num iter: 5
+		Final pass (forced MPtotMP):
+Before:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:1310
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+			Extra
+					(rev: 46,47):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 0 Rev: 0.393689
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 2.3 (2.3)T = 300.15
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.352941 	Tf = 0.935646 	Rb = 0.352941 	Tb = 0.935646 
+
+		 Layer (1) Phi= -11.0315 (-4.74836)  Atten = 1 N = 2.3 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:1310 (Es)
+			wg1:exp:inter1(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+					(rev: 27,29):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter2: wg1:exp:inter2(0):fixed:1310 (Es)
+			wg1:exp:inter2(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 31,33):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter3: wg1:exp:inter3(0):fixed:1310 (Es) dt = 7.67197e-15
+			wg1:exp:inter3(0):fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 35,37):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 6.9258490736e-01 Phi: 1.5427884105e+00  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 40,41):  Pow: 8.6273552474e-02 Phi: 3.0776123023e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+								Total Power Fwd: 0.692585 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 2.3 (2.3) N2 = 1.1
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.352941 	Tf = 0.935646 	Rb = -0.352941 	Tb = 0.935646 
+
+		 Output: l2:fixed:1310
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+								Total Power Fwd: 0.606311 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:1310 			Carrier Lambda: 1310 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 7.7865997386e-01 1.5427884105e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+After:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:1310
+			l1:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+			Extra
+					(rev: 46,47):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 0 Rev: 0.393689
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 2.3 (2.3)T = 300.15
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.352941 	Tf = 0.935646 	Rb = 0.352941 	Tb = 0.935646 
+
+		 Layer (1) Phi= -11.0315 (-4.74836)  Atten = 1 N = 2.3 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:1310 (MP)
+			wg1:exp:inter1(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 26,28):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+					(rev: 27,29):  Pow: 8.6273552474e-02 Phi: -9.4887583121e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter2: wg1:exp:inter2(0):fixed:1310 (MP)
+			wg1:exp:inter2(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 30,32):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 31,33):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter3: wg1:exp:inter3(0):fixed:1310 (MP) dt = 7.67197e-15
+			wg1:exp:inter3(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 34,36):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 35,37):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104708e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			ExtraNodes (MP)
+			Delay queues (MP):
+				Mode 0
+					(fwd: 38,39):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305613001e-02 + 8.3189047102e-01i
+					(rev: 40,41):  Pow: 8.6273552474e-02 Phi: -9.4887583121e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720491e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 6.9258490736e-01 Phi: 7.9645186395e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366440e-03i
+								Total Power Fwd: 0.692585 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 2.3 (2.3) N2 = 1.1
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.352941 	Tf = 0.935646 	Rb = -0.352941 	Tb = 0.935646 
+
+		 Output: l2:fixed:1310
+			l2:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+								Total Power Fwd: 0.606311 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161213e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792231e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 7.7865997386e-01 1.5427884105e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161213e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792231e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		DC iterations =  3 (extra 1). Cond 0.0269803
+			Total num iter: 8
+X: 1.310000000000000e+03 1.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 1.000000000000000e+00 6.274461292474737e-01 0.000000000000000e+00 3.113584737268891e+00 1.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 8.322168631817621e-01 2.937235987691523e-01 7.964518637415288e-03 -9.488758312042524e+00 8.322168631809298e-01 2.937235987694460e-01 -1.102358220388060e+01 1.542788410477028e+00 8.322168631809298e-01 2.937235987694460e-01 -1.102358220388060e+01 1.542788410477028e+00 8.322168631809298e-01 -1.102358220388060e+01 2.937235987691523e-01 -9.488758312042524e+00 7.786599738571688e-01 0.000000000000000e+00 1.542788410477028e+00 0.000000000000000e+00 6.274461292474737e-01 3.113584737268891e+00 8.322168631817621e-01 7.964518637415288e-03 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 2.937235987694460e-01 1.542788410477028e+00 7.786599738571688e-01 1.542788410477028e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 
+
+Operating point
+1310 1 1 0 -0 -0 0 0 0 0 -0 -0 0 1 0.627446 0 3.11358 1 -0 -0 -0 1 0 0 0 0.832217 0.293724 0.00796452 -9.48876 0.832217 0.293724 -11.0236 1.54279 0.832217 0.293724 -11.0236 1.54279 0.832217 -11.0236 0.293724 -9.48876 0.77866 0 1.54279 0 0.627446 3.11358 0.832217 0.00796452 0 0 0 0 0.293724 1.54279 0.77866 1.54279 0 0 0 0 0 0 0 0 
+
+Transient
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:1310
+			l1:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161210e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+			Extra
+					(rev: 46,47):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161210e-02i
+								Total Power Fwd: 0 Rev: 0.393689
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 2.3 (2.3)T = 300.15
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.352941 	Tf = 0.935646 	Rb = 0.352941 	Tb = 0.935646 
+
+		 Layer (1) Phi= -11.0315 (-4.74836)  Atten = 1 N = 2.3 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:1310 (MP)
+			wg1:exp:inter1(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 26,28):  Pow: 6.9258490736e-01 Phi: 7.9645186374e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366423e-03i
+					(rev: 27,29):  Pow: 8.6273552474e-02 Phi: -9.4887583120e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720487e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter2: wg1:exp:inter2(0):fixed:1310 (MP)
+			wg1:exp:inter2(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 30,32):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305612993e-02 + 8.3189047102e-01i
+					(rev: 31,33):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104686e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Inter3: wg1:exp:inter3(0):fixed:1310 (MP) dt = 7.67197e-15
+			wg1:exp:inter3(0):fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 34,36):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305612993e-02 + 8.3189047102e-01i
+					(rev: 35,37):  Pow: 8.6273552474e-02 Phi: 1.5427884105e+00  Mag: 2.9372359877e-01 E_f =  8.2255104686e-03 + 2.9360840153e-01i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			ExtraNodes (MP)
+			Delay queues (MP):
+				Mode 0
+					(fwd: 38,39):  Pow: 6.9258490736e-01 Phi: -1.1023582204e+01  Mag: 8.3221686318e-01 E_f =  2.3305612993e-02 + 8.3189047102e-01i
+					(rev: 40,41):  Pow: 8.6273552474e-02 Phi: -9.4887583120e+00  Mag: 2.9372359877e-01 E_f =  -2.9312262719e-01 + 1.8779720487e-02i
+								Total Power Fwd: 0.692585 Rev: 0.0862736
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 6.9258490736e-01 Phi: 7.9645186374e-03  Mag: 8.3221686318e-01 E_f =  8.3219046808e-01 + 6.6281366423e-03i
+								Total Power Fwd: 0.692585 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 2.3 (2.3) N2 = 1.1
+				Tf^2 = 0.875433 Rf^2 = 0.124567  Tb^2 = 0.875433 Rb^2 = 0.124567 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.352941 	Tf = 0.935646 	Rb = -0.352941 	Tb = 0.935646 
+
+		 Output: l2:fixed:1310
+			l2:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792225e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792225e-02 + 7.7835458649e-01i
+								Total Power Fwd: 0.606311 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 3.9368864511e-01 Phi: 3.1135847373e+00  Mag: 6.2744612925e-01 E_f =  -6.2720004735e-01 + 1.7571161210e-02i
+								Total Power Fwd: 1 Rev: 0.393689
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:1310  Carrier Lambda: 1310 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 6.0631135489e-01 Phi: 1.5427884105e+00  Mag: 7.7865997386e-01 E_f =  2.1805792225e-02 + 7.7835458649e-01i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 0.606311 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 7.7865997386e-01 1.5427884105e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161210e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161210e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792225e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -6.2720004735e-01 1.7571161210e-02 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792225e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:1310 
+	                              		dir: FWD
+	                              			TE Fields: 2.1805792225e-02 7.7835458649e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+Transient ... 
+
+t: 1e-13 t(sc) 1e-05 iter: 1 repeat_nr_iter: 0 h: 1e-05 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 2e-05 
+
+t = 1e-13 (0%)
+t: 3e-13 t(sc) 3e-05 iter: 1 repeat_nr_iter: 0 h: 2e-05 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 55 3.70074e-07 : h 3 2.64575 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 4e-05 
+
+t: 7e-13 t(sc) 7e-05 iter: 1 repeat_nr_iter: 0 h: 4e-05 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 53 6.93889e-08 : h 3 2.64575 
+
+	D3: x: 0.293724 x1: 0.293724 x2: 0.293724 x3: 0.293724
+new h (Growth limit): 8e-05 
+
+t: 1.5e-12 t(sc) 0.00015 iter: 1 repeat_nr_iter: 0 h: 8e-05 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00016 
+
+t: 3.1e-12 t(sc) 0.00031 iter: 1 repeat_nr_iter: 0 h: 0.00016 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 55 5.78241e-09 : h 3 2.64575 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.00032 
+Switching integration method and stepping back one step at 1.5e-12 to Trap
+t: 3.1e-12 t(sc) 0.00031 iter: 1 repeat_nr_iter: 0 h: 0.00016 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 0.770977 : d3 55 0.00014456 : h 41 0.770977 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.00032 
+
+t: 6.3e-12 t(sc) 0.00063 iter: 1 repeat_nr_iter: 0 h: 0.00032 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.3813 : d3 45 1.16165e-05 : h 26 1.3813 
+
+	D3: x: 0.627446 x1: 0.627446 x2: 0.627446 x3: 0.627446
+new h (Growth limit): 0.00064 
+
+t: 1.27e-11 t(sc) 0.00127 iter: 1 repeat_nr_iter: 0 h: 0.00064 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00128 
+
+t: 2.55e-11 t(sc) 0.00255 iter: 1 repeat_nr_iter: 0 h: 0.00128 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 45 8.87368e-07 : h 3 1.91292 
+
+	D3: x: 0.627446 x1: 0.627446 x2: 0.627446 x3: 0.627446
+new h (Growth limit): 0.00256 
+
+t: 5.11e-11 t(sc) 0.00511 iter: 1 repeat_nr_iter: 0 h: 0.00256 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00512 
+
+t: 1.023e-10 t(sc) 0.01023 iter: 1 repeat_nr_iter: 0 h: 0.00512 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 47 7.24768e-09 : h 3 1.91292 
+
+	D3: x: 0.832217 x1: 0.832217 x2: 0.832217 x3: 0.832217
+new h (Growth limit): 0.01024 
+
+t: 2.047e-10 t(sc) 0.02047 iter: 1 repeat_nr_iter: 0 h: 0.01024 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 1.77253e-09 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.02048 
+new h (Max): 0.02 
+
+t: 4.047e-10 t(sc) 0.04047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.047e-10 t(sc) 0.06047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 53 8.39763e-11 : h 3 1.91292 
+
+	D3: x: 0.293724 x1: 0.293724 x2: 0.293724 x3: 0.293724
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.047e-10 (5%)
+t: 8.047e-10 t(sc) 0.08047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.0047e-09 t(sc) 0.10047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 9.25186e-11 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.0047e-09 (10%)
+t: 1.2047e-09 t(sc) 0.12047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.4047e-09 t(sc) 0.14047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 1.29526e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.6047e-09 t(sc) 0.16047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.6047e-09 (15%)
+t: 1.8047e-09 t(sc) 0.18047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 1.66533e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.0047e-09 t(sc) 0.20047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 2.0047e-09 (20%)
+t: 2.2047e-09 t(sc) 0.22047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 2.03541e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.4047e-09 t(sc) 0.24047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.6047e-09 t(sc) 0.26047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 2.40548e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 2.6047e-09 (25%)
+t: 2.8047e-09 t(sc) 0.28047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.0047e-09 t(sc) 0.30047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 2.77556e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 3.0047e-09 (30%)
+t: 3.2047e-09 t(sc) 0.32047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.4047e-09 t(sc) 0.34047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 3.14563e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.6047e-09 t(sc) 0.36047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 3.6047e-09 (35%)
+t: 3.8047e-09 t(sc) 0.38047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 3.51571e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.0047e-09 t(sc) 0.40047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 4.0047e-09 (40%)
+t: 4.2047e-09 t(sc) 0.42047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 3.88578e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.4047e-09 t(sc) 0.44047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.6047e-09 t(sc) 0.46047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 4.25585e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 4.6047e-09 (45%)
+t: 4.8047e-09 t(sc) 0.48047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.0047e-09 t(sc) 0.50047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 4.62593e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 5.0047e-09 (50%)
+t: 5.2047e-09 t(sc) 0.52047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.4047e-09 t(sc) 0.54047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 4.996e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.6047e-09 t(sc) 0.56047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 5.6047e-09 (55%)
+t: 5.8047e-09 t(sc) 0.58047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 5.36608e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.0047e-09 t(sc) 0.60047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.0047e-09 (60%)
+t: 6.2047e-09 t(sc) 0.62047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 5.73615e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.4047e-09 t(sc) 0.64047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.6047e-09 t(sc) 0.66047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 6.10623e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.6047e-09 (65%)
+t: 6.8047e-09 t(sc) 0.68047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.0047e-09 t(sc) 0.70047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 6.4763e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 7.0047e-09 (70%)
+t: 7.2047e-09 t(sc) 0.72047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.4047e-09 t(sc) 0.74047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 6.84638e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.6047e-09 t(sc) 0.76047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 7.6047e-09 (75%)
+t: 7.8047e-09 t(sc) 0.78047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 7.21645e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 8.0047e-09 t(sc) 0.80047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 8.0047e-09 (80%)
+t: 8.2047e-09 t(sc) 0.82047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 7.58652e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 8.4047e-09 t(sc) 0.84047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 8.6047e-09 t(sc) 0.86047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 7.9566e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 8.6047e-09 (85%)
+t: 8.8047e-09 t(sc) 0.88047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.0047e-09 t(sc) 0.90047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 8.32667e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 9.0047e-09 (90%)
+t: 9.2047e-09 t(sc) 0.92047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.4047e-09 t(sc) 0.94047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 8.69675e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.6047e-09 t(sc) 0.96047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 9.6047e-09 (95%)
+t: 9.8047e-09 t(sc) 0.98047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 55 9.06682e-10 : h 3 1.91292 
+
+	D3: x: 0.77866 x1: 0.77866 x2: 0.77866 x3: 0.77866
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.00047e-08 t(sc) 1.00047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.00047e-08 (100%)
+Number of timesteps: 61
+Transient Simulation Done. Num of Nonlin iters: 61 
+	Freeing MNA
+Freeing Main Circuit ...
+	Freeing Nodes and Elements
+Cleaning Main Circuit ...
+	Freeing Parsed circuit: 'Main Circuit'

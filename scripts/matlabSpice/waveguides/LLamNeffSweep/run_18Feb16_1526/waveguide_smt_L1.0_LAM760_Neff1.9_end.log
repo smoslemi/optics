@@ -1,0 +1,3253 @@
+Running OptiSPICE 5.1 (compiled on: Jan  5 2016 10:28:02) 
+
+Copyright 2015 Optiwave Systems Inc. All rights reserved.
+
+	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
+
+Processing Netlist file: waveguide_smt_L1.0_LAM760_Neff1.9_end.sp
+
+************* FILE: "waveguide_smt_L1.0_LAM760_Neff1.9_end.sp"  ************
+
+Title "CW Source check "
+
+Osp Jobcontrol Verbosity=DEBUG2
+
+.option ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8
+.OPTION DCCAP=1 TNOM=27
+
+.param NMODES=1
+
+* Voltage sources
+v1 Mag1 0 DC = 1 
+v2 Phi1 0 DC = 0 
+
+Osp CWSOURCE   Name=cw1 Nodes = [Mag1 Phi1 l1] MoName = CWmodel lambda = 7.600000e+02
+Osp WaveGuide  Name=wg1 Nodes = [l1 l2] MoName=WGmodel
+Osp MIRROR     Name=mir1 Nodes = [l2] MoName = Mmodel 
+
+Osp Model Name = Mmodel   type = MIRROR    Ref = 0
+Osp Model Name = CWmodel  type = CWSOURCE 
+Osp Model Name = WGmodel  type = WaveGuide  Length=1.000000e+00  IncludeTimeDelay=1  neff=[1.900000e+00]  N0=1.1 NF=1.1
+
+% IncludeTimeDelay=1 
+.tran .0001e-9 10e-9 nsolver=BACKE nmaxst=.05n nminst=.05n
+
+	
+.Monitor OptFields wg1 Format=MagPhi Port=1 dir=IN  Pol=TE
+.Monitor OptFields wg1 Format=MagPhi Port=2 dir=OUT Pol=TE
+%.Monitor OptFields wg2 Format=MagPhi Port=2 dir=OUT Pol=TE
+.end
+
+************* *************** ************
+
+Options ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8 
+Options DCCAP=1 TNOM=27 
+Param P=[ { NMODES 1 } ] 
+INDSOURCE EL_Type=V_SOU Name=v1 Nodes=[ Mag1 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v2 Nodes=[ Phi1 0 ] dcMode dcValue=0 
+CWSOURCE Name=cw1 Nodes=[ Mag1 Phi1 l1 ] MoName=CWmodel lambda=7.600000e+02 
+WaveGuide Name=wg1 Nodes=[ l1 l2 ] MoName=WGmodel 
+MIRROR Name=mir1 Nodes=[ l2 ] MoName=Mmodel 
+Model Name=Mmodel type=MIRROR Ref=0 
+Model Name=CWmodel type=CWSOURCE 
+Model Name=WGmodel type=WaveGuide Length=1.000000e+00 IncludeTimeDelay=1 neff=[ 1.900000e+00 ] N0=1.1 NF=1.1 
+Transient Tpoints=[ { .0001e-9 10e-9 } ] nsolver=BACKE nmaxst=.05n nminst=.05n 
+Monitor Type=OptFields Name=wg1 Format=MagPhi Port=1 dir=IN Pol=TE 
+Monitor Type=OptFields Name=wg1 Format=MagPhi Port=2 dir=OUT Pol=TE 
+END
+
+Assigning node numbers and stamping
+
+
+Main Circuit Paras:
+	Name=NMODES String=1 Ep = 0x0
+
+Creating: v1
+
+Creating: v2
+
+Creating: cw1
+	New Link: l1                                                           Link: 0x7ff952701050
+
+Creating: wg1
+	New Link: l2                                                           Link: 0x7ff952702e10
+
+Creating: mir1
+
+Circuit after element assignment
+
+Element hash table
+	Key: v1                                                           	val: 	1383074816
+	Key: v2                                                           	val: 	1382024944
+	Key: wg1:exp                                                      	val: 	1409289216
+	Key: mir1                                                         	val: 	1409292800
+	Key: cw1                                                          	val: 	1400897536
+	Key: wg1                                                          	val: 	1409286144
+
+Delay Element hash table
+
+OptFFT Element hash table
+
+Noise Element hash table
+
+Optical Element hash table
+	Key: wg1:exp                                                      	val: 	1409289216
+	Key: mir1                                                         	val: 	1409292800
+	Key: cw1                                                          	val: 	1400897536
+	Key: wg1                                                          	val: 	1409286144
+
+Source Optical Element hash table
+	Key: cw1                                                          	val: 	1400897536
+
+Elec Init Conditions
+
+
+Tracing optical sources
+	source: cw1 (fixed:760)  -> wg1:exp (1) 
+		-- Return Branch:  -> cw1 (1) 
+
+		-- Through Branch:  -> mir1 (1)  -> wg1:exp (1) 
+
+
+Stamping: v1
+
+Stamping: v2
+
+Stamping: cw1
+Created Optical Mode Shape 'Mode:1 n:1 x:5.0000000000000000e+01 y:5.0000000000000000e+01 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:7.6000000000000000e+02' (e8585e1179b06bbdb590a48796ec9c8345e9b325)
+Adding Optical Mode:         l1:fixed:760 	      0x7ff952603140
+
+Stamping: wg1
+Adding Optical Mode: wg1:exp:inter1(0):fixed:760 	      0x7ff952605050
+Adding Optical Mode: wg1:exp:inter2(0):fixed:760 	      0x7ff952605200
+Adding Optical Mode: wg1:exp:inter3(0):fixed:760 	      0x7ff952602990
+Adding Optical Mode:         l2:fixed:760 	      0x7ff952605fc0
+Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(0)
+	E to E: l1:fixed:760 | wg1:exp:inter1(0):fixed:760
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+Linear: -15.708
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):c(0):m(0):optmag:delay Del=6.3377178087648879e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay Del=6.3377178087648879e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):c(0):m(0):optphi:delay Del=6.3377178087648879e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+CreateStampDelay: DELAY Name=wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay Del=6.3377178087648879e-15 Gain=1.0000000000000000e+00 Tcoeff=[ 0.0000000000000000e+00 0.0000000000000000e+00 ]
+Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(1)
+	E to E: wg1:exp:inter3(0):fixed:760 | l2:fixed:760
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Stamping: mir1
+
+Linking optical elements; 
+Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
+Mirror DetModes ... 
+		mir1 input 0x7ff954000d20 output 0x7ff954000d20
+
+Stamping free mode   optical elements; 
+Processing Mirror: mir1 Version: 6 Switchable: 1
+Adding Optical Mode: mir1:terminal:fixed:760 	      0x7ff95260f270
+Stamping OptScatteringVtoV Instance: mir1:vtov:c(0)
+	E to E: l2:fixed:760 | mir1:terminal:fixed:760
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Post Stamping: cw1:c:0:m(0):optphi:iso
+
+Post Stamping: cw1:c:0:m(0):optmag:iso
+
+Circuit after node assignment
+
+Element hash table (including internal elements)
+	Key: cw1:c:0:m(0):optphi:iso                                      	val: 	1382041504
+	Key: mir1:vtov                                                    	val: 	1401092608
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1382066640
+	Key: wg1:exp:c(0):I1(0)                                           	val: 	1400952320
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1382070672
+	Key: wg1                                                          	val: 	1409286144
+	Key: wg1:exp:c(0):I1(1)                                           	val: 	1401086976
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1382072304
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1382069088
+	Key: mir1:vtov:c(0)                                               	val: 	1401097728
+	Key: v1                                                           	val: 	1383074816
+	Key: v2                                                           	val: 	1382024944
+	Key: wg1:exp                                                      	val: 	1409289216
+	Key: cw1:c:0:m(0):optmag:iso                                      	val: 	1382039392
+	Key: cw1                                                          	val: 	1400897536
+	Key: mir1                                                         	val: 	1409292800
+
+Node hash table (size: 66)
+	Key: l2:fixed:760:fwd:m(0):optmag                                 	val: 	42        
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optmag                   	val: 	56        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	65        
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optmag                   	val: 	48        
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	63        
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optmag                   	val: 	46        
+	Key: mir1:terminal:fixed:760:rev:m(0):optphi                      	val: 	61        
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay:i          	val: 	51        
+	Key: l1:fixed:760:fwd:m(0):optmag                                 	val: 	14        
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optmag                   	val: 	54        
+	Key: wg1:exp:revphase(0:0):modei:m(0):optphi                      	val: 	41        
+	Key: wg1:exp:inter1(0):fixed:760:rev:m(0):optphi                  	val: 	29        
+	Key: mir1:terminal:fixed:760:fwd:m(0):optphi                      	val: 	60        
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optphi                      	val: 	39        
+	Key: v1:portcurrentnode:0                                         	val: 	3         
+	Key: v1:portcurrentnode:1                                         	val: 	5         
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	25        
+	Key: wg1:exp:inter1(0):fixed:760:fwd:m(0):optphi                  	val: 	28        
+	Key: cw1:l1:fixed:760:modei:m(0):optmag                           	val: 	22        
+	Key: v2:portcurrentnode:0                                         	val: 	9         
+	Key: v2:portcurrentnode:1                                         	val: 	11        
+	Key: v1:i                                                         	val: 	7         
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay:i                  	val: 	50        
+	Key: wg1:exp:inter3(0):fixed:760:rev:m(0):optphi                  	val: 	37        
+	Key: l2:fixed:760:rev:m(0):optphi                                 	val: 	45        
+	Key: wg1:exp:inter2(0):fixed:760:rev:m(0):optphi                  	val: 	33        
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay:i          	val: 	53        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	64        
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	62        
+	Key: mag1                                                         	val: 	2         
+	Key: mir1:terminal:fixed:760:rev:m(0):optmag                      	val: 	59        
+	Key: wg1:exp:inter2(0):fixed:760:fwd:m(0):optphi                  	val: 	32        
+	Key: l1:fixed:760:rev:m(0):optphi                                 	val: 	17        
+	Key: v1:portcurrentcurnode:0                                      	val: 	4         
+	Key: v1:portcurrentcurnode:1                                      	val: 	6         
+	Key: wg1:exp:inter3(0):fixed:760:fwd:m(0):optphi                  	val: 	36        
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optphi                   	val: 	57        
+	Key: v2:portcurrentcurnode:0                                      	val: 	10        
+	Key: v2:portcurrentcurnode:1                                      	val: 	12        
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optphi                   	val: 	49        
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optphi                   	val: 	47        
+	Key: cw1:portcurrentcurnode:0                                     	val: 	19        
+	Key: cw1:portcurrentcurnode:1                                     	val: 	21        
+	Key: wg1:exp:revphase(0:0):modei:m(0):optmag                      	val: 	40        
+	Key: 0                                                            	val: 	-5        
+	Key: mir1:terminal:fixed:760:fwd:m(0):optmag                      	val: 	58        
+	Key: wg1:exp:inter1(0):fixed:760:rev:m(0):optmag                  	val: 	27        
+	Key: l1:fixed:760:fwd:m(0):optphi                                 	val: 	16        
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optmag                      	val: 	38        
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optphi                   	val: 	55        
+	Key: l2:fixed:760:fwd:m(0):optphi                                 	val: 	44        
+	Key: cw1:portcurrentnode:0                                        	val: 	18        
+	Key: cw1:portcurrentnode:1                                        	val: 	20        
+	Key: cw1:channel-fixed:760                                        	val: 	1         
+	Key: wg1:exp:inter1(0):fixed:760:fwd:m(0):optmag                  	val: 	26        
+	Key: wg1:exp:inter2(0):fixed:760:rev:m(0):optmag                  	val: 	31        
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay:i                  	val: 	52        
+	Key: wg1:exp:inter3(0):fixed:760:rev:m(0):optmag                  	val: 	35        
+	Key: l2:fixed:760:rev:m(0):optmag                                 	val: 	43        
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	24        
+	Key: cw1:l1:fixed:760:modei:m(0):optphi                           	val: 	23        
+	Key: phi1                                                         	val: 	8         
+	Key: v2:i                                                         	val: 	13        
+	Key: wg1:exp:inter2(0):fixed:760:fwd:m(0):optmag                  	val: 	30        
+	Key: l1:fixed:760:rev:m(0):optmag                                 	val: 	15        
+	Key: wg1:exp:inter3(0):fixed:760:fwd:m(0):optmag                  	val: 	34        
+
+Node array 
+	Key: 0                                                            	val: 	-5         Status: V node
+	Key: cw1:channel-fixed:760                                        	val: 	1          Status: V node
+	Key: mag1                                                         	val: 	2          Status: V node
+	Key: v1:portcurrentnode:0                                         	val: 	3          Status: V node
+	Key: v1:portcurrentcurnode:0                                      	val: 	4          Status: I node
+	Key: v1:portcurrentnode:1                                         	val: 	5          Status: V node
+	Key: v1:portcurrentcurnode:1                                      	val: 	6          Status: I node
+	Key: v1:i                                                         	val: 	7          Status: I node
+	Key: phi1                                                         	val: 	8          Status: V node
+	Key: v2:portcurrentnode:0                                         	val: 	9          Status: V node
+	Key: v2:portcurrentcurnode:0                                      	val: 	10         Status: I node
+	Key: v2:portcurrentnode:1                                         	val: 	11         Status: V node
+	Key: v2:portcurrentcurnode:1                                      	val: 	12         Status: I node
+	Key: v2:i                                                         	val: 	13         Status: I node
+	Key: l1:fixed:760:fwd:m(0):optmag                                 	val: 	14         Status: O Mag node
+	Key: l1:fixed:760:rev:m(0):optmag                                 	val: 	15         Status: O Mag node
+	Key: l1:fixed:760:fwd:m(0):optphi                                 	val: 	16         Status: O Pha node (14)
+	Key: l1:fixed:760:rev:m(0):optphi                                 	val: 	17         Status: O Pha node (15)
+	Key: cw1:portcurrentnode:0                                        	val: 	18         Status: V node
+	Key: cw1:portcurrentcurnode:0                                     	val: 	19         Status: I node
+	Key: cw1:portcurrentnode:1                                        	val: 	20         Status: V node
+	Key: cw1:portcurrentcurnode:1                                     	val: 	21         Status: I node
+	Key: cw1:l1:fixed:760:modei:m(0):optmag                           	val: 	22         Status: O Mag node
+	Key: cw1:l1:fixed:760:modei:m(0):optphi                           	val: 	23         Status: O Pha node (22)
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	24         Status: I node
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	25         Status: I node
+	Key: wg1:exp:inter1(0):fixed:760:fwd:m(0):optmag                  	val: 	26         Status: O Mag node
+	Key: wg1:exp:inter1(0):fixed:760:rev:m(0):optmag                  	val: 	27         Status: O Mag node
+	Key: wg1:exp:inter1(0):fixed:760:fwd:m(0):optphi                  	val: 	28         Status: O Pha node (26)
+	Key: wg1:exp:inter1(0):fixed:760:rev:m(0):optphi                  	val: 	29         Status: O Pha node (27)
+	Key: wg1:exp:inter2(0):fixed:760:fwd:m(0):optmag                  	val: 	30         Status: O Mag node
+	Key: wg1:exp:inter2(0):fixed:760:rev:m(0):optmag                  	val: 	31         Status: O Mag node
+	Key: wg1:exp:inter2(0):fixed:760:fwd:m(0):optphi                  	val: 	32         Status: O Pha node (30)
+	Key: wg1:exp:inter2(0):fixed:760:rev:m(0):optphi                  	val: 	33         Status: O Pha node (31)
+	Key: wg1:exp:inter3(0):fixed:760:fwd:m(0):optmag                  	val: 	34         Status: O Mag node
+	Key: wg1:exp:inter3(0):fixed:760:rev:m(0):optmag                  	val: 	35         Status: O Mag node
+	Key: wg1:exp:inter3(0):fixed:760:fwd:m(0):optphi                  	val: 	36         Status: O Pha node (34)
+	Key: wg1:exp:inter3(0):fixed:760:rev:m(0):optphi                  	val: 	37         Status: O Pha node (35)
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optmag                      	val: 	38         Status: O Mag node
+	Key: wg1:exp:fwdphase(0:0):modei:m(0):optphi                      	val: 	39         Status: O Pha node (38)
+	Key: wg1:exp:revphase(0:0):modei:m(0):optmag                      	val: 	40         Status: O Mag node
+	Key: wg1:exp:revphase(0:0):modei:m(0):optphi                      	val: 	41         Status: O Pha node (40)
+	Key: l2:fixed:760:fwd:m(0):optmag                                 	val: 	42         Status: O Mag node
+	Key: l2:fixed:760:rev:m(0):optmag                                 	val: 	43         Status: O Mag node
+	Key: l2:fixed:760:fwd:m(0):optphi                                 	val: 	44         Status: O Pha node (42)
+	Key: l2:fixed:760:rev:m(0):optphi                                 	val: 	45         Status: O Pha node (43)
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optmag                   	val: 	46         Status: O Mag node
+	Key: wg1:exp:c(0):i1(0):0:rev:modei:m(0):optphi                   	val: 	47         Status: O Pha node (46)
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optmag                   	val: 	48         Status: O Mag node
+	Key: wg1:exp:c(0):i1(0):0:fwd:modei:m(0):optphi                   	val: 	49         Status: O Pha node (48)
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay:i                  	val: 	50         Status: I node
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay:i          	val: 	51         Status: I node
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay:i                  	val: 	52         Status: I node
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay:i          	val: 	53         Status: I node
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optmag                   	val: 	54         Status: O Mag node
+	Key: wg1:exp:c(0):i1(1):0:rev:modei:m(0):optphi                   	val: 	55         Status: O Pha node (54)
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optmag                   	val: 	56         Status: O Mag node
+	Key: wg1:exp:c(0):i1(1):0:fwd:modei:m(0):optphi                   	val: 	57         Status: O Pha node (56)
+	Key: mir1:terminal:fixed:760:fwd:m(0):optmag                      	val: 	58         Status: O Mag node
+	Key: mir1:terminal:fixed:760:rev:m(0):optmag                      	val: 	59         Status: O Mag node
+	Key: mir1:terminal:fixed:760:fwd:m(0):optphi                      	val: 	60         Status: O Pha node (58)
+	Key: mir1:terminal:fixed:760:rev:m(0):optphi                      	val: 	61         Status: O Pha node (59)
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	62         Status: O Mag node
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	63         Status: O Pha node (62)
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	64         Status: O Mag node
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	65         Status: O Pha node (64)
+
+Optical Node hash table
+	wg1:exp:inter1(0):fixed:760
+		aliases: wg1:exp:inter1(0) -- wg1:exp:inter1(0) -- 
+	l1:fixed:760
+		aliases: l1 -- l1 -- l1 -- 
+	wg1:exp:inter2(0):fixed:760
+		aliases: wg1:exp:inter2(0) -- wg1:exp:inter2(0) -- 
+	wg1:exp:inter3(0):fixed:760
+		aliases: wg1:exp:inter3(0) -- wg1:exp:inter3(0) -- 
+	l2:fixed:760
+		aliases: l2 -- l2 -- l2 -- l2 -- 
+	mir1:terminal:fixed:760
+		aliases: mir1:terminal -- mir1:terminal -- 
+
+Optical ModeShape hash table
+	Key: e8585e1179b06bbdb590a48796ec9c8345e9b325                     	val: 	1382035504
+
+Optical Link hash table
+	Key: l1                                                           l1                                                          	val: 	0x7ff952701050 
+			E1: 	0x7ff953800000 - cw1                                      	E2: 	0x7ff954000c00 - wg1:exp                                 
+	Key: l2                                                           l2                                                          	val: 	0x7ff952702e10 
+			E1: 	0x7ff954000c00 - wg1:exp                                  	E2: 	0x7ff954001a00 - mir1                                    
+
+Source Optical Channel hash table
+	Key: fixed:760                                                    	lambda: 	760        dPhi_dt: 	0x7ff953800830 *dPhi_dt: 	0         
+
+Optical Matrices hash table
+
+Optical FSE Matrices hash table
+
+Monitor Statements
+	Name:                            wg1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     2 Node Num:      0
+	Name:                             v1 Type:               V Port:     1 Node Num:      2
+	Name:                             v1 Type:               I Port:     1 Node Num:      0
+	Name:                             v1 Type:               I Port:     2 Node Num:      0
+	Name:                             v2 Type:               V Port:     1 Node Num:      8
+	Name:                             v2 Type:               I Port:     1 Node Num:      0
+	Name:                             v2 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:               V Port:     1 Node Num:      2
+	Name:                            cw1 Type:               I Port:     1 Node Num:      0
+	Name:                            cw1 Type:               V Port:     2 Node Num:      8
+	Name:                            cw1 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:       OptFields Port:     3 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                            wg1 Type:       OptFields Port:     2 Node Num:      0
+	Name:                        wg1:exp Type:       OptFields Port:     1 Node Num:      0
+	Name:                        wg1:exp Type:       OptFields Port:     2 Node Num:      0
+	Name:                           mir1 Type:       OptFields Port:     1 Node Num:      0
+
+Current Monitor Statements
+	Key: v2:Port-2                                                    	port: 	2          	num: 	12        
+	Key: v1:Port-1                                                    	port: 	1          	num: 	4         
+	Key: v1:Port-2                                                    	port: 	2          	num: 	6         
+	Key: cw1:Port-1                                                   	port: 	1          	num: 	19        
+	Key: v2:Port-1                                                    	port: 	1          	num: 	10        
+	Key: cw1:Port-2                                                   	port: 	2          	num: 	21        
+
+Sub-circuits
+
+
+Transient Simulation Started
+tscaling: 1e+08
+abstol: 1e-08 reltol: 1e-06 c_abstol: 1e-15 c_reltol: 1e-06
+DC Simulation Started
+DC Linear Initial Guess
+DC simulations:
+	DC var: 0.000000000000e+00
+		Elec pass (T ind):
+		DC iterations =  2 (extra -1). Cond 0.0853763
+			Total num iter: 2
+		Elec pass (T dep). Evars Optical:
+		DC iterations =  1 (extra -1). Cond 0.0853763
+			Total num iter: 3
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.3187e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		Final Evars non-Linear Scatter pass:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.3187e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		DC iterations =  2 (extra -1). Cond 0.0853763
+			Total num iter: 5
+		Final pass (forced MPtotMP):
+Before:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.31898e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+After:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189838183e-24 Phi: 3.1415926536e+00  Mag: 1.1484702078e-12 E_f =  -1.1484702078e-12 + 1.4064703639e-28i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3189838183e-24 Phi: 3.1415926536e+00  Mag: 1.1484702078e-12 E_f =  -1.1484702078e-12 + 1.4064703639e-28i
+								Total Power Fwd: 0 Rev: 1.31898e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (MP)
+			wg1:exp:inter1(0):fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 0.0000000000e+00  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 0.0000000000e+00i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: -1.2566370614e+01  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 1.3553694466e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (MP)
+			wg1:exp:inter2(0):fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -1.5707963268e+01  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -6.3532942807e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: 3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + 3.3884236164e-17i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (MP) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -1.5707963268e+01  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -6.3532942807e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: 3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + 3.3884236164e-17i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (MP)
+			Delay queues (MP):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -1.5707963268e+01  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -6.3532942807e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: -1.2566370614e+01  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 1.3553694466e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 0.0000000000e+00  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: 3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + 1.2246467991e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: 3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + 1.2246467991e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189838183e-24 Phi: 3.1415926536e+00  Mag: 1.1484702078e-12 E_f =  -1.1484702078e-12 + 1.4064703639e-28i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760  Carrier Lambda: 760 nm  -- MP vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: 3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + 1.2246467991e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 1.4064703639e-28 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 1.4064703639e-28 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 1.2246467991e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 1.4064703639e-28 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 1.2246467991e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 1.2246467991e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+
+
+Convergence failed at node: 15 -1 (1.1483739091353067e-12 : -1.6406545691368528e+00 : 1.1483739091353066e-18 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.6406545691357044e+00 : -7.9477297543333741e-02 : 1.6406545691357043e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7201318666790382e+00 : -1.9593536259714255e-02 : 1.7201318666790382e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7397254029387523e+00 : -2.3579145722830663e-02 : 1.7397254029387523e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7633045486615830e+00 : 2.6874264161149863e-02 : 1.7633045486615830e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7364302845004331e+00 : -1.0209778255815458e-02 : 1.7364302845004330e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7466400627562486e+00 : 1.0859701224064398e-02 : 1.7466400627562486e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7357803615321843e+00 : -4.3315033257106637e-03 : 1.7357803615321842e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7401118648578950e+00 : 4.2618116607344124e-03 : 1.7401118648578950e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7358500531971606e+00 : -1.8443304252224509e-03 : 1.7358500531971604e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7376943836223830e+00 : 1.6839869778003721e-03 : 1.7376943836223830e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7360103966445826e+00 : -7.8281492793902396e-04 : 1.7360103966445825e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7367932115725215e+00 : 6.6943531096520066e-04 : 1.7367932115725215e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7361237762615562e+00 : -3.3035495423683179e-04 : 1.7361237762615562e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7364541312157931e+00 : 2.6738907518740370e-04 : 1.7364541312157930e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7361867421406056e+00 : -1.3860230061917480e-04 : 1.7361867421406055e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7363253444412248e+00 : 1.0722654665553969e-04 : 1.7363253444412248e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362181178945693e+00 : -5.7857084978019872e-05 : 1.7362181178945692e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362759749795473e+00 : 4.3144371005438521e-05 : 1.7362759749795473e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362328306085419e+00 : -2.4050888281127668e-05 : 1.7362328306085418e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362568814968231e+00 : 1.7409304022507997e-05 : 1.7362568814968231e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362394721928005e+00 : -9.9643590783977411e-06 : 1.7362394721928004e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362494365518788e+00 : 7.0415996456073014e-06 : 1.7362494365518788e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362423949522332e+00 : -4.1172346664581410e-06 : 1.7362423949522332e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 15 -1 (-1.7362465121868997e+00 : 2.8537494394708908e-06 : 1.7362465121868997e-06 : 1.0000000000000000e-08 : 0.0000000000000000e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875898660298896e-01 : 1.1375159114310780e+00 : 5.6875898660298893e-07 : 1.0000000000000000e-03 : 1.4208865030498874e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875692482808904e-01 : -1.1375152975636755e+00 : 5.6875692482808903e-07 : 1.0000000000000000e-03 : 1.4208881876715476e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875837273558649e-01 : 1.1375158941747046e+00 : 5.6875837273558643e-07 : 1.0000000000000000e-03 : 1.4208873812122245e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875752143911806e-01 : -1.1375156299290354e+00 : 5.6875752143911800e-07 : 1.0000000000000000e-03 : 1.4208880522851723e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875810848991737e-01 : 1.1375158662146694e+00 : 5.6875810848991733e-07 : 1.0000000000000000e-03 : 1.4208877125090791e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875775772475201e-01 : -1.1375157538029927e+00 : 5.6875775772475202e-07 : 1.0000000000000000e-03 : 1.4208879810134507e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875799607824074e-01 : 1.1375158478877931e+00 : 5.6875799607824070e-07 : 1.0000000000000000e-03 : 1.4208878388084458e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875785180955241e-01 : -1.1375158004856729e+00 : 5.6875785180955243e-07 : 1.0000000000000000e-03 : 1.4208879466233562e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875794867612051e-01 : 1.1375158381204589e+00 : 5.6875794867612053e-07 : 1.0000000000000000e-03 : 1.4208878874268644e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875788944433836e-01 : -1.1375158182644449e+00 : 5.6875788944433833e-07 : 1.0000000000000000e-03 : 1.4208879308311744e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875792882010656e-01 : 1.1375158333769178e+00 : 5.6875792882010653e-07 : 1.0000000000000000e-03 : 1.4208879063084758e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875790455681119e-01 : -1.1375158251019704e+00 : 5.6875790455681112e-07 : 1.0000000000000000e-03 : 1.4208879238033729e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875792054515917e-01 : 1.1375158311900984e+00 : 5.6875792054515918e-07 : 1.0000000000000000e-03 : 1.4208879136996078e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791064493919e-01 : -1.1375158277551929e+00 : 5.6875791064493921e-07 : 1.0000000000000000e-03 : 1.4208879207416840e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791711025370e-01 : 1.1375158302144128e+00 : 5.6875791711025371e-07 : 1.0000000000000000e-03 : 1.4208879166130486e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791310415913e-01 : -1.1375158287930143e+00 : 5.6875791310415908e-07 : 1.0000000000000000e-03 : 1.4208879194277901e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791568885514e-01 : 1.1375158297885910e+00 : 5.6875791568885513e-07 : 1.0000000000000000e-03 : 1.4208879177684350e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791409973586e-01 : -1.1375158292018381e+00 : 5.6875791409973588e-07 : 1.0000000000000000e-03 : 1.4208879188701193e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791510210227e-01 : 1.1375158296056183e+00 : 5.6875791510210228e-07 : 1.0000000000000000e-03 : 1.4208879182290104e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791450351598e-01 : -1.1375158293638741e+00 : 5.6875791450351595e-07 : 1.0000000000000000e-03 : 1.4208879186353618e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791486035809e-01 : 1.1375158295278831e+00 : 5.6875791486035802e-07 : 1.0000000000000000e-03 : 1.4208879184134231e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791466752501e-01 : -1.1375158294284378e+00 : 5.6875791466752504e-07 : 1.0000000000000000e-03 : 1.4208879185371532e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791476091275e-01 : 1.1375158294951373e+00 : 5.6875791476091275e-07 : 1.0000000000000000e-03 : 1.4208879184875312e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791473422455e-01 : -1.1375158294542784e+00 : 5.6875791473422454e-07 : 1.0000000000000000e-03 : 1.4208879184962655e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791472005388e-01 : 1.1375158294814309e+00 : 5.6875791472005389e-07 : 1.0000000000000000e-03 : 1.4208879185174108e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791476137705e-01 : -1.1375158294646588e+00 : 5.6875791476137703e-07 : 1.0000000000000000e-03 : 1.4208879184793093e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791470328174e-01 : 1.1375158294757204e+00 : 5.6875791470328168e-07 : 1.0000000000000000e-03 : 1.4208879185294845e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477243864e-01 : -1.1375158294688417e+00 : 5.6875791477243864e-07 : 1.0000000000000000e-03 : 1.4208879184722949e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469640302e-01 : 1.1375158294733516e+00 : 5.6875791469640304e-07 : 1.0000000000000000e-03 : 1.4208879185343761e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477694859e-01 : -1.1375158294705334e+00 : 5.6875791477694856e-07 : 1.0000000000000000e-03 : 1.4208879184694019e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469358483e-01 : 1.1375158294723720e+00 : 5.6875791469358485e-07 : 1.0000000000000000e-03 : 1.4208879185363594e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477878712e-01 : -1.1375158294712175e+00 : 5.6875791477878705e-07 : 1.0000000000000000e-03 : 1.4208879184682111e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469243042e-01 : 1.1375158294719701e+00 : 5.6875791469243035e-07 : 1.0000000000000000e-03 : 1.4208879185371666e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477953963e-01 : -1.1375158294714960e+00 : 5.6875791477953964e-07 : 1.0000000000000000e-03 : 1.4208879184677194e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469195636e-01 : 1.1375158294717991e+00 : 5.6875791469195632e-07 : 1.0000000000000000e-03 : 1.4208879185374927e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477984272e-01 : -1.1375158294716072e+00 : 5.6875791477984266e-07 : 1.0000000000000000e-03 : 1.4208879184675192e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469176451e-01 : 1.1375158294717331e+00 : 5.6875791469176447e-07 : 1.0000000000000000e-03 : 1.4208879185376240e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791477996862e-01 : -1.1375158294716525e+00 : 5.6875791477996855e-07 : 1.0000000000000000e-03 : 1.4208879184674357e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469168391e-01 : 1.1375158294717045e+00 : 5.6875791469168390e-07 : 1.0000000000000000e-03 : 1.4208879185376795e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478002058e-01 : -1.1375158294716712e+00 : 5.6875791478002054e-07 : 1.0000000000000000e-03 : 1.4208879184674006e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469165060e-01 : 1.1375158294716909e+00 : 5.6875791469165055e-07 : 1.0000000000000000e-03 : 1.4208879185377030e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478004034e-01 : -1.1375158294716801e+00 : 5.6875791478004034e-07 : 1.0000000000000000e-03 : 1.4208879184673893e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163972e-01 : 1.1375158294716887e+00 : 5.6875791469163975e-07 : 1.0000000000000000e-03 : 1.4208879185377099e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478004900e-01 : -1.1375158294716823e+00 : 5.6875791478004902e-07 : 1.0000000000000000e-03 : 1.4208879184673826e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163328e-01 : 1.1375158294716858e+00 : 5.6875791469163329e-07 : 1.0000000000000000e-03 : 1.4208879185377130e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005255e-01 : -1.1375158294716838e+00 : 5.6875791478005252e-07 : 1.0000000000000000e-03 : 1.4208879184673791e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163128e-01 : 1.1375158294716854e+00 : 5.6875791469163128e-07 : 1.0000000000000000e-03 : 1.4208879185377148e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005411e-01 : -1.1375158294716829e+00 : 5.6875791478005410e-07 : 1.0000000000000000e-03 : 1.4208879184673802e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716863e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377195e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005744e-01 : -1.1375158294716843e+00 : 5.6875791478005739e-07 : 1.0000000000000000e-03 : 1.4208879184673791e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162684e-01 : 1.1375158294716852e+00 : 5.6875791469162683e-07 : 1.0000000000000000e-03 : 1.4208879185377210e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005833e-01 : -1.1375158294716863e+00 : 5.6875791478005834e-07 : 1.0000000000000000e-03 : 1.4208879184673773e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716827e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005477e-01 : -1.1375158294716834e+00 : 5.6875791478005474e-07 : 1.0000000000000000e-03 : 1.4208879184673777e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716841e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377166e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005544e-01 : -1.1375158294716834e+00 : 5.6875791478005537e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716854e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377188e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005744e-01 : -1.1375158294716854e+00 : 5.6875791478005739e-07 : 1.0000000000000000e-03 : 1.4208879184673764e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716852e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377186e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716852e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673764e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716832e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005522e-01 : -1.1375158294716838e+00 : 5.6875791478005516e-07 : 1.0000000000000000e-03 : 1.4208879184673779e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716854e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716838e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162706e-01 : 1.1375158294716841e+00 : 5.6875791469162704e-07 : 1.0000000000000000e-03 : 1.4208879185377181e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005699e-01 : -1.1375158294716849e+00 : 5.6875791478005696e-07 : 1.0000000000000000e-03 : 1.4208879184673759e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716836e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716845e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673784e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716845e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377188e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716834e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162773e-01 : 1.1375158294716841e+00 : 5.6875791469162768e-07 : 1.0000000000000000e-03 : 1.4208879185377186e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005633e-01 : -1.1375158294716843e+00 : 5.6875791478005633e-07 : 1.0000000000000000e-03 : 1.4208879184673784e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716834e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377188e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005544e-01 : -1.1375158294716847e+00 : 5.6875791478005537e-07 : 1.0000000000000000e-03 : 1.4208879184673808e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162928e-01 : 1.1375158294716838e+00 : 5.6875791469162926e-07 : 1.0000000000000000e-03 : 1.4208879185377179e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005455e-01 : -1.1375158294716847e+00 : 5.6875791478005453e-07 : 1.0000000000000000e-03 : 1.4208879184673806e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163017e-01 : 1.1375158294716854e+00 : 5.6875791469163011e-07 : 1.0000000000000000e-03 : 1.4208879185377168e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005522e-01 : -1.1375158294716863e+00 : 5.6875791478005516e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163106e-01 : 1.1375158294716865e+00 : 5.6875791469163106e-07 : 1.0000000000000000e-03 : 1.4208879185377161e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005544e-01 : -1.1375158294716843e+00 : 5.6875791478005537e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716854e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377166e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005655e-01 : -1.1375158294716838e+00 : 5.6875791478005654e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162729e-01 : 1.1375158294716841e+00 : 5.6875791469162725e-07 : 1.0000000000000000e-03 : 1.4208879185377197e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716843e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162751e-01 : 1.1375158294716834e+00 : 5.6875791469162746e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005588e-01 : -1.1375158294716841e+00 : 5.6875791478005590e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162817e-01 : 1.1375158294716852e+00 : 5.6875791469162810e-07 : 1.0000000000000000e-03 : 1.4208879185377170e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005699e-01 : -1.1375158294716836e+00 : 5.6875791478005696e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162662e-01 : 1.1375158294716825e+00 : 5.6875791469162662e-07 : 1.0000000000000000e-03 : 1.4208879185377177e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005588e-01 : -1.1375158294716847e+00 : 5.6875791478005590e-07 : 1.0000000000000000e-03 : 1.4208879184673755e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716836e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377159e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005477e-01 : -1.1375158294716852e+00 : 5.6875791478005474e-07 : 1.0000000000000000e-03 : 1.4208879184673779e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163040e-01 : 1.1375158294716843e+00 : 5.6875791469163032e-07 : 1.0000000000000000e-03 : 1.4208879185377170e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005389e-01 : -1.1375158294716852e+00 : 5.6875791478005389e-07 : 1.0000000000000000e-03 : 1.4208879184673799e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163128e-01 : 1.1375158294716852e+00 : 5.6875791469163128e-07 : 1.0000000000000000e-03 : 1.4208879185377148e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005389e-01 : -1.1375158294716838e+00 : 5.6875791478005389e-07 : 1.0000000000000000e-03 : 1.4208879184673802e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162995e-01 : 1.1375158294716856e+00 : 5.6875791469162990e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716845e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673784e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716856e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377190e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716843e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162751e-01 : 1.1375158294716849e+00 : 5.6875791469162746e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005744e-01 : -1.1375158294716841e+00 : 5.6875791478005739e-07 : 1.0000000000000000e-03 : 1.4208879184673762e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162662e-01 : 1.1375158294716838e+00 : 5.6875791469162662e-07 : 1.0000000000000000e-03 : 1.4208879185377179e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716829e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162573e-01 : 1.1375158294716829e+00 : 5.6875791469162566e-07 : 1.0000000000000000e-03 : 1.4208879185377175e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716836e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162640e-01 : 1.1375158294716836e+00 : 5.6875791469162641e-07 : 1.0000000000000000e-03 : 1.4208879185377177e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716861e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673762e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716845e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377163e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716836e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716836e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377186e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716843e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716852e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377179e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005655e-01 : -1.1375158294716852e+00 : 5.6875791478005654e-07 : 1.0000000000000000e-03 : 1.4208879184673788e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716858e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377203e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716849e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673788e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162773e-01 : 1.1375158294716841e+00 : 5.6875791469162768e-07 : 1.0000000000000000e-03 : 1.4208879185377188e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005633e-01 : -1.1375158294716869e+00 : 5.6875791478005633e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163062e-01 : 1.1375158294716838e+00 : 5.6875791469163064e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005322e-01 : -1.1375158294716832e+00 : 5.6875791478005315e-07 : 1.0000000000000000e-03 : 1.4208879184673797e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162995e-01 : 1.1375158294716867e+00 : 5.6875791469162990e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716852e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162840e-01 : 1.1375158294716838e+00 : 5.6875791469162842e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005544e-01 : -1.1375158294716847e+00 : 5.6875791478005537e-07 : 1.0000000000000000e-03 : 1.4208879184673779e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162928e-01 : 1.1375158294716841e+00 : 5.6875791469162926e-07 : 1.0000000000000000e-03 : 1.4208879185377163e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005477e-01 : -1.1375158294716852e+00 : 5.6875791478005474e-07 : 1.0000000000000000e-03 : 1.4208879184673779e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163040e-01 : 1.1375158294716841e+00 : 5.6875791469163032e-07 : 1.0000000000000000e-03 : 1.4208879185377159e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005366e-01 : -1.1375158294716845e+00 : 5.6875791478005368e-07 : 1.0000000000000000e-03 : 1.4208879184673799e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163084e-01 : 1.1375158294716845e+00 : 5.6875791469163085e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005366e-01 : -1.1375158294716823e+00 : 5.6875791478005368e-07 : 1.0000000000000000e-03 : 1.4208879184673797e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716827e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377161e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005411e-01 : -1.1375158294716832e+00 : 5.6875791478005410e-07 : 1.0000000000000000e-03 : 1.4208879184673775e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162906e-01 : 1.1375158294716836e+00 : 5.6875791469162905e-07 : 1.0000000000000000e-03 : 1.4208879185377163e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005455e-01 : -1.1375158294716843e+00 : 5.6875791478005453e-07 : 1.0000000000000000e-03 : 1.4208879184673775e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162973e-01 : 1.1375158294716845e+00 : 5.6875791469162969e-07 : 1.0000000000000000e-03 : 1.4208879185377137e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005477e-01 : -1.1375158294716836e+00 : 5.6875791478005474e-07 : 1.0000000000000000e-03 : 1.4208879184673775e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716854e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377166e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005655e-01 : -1.1375158294716838e+00 : 5.6875791478005654e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162729e-01 : 1.1375158294716841e+00 : 5.6875791469162725e-07 : 1.0000000000000000e-03 : 1.4208879185377197e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716843e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162751e-01 : 1.1375158294716834e+00 : 5.6875791469162746e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005588e-01 : -1.1375158294716841e+00 : 5.6875791478005590e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162817e-01 : 1.1375158294716852e+00 : 5.6875791469162810e-07 : 1.0000000000000000e-03 : 1.4208879185377170e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005699e-01 : -1.1375158294716836e+00 : 5.6875791478005696e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162662e-01 : 1.1375158294716825e+00 : 5.6875791469162662e-07 : 1.0000000000000000e-03 : 1.4208879185377177e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005588e-01 : -1.1375158294716847e+00 : 5.6875791478005590e-07 : 1.0000000000000000e-03 : 1.4208879184673755e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716836e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377159e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005477e-01 : -1.1375158294716852e+00 : 5.6875791478005474e-07 : 1.0000000000000000e-03 : 1.4208879184673779e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163040e-01 : 1.1375158294716843e+00 : 5.6875791469163032e-07 : 1.0000000000000000e-03 : 1.4208879185377170e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005389e-01 : -1.1375158294716852e+00 : 5.6875791478005389e-07 : 1.0000000000000000e-03 : 1.4208879184673799e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163128e-01 : 1.1375158294716852e+00 : 5.6875791469163128e-07 : 1.0000000000000000e-03 : 1.4208879185377148e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005389e-01 : -1.1375158294716838e+00 : 5.6875791478005389e-07 : 1.0000000000000000e-03 : 1.4208879184673802e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162995e-01 : 1.1375158294716856e+00 : 5.6875791469162990e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716845e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673784e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716856e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377190e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005677e-01 : -1.1375158294716843e+00 : 5.6875791478005675e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162751e-01 : 1.1375158294716849e+00 : 5.6875791469162746e-07 : 1.0000000000000000e-03 : 1.4208879185377183e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005744e-01 : -1.1375158294716841e+00 : 5.6875791478005739e-07 : 1.0000000000000000e-03 : 1.4208879184673762e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162662e-01 : 1.1375158294716838e+00 : 5.6875791469162662e-07 : 1.0000000000000000e-03 : 1.4208879185377179e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716829e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162573e-01 : 1.1375158294716829e+00 : 5.6875791469162566e-07 : 1.0000000000000000e-03 : 1.4208879185377175e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716836e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673757e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162640e-01 : 1.1375158294716836e+00 : 5.6875791469162641e-07 : 1.0000000000000000e-03 : 1.4208879185377177e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716861e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673762e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162884e-01 : 1.1375158294716845e+00 : 5.6875791469162884e-07 : 1.0000000000000000e-03 : 1.4208879185377163e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716836e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162795e-01 : 1.1375158294716836e+00 : 5.6875791469162789e-07 : 1.0000000000000000e-03 : 1.4208879185377186e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005566e-01 : -1.1375158294716843e+00 : 5.6875791478005559e-07 : 1.0000000000000000e-03 : 1.4208879184673782e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716852e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377179e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005655e-01 : -1.1375158294716852e+00 : 5.6875791478005654e-07 : 1.0000000000000000e-03 : 1.4208879184673788e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162862e-01 : 1.1375158294716858e+00 : 5.6875791469162863e-07 : 1.0000000000000000e-03 : 1.4208879185377203e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005722e-01 : -1.1375158294716849e+00 : 5.6875791478005717e-07 : 1.0000000000000000e-03 : 1.4208879184673788e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469162773e-01 : 1.1375158294716841e+00 : 5.6875791469162768e-07 : 1.0000000000000000e-03 : 1.4208879185377188e+00 )
+
+
+
+Convergence failed at node: 28 26 (5.6875791478005633e-01 : -1.1375158294716869e+00 : 5.6875791478005633e-07 : 1.0000000000000000e-03 : 1.4208879184673786e+00 )
+
+
+
+Convergence failed at node: 28 26 (-5.6875791469163062e-01 : 1.1375158294716838e+00 : 5.6875791469163064e-07 : 1.0000000000000000e-03 : 1.4208879185377172e+00 )
+
+		DC failed. Iter: 201 status 1
+
+
+		 ********Forced MP pass failed using Es******* 
+
+DC Simulation Started
+DC Linear Initial Guess
+DC simulations:
+	DC var: 0.000000000000e+00
+		Elec pass (T ind):
+		DC iterations =  2 (extra -1). Cond 0.0853763
+			Total num iter: 2
+		Elec pass (T dep). Evars Optical:
+		DC iterations =  1 (extra -1). Cond 0.0853763
+			Total num iter: 3
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.3187e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		Final Evars non-Linear Scatter pass:
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.3187e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3186957230e-24 Phi: 3.1412864971e+00  Mag: 1.1483447753e-12 E_f =  -1.1483447215e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.3187e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1483447215e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		DC iterations =  3 (extra 1). Cond 0.0853763
+			Total num iter: 6
+X: 7.600000000000000e+02 1.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 1.000000000000000e+00 -1.148470207822345e-12 0.000000000000000e+00 3.515732437723864e-16 1.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 1.037571695797757e+00 2.766857855452382e-01 9.727531913026918e-17 3.647824467388743e-16 -1.037571695796719e+00 -2.766857855455149e-01 -7.326047472018435e-16 -1.953612659202962e-16 -1.037571695796719e+00 -2.766857855455149e-01 -7.326047472018435e-16 -1.953612659202962e-16 -1.037571695796719e+00 -7.326047472018435e-16 2.766857855452382e-01 3.647824467388743e-16 -9.999999999966935e-01 0.000000000000000e+00 -7.060762645774341e-16 0.000000000000000e+00 -1.148470207822345e-12 3.515732437723864e-16 1.037571695797757e+00 9.727531913026918e-17 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -2.766857855455149e-01 -1.953612659202962e-16 -9.999999999966935e-01 -7.060762645774341e-16 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 
+			Total num iter: 5
+X: 7.600000000000000e+02 1.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 1.000000000000000e+00 -1.148470207822345e-12 0.000000000000000e+00 3.515732437723864e-16 1.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 1.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 1.037571695797757e+00 2.766857855452382e-01 9.727531913026918e-17 3.647824467388743e-16 -1.037571695796719e+00 -2.766857855455149e-01 -7.326047472018435e-16 -1.953612659202962e-16 -1.037571695796719e+00 -2.766857855455149e-01 -7.326047472018435e-16 -1.953612659202962e-16 -1.037571695796719e+00 -7.326047472018435e-16 2.766857855452382e-01 3.647824467388743e-16 -9.999999999966935e-01 0.000000000000000e+00 -7.060762645774341e-16 0.000000000000000e+00 -1.148470207822345e-12 3.515732437723864e-16 1.037571695797757e+00 9.727531913026918e-17 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -2.766857855455149e-01 -1.953612659202962e-16 -9.999999999966935e-01 -7.060762645774341e-16 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 -0.000000000000000e+00 -0.000000000000000e+00 0.000000000000000e+00 0.000000000000000e+00 
+
+Operating point
+760 1 1 0 -0 -0 0 0 0 0 -0 -0 0 1 -1.14847e-12 0 3.51573e-16 1 -0 -0 -0 1 0 0 0 1.03757 0.276686 9.72753e-17 3.64782e-16 -1.03757 -0.276686 -7.32605e-16 -1.95361e-16 -1.03757 -0.276686 -7.32605e-16 -1.95361e-16 -1.03757 -7.32605e-16 0.276686 3.64782e-16 -1 0 -7.06076e-16 0 -1.14847e-12 3.51573e-16 1.03757 9.72753e-17 0 0 0 0 -0.276686 -1.95361e-16 -1 -7.06076e-16 0 0 0 0 -0 -0 0 0 
+
+Transient
+
+***** Element Operating point info:
+
+MultiLayerFilterExp: wg1:exp 
+	(Explicit Filtering -- T = 300.15 -- E to E)
+	Channel: 0
+		 Input: l1:fixed:760
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+			Extra
+					(rev: 46,47):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 0 Rev: 1.31898e-24
+
+		Interface (0): wg1:exp:c(0):I1(0) T= 300.15 NonLinear
+			N1 = 1.1 N2 = 1.9 (1.9)T = 300.15
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = -0.266667 	Tf = 0.963789 	Rb = 0.266667 	Tb = 0.963789 
+
+		 Layer (1) Phi= -15.708 (-3.14159)  Atten = 1 N = 1.9 V1 = 0 V2 = 0 T = 300.15
+			Inter1: wg1:exp:inter1(0):fixed:760 (Es)
+			wg1:exp:inter1(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 26,28):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+					(rev: 27,29):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter2: wg1:exp:inter2(0):fixed:760 (Es)
+			wg1:exp:inter2(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 30,32):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 31,33):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Inter3: wg1:exp:inter3(0):fixed:760 (Es) dt = 6.33772e-15
+			wg1:exp:inter3(0):fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 34,36):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 35,37):  Pow: 7.6555023923e-02 Phi: -3.1415926536e+00  Mag: 2.7668578555e-01 E_f =  -2.7668578555e-01 + -1.9536126592e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			ExtraNodes (Es)
+			Delay queues (Es):
+				Mode 0
+					(fwd: 38,39):  Pow: 1.0765550239e+00 Phi: -3.1415926536e+00  Mag: 1.0375716958e+00 E_f =  -1.0375716958e+00 + -7.3260474720e-16i
+					(rev: 40,41):  Pow: 7.6555023923e-02 Phi: 1.3183996642e-15  Mag: 2.7668578555e-01 E_f =  2.7668578555e-01 + 3.6478244674e-16i
+								Total Power Fwd: 1.07656 Rev: 0.076555
+
+			Extra Inter1
+				Mode 0
+					(fwd: 48,49):  Pow: 1.0765550239e+00 Phi: 9.3752865006e-17  Mag: 1.0375716958e+00 E_f =  1.0375716958e+00 + 9.7275319130e-17i
+								Total Power Fwd: 1.07656 Rev: 0
+
+		Interface (1): wg1:exp:c(0):I1(1) T = 300.15 NonLinear
+			N1 = 1.9 (1.9) N2 = 1.1
+				Tf^2 = 0.928889 Rf^2 = 0.0711111  Tb^2 = 0.928889 Rb^2 = 0.0711111 Tf+Rf = 1 Tb+Rb = 1 
+			Rf = 0.266667 	Tf = 0.963789 	Rb = -0.266667 	Tb = 0.963789 
+
+		 Output: l2:fixed:760
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+			Extra
+				Mode 0
+					(fwd: 56,57):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+								Total Power Fwd: 1 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 18 n2: 20 -- Fixed Lambda
+		 Freqshift: 0
+			l1:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 14,16):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 15,17):  Pow: 1.3189839419e-24 Phi: 3.1412865305e+00  Mag: 1.1484702616e-12 E_f =  -1.1484702078e-12 + 3.5157324377e-16i
+								Total Power Fwd: 1 Rev: 1.31898e-24
+
+Mirror: mir1
+	Channel:0
+			l2:fixed:760 			Carrier Lambda: 760 nm --- E vars
+				Mode 0
+					(fwd: 42,44):  Pow: 9.9999999999e-01 Phi: -3.1415926536e+00  Mag: 1.0000000000e+00 E_f =  -1.0000000000e+00 + -7.0607626458e-16i
+					(rev: 43,45):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 -3.1415926536e+00 
+
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1                           	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 1 
+	                              	mode: l1:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: -1.1484702078e-12 3.5157324377e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	wg1:exp                       	Port: 2 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: l2:fixed:760 
+	                              		dir: FWD
+	                              			TE Fields: -1.0000000000e+00 -7.0607626458e-16 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+Transient ... 
+
+t: 1e-13 t(sc) 1e-05 iter: 1 repeat_nr_iter: 0 h: 1e-05 Status: Es BACKE PhiWrapSimple
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 2e-05 
+
+t = 1e-13 (0%)
+t: 3e-13 t(sc) 3e-05 iter: 1 repeat_nr_iter: 0 h: 2e-05 Status: Es BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 4e-05 
+
+t: 7e-13 t(sc) 7e-05 iter: 1 repeat_nr_iter: 0 h: 4e-05 Status: Es BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 8e-05 
+
+t: 1.5e-12 t(sc) 0.00015 iter: 1 repeat_nr_iter: 0 h: 8e-05 Status: Es BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00016 
+
+t: 3.1e-12 t(sc) 0.00031 iter: 1 repeat_nr_iter: 0 h: 0.00016 Status: Es BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00032 
+Switching integration method and stepping back one step at 1.5e-12 to Trap
+t: 3.1e-12 t(sc) 0.00031 iter: 1 repeat_nr_iter: 0 h: 0.00016 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00032 
+
+t: 6.3e-12 t(sc) 0.00063 iter: 1 repeat_nr_iter: 0 h: 0.00032 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00064 
+
+t: 1.27e-11 t(sc) 0.00127 iter: 1 repeat_nr_iter: 0 h: 0.00064 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00128 
+
+t: 2.55e-11 t(sc) 0.00255 iter: 1 repeat_nr_iter: 0 h: 0.00128 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00256 
+
+t: 5.11e-11 t(sc) 0.00511 iter: 1 repeat_nr_iter: 0 h: 0.00256 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.00512 
+
+t: 1.023e-10 t(sc) 0.01023 iter: 1 repeat_nr_iter: 0 h: 0.00512 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.01024 
+
+t: 2.047e-10 t(sc) 0.02047 iter: 1 repeat_nr_iter: 0 h: 0.01024 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.02048 
+new h (Max): 0.02 
+
+t: 4.047e-10 t(sc) 0.04047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.047e-10 t(sc) 0.06047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.047e-10 (5%)
+t: 8.047e-10 t(sc) 0.08047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.0047e-09 t(sc) 0.10047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.0047e-09 (10%)
+t: 1.2047e-09 t(sc) 0.12047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.4047e-09 t(sc) 0.14047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.6047e-09 t(sc) 0.16047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.6047e-09 (15%)
+t: 1.8047e-09 t(sc) 0.18047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.0047e-09 t(sc) 0.20047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 2.0047e-09 (20%)
+t: 2.2047e-09 t(sc) 0.22047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.4047e-09 t(sc) 0.24047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 2.6047e-09 t(sc) 0.26047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 2.6047e-09 (25%)
+t: 2.8047e-09 t(sc) 0.28047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.0047e-09 t(sc) 0.30047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 3.0047e-09 (30%)
+t: 3.2047e-09 t(sc) 0.32047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.4047e-09 t(sc) 0.34047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 3.6047e-09 t(sc) 0.36047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 3.6047e-09 (35%)
+t: 3.8047e-09 t(sc) 0.38047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.0047e-09 t(sc) 0.40047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 4.0047e-09 (40%)
+t: 4.2047e-09 t(sc) 0.42047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.4047e-09 t(sc) 0.44047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 4.6047e-09 t(sc) 0.46047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 4.6047e-09 (45%)
+t: 4.8047e-09 t(sc) 0.48047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.0047e-09 t(sc) 0.50047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 5.0047e-09 (50%)
+t: 5.2047e-09 t(sc) 0.52047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.4047e-09 t(sc) 0.54047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 5.6047e-09 t(sc) 0.56047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 5.6047e-09 (55%)
+t: 5.8047e-09 t(sc) 0.58047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.0047e-09 t(sc) 0.60047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.0047e-09 (60%)
+t: 6.2047e-09 t(sc) 0.62047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.4047e-09 t(sc) 0.64047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 6.6047e-09 t(sc) 0.66047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 6.6047e-09 (65%)
+t: 6.8047e-09 t(sc) 0.68047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.0047e-09 t(sc) 0.70047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 7.0047e-09 (70%)
+t: 7.2047e-09 t(sc) 0.72047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.4047e-09 t(sc) 0.74047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 7.6047e-09 t(sc) 0.76047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: Es TRAP PhiWrapLinear
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 7.6047e-09 (75%)
+t: 7.8047e-09 t(sc) 0.78047 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 1.91292 : d3 64 0 : h 3 1.91292 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+
+
+Convergence failed at node: 17 15 (1.3573474436637154e+00 : -1.7842452099197939e+00 : 1.3573474436637153e-06 : 1.0000000000000000e-08 : 1.4008147347344786e-11 )
+
+
+
+Convergence failed at node: 17 15 (1.6685385994146296e+00 : 3.1119115575091416e-01 : 1.6685385994146295e-06 : 1.0000000000000000e-08 : 1.4234118261653412e-11 )
+
+
+
+Convergence failed at node: 17 15 (1.6685413783727612e+00 : 2.7789581315240278e-06 : 1.6685413783727612e-06 : 1.0000000000000000e-08 : 1.4233707299131321e-11 )
+
+t: 8.0047e-09 t(sc) 0.80047 iter: 6 repeat_nr_iter: 0 h: 0.02 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 0.00205103 : d3 56 6.03804e-07 : h 46 0.00205103 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+Step back (phi): 0.00205103 
+
+
+Convergence failed at node: 17 15 (1.3576652287331392e+00 : -1.7839274248503700e+00 : 1.3576652287331392e-06 : 1.0000000000000000e-08 : 1.4004264482462517e-11 )
+
+
+
+Convergence failed at node: 17 15 (1.6685585075367051e+00 : 3.1089327880356588e-01 : 1.6685585075367050e-06 : 1.0000000000000000e-08 : 1.4229468583121246e-11 )
+
+t: 7.82521e-09 t(sc) 0.782521 iter: 5 repeat_nr_iter: 0 h: 0.00205103 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 0.000699234 : d3 56 1.52345e-05 : h 46 0.000699234 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+Step back (size): 0.000699234 
+
+
+Convergence failed at node: 17 15 (1.3584464108048608e+00 : -1.7831462427786484e+00 : 1.3584464108048609e-06 : 1.0000000000000000e-08 : 1.3993572928890412e-11 )
+
+
+
+Convergence failed at node: 17 15 (1.6686093172900596e+00 : 3.1016290648519862e-01 : 1.6686093172900595e-06 : 1.0000000000000000e-08 : 1.4217983419372527e-11 )
+
+t: 7.81169e-09 t(sc) 0.781169 iter: 5 repeat_nr_iter: 0 h: 0.000699234 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 0.000473106 : d3 56 4.91437e-05 : h 46 0.000473106 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+
+
+
+Convergence failed at node: 17 15 (1.7290729108332028e+00 : 6.0464547432680531e-02 : 1.7290729108332027e-06 : 1.0000000000000000e-08 : 3.7769390799485694e-13 )
+
+
+
+Convergence failed at node: 17 15 (3.1131222395466001e+00 : 1.3840493287133973e+00 : 3.1131222395465999e-06 : 1.0000000000000000e-08 : 1.1496634327182615e-12 )
+
+
+
+Convergence failed at node: 17 15 (3.1129993217054328e+00 : -1.2291784116723117e-04 : 3.1129993217054328e-06 : 1.0000000000000000e-08 : 1.1497258952190365e-12 )
+
+
+
+Convergence failed at node: 17 15 (3.1130068703484621e+00 : 7.5486430292466646e-06 : 3.1130068703484620e-06 : 1.0000000000000000e-08 : 1.1496644200622274e-12 )
+
+t: 7.81642e-09 t(sc) 0.781642 iter: 6 repeat_nr_iter: 0 h: 0.000473106 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 0.000107255 : d3 46 2.12677e+08 : h 46 0.000107255 
+
+	D3: x: 3.11301 x1: 1.66861 x2: 3.14159 x3: 3.14159
+Step back (size): 0.000107255 
+
+
+Convergence failed at node: 17 15 (1.7286864258605386e+00 : 6.0078062460016401e-02 : 1.7286864258605385e-06 : 1.0000000000000000e-08 : 4.6135312130528878e-13 )
+
+
+
+Convergence failed at node: 17 15 (3.0197994403364397e+00 : 1.2911130144759011e+00 : 3.0197994403364393e-06 : 1.0000000000000000e-08 : 1.1585238987042656e-12 )
+
+
+
+Convergence failed at node: 17 15 (3.0194863357657917e+00 : -3.1310457064780768e-04 : 3.0194863357657916e-06 : 1.0000000000000000e-08 : 1.1585528352930972e-12 )
+
+
+
+Convergence failed at node: 17 15 (3.0195099812649566e+00 : 2.3645499165092315e-05 : 3.0195099812649563e-06 : 1.0000000000000000e-08 : 1.1585503862788524e-12 )
+
+t: 7.81276e-09 t(sc) 0.781276 iter: 6 repeat_nr_iter: 0 h: 0.000107255 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 6.61092e-05 : d3 46 8.81031e+08 : h 46 6.61092e-05 
+
+	D3: x: 3.01951 x1: 1.66861 x2: 3.14159 x3: 3.14159
+
+
+
+Convergence failed at node: 17 15 (-1.2655892987050896e+01 : -1.5675401318738311e+01 : 1.2655892987050895e-05 : 1.0000000000000000e-08 : 2.8687815633698502e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.6693553418078615e+00 : 1.4325248328858757e+01 : 1.6693553418078614e-06 : 1.0000000000000000e-08 : 1.4060204026761622e-11 )
+
+t: 7.81343e-09 t(sc) 0.781343 iter: 4 repeat_nr_iter: 0 h: 6.61092e-05 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 1.02104e-05 : d3 56 5.045 : h 46 1.02104e-05 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+Step back (size): 1.02104e-05 
+
+
+Convergence failed at node: 17 15 (-1.1639850666618912e+01 : -1.4659358998306327e+01 : 1.1639850666618912e-05 : 1.0000000000000000e-08 : 2.7299297183896190e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.6740307211202872e+00 : 1.3313881387739199e+01 : 1.6740307211202871e-06 : 1.0000000000000000e-08 : 1.3146296018747039e-11 )
+
+
+
+Convergence failed at node: 17 15 (1.6740344514304475e+00 : 3.7303101602410449e-06 : 1.6740344514304474e-06 : 1.0000000000000000e-08 : 1.3145813067554462e-11 )
+
+t: 7.81287e-09 t(sc) 0.781287 iter: 5 repeat_nr_iter: 0 h: 1.02104e-05 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 5.50346e-06 : d3 56 30.0987 : h 46 5.50346e-06 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+Switching integration method and stepping back two steps at 7.8047e-09 to BE
+
+
+Convergence failed at node: 17 15 (1.2938931228511137e+00 : -1.8476995307355375e+00 : 1.2938931228511136e-06 : 1.0000000000000000e-08 : 7.0337709946503205e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7287662825498571e+00 : 4.3487315969874341e-01 : 1.7287662825498571e-06 : 1.0000000000000000e-08 : 7.2987424504595694e-12 )
+
+t: 7.81169e-09 t(sc) 0.781169 iter: 5 repeat_nr_iter: 0 h: 0.000699234 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 0.000212605 : d3 56 1.00007e-06 : h 46 0.000212605 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+Step back (size): 0.000212605 
+
+
+Convergence failed at node: 17 15 (1.2977049065269846e+00 : -1.8438877470596666e+00 : 1.2977049065269844e-06 : 1.0000000000000000e-08 : 7.0169526011073668e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7291034076256602e+00 : 4.3139850109867556e-01 : 1.7291034076256601e-06 : 1.0000000000000000e-08 : 7.2794555608660162e-12 )
+
+t: 7.80683e-09 t(sc) 0.780683 iter: 5 repeat_nr_iter: 0 h: 0.000212605 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 0.00011586 : d3 56 3.35839e-06 : h 46 0.00011586 
+
+	D3: x: 3.14159 x1: 3.14159 x2: 3.14159 x3: 3.14159
+
+
+
+Convergence failed at node: 17 15 (1.7286220071409382e+00 : -4.8087503731530191e-04 : 1.7286220071409382e-06 : 1.0000000000000000e-08 : 7.3068284077292336e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286330225951105e+00 : 1.1015454172264105e-05 : 1.7286330225951105e-06 : 1.0000000000000000e-08 : 7.3066192037995461e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286299275687806e+00 : -3.0950263298305100e-06 : 1.7286299275687806e-06 : 1.0000000000000000e-08 : 7.3067612930386578e-12 )
+
+t: 7.80798e-09 t(sc) 0.780798 iter: 5 repeat_nr_iter: 0 h: 0.00011586 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 1.09748e-05 : d3 46 2.02142e+07 : h 46 1.09748e-05 
+
+	D3: x: 1.72863 x1: 1.7291 x2: 3.14159 x3: 3.14159
+Step back (size): 1.09748e-05 
+
+
+Convergence failed at node: 17 15 (1.7286368278602759e+00 : -4.6605431797755600e-04 : 1.7286368278602758e-06 : 1.0000000000000000e-08 : 7.3058281403312626e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286405002309595e+00 : 3.6723706836284521e-06 : 1.7286405002309594e-06 : 1.0000000000000000e-08 : 7.3059227954050380e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286431939909079e+00 : 2.6937599483660329e-06 : 1.7286431939909078e-06 : 1.0000000000000000e-08 : 7.3057991541033911e-12 )
+
+t: 7.80694e-09 t(sc) 0.780694 iter: 4 repeat_nr_iter: 0 h: 1.09748e-05 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 9.08052e-06 : d3 46 2.95279e+07 : h 46 9.08052e-06 
+
+	D3: x: 1.72864 x1: 1.7291 x2: 3.14159 x3: 3.14159
+
+
+
+Convergence failed at node: 17 15 (1.7286290103047477e+00 : -1.4002153866026603e-05 : 1.7286290103047477e-06 : 1.0000000000000000e-08 : 7.3068128433592960e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286218998543119e+00 : -7.1104504358446670e-06 : 1.7286218998543119e-06 : 1.0000000000000000e-08 : 7.3071298365401244e-12 )
+
+
+
+Convergence failed at node: 17 15 (1.7286306851505946e+00 : 8.7852962826655852e-06 : 1.7286306851505945e-06 : 1.0000000000000000e-08 : 7.3067264797502203e-12 )
+
+t: 7.80703e-09 t(sc) 0.780703 iter: 4 repeat_nr_iter: 0 h: 9.08052e-06 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 3.47262e-05 : d3 46 2.01847e+06 : h 46 3.47262e-05 
+
+	D3: x: 1.72863 x1: 1.72864 x2: 1.7291 x3: 3.14159
+new h (Growth limit): 1.8161e-05 
+
+t: 7.80721e-09 t(sc) 0.780721 iter: 1 repeat_nr_iter: 0 h: 1.8161e-05 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 0.000215864 : d3 46 52236.6 : h 46 0.000215864 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72864 x3: 1.7291
+new h (Growth limit): 3.63221e-05 
+
+t: 7.80757e-09 t(sc) 0.780757 iter: 1 repeat_nr_iter: 0 h: 3.63221e-05 Status: MP BACKE PhiWrapSimple
+
+new h (LTE): 0.00782743 : d3 48 4.92487e-10 : h 46 0.00782743 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.924e-12
+new h (Growth limit): 7.26441e-05 
+Switching integration method and stepping back one step at 7.80721e-09 to Trap
+t: 7.80757e-09 t(sc) 0.780757 iter: 1 repeat_nr_iter: 0 h: 3.63221e-05 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 5.62128e-05 : d3 48 0.0161093 : h 46 5.62128e-05 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.924e-12
+
+t: 7.80813e-09 t(sc) 0.780813 iter: 1 repeat_nr_iter: 0 h: 5.62128e-05 Status: MP TRAP PhiWrapSimple
+
+new h (LTE): 0.00071688 : d3 46 396498 : h 46 0.00071688 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72863 x3: 1.72863
+new h (Growth limit): 0.000112426 
+
+t: 7.80926e-09 t(sc) 0.780926 iter: 1 repeat_nr_iter: 0 h: 0.000112426 Status: MP TRAP PhiWrapLinear
+
+new h (LTE): 0.00198483 : d3 48 2.31579e-07 : h 46 0.00198483 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.92425e-12
+new h (Growth limit): 0.000224851 
+Switching integration method and stepping back two steps at 7.80721e-09 to BE
+t: 7.80757e-09 t(sc) 0.780757 iter: 1 repeat_nr_iter: 0 h: 3.63221e-05 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 0.00782743 : d3 48 4.92487e-10 : h 46 0.00782743 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.924e-12
+new h (Growth limit): 7.26441e-05 
+
+t: 7.8083e-09 t(sc) 0.78083 iter: 1 repeat_nr_iter: 0 h: 7.26441e-05 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 0.0586653 : d3 46 0.70725 : h 46 0.0586653 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72863 x3: 1.72863
+new h (Growth limit): 0.000145288 
+
+t: 7.80975e-09 t(sc) 0.780975 iter: 1 repeat_nr_iter: 0 h: 0.000145288 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 0.431732 : d3 48 1.61884e-13 : h 46 0.431732 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.92425e-12
+new h (Growth limit): 0.000290577 
+
+t: 7.81266e-09 t(sc) 0.781266 iter: 1 repeat_nr_iter: 0 h: 0.000290577 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 46 0.000245504 : h 3 2.64575 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72863 x3: 1.72863
+new h (Growth limit): 0.000581153 
+
+t: 7.81847e-09 t(sc) 0.781847 iter: 1 repeat_nr_iter: 0 h: 0.000581153 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 48 5.77294e-17 : h 3 2.64575 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.92425e-12
+new h (Growth limit): 0.00116231 
+
+t: 7.83009e-09 t(sc) 0.783009 iter: 1 repeat_nr_iter: 0 h: 0.00116231 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 46 8.8755e-08 : h 3 2.64575 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72863 x3: 1.72863
+new h (Growth limit): 0.00232461 
+
+t: 7.85334e-09 t(sc) 0.785334 iter: 1 repeat_nr_iter: 0 h: 0.00232461 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 48 2.09778e-20 : h 3 2.64575 
+
+	D3: x: 1.92425e-12 x1: 1.92425e-12 x2: 1.92425e-12 x3: 1.92425e-12
+new h (Growth limit): 0.00464922 
+
+t: 7.89983e-09 t(sc) 0.789983 iter: 1 repeat_nr_iter: 0 h: 0.00464922 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 46 2.73935e-11 : h 3 2.64575 
+
+	D3: x: 1.72863 x1: 1.72863 x2: 1.72863 x3: 1.72863
+new h (Growth limit): 0.00929845 
+
+t: 7.99281e-09 t(sc) 0.799281 iter: 1 repeat_nr_iter: 0 h: 0.00929845 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 45 2.49143e-23 : h 3 2.64575 
+
+	D3: x: 7.30675e-12 x1: 7.30675e-12 x2: 7.30675e-12 x3: 7.30675e-12
+new h (Growth limit): 0.0185969 
+
+t: 8.17878e-09 t(sc) 0.817878 iter: 1 repeat_nr_iter: 0 h: 0.0185969 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.0371938 
+new h (Max): 0.02 
+
+t = 8.17878e-09 (80%)
+t: 8.37878e-09 t(sc) 0.837878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 8.57878e-09 t(sc) 0.857878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 8.57878e-09 (85%)
+t: 8.77878e-09 t(sc) 0.877878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 8.97878e-09 t(sc) 0.897878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.17878e-09 t(sc) 0.917878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 9.17878e-09 (90%)
+t: 9.37878e-09 t(sc) 0.937878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.57878e-09 t(sc) 0.957878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 9.57878e-09 (95%)
+t: 9.77878e-09 t(sc) 0.977878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 9.97878e-09 t(sc) 0.997878 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t: 1.01788e-08 t(sc) 1.01788 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+
+new h (LTE): 2.64575 : d3 64 0 : h 3 2.64575 
+
+	D3: x: 0 x1: 0 x2: 0 x3: 0
+new h (Growth limit): 0.04 
+new h (Max): 0.02 
+
+t = 1.01788e-08 (100%)
+Number of timesteps: 87
+Transient Simulation Done. Num of Nonlin iters: 135 
+	Freeing MNA
+Freeing Main Circuit ...
+	Freeing Nodes and Elements
+Cleaning Main Circuit ...
+	Freeing Parsed circuit: 'Main Circuit'

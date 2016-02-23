@@ -2,7 +2,16 @@ set(0,'DefaultFigureWindowStyle','docked')
 %addpath ../ ../../
 % close all
 
-basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/';
+
+% base netlist file and matlab scripts reside in wavequides forlder.
+% the script will creat an output folder with a time stamp of the run.
+% all optput files will be generated in the output folder.
+% waveguide_smt.sp is the parametrized netlist file.
+% waveguide_smt_multiL.m is the matlab script to sweep length, lambda and
+% neff and run the netlist.
+
+
+basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/waveguides';
 base = 'waveguide_smt';
 
 basefile = strcat(base,'.sp');
@@ -17,9 +26,7 @@ display(dateStamp);
 snapshot = strcat('run_', dateStamp);
 display(snapshot);
 mkdir(snapshot);
-%snapshotFull=strcat(basePath,snapshot);
 snapshotFull=strcat('./',snapshot)
-%cd('/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/16feb2016_1150');
 cd(snapshotFull);
 system(pwd);
 
