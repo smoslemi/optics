@@ -21,7 +21,7 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=LENGTH  IncludeTimeDelay=1  n
 
 % IncludeTimeDelay=1 
 .tran .0001e-9 10e-9 nsolver=BACKE nmaxst=.05n nminst=.05n
-
+%.op
 	
 .Monitor OptFields wg1 Format=MagPhi Port=1 dir=IN  Pol=TE
 .Monitor OptFields wg1 Format=MagPhi Port=2 dir=OUT Pol=TE
