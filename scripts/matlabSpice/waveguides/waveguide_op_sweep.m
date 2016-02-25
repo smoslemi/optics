@@ -1,6 +1,4 @@
 set(0,'DefaultFigureWindowStyle','docked')
-%addpath ../ ../../
-% close all
 
 
 % base netlist file and matlab scripts reside in wavequides forlder.
