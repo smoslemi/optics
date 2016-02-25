@@ -1,0 +1,7 @@
+Script started on Tue Feb 16 13:05:17 2016
+[?1034hbash-3.2$ vi plotData.csv [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K:q
+bash: :q: command not found
+bash-3.2$ :qvi plotData.csv [C[C[C[C[C[C[C[C[C[Ccd phd/GitThesis/myDev/outDir/[C[C[C[C[C[C[C[C[C[Cvi CascadeRingLam_21jan2016_1255.sp [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kpwds[K
+/Users/sanam/phd/GitThesis/optics
+bash-3.2$ cd ../../
+bash-3.2$ cd ../../[6Ppwd[1P:qvi plotData.csv [C[C[C[C[C[C[C[C[C[Ccd phd/GitThesis/myDev/outDir/[C[C[C[C[C[C[C[C[C[Cvi CascadeRingLam_21jan2016_1255.sp [C[C[C[C[C[C[C[C[C[Cls *.sp[Kcd ../lamda/[C[C[C[C[C[C[C[C[C[Cinstall_name_tool -chang /Users/tjsOrg/OptispiceBin/libSuiteSparse.4.1.0.dylib /Users/sanam/OptispiceBin/libSuiteSparse.4.1.0.dylib ospiceResearch [C[C[C[C[C[C[C[C[C[Cls[Kpwd~/bin/OptispiceBin/ospiceResearch/ospiceResearch[C[C[C[C[C[C[C[C[C[C[15Pfile ospiceResearch[C[C[C[C[C[C[C[C[C[Cls -l[K[Kcleard /Users/sanam/OptispiceBin[C[C[C[C[C[C[C[C[C[C[8Pwhich ospiceResearch
