@@ -45,8 +45,18 @@ N13In=output(:,4); % N13 in
 N14In=output(:,5); % N14 in
 N11Out=output(:,6); % N11 out
 N12Out=output(:,7); % N12 out
-N13Out=output(:,8); % N13 out 
+N13Out=output(:,8); % N13 out
 N14Out=output(:,9); % N14 out
+
+N11In=10.^(N11In/20);
+N12In=10.^(N12In/20);
+N13In=10.^(N13In/20);
+N14In=10.^(N14In/20);
+N11Out=10.^(N11Out/20);
+N12Out=10.^(N12Out/20);
+N13Out=10.^(N13Out/20);
+N14Out=10.^(N14Out/20);
+
 
 %Circuit 2, x1
 x11In=output(:,10); % x11 in
@@ -57,6 +67,23 @@ x11Out=output(:,14); % x11 out
 x12Out=output(:,15); % x11 out
 x13Out=output(:,16);
 x14Out=output(:,17);
+
+x11In=10.^(x11In/20);
+x12In=10.^(x12In/20);
+x13In=10.^(x13In/20);
+x14In=10.^(x14In/20);
+x11Out=10.^(x11Out/20);
+x12Out=10.^(x12Out/20);
+x13Out=10.^(x13Out/20);
+x14Out=10.^(x14Out/20);
+
+
+
+% Theory formular
+
+x12Out_TH = 0.15.*x11In;
+x13Out_TH = 0.8.*x11In;
+x1Out_TH = 0.4.*x11In;
 
 %Circuit 3, (Ring2, x2)
 N21In=output(:,18);
@@ -75,6 +102,25 @@ x21Out=output(:,30);
 x22Out=output(:,31);
 x23Out=output(:,32);
 x24Out=output(:,33);
+
+
+N21In=10.^(N21In/20);
+N22In=10.^(N22In/20);
+N23In=10.^(N23In/20);
+N24In=10.^(N24In/20);
+N21Out=10.^(N21Out/20);
+N22Out=10.^(N22Out/20);
+N23Out=10.^(N23Out/20);
+N24Out=10.^(N24Out/20);
+x21In=10.^(x21In/20);
+x22In=10.^(x22In/20);
+x23In=10.^(x23In/20);
+x24In=10.^(x24In/20);
+x21Out=10.^(x21Out/20);
+x22Out=10.^(x22Out/20);
+x23Out=10.^(x23Out/20);
+x24Out=10.^(x24Out/20);
+
 
 %Circuit 4, (Ring3, x3, x4)
 N31In=output(:,34);
@@ -101,6 +147,31 @@ x41Out=output(:,54);
 x42Out=output(:,55);
 x43Out=output(:,56);
 x44Out=output(:,57);
+
+N31In=10.^(N31In/20);
+N32In=10.^(N32In/20);
+N33In=10.^(N33In/20);
+N34In=10.^(N34In/20);
+N31Out=10.^(N31Out/20);
+N32Out=10.^(N32Out/20);
+N33Out=10.^(N33Out/20);
+N34Out=10.^(N34Out/20);
+x31In=10.^(x31In/20);
+x32In=10.^(x32In/20);
+x33In=10.^(x33In/20);
+x34In=10.^(x34In/20);
+x31Out=10.^(x31Out/20);
+x32Out=10.^(x32Out/20);
+x33Out=10.^(x33Out/20);
+x34Out=10.^(x34Out/20);
+x41In=10.^(x41In/20);
+x42In=10.^(x42In/20);
+x43In=10.^(x43In/20);
+x44In=10.^(x44In/20);
+x41Out=10.^(x41Out/20);
+x42Out=10.^(x42Out/20);
+x43Out=10.^(x43Out/20);
+x44Out=10.^(x44Out/20);
 
 %Circuit 5, (Ring4, Ring5, x5, x6)
 N41In=output(:,58);
@@ -138,6 +209,52 @@ x64Out=output(:,88);
 
 
 
+N41In=10.^(N41In/20);
+N42In=10.^(N42In/20);
+N43In=10.^(N43In/20);
+N44In=10.^(N44In/20);
+N41Out=10.^(N41Out/20);
+N42Out=10.^(N42Out/20);
+N43Out=10.^(N43Out/20);
+N44Out=10.^(N44Out/20);
+x51In=10.^(x51In/20);
+x52In=10.^(x52In/20);
+x53In=10.^(x53In/20);
+x54In=10.^(x54In/20);
+x51Out=10.^(x51Out/20);
+x52Out=10.^(x52Out/20);
+x53Out=10.^(x53Out/20);
+x54Out=10.^(x54Out/20);
+
+N51In=10.^(N51In/20);
+N52In=10.^(N52In/20);
+N53In=10.^(N53In/20);
+N54In=10.^(N54In/20);
+N51Out=10.^(N51Out/20);
+N52Out=10.^(N52Out/20);
+N53Out=10.^(N53Out/20);
+N54Out=10.^(N54Out/20);
+x61In=10.^(x61In/20);
+x62In=10.^(x62In/20);
+x63In=10.^(x63In/20);
+x64In=10.^(x64In/20);
+x61Out=10.^(x61Out/20);
+x62Out=10.^(x62Out/20);
+x63Out=10.^(x63Out/20);
+x64Out=10.^(x64Out/20);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %figure;
 
@@ -160,8 +277,6 @@ plot(x,N13Out);
 subplot(4,2,8);
 plot(x,N14Out);
 
-figure('name','Circuit 1, N11In = N12In + N13Out?','numbertitle','off');
-plot(x, 10.^(N11In), x, 10.^(N12In/20)+10.^(N13Out/20));
 
 %Circuit 2
 figure('name','Circuit 2, xcross 1 IN OUT signals','numbertitle','off');

@@ -1,0 +1,1693 @@
+Running OptiSPICE 5.1 (compiled on: Jan  5 2016 10:28:02) 
+
+Copyright 2015 Optiwave Systems Inc. All rights reserved.
+
+	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
+
+Processing Netlist file: xcoupler-multi.sp
+
+************* FILE: "xcoupler-multi.sp"  ************
+
+Title "CW Source check "
+
+Osp Jobcontrol Verbosity=DEBUG
+
+.option ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8
+.OPTION DCCAP=1 TNOM=27
+
+.param NMODES=2
+
+* Voltage sources
+v1 Mag1 0 DC = 1 
+v2 Phi1 0 DC = 0 
+v3 Mag2 0 DC = 1 
+v4 Phi2 0 DC = 0 pulse ( 0 20 1e-9 10e-9 1e-9 2e-9)
+
+Osp CWSOURCE   Name=cw1 Nodes = [Mag1 Phi1 lightin1] MoName = CWmodel
+Osp CWSOURCE   Name=cw2 Nodes = [Mag2 Phi2 lightin2] MoName = CWmodel
+
+Osp XCOUPLER    Name=xc1 Nodes = [lightin1 lightin2 lightout1 lightout2] MoName=XCmodel
+
+Osp MIRROR      Name=mir1 Nodes = [lightout1] MoName = Mmodel 
+Osp MIRROR      Name=mir2 Nodes = [lightout2] MoName = Mmodel 
+
+Osp Model Name = Mmodel   type = MIRROR    Ref = 0
+Osp Model Name = CWmodel  type = CWSOURCE NumModes = NMODES SigmaX = 1 SigmaY = 1 ModeType = BESSEL_0_MODE
++         ModeCoeff = [1.0 0.2]
+Osp Model Name = XCmodel  type = XCOUPLER  NumModes = NMODES SigmaX = 1 SigmaY = 1 ModeType = BESSEL_0_MODE
+
+* Simulation statement
+*.DC
+*.op
+.tran .01e-9 10e-9  SOLVER=BACKE
+
+	
+* Output
+
+* .Monitor OptFields xc1 Port=1 dir=IN Pol=TE
+* .Monitor OptFields xc1 Port=2 dir=IN Pol=TE
+* .Monitor OptFields xc1 Port=3 dir=OUT Pol=TE
+* .Monitor OptFields xc1 Port=4 dir=OUT Pol=TE
+
+.Monitor OptPower  xc1 Port=1 dir=IN Pol=TE
+.Monitor OptPower  xc1 Port=2 dir=IN Pol=TE
+.Monitor OptPower  xc1 Port=3 dir=OUT Pol=TE
+.Monitor OptPower  xc1 Port=4 dir=OUT Pol=TE
+
+.Monitor OptPhase  xc1 Port=1 dir=IN Pol=TE
+.Monitor OptPhase  xc1 Port=2 dir=IN Pol=TE
+.Monitor OptPhase  xc1 Port=3 dir=OUT Pol=TE
+.Monitor OptPhase  xc1 Port=4 dir=OUT Pol=TE
+
+.end
+
+************* *************** ************
+
+Options ingold=2 DELMAX=.1e-10 ACCURATE=1 RUNLVL=6 NUMDGT=8 
+Options DCCAP=1 TNOM=27 
+Param P=[ { NMODES 2 } ] 
+INDSOURCE EL_Type=V_SOU Name=v1 Nodes=[ Mag1 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v2 Nodes=[ Phi1 0 ] dcMode dcValue=0 
+INDSOURCE EL_Type=V_SOU Name=v3 Nodes=[ Mag2 0 ] dcMode dcValue=1 
+INDSOURCE EL_Type=V_SOU Name=v4 Nodes=[ Phi2 0 ] dcMode dcValue=0 tranMode=PULSE v1=0 v2=20 td=1e-9 tr=10e-9 tf=1e-9 pw=2e-9 
+CWSOURCE Name=cw1 Nodes=[ Mag1 Phi1 lightin1 ] MoName=CWmodel 
+CWSOURCE Name=cw2 Nodes=[ Mag2 Phi2 lightin2 ] MoName=CWmodel 
+XCOUPLER Name=xc1 Nodes=[ lightin1 lightin2 lightout1 lightout2 ] MoName=XCmodel 
+MIRROR Name=mir1 Nodes=[ lightout1 ] MoName=Mmodel 
+MIRROR Name=mir2 Nodes=[ lightout2 ] MoName=Mmodel 
+Model Name=Mmodel type=MIRROR Ref=0 
+Model Name=CWmodel type=CWSOURCE NumModes=NMODES SigmaX=1 SigmaY=1 ModeType=BESSEL_0_MODE ModeCoeff=[ 1.0 0.2 ] 
+Model Name=XCmodel type=XCOUPLER NumModes=NMODES SigmaX=1 SigmaY=1 ModeType=BESSEL_0_MODE 
+Transient Tpoints=[ { .01e-9 10e-9 } ] SOLVER=BACKE
+Monitor Type=OptPower Name=xc1 Port=1 dir=IN Pol=TE 
+Monitor Type=OptPower Name=xc1 Port=2 dir=IN Pol=TE 
+Monitor Type=OptPower Name=xc1 Port=3 dir=OUT Pol=TE 
+Monitor Type=OptPower Name=xc1 Port=4 dir=OUT Pol=TE 
+Monitor Type=OptPhase Name=xc1 Port=1 dir=IN Pol=TE 
+Monitor Type=OptPhase Name=xc1 Port=2 dir=IN Pol=TE 
+Monitor Type=OptPhase Name=xc1 Port=3 dir=OUT Pol=TE 
+Monitor Type=OptPhase Name=xc1 Port=4 dir=OUT Pol=TE 
+END
+
+Assigning node numbers and stamping
+
+
+Main Circuit Paras:
+	Name=NMODES String=2 Ep = 0x0
+
+Creating: v1
+
+Creating: v2
+
+Creating: v3
+
+Creating: v4
+
+Creating: cw1
+	New Link: lightin1                                                     Link: 0x7f9f1060d070
+
+Creating: cw2
+	New Link: lightin2                                                     Link: 0x7f9f1060de70
+
+Creating: xc1
+	New Link: lightout1                                                    Link: 0x7f9f1060ebd0
+	New Link: lightout2                                                    Link: 0x7f9f1060ec10
+
+Creating: mir1
+
+Creating: mir2
+
+Circuit after element assignment
+
+Element hash table
+	Key: xc1                                                          	val: 	293627904 
+	Key: v1                                                           	val: 	274767232 
+	Key: v2                                                           	val: 	274769920 
+	Key: v3                                                           	val: 	274772576 
+	Key: v4                                                           	val: 	274775232 
+	Key: cw1                                                          	val: 	293616640 
+	Key: cw2                                                          	val: 	293622272 
+	Key: mir1                                                         	val: 	293634560 
+	Key: mir2                                                         	val: 	293637632 
+
+Delay Element hash table
+
+OptFFT Element hash table
+
+Noise Element hash table
+
+Optical Element hash table
+	Key: cw2                                                          	val: 	293622272 
+	Key: xc1                                                          	val: 	293627904 
+	Key: mir1                                                         	val: 	293634560 
+	Key: cw1                                                          	val: 	293616640 
+	Key: mir2                                                         	val: 	293637632 
+
+Source Optical Element hash table
+	Key: cw2                                                          	val: 	293622272 
+	Key: cw1                                                          	val: 	293616640 
+
+Elec Init Conditions
+
+
+Tracing optical sources
+	source: cw2 (fixed:1550)  -> xc1
+		-- branch 1:   -> cw1 (1) 
+
+		-- branch 2:  
+		-- branch 1:   -> mir1 (1)  -> xc1		-- branch 2:   -> mir2 (1)  -> xc1	source: cw1 (fixed:1550)  -> xc1
+
+Stamping: v1
+
+Stamping: v2
+
+Stamping: v3
+
+Stamping: v4
+
+Stamping: cw1
+Created Optical Mode Shape 'Mode:3 n:2 x:1.0000000000000000e+00 y:1.0000000000000000e+00 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:1.5500000000000000e+03' (acb754b3fe83b37db0abfc1efca334423cef3f23)
+Adding Optical Mode:  lightin1:fixed:1550 	      0x7f9f10408bd0
+
+Stamping: cw2
+Adding Optical Mode:  lightin2:fixed:1550 	      0x7f9f1040b050
+
+Stamping: xc1
+Adding Optical Mode: lightout1:fixed:1550 	      0x7f9f1040daa0
+Adding Optical Mode: lightout2:fixed:1550 	      0x7f9f1040dbd0
+Stamping OptScatteringVtoV Instance: xc1:c(0)
+	E to E: lightin1:fixed:1550 | lightout1:fixed:1550
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Stamping: mir1
+
+Stamping: mir2
+
+Linking optical elements; 
+Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
+Mirror DetModes ... 
+		mir1 input 0x7f9f11806920 output 0x7f9f11806920
+Mirror DetModes ... 
+		mir2 input 0x7f9f11806920 output 0x7f9f11806920
+
+Stamping free mode   optical elements; 
+Processing Mirror: mir1 Version: 6 Switchable: 1
+Adding Optical Mode: mir1:terminal:fixed:1550 	      0x7f9f1041bd80
+Stamping OptScatteringVtoV Instance: mir1:vtov:c(0)
+	E to E: lightout1:fixed:1550 | mir1:terminal:fixed:1550
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Processing Mirror: mir2 Version: 6 Switchable: 1
+Adding Optical Mode: mir2:terminal:fixed:1550 	      0x7f9f10422940
+Stamping OptScatteringVtoV Instance: mir2:vtov:c(0)
+	E to E: lightout2:fixed:1550 | mir2:terminal:fixed:1550
+	Linear (E to E) Scattering Mode
+	NonLinear Scattering Mode
+
+Post Stamping: cw2:c:0:m(1):optphi:iso
+
+Post Stamping: cw2:c:0:m(1):optmag:iso
+
+Post Stamping: cw2:c:0:m(0):optphi:iso
+
+Post Stamping: cw2:c:0:m(0):optmag:iso
+
+Post Stamping: cw1:c:0:m(1):optphi:iso
+
+Post Stamping: cw1:c:0:m(1):optmag:iso
+
+Post Stamping: cw1:c:0:m(0):optphi:iso
+
+Post Stamping: cw1:c:0:m(0):optmag:iso
+
+Circuit after node assignment
+
+Element hash table (including internal elements)
+	Key: cw1:c:0:m(0):optphi:iso                                      	val: 	272673568 
+	Key: cw1:c:0:m(1):optmag:iso                                      	val: 	272675376 
+	Key: xc1                                                          	val: 	293627904 
+	Key: mir2:vtov                                                    	val: 	276892160 
+	Key: mir1:vtov                                                    	val: 	276885504 
+	Key: cw2:c:0:m(1):optmag:iso                                      	val: 	272684784 
+	Key: cw2:c:0:m(0):optphi:iso                                      	val: 	272682976 
+	Key: xc1:c(0)                                                     	val: 	276877824 
+	Key: mir1:vtov:c(0)                                               	val: 	276888576 
+	Key: cw1:c:0:m(1):optphi:iso                                      	val: 	272677216 
+	Key: v1                                                           	val: 	274767232 
+	Key: v2                                                           	val: 	274769920 
+	Key: v3                                                           	val: 	274772576 
+	Key: v4                                                           	val: 	274775232 
+	Key: mir2:vtov:c(0)                                               	val: 	276900352 
+	Key: cw1                                                          	val: 	293616640 
+	Key: cw2                                                          	val: 	293622272 
+	Key: mir1                                                         	val: 	293634560 
+	Key: mir2                                                         	val: 	293637632 
+	Key: cw2:c:0:m(1):optphi:iso                                      	val: 	272686624 
+	Key: cw1:c:0:m(0):optmag:iso                                      	val: 	272671456 
+	Key: cw2:c:0:m(0):optmag:iso                                      	val: 	272681136 
+
+Node hash table (size: 130)
+	Key: cw2:c:0:m(0):optmag:iso:i                                    	val: 	62        
+	Key: cw2:c:0:m(0):optphi:iso:i                                    	val: 	63        
+	Key: lightout1:fixed:1550:rev:m(0):optmag                         	val: 	67        
+	Key: v3:portcurrentcurnode:0                                      	val: 	16        
+	Key: v3:portcurrentcurnode:1                                      	val: 	18        
+	Key: xc1:c(0):0:rev:modei:m(0):optphi                             	val: 	84        
+	Key: xc1:c(0):0:fwd:modei:m(0):optmag                             	val: 	90        
+	Key: v4:portcurrentcurnode:0                                      	val: 	22        
+	Key: v4:portcurrentcurnode:1                                      	val: 	24        
+	Key: mir2:terminal:fixed:1550:fwd:m(1):optphi                     	val: 	120       
+	Key: cw2:lightin2:fixed:1550:modei:m(0):optphi                    	val: 	60        
+	Key: xc1:c(0):0:rev:modei:m(0):optmag                             	val: 	82        
+	Key: lightin1:fixed:1550:rev:m(0):optphi                          	val: 	31        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(1):optphi                       	val: 	113       
+	Key: mir2:terminal:fixed:1550:fwd:m(1):optmag                     	val: 	116       
+	Key: v2:portcurrentnode:0                                         	val: 	9         
+	Key: v2:portcurrentnode:1                                         	val: 	11        
+	Key: cw2:lightin2:fixed:1550:modei:m(0):optmag                    	val: 	58        
+	Key: lightout2:fixed:1550:rev:m(0):optphi                         	val: 	79        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(1):optmag                       	val: 	111       
+	Key: mir1:vtov:c(0):0:rev:modei:m(1):optphi                       	val: 	109       
+	Key: lightout2:fixed:1550:rev:m(0):optmag                         	val: 	75        
+	Key: lightin1:fixed:1550:rev:m(0):optmag                          	val: 	27        
+	Key: v1:i                                                         	val: 	7         
+	Key: mir2:terminal:fixed:1550:fwd:m(0):optphi                     	val: 	118       
+	Key: v4:i                                                         	val: 	25        
+	Key: cw2:c:0:m(1):optphi:iso:i                                    	val: 	65        
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	42        
+	Key: mir1:vtov:c(0):0:rev:modei:m(1):optmag                       	val: 	107       
+	Key: mir2:terminal:fixed:1550:fwd:m(0):optmag                     	val: 	114       
+	Key: mir2:terminal:fixed:1550:rev:m(1):optphi                     	val: 	121       
+	Key: lightin2:fixed:1550:rev:m(0):optphi                          	val: 	51        
+	Key: v3:portcurrentnode:0                                         	val: 	15        
+	Key: xc1:c(0):1:fwd:modei:m(0):optphi                             	val: 	96        
+	Key: v3:portcurrentnode:1                                         	val: 	17        
+	Key: lightin1:fixed:1550:fwd:m(1):optphi                          	val: 	32        
+	Key: lightout2:fixed:1550:fwd:m(1):optphi                         	val: 	80        
+	Key: mir2:terminal:fixed:1550:rev:m(1):optmag                     	val: 	117       
+	Key: lightin2:fixed:1550:rev:m(0):optmag                          	val: 	47        
+	Key: mir1:terminal:fixed:1550:fwd:m(0):optmag                     	val: 	98        
+	Key: xc1:c(0):1:fwd:modei:m(0):optmag                             	val: 	94        
+	Key: lightin1:fixed:1550:fwd:m(1):optmag                          	val: 	28        
+	Key: xc1:c(0):0:fwd:modei:m(1):optphi                             	val: 	93        
+	Key: lightout2:fixed:1550:fwd:m(1):optmag                         	val: 	76        
+	Key: mir1:terminal:fixed:1550:fwd:m(0):optphi                     	val: 	102       
+	Key: mir2:terminal:fixed:1550:rev:m(0):optphi                     	val: 	119       
+	Key: cw1:portcurrentcurnode:0                                     	val: 	35        
+	Key: cw1:portcurrentcurnode:1                                     	val: 	37        
+	Key: cw2:portcurrentcurnode:0                                     	val: 	55        
+	Key: cw2:portcurrentcurnode:1                                     	val: 	57        
+	Key: cw1:c:0:m(1):optmag:iso:i                                    	val: 	44        
+	Key: xc1:c(0):0:rev:modei:m(1):optphi                             	val: 	85        
+	Key: mir2:terminal:fixed:1550:rev:m(0):optmag                     	val: 	115       
+	Key: xc1:c(0):0:fwd:modei:m(1):optmag                             	val: 	91        
+	Key: cw2:lightin2:fixed:1550:modei:m(1):optphi                    	val: 	61        
+	Key: v4:portcurrentnode:0                                         	val: 	21        
+	Key: v4:portcurrentnode:1                                         	val: 	23        
+	Key: lightin2:fixed:1550:fwd:m(1):optphi                          	val: 	52        
+	Key: mir2:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	128       
+	Key: v1:portcurrentnode:0                                         	val: 	3         
+	Key: v1:portcurrentnode:1                                         	val: 	5         
+	Key: mir1:terminal:fixed:1550:rev:m(0):optphi                     	val: 	103       
+	Key: v1:portcurrentcurnode:0                                      	val: 	4         
+	Key: lightin1:fixed:1550:rev:m(1):optphi                          	val: 	33        
+	Key: v1:portcurrentcurnode:1                                      	val: 	6         
+	Key: cw2:lightin2:fixed:1550:modei:m(1):optmag                    	val: 	59        
+	Key: lightout2:fixed:1550:rev:m(1):optphi                         	val: 	81        
+	Key: v2:portcurrentcurnode:0                                      	val: 	10        
+	Key: lightin2:fixed:1550:fwd:m(1):optmag                          	val: 	48        
+	Key: v2:portcurrentcurnode:1                                      	val: 	12        
+	Key: mir2:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	126       
+	Key: mir2:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	124       
+	Key: cw1:c:0:m(1):optphi:iso:i                                    	val: 	45        
+	Key: v2:i                                                         	val: 	13        
+	Key: mir1:terminal:fixed:1550:rev:m(0):optmag                     	val: 	99        
+	Key: lightin1:fixed:1550:rev:m(1):optmag                          	val: 	29        
+	Key: lightout2:fixed:1550:rev:m(1):optmag                         	val: 	77        
+	Key: mag1                                                         	val: 	2         
+	Key: mag2                                                         	val: 	14        
+	Key: mir2:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	122       
+	Key: lightin2:fixed:1550:fwd:m(0):optphi                          	val: 	50        
+	Key: xc1:c(0):0:rev:modei:m(1):optmag                             	val: 	83        
+	Key: lightin2:fixed:1550:fwd:m(0):optmag                          	val: 	46        
+	Key: lightin2:fixed:1550:rev:m(1):optphi                          	val: 	53        
+	Key: cw2:portcurrentnode:0                                        	val: 	54        
+	Key: cw2:channel-fixed:1550                                       	val: 	1         
+	Key: cw2:portcurrentnode:1                                        	val: 	56        
+	Key: lightout1:fixed:1550:fwd:m(1):optphi                         	val: 	72        
+	Key: xc1:c(0):1:fwd:modei:m(1):optphi                             	val: 	97        
+	Key: 0                                                            	val: 	-5        
+	Key: mir1:terminal:fixed:1550:fwd:m(1):optphi                     	val: 	104       
+	Key: lightin2:fixed:1550:rev:m(1):optmag                          	val: 	49        
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	43        
+	Key: lightout1:fixed:1550:fwd:m(1):optmag                         	val: 	68        
+	Key: xc1:c(0):1:rev:modei:m(1):optphi                             	val: 	89        
+	Key: cw2:c:0:m(1):optmag:iso:i                                    	val: 	64        
+	Key: xc1:c(0):1:fwd:modei:m(1):optmag                             	val: 	95        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	112       
+	Key: phi2                                                         	val: 	20        
+	Key: cw1:lightin1:fixed:1550:modei:m(1):optphi                    	val: 	41        
+	Key: lightout1:fixed:1550:fwd:m(0):optphi                         	val: 	70        
+	Key: xc1:c(0):1:rev:modei:m(1):optmag                             	val: 	87        
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	110       
+	Key: mir1:terminal:fixed:1550:fwd:m(1):optmag                     	val: 	100       
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	108       
+	Key: cw1:lightin1:fixed:1550:modei:m(1):optmag                    	val: 	39        
+	Key: mir2:vtov:c(0):0:fwd:modei:m(1):optphi                       	val: 	129       
+	Key: phi1                                                         	val: 	8         
+	Key: lightout1:fixed:1550:fwd:m(0):optmag                         	val: 	66        
+	Key: xc1:c(0):1:rev:modei:m(0):optphi                             	val: 	88        
+	Key: lightout1:fixed:1550:rev:m(1):optphi                         	val: 	73        
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	106       
+	Key: mir1:terminal:fixed:1550:rev:m(1):optphi                     	val: 	105       
+	Key: v3:i                                                         	val: 	19        
+	Key: cw1:lightin1:fixed:1550:modei:m(0):optphi                    	val: 	40        
+	Key: mir2:vtov:c(0):0:rev:modei:m(1):optphi                       	val: 	125       
+	Key: mir2:vtov:c(0):0:fwd:modei:m(1):optmag                       	val: 	127       
+	Key: xc1:c(0):1:rev:modei:m(0):optmag                             	val: 	86        
+	Key: mir1:terminal:fixed:1550:rev:m(1):optmag                     	val: 	101       
+	Key: lightout1:fixed:1550:rev:m(1):optmag                         	val: 	69        
+	Key: lightin1:fixed:1550:fwd:m(0):optphi                          	val: 	30        
+	Key: cw1:lightin1:fixed:1550:modei:m(0):optmag                    	val: 	38        
+	Key: lightout2:fixed:1550:fwd:m(0):optphi                         	val: 	78        
+	Key: mir2:vtov:c(0):0:rev:modei:m(1):optmag                       	val: 	123       
+	Key: lightout1:fixed:1550:rev:m(0):optphi                         	val: 	71        
+	Key: lightin1:fixed:1550:fwd:m(0):optmag                          	val: 	26        
+	Key: xc1:c(0):0:fwd:modei:m(0):optphi                             	val: 	92        
+	Key: lightout2:fixed:1550:fwd:m(0):optmag                         	val: 	74        
+	Key: cw1:portcurrentnode:0                                        	val: 	34        
+	Key: cw1:portcurrentnode:1                                        	val: 	36        
+
+Node array 
+	Key: 0                                                            	val: 	-5         Status: V node
+	Key: cw2:channel-fixed:1550                                       	val: 	1          Status: V node
+	Key: mag1                                                         	val: 	2          Status: V node
+	Key: v1:portcurrentnode:0                                         	val: 	3          Status: V node
+	Key: v1:portcurrentcurnode:0                                      	val: 	4          Status: I node
+	Key: v1:portcurrentnode:1                                         	val: 	5          Status: V node
+	Key: v1:portcurrentcurnode:1                                      	val: 	6          Status: I node
+	Key: v1:i                                                         	val: 	7          Status: I node
+	Key: phi1                                                         	val: 	8          Status: V node
+	Key: v2:portcurrentnode:0                                         	val: 	9          Status: V node
+	Key: v2:portcurrentcurnode:0                                      	val: 	10         Status: I node
+	Key: v2:portcurrentnode:1                                         	val: 	11         Status: V node
+	Key: v2:portcurrentcurnode:1                                      	val: 	12         Status: I node
+	Key: v2:i                                                         	val: 	13         Status: I node
+	Key: mag2                                                         	val: 	14         Status: V node
+	Key: v3:portcurrentnode:0                                         	val: 	15         Status: V node
+	Key: v3:portcurrentcurnode:0                                      	val: 	16         Status: I node
+	Key: v3:portcurrentnode:1                                         	val: 	17         Status: V node
+	Key: v3:portcurrentcurnode:1                                      	val: 	18         Status: I node
+	Key: v3:i                                                         	val: 	19         Status: I node
+	Key: phi2                                                         	val: 	20         Status: V node
+	Key: v4:portcurrentnode:0                                         	val: 	21         Status: V node
+	Key: v4:portcurrentcurnode:0                                      	val: 	22         Status: I node
+	Key: v4:portcurrentnode:1                                         	val: 	23         Status: V node
+	Key: v4:portcurrentcurnode:1                                      	val: 	24         Status: I node
+	Key: v4:i                                                         	val: 	25         Status: I node
+	Key: lightin1:fixed:1550:fwd:m(0):optmag                          	val: 	26         Status: O Mag node
+	Key: lightin1:fixed:1550:rev:m(0):optmag                          	val: 	27         Status: O Mag node
+	Key: lightin1:fixed:1550:fwd:m(1):optmag                          	val: 	28         Status: O Mag node
+	Key: lightin1:fixed:1550:rev:m(1):optmag                          	val: 	29         Status: O Mag node
+	Key: lightin1:fixed:1550:fwd:m(0):optphi                          	val: 	30         Status: O Pha node (26)
+	Key: lightin1:fixed:1550:rev:m(0):optphi                          	val: 	31         Status: O Pha node (27)
+	Key: lightin1:fixed:1550:fwd:m(1):optphi                          	val: 	32         Status: O Pha node (28)
+	Key: lightin1:fixed:1550:rev:m(1):optphi                          	val: 	33         Status: O Pha node (29)
+	Key: cw1:portcurrentnode:0                                        	val: 	34         Status: V node
+	Key: cw1:portcurrentcurnode:0                                     	val: 	35         Status: I node
+	Key: cw1:portcurrentnode:1                                        	val: 	36         Status: V node
+	Key: cw1:portcurrentcurnode:1                                     	val: 	37         Status: I node
+	Key: cw1:lightin1:fixed:1550:modei:m(0):optmag                    	val: 	38         Status: O Mag node
+	Key: cw1:lightin1:fixed:1550:modei:m(1):optmag                    	val: 	39         Status: O Mag node
+	Key: cw1:lightin1:fixed:1550:modei:m(0):optphi                    	val: 	40         Status: O Pha node (38)
+	Key: cw1:lightin1:fixed:1550:modei:m(1):optphi                    	val: 	41         Status: O Pha node (39)
+	Key: cw1:c:0:m(0):optmag:iso:i                                    	val: 	42         Status: I node
+	Key: cw1:c:0:m(0):optphi:iso:i                                    	val: 	43         Status: I node
+	Key: cw1:c:0:m(1):optmag:iso:i                                    	val: 	44         Status: I node
+	Key: cw1:c:0:m(1):optphi:iso:i                                    	val: 	45         Status: I node
+	Key: lightin2:fixed:1550:fwd:m(0):optmag                          	val: 	46         Status: O Mag node
+	Key: lightin2:fixed:1550:rev:m(0):optmag                          	val: 	47         Status: O Mag node
+	Key: lightin2:fixed:1550:fwd:m(1):optmag                          	val: 	48         Status: O Mag node
+	Key: lightin2:fixed:1550:rev:m(1):optmag                          	val: 	49         Status: O Mag node
+	Key: lightin2:fixed:1550:fwd:m(0):optphi                          	val: 	50         Status: O Pha node (46)
+	Key: lightin2:fixed:1550:rev:m(0):optphi                          	val: 	51         Status: O Pha node (47)
+	Key: lightin2:fixed:1550:fwd:m(1):optphi                          	val: 	52         Status: O Pha node (48)
+	Key: lightin2:fixed:1550:rev:m(1):optphi                          	val: 	53         Status: O Pha node (49)
+	Key: cw2:portcurrentnode:0                                        	val: 	54         Status: V node
+	Key: cw2:portcurrentcurnode:0                                     	val: 	55         Status: I node
+	Key: cw2:portcurrentnode:1                                        	val: 	56         Status: V node
+	Key: cw2:portcurrentcurnode:1                                     	val: 	57         Status: I node
+	Key: cw2:lightin2:fixed:1550:modei:m(0):optmag                    	val: 	58         Status: O Mag node
+	Key: cw2:lightin2:fixed:1550:modei:m(1):optmag                    	val: 	59         Status: O Mag node
+	Key: cw2:lightin2:fixed:1550:modei:m(0):optphi                    	val: 	60         Status: O Pha node (58)
+	Key: cw2:lightin2:fixed:1550:modei:m(1):optphi                    	val: 	61         Status: O Pha node (59)
+	Key: cw2:c:0:m(0):optmag:iso:i                                    	val: 	62         Status: I node
+	Key: cw2:c:0:m(0):optphi:iso:i                                    	val: 	63         Status: I node
+	Key: cw2:c:0:m(1):optmag:iso:i                                    	val: 	64         Status: I node
+	Key: cw2:c:0:m(1):optphi:iso:i                                    	val: 	65         Status: I node
+	Key: lightout1:fixed:1550:fwd:m(0):optmag                         	val: 	66         Status: O Mag node
+	Key: lightout1:fixed:1550:rev:m(0):optmag                         	val: 	67         Status: O Mag node
+	Key: lightout1:fixed:1550:fwd:m(1):optmag                         	val: 	68         Status: O Mag node
+	Key: lightout1:fixed:1550:rev:m(1):optmag                         	val: 	69         Status: O Mag node
+	Key: lightout1:fixed:1550:fwd:m(0):optphi                         	val: 	70         Status: O Pha node (66)
+	Key: lightout1:fixed:1550:rev:m(0):optphi                         	val: 	71         Status: O Pha node (67)
+	Key: lightout1:fixed:1550:fwd:m(1):optphi                         	val: 	72         Status: O Pha node (68)
+	Key: lightout1:fixed:1550:rev:m(1):optphi                         	val: 	73         Status: O Pha node (69)
+	Key: lightout2:fixed:1550:fwd:m(0):optmag                         	val: 	74         Status: O Mag node
+	Key: lightout2:fixed:1550:rev:m(0):optmag                         	val: 	75         Status: O Mag node
+	Key: lightout2:fixed:1550:fwd:m(1):optmag                         	val: 	76         Status: O Mag node
+	Key: lightout2:fixed:1550:rev:m(1):optmag                         	val: 	77         Status: O Mag node
+	Key: lightout2:fixed:1550:fwd:m(0):optphi                         	val: 	78         Status: O Pha node (74)
+	Key: lightout2:fixed:1550:rev:m(0):optphi                         	val: 	79         Status: O Pha node (75)
+	Key: lightout2:fixed:1550:fwd:m(1):optphi                         	val: 	80         Status: O Pha node (76)
+	Key: lightout2:fixed:1550:rev:m(1):optphi                         	val: 	81         Status: O Pha node (77)
+	Key: xc1:c(0):0:rev:modei:m(0):optmag                             	val: 	82         Status: O Mag node
+	Key: xc1:c(0):0:rev:modei:m(1):optmag                             	val: 	83         Status: O Mag node
+	Key: xc1:c(0):0:rev:modei:m(0):optphi                             	val: 	84         Status: O Pha node (82)
+	Key: xc1:c(0):0:rev:modei:m(1):optphi                             	val: 	85         Status: O Pha node (83)
+	Key: xc1:c(0):1:rev:modei:m(0):optmag                             	val: 	86         Status: O Mag node
+	Key: xc1:c(0):1:rev:modei:m(1):optmag                             	val: 	87         Status: O Mag node
+	Key: xc1:c(0):1:rev:modei:m(0):optphi                             	val: 	88         Status: O Pha node (86)
+	Key: xc1:c(0):1:rev:modei:m(1):optphi                             	val: 	89         Status: O Pha node (87)
+	Key: xc1:c(0):0:fwd:modei:m(0):optmag                             	val: 	90         Status: O Mag node
+	Key: xc1:c(0):0:fwd:modei:m(1):optmag                             	val: 	91         Status: O Mag node
+	Key: xc1:c(0):0:fwd:modei:m(0):optphi                             	val: 	92         Status: O Pha node (90)
+	Key: xc1:c(0):0:fwd:modei:m(1):optphi                             	val: 	93         Status: O Pha node (91)
+	Key: xc1:c(0):1:fwd:modei:m(0):optmag                             	val: 	94         Status: O Mag node
+	Key: xc1:c(0):1:fwd:modei:m(1):optmag                             	val: 	95         Status: O Mag node
+	Key: xc1:c(0):1:fwd:modei:m(0):optphi                             	val: 	96         Status: O Pha node (94)
+	Key: xc1:c(0):1:fwd:modei:m(1):optphi                             	val: 	97         Status: O Pha node (95)
+	Key: mir1:terminal:fixed:1550:fwd:m(0):optmag                     	val: 	98         Status: O Mag node
+	Key: mir1:terminal:fixed:1550:rev:m(0):optmag                     	val: 	99         Status: O Mag node
+	Key: mir1:terminal:fixed:1550:fwd:m(1):optmag                     	val: 	100        Status: O Mag node
+	Key: mir1:terminal:fixed:1550:rev:m(1):optmag                     	val: 	101        Status: O Mag node
+	Key: mir1:terminal:fixed:1550:fwd:m(0):optphi                     	val: 	102        Status: O Pha node (98)
+	Key: mir1:terminal:fixed:1550:rev:m(0):optphi                     	val: 	103        Status: O Pha node (99)
+	Key: mir1:terminal:fixed:1550:fwd:m(1):optphi                     	val: 	104        Status: O Pha node (100)
+	Key: mir1:terminal:fixed:1550:rev:m(1):optphi                     	val: 	105        Status: O Pha node (101)
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	106        Status: O Mag node
+	Key: mir1:vtov:c(0):0:rev:modei:m(1):optmag                       	val: 	107        Status: O Mag node
+	Key: mir1:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	108        Status: O Pha node (106)
+	Key: mir1:vtov:c(0):0:rev:modei:m(1):optphi                       	val: 	109        Status: O Pha node (107)
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	110        Status: O Mag node
+	Key: mir1:vtov:c(0):0:fwd:modei:m(1):optmag                       	val: 	111        Status: O Mag node
+	Key: mir1:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	112        Status: O Pha node (110)
+	Key: mir1:vtov:c(0):0:fwd:modei:m(1):optphi                       	val: 	113        Status: O Pha node (111)
+	Key: mir2:terminal:fixed:1550:fwd:m(0):optmag                     	val: 	114        Status: O Mag node
+	Key: mir2:terminal:fixed:1550:rev:m(0):optmag                     	val: 	115        Status: O Mag node
+	Key: mir2:terminal:fixed:1550:fwd:m(1):optmag                     	val: 	116        Status: O Mag node
+	Key: mir2:terminal:fixed:1550:rev:m(1):optmag                     	val: 	117        Status: O Mag node
+	Key: mir2:terminal:fixed:1550:fwd:m(0):optphi                     	val: 	118        Status: O Pha node (114)
+	Key: mir2:terminal:fixed:1550:rev:m(0):optphi                     	val: 	119        Status: O Pha node (115)
+	Key: mir2:terminal:fixed:1550:fwd:m(1):optphi                     	val: 	120        Status: O Pha node (116)
+	Key: mir2:terminal:fixed:1550:rev:m(1):optphi                     	val: 	121        Status: O Pha node (117)
+	Key: mir2:vtov:c(0):0:rev:modei:m(0):optmag                       	val: 	122        Status: O Mag node
+	Key: mir2:vtov:c(0):0:rev:modei:m(1):optmag                       	val: 	123        Status: O Mag node
+	Key: mir2:vtov:c(0):0:rev:modei:m(0):optphi                       	val: 	124        Status: O Pha node (122)
+	Key: mir2:vtov:c(0):0:rev:modei:m(1):optphi                       	val: 	125        Status: O Pha node (123)
+	Key: mir2:vtov:c(0):0:fwd:modei:m(0):optmag                       	val: 	126        Status: O Mag node
+	Key: mir2:vtov:c(0):0:fwd:modei:m(1):optmag                       	val: 	127        Status: O Mag node
+	Key: mir2:vtov:c(0):0:fwd:modei:m(0):optphi                       	val: 	128        Status: O Pha node (126)
+	Key: mir2:vtov:c(0):0:fwd:modei:m(1):optphi                       	val: 	129        Status: O Pha node (127)
+
+Optical Node hash table
+	lightout1:fixed:1550
+		aliases: lightout1 -- lightout1 -- lightout1 -- lightout1 -- 
+	lightin2:fixed:1550
+		aliases: lightin2 -- lightin2 -- lightin2 -- 
+	lightout2:fixed:1550
+		aliases: lightout2 -- lightout2 -- lightout2 -- lightout2 -- 
+	lightin1:fixed:1550
+		aliases: lightin1 -- lightin1 -- lightin1 -- 
+	mir2:terminal:fixed:1550
+		aliases: mir2:terminal -- mir2:terminal -- 
+	mir1:terminal:fixed:1550
+		aliases: mir1:terminal -- mir1:terminal -- 
+
+Optical ModeShape hash table
+	Key: acb754b3fe83b37db0abfc1efca334423cef3f23                     	val: 	274800672 
+
+Optical Link hash table
+	Key: lightin2                                                     lightin2                                                    	val: 	0x7f9f1060de70 
+			E1: 	0x7f9f11805200 - cw2                                      	E2: 	0x7f9f11806800 - xc1                                     
+	Key: lightout1                                                    lightout1                                                   	val: 	0x7f9f1060ebd0 
+			E1: 	0x7f9f11806800 - xc1                                      	E2: 	0x7f9f11808200 - mir1                                    
+	Key: lightin1                                                     lightin1                                                    	val: 	0x7f9f1060d070 
+			E1: 	0x7f9f11803c00 - cw1                                      	E2: 	0x7f9f11806800 - xc1                                     
+	Key: lightout2                                                    lightout2                                                   	val: 	0x7f9f1060ec10 
+			E1: 	0x7f9f11806800 - xc1                                      	E2: 	0x7f9f11808e00 - mir2                                    
+
+Source Optical Channel hash table
+	Key: fixed:1550                                                   	lambda: 	1550       dPhi_dt: 	0x7f9f11805a30 *dPhi_dt: 	0         
+
+Optical Matrices hash table
+
+Optical FSE Matrices hash table
+
+Monitor Statements
+	Name:                            xc1 Type:        OptPower Port:     1 Node Num:      0
+	Name:                            xc1 Type:        OptPower Port:     2 Node Num:      0
+	Name:                            xc1 Type:        OptPower Port:     3 Node Num:      0
+	Name:                            xc1 Type:        OptPower Port:     4 Node Num:      0
+	Name:                            xc1 Type:        OptPhase Port:     1 Node Num:      0
+	Name:                            xc1 Type:        OptPhase Port:     2 Node Num:      0
+	Name:                            xc1 Type:        OptPhase Port:     3 Node Num:      0
+	Name:                            xc1 Type:        OptPhase Port:     4 Node Num:      0
+	Name:                             v1 Type:               V Port:     1 Node Num:      2
+	Name:                             v1 Type:               I Port:     1 Node Num:      0
+	Name:                             v1 Type:               I Port:     2 Node Num:      0
+	Name:                             v2 Type:               V Port:     1 Node Num:      8
+	Name:                             v2 Type:               I Port:     1 Node Num:      0
+	Name:                             v2 Type:               I Port:     2 Node Num:      0
+	Name:                             v3 Type:               V Port:     1 Node Num:     14
+	Name:                             v3 Type:               I Port:     1 Node Num:      0
+	Name:                             v3 Type:               I Port:     2 Node Num:      0
+	Name:                             v4 Type:               V Port:     1 Node Num:     20
+	Name:                             v4 Type:               I Port:     1 Node Num:      0
+	Name:                             v4 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:               V Port:     1 Node Num:      2
+	Name:                            cw1 Type:               I Port:     1 Node Num:      0
+	Name:                            cw1 Type:               V Port:     2 Node Num:      8
+	Name:                            cw1 Type:               I Port:     2 Node Num:      0
+	Name:                            cw1 Type:       OptFields Port:     3 Node Num:      0
+	Name:                            cw2 Type:               V Port:     1 Node Num:     14
+	Name:                            cw2 Type:               I Port:     1 Node Num:      0
+	Name:                            cw2 Type:               V Port:     2 Node Num:     20
+	Name:                            cw2 Type:               I Port:     2 Node Num:      0
+	Name:                            cw2 Type:       OptFields Port:     3 Node Num:      0
+	Name:                            xc1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                            xc1 Type:       OptFields Port:     2 Node Num:      0
+	Name:                            xc1 Type:       OptFields Port:     3 Node Num:      0
+	Name:                            xc1 Type:       OptFields Port:     4 Node Num:      0
+	Name:                           mir1 Type:       OptFields Port:     1 Node Num:      0
+	Name:                           mir2 Type:       OptFields Port:     1 Node Num:      0
+
+Current Monitor Statements
+	Key: cw2:Port-1                                                   	port: 	1          	num: 	55        
+	Key: cw2:Port-2                                                   	port: 	2          	num: 	57        
+	Key: v4:Port-1                                                    	port: 	1          	num: 	22        
+	Key: v4:Port-2                                                    	port: 	2          	num: 	24        
+	Key: cw1:Port-1                                                   	port: 	1          	num: 	35        
+	Key: cw1:Port-2                                                   	port: 	2          	num: 	37        
+	Key: v3:Port-1                                                    	port: 	1          	num: 	16        
+	Key: v3:Port-2                                                    	port: 	2          	num: 	18        
+	Key: v2:Port-1                                                    	port: 	1          	num: 	10        
+	Key: v2:Port-2                                                    	port: 	2          	num: 	12        
+	Key: v1:Port-1                                                    	port: 	1          	num: 	4         
+	Key: v1:Port-2                                                    	port: 	2          	num: 	6         
+
+Sub-circuits
+
+
+Transient Simulation Started
+tscaling: 1e+08
+abstol: 1e-08 reltol: 1e-06 c_abstol: 1e-15 c_reltol: 1e-06
+DC Simulation Started
+DC Linear Initial Guess
+DC simulations:
+	DC var: 0.000000000000e+00
+		Elec pass (T ind):
+		DC iterations =  2 (extra -1). Cond 0.261204
+			Total num iter: 2
+		Elec pass (T dep). Evars Optical:
+		DC iterations =  1 (extra -1). Cond 0.261204
+			Total num iter: 3
+		Final Evars non-Linear Scatter pass:
+
+***** Element Operating point info:
+
+Xcoupler: xc1 Conjugate 1 C: 0.5  (XC) (VtoV)
+
+	InputTrans ommitted
+
+	Input2Trans ommitted
+
+	OutputTrans ommitted
+
+	Output2Trans ommitted
+
+	Coupler
+	Channel:0
+		 Input1: lightin1:fixed:1550
+			lightin1:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 26,30):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 27,31):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 28,32):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 29,33):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+		 Input2: lightin2:fixed:1550
+			lightin2:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 46,50):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 47,51):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 48,52):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 49,53):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+		 Output1: lightout1:fixed:1550
+			lightout1:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 66,70):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 67,71):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 68,72):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 69,73):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 4.18885 Rev: 0
+
+		 Output2: lightout2:fixed:1550
+			lightout2:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 74,78):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 75,79):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 76,80):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 77,81):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 4.18885 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v3 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v4 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 34 n2: 36 -- Fixed Lambda
+		 Freqshift: 0
+			lightin1:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 26,30):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 27,31):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 28,32):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 29,33):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+Cw_Source: cw2 
+	 Channel : 0 -- n1: 54 n2: 56 -- Fixed Lambda
+		 Freqshift: 0
+			lightin2:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 46,50):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 47,51):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 48,52):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 49,53):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+Mirror: mir1
+	Channel:0
+			lightout1:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 66,70):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 67,71):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 68,72):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 69,73):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 4.18885 Rev: 0
+
+
+Mirror: mir2
+	Channel:0
+			lightout2:fixed:1550 			Carrier Lambda: 1550 nm --- E vars
+				Mode 0
+					(fwd: 74,78):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 75,79):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 76,80):  Pow: 2.0944271910e+00 Phi: -7.8539816340e-01  Mag: 1.4472135955e+00 E_f =  1.0233345472e+00 + -1.0233345472e+00i
+					(rev: 77,81):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 4.18885 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 2.0944271910e+00 
+	                              			TE Fields: 2.0944271910e+00 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 2.0944271910e+00 
+	                              			TE Fields: 2.0944271910e+00 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: -7.8539816340e-01 
+	                              			TE Fields: -7.8539816340e-01 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: -7.8539816340e-01 
+	                              			TE Fields: -7.8539816340e-01 
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	v3                            	Port:     1	V = 1.0000000000e+00
+	v3                            	Port:     1	I = 0.0000000000e+00
+	v3                            	Port:     2	I = -0.0000000000e+00
+	v4                            	Port:     1	V = 0.0000000000e+00
+	v4                            	Port:     1	I = 0.0000000000e+00
+	v4                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	cw2                           	Port:     1	V = 1.0000000000e+00
+	cw2                           	Port:     1	I = -0.0000000000e+00
+	cw2                           	Port:     2	V = 0.0000000000e+00
+	cw2                           	Port:     2	I = -0.0000000000e+00
+	cw2                           	Port: 3 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 1 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 2 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 3 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 4 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir2                          	Port: 1 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 1.0233345472e+00 -1.0233345472e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+		DC iterations =  3 (extra -1). Cond 0.414214
+			Total num iter: 6
+		Final pass (forced MPtotMP):
+		DC iterations =  3 (extra 1). Cond 0.236068
+			Total num iter: 9
+
+***** Element Operating point info:
+
+Xcoupler: xc1 Conjugate 1 C: 0.5  (XC) (VtoV)
+
+	InputTrans ommitted
+
+	Input2Trans ommitted
+
+	OutputTrans ommitted
+
+	Output2Trans ommitted
+
+	Coupler
+	Channel:0
+		 Input1: lightin1:fixed:1550
+			lightin1:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 26,30):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 27,31):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 28,32):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 29,33):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+		 Input2: lightin2:fixed:1550
+			lightin2:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 46,50):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 47,51):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 48,52):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 49,53):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+		 Output1: lightout1:fixed:1550
+			lightout1:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 66,70):  Pow: 1.0000000000e+00 Phi: -7.8539816340e-01  Mag: 1.0000000000e+00 E_f =  7.0710678119e-01 + -7.0710678119e-01i
+					(rev: 67,71):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 68,72):  Pow: 2.0000000000e-01 Phi: -7.8539816340e-01  Mag: 4.4721359550e-01 E_f =  3.1622776602e-01 + -3.1622776602e-01i
+					(rev: 69,73):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+		 Output2: lightout2:fixed:1550
+			lightout2:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 74,78):  Pow: 1.0000000000e+00 Phi: -7.8539816340e-01  Mag: 1.0000000000e+00 E_f =  7.0710678119e-01 + -7.0710678119e-01i
+					(rev: 75,79):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 76,80):  Pow: 2.0000000000e-01 Phi: -7.8539816340e-01  Mag: 4.4721359550e-01 E_f =  3.1622776602e-01 + -3.1622776602e-01i
+					(rev: 77,81):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+IndSource:                       v1 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v2 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v3 (V source)
+			V: 1.0000000000e+00 I: 0.0000000000e+00 
+
+IndSource:                       v4 (V source)
+			V: 0.0000000000e+00 I: 0.0000000000e+00 
+
+Cw_Source: cw1 
+	 Channel : 0 -- n1: 34 n2: 36 -- Fixed Lambda
+		 Freqshift: 0
+			lightin1:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 26,30):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 27,31):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 28,32):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 29,33):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+Cw_Source: cw2 
+	 Channel : 0 -- n1: 54 n2: 56 -- Fixed Lambda
+		 Freqshift: 0
+			lightin2:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 46,50):  Pow: 1.0000000000e+00 Phi: 0.0000000000e+00  Mag: 1.0000000000e+00 E_f =  1.0000000000e+00 + 0.0000000000e+00i
+					(rev: 47,51):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 48,52):  Pow: 2.0000000000e-01 Phi: 0.0000000000e+00  Mag: 4.4721359550e-01 E_f =  4.4721359550e-01 + 0.0000000000e+00i
+					(rev: 49,53):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+Mirror: mir1
+	Channel:0
+			lightout1:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 66,70):  Pow: 1.0000000000e+00 Phi: -7.8539816340e-01  Mag: 1.0000000000e+00 E_f =  7.0710678119e-01 + -7.0710678119e-01i
+					(rev: 67,71):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 68,72):  Pow: 2.0000000000e-01 Phi: -7.8539816340e-01  Mag: 4.4721359550e-01 E_f =  3.1622776602e-01 + -3.1622776602e-01i
+					(rev: 69,73):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+
+Mirror: mir2
+	Channel:0
+			lightout2:fixed:1550  Carrier Lambda: 1550 nm  -- MP vars
+				Mode 0
+					(fwd: 74,78):  Pow: 1.0000000000e+00 Phi: -7.8539816340e-01  Mag: 1.0000000000e+00 E_f =  7.0710678119e-01 + -7.0710678119e-01i
+					(rev: 75,79):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+				Mode 1
+					(fwd: 76,80):  Pow: 2.0000000000e-01 Phi: -7.8539816340e-01  Mag: 4.4721359550e-01 E_f =  3.1622776602e-01 + -3.1622776602e-01i
+					(rev: 77,81):  Pow: 0.0000000000e+00 Phi: 0.0000000000e+00  Mag: 0.0000000000e+00 E_f =  0.0000000000e+00 + 0.0000000000e+00i
+								Total Power Fwd: 1.2 Rev: 0
+
+
+
+***** Node Operating Point Values 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 
+	                              			TE Fields: 2.0000000000e-01 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: -7.8539816340e-01 
+	                              			TE Fields: -7.8539816340e-01 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: -7.8539816340e-01 
+	                              			TE Fields: -7.8539816340e-01 
+	v1                            	Port:     1	V = 1.0000000000e+00
+	v1                            	Port:     1	I = 0.0000000000e+00
+	v1                            	Port:     2	I = -0.0000000000e+00
+	v2                            	Port:     1	V = 0.0000000000e+00
+	v2                            	Port:     1	I = 0.0000000000e+00
+	v2                            	Port:     2	I = -0.0000000000e+00
+	v3                            	Port:     1	V = 1.0000000000e+00
+	v3                            	Port:     1	I = 0.0000000000e+00
+	v3                            	Port:     2	I = -0.0000000000e+00
+	v4                            	Port:     1	V = 0.0000000000e+00
+	v4                            	Port:     1	I = 0.0000000000e+00
+	v4                            	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port:     1	V = 1.0000000000e+00
+	cw1                           	Port:     1	I = -0.0000000000e+00
+	cw1                           	Port:     2	V = 0.0000000000e+00
+	cw1                           	Port:     2	I = -0.0000000000e+00
+	cw1                           	Port: 3 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	cw2                           	Port:     1	V = 1.0000000000e+00
+	cw2                           	Port:     1	I = -0.0000000000e+00
+	cw2                           	Port:     2	V = 0.0000000000e+00
+	cw2                           	Port:     2	I = -0.0000000000e+00
+	cw2                           	Port: 3 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 1 
+	                              	mode: lightin1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 2 
+	                              	mode: lightin2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 1.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 4.4721359550e-01 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 3 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 7.0710678119e-01 -7.0710678119e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 3.1622776602e-01 -3.1622776602e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	xc1                           	Port: 4 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 7.0710678119e-01 -7.0710678119e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 3.1622776602e-01 -3.1622776602e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir1                          	Port: 1 
+	                              	mode: lightout1:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 7.0710678119e-01 -7.0710678119e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 3.1622776602e-01 -3.1622776602e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+	mir2                          	Port: 1 
+	                              	mode: lightout2:fixed:1550 
+	                              		dir: FWD
+	                              			TE Fields: 7.0710678119e-01 -7.0710678119e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 3.1622776602e-01 -3.1622776602e-01 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              		dir: REV
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TE Fields: 0.0000000000e+00 0.0000000000e+00 
+	                              			TM Fields: 0.0000000000e+00 0.0000000000e+00 
+
+
+***** 
+Transient ... 
+
+t: 1e-11 t(sc) 0.001 iter: 1 repeat_nr_iter: 0 h: 0.001 Status: MP BACKE PhiWrapSimple
+t = 1e-11 (0%)
+t: 3e-11 t(sc) 0.003 iter: 1 repeat_nr_iter: 0 h: 0.002 Status: MP BACKE PhiWrapLinear
+t: 7e-11 t(sc) 0.007 iter: 1 repeat_nr_iter: 0 h: 0.004 Status: MP BACKE PhiWrapLinear
+t: 1.5e-10 t(sc) 0.015 iter: 1 repeat_nr_iter: 0 h: 0.008 Status: MP BACKE PhiWrapLinear
+t: 3.1e-10 t(sc) 0.031 iter: 1 repeat_nr_iter: 0 h: 0.016 Status: MP BACKE PhiWrapLinear
+t: 5.1e-10 t(sc) 0.051 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+t = 5.1e-10 (5%)
+t: 7.1e-10 t(sc) 0.071 iter: 1 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+t: 8.1e-10 t(sc) 0.081 iter: 1 repeat_nr_iter: 0 h: 0.01 Status: MP BACKE PhiWrapLinear
+t: 1e-09 t(sc) 0.1 iter: 1 repeat_nr_iter: 0 h: 0.019 Status: MP BACKE PhiWrapLinear
+t: 1.2e-09 t(sc) 0.12 iter: 4 repeat_nr_iter: 0 h: 0.02 Status: MP BACKE PhiWrapLinear
+t: 1.01058e-09 t(sc) 0.101058 iter: 4 repeat_nr_iter: 0 h: 0.00105797 Status: MP BACKE PhiWrapSimple
+t: 1.00209e-09 t(sc) 0.100209 iter: 4 repeat_nr_iter: 0 h: 0.000209164 Status: MP BACKE PhiWrapSimple
+t = 1.00209e-09 (10%)
+t: 1.00347e-09 t(sc) 0.100347 iter: 3 repeat_nr_iter: 0 h: 0.000138099 Status: MP BACKE PhiWrapSimple
+t: 1.00623e-09 t(sc) 0.100623 iter: 4 repeat_nr_iter: 0 h: 0.000276199 Status: MP BACKE PhiWrapSimple
+t: 1.01176e-09 t(sc) 0.101176 iter: 4 repeat_nr_iter: 0 h: 0.000552397 Status: MP BACKE PhiWrapLinear
+t: 1.02281e-09 t(sc) 0.102281 iter: 4 repeat_nr_iter: 0 h: 0.00110479 Status: MP BACKE PhiWrapLinear
+t: 1.0449e-09 t(sc) 0.10449 iter: 4 repeat_nr_iter: 0 h: 0.00220959 Status: MP BACKE PhiWrapLinear
+t: 1.08909e-09 t(sc) 0.108909 iter: 4 repeat_nr_iter: 0 h: 0.00441918 Status: MP BACKE PhiWrapLinear
+t: 1.1425e-09 t(sc) 0.11425 iter: 4 repeat_nr_iter: 0 h: 0.00534105 Status: MP BACKE PhiWrapLinear
+t: 1.19581e-09 t(sc) 0.119581 iter: 4 repeat_nr_iter: 0 h: 0.00533094 Status: MP BACKE PhiWrapLinear
+t: 1.24905e-09 t(sc) 0.124905 iter: 4 repeat_nr_iter: 0 h: 0.00532313 Status: MP BACKE PhiWrapLinear
+t: 1.3023e-09 t(sc) 0.13023 iter: 4 repeat_nr_iter: 0 h: 0.00532557 Status: MP BACKE PhiWrapLinear
+t: 1.35559e-09 t(sc) 0.135559 iter: 4 repeat_nr_iter: 0 h: 0.00532865 Status: MP BACKE PhiWrapLinear
+t: 1.40891e-09 t(sc) 0.140891 iter: 4 repeat_nr_iter: 0 h: 0.00533231 Status: MP BACKE PhiWrapLinear
+t: 1.46228e-09 t(sc) 0.146228 iter: 4 repeat_nr_iter: 0 h: 0.00533691 Status: MP BACKE PhiWrapLinear
+t: 1.51571e-09 t(sc) 0.151571 iter: 4 repeat_nr_iter: 0 h: 0.00534288 Status: MP BACKE PhiWrapLinear
+t = 1.51571e-09 (15%)
+t: 1.56922e-09 t(sc) 0.156922 iter: 4 repeat_nr_iter: 0 h: 0.00535089 Status: MP BACKE PhiWrapLinear
+t: 1.62268e-09 t(sc) 0.162268 iter: 4 repeat_nr_iter: 0 h: 0.00534658 Status: MP BACKE PhiWrapLinear
+t: 1.67607e-09 t(sc) 0.167607 iter: 4 repeat_nr_iter: 0 h: 0.00533837 Status: MP BACKE PhiWrapLinear
+t: 1.72937e-09 t(sc) 0.172937 iter: 4 repeat_nr_iter: 0 h: 0.00533038 Status: MP BACKE PhiWrapLinear
+t: 1.7826e-09 t(sc) 0.17826 iter: 4 repeat_nr_iter: 0 h: 0.00532259 Status: MP BACKE PhiWrapLinear
+t: 1.83575e-09 t(sc) 0.183575 iter: 4 repeat_nr_iter: 0 h: 0.00531497 Status: MP BACKE PhiWrapLinear
+t: 1.78472e-09 t(sc) 0.178472 iter: 4 repeat_nr_iter: 0 h: 0.000212464 Status: MP BACKE PhiWrapSimple
+t: 1.78897e-09 t(sc) 0.178897 iter: 4 repeat_nr_iter: 0 h: 0.000424928 Status: MP BACKE PhiWrapLinear
+t: 1.78492e-09 t(sc) 0.178492 iter: 3 repeat_nr_iter: 0 h: 1.94926e-05 Status: MP BACKE PhiWrapSimple
+t: 1.78531e-09 t(sc) 0.178531 iter: 3 repeat_nr_iter: 0 h: 3.89852e-05 Status: MP BACKE PhiWrapLinear
+t: 1.78609e-09 t(sc) 0.178609 iter: 4 repeat_nr_iter: 0 h: 7.79703e-05 Status: MP BACKE PhiWrapLinear
+t: 1.78534e-09 t(sc) 0.178534 iter: 3 repeat_nr_iter: 0 h: 3.57834e-06 Status: MP BACKE PhiWrapSimple
+t: 1.78541e-09 t(sc) 0.178541 iter: 4 repeat_nr_iter: 0 h: 7.15668e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78535e-09 t(sc) 0.178535 iter: 3 repeat_nr_iter: 0 h: 3.28481e-07 Status: MP BACKE PhiWrapSimple
+t: 1.78535e-09 t(sc) 0.178535 iter: 3 repeat_nr_iter: 0 h: 6.56962e-07 Status: MP BACKE PhiWrapLinear
+t: 1.78536e-09 t(sc) 0.178536 iter: 3 repeat_nr_iter: 0 h: 1.31392e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78539e-09 t(sc) 0.178539 iter: 3 repeat_nr_iter: 0 h: 2.62785e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78544e-09 t(sc) 0.178544 iter: 4 repeat_nr_iter: 0 h: 5.2557e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78539e-09 t(sc) 0.178539 iter: 3 repeat_nr_iter: 0 h: 2.41228e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 4 repeat_nr_iter: 0 h: 4.82455e-07 Status: MP BACKE PhiWrapLinear
+t: 1.78539e-09 t(sc) 0.178539 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 1.7854e-09 t(sc) 0.17854 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 1.7854e-09 t(sc) 0.17854 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 1.7854e-09 t(sc) 0.17854 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 1.7854e-09 t(sc) 0.17854 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 1.78541e-09 t(sc) 0.178541 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 1.78541e-09 t(sc) 0.178541 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 1.78543e-09 t(sc) 0.178543 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78546e-09 t(sc) 0.178546 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78553e-09 t(sc) 0.178553 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 1.78565e-09 t(sc) 0.178565 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 1.78591e-09 t(sc) 0.178591 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 1.78642e-09 t(sc) 0.178642 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 1.78745e-09 t(sc) 0.178745 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 1.78949e-09 t(sc) 0.178949 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t: 1.79359e-09 t(sc) 0.179359 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 1.80178e-09 t(sc) 0.180178 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 1.81817e-09 t(sc) 0.181817 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 1.85093e-09 t(sc) 0.185093 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 1.90404e-09 t(sc) 0.190404 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t: 1.95716e-09 t(sc) 0.195716 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t: 2.01027e-09 t(sc) 0.201027 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t = 2.01027e-09 (20%)
+t: 2.06338e-09 t(sc) 0.206338 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 2.11649e-09 t(sc) 0.211649 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 2.16961e-09 t(sc) 0.216961 iter: 4 repeat_nr_iter: 0 h: 0.00531155 Status: MP BACKE PhiWrapLinear
+t: 2.22273e-09 t(sc) 0.222273 iter: 4 repeat_nr_iter: 0 h: 0.00531187 Status: MP BACKE PhiWrapLinear
+t: 2.27585e-09 t(sc) 0.227585 iter: 4 repeat_nr_iter: 0 h: 0.00531227 Status: MP BACKE PhiWrapLinear
+t: 2.32898e-09 t(sc) 0.232898 iter: 4 repeat_nr_iter: 0 h: 0.00531274 Status: MP BACKE PhiWrapLinear
+t: 2.38211e-09 t(sc) 0.238211 iter: 4 repeat_nr_iter: 0 h: 0.0053133 Status: MP BACKE PhiWrapLinear
+t: 2.43525e-09 t(sc) 0.243525 iter: 4 repeat_nr_iter: 0 h: 0.00531394 Status: MP BACKE PhiWrapLinear
+t: 2.4884e-09 t(sc) 0.24884 iter: 4 repeat_nr_iter: 0 h: 0.0053147 Status: MP BACKE PhiWrapLinear
+t: 2.54155e-09 t(sc) 0.254155 iter: 4 repeat_nr_iter: 0 h: 0.00531558 Status: MP BACKE PhiWrapLinear
+t = 2.54155e-09 (25%)
+t: 2.59472e-09 t(sc) 0.259472 iter: 4 repeat_nr_iter: 0 h: 0.0053166 Status: MP BACKE PhiWrapLinear
+t: 2.6479e-09 t(sc) 0.26479 iter: 4 repeat_nr_iter: 0 h: 0.00531779 Status: MP BACKE PhiWrapLinear
+t: 2.70109e-09 t(sc) 0.270109 iter: 4 repeat_nr_iter: 0 h: 0.00531919 Status: MP BACKE PhiWrapLinear
+t: 2.7543e-09 t(sc) 0.27543 iter: 4 repeat_nr_iter: 0 h: 0.00532082 Status: MP BACKE PhiWrapLinear
+t: 2.80753e-09 t(sc) 0.280753 iter: 4 repeat_nr_iter: 0 h: 0.00532277 Status: MP BACKE PhiWrapLinear
+t: 2.86078e-09 t(sc) 0.286078 iter: 4 repeat_nr_iter: 0 h: 0.0053251 Status: MP BACKE PhiWrapLinear
+t: 2.91406e-09 t(sc) 0.291406 iter: 4 repeat_nr_iter: 0 h: 0.00532792 Status: MP BACKE PhiWrapLinear
+t: 2.96737e-09 t(sc) 0.296737 iter: 4 repeat_nr_iter: 0 h: 0.00533139 Status: MP BACKE PhiWrapLinear
+t: 3.02073e-09 t(sc) 0.302073 iter: 4 repeat_nr_iter: 0 h: 0.00533574 Status: MP BACKE PhiWrapLinear
+t = 3.02073e-09 (30%)
+t: 3.07414e-09 t(sc) 0.307414 iter: 4 repeat_nr_iter: 0 h: 0.00534135 Status: MP BACKE PhiWrapLinear
+t: 3.12763e-09 t(sc) 0.312763 iter: 4 repeat_nr_iter: 0 h: 0.00534881 Status: MP BACKE PhiWrapLinear
+t: 3.18111e-09 t(sc) 0.318111 iter: 4 repeat_nr_iter: 0 h: 0.0053485 Status: MP BACKE PhiWrapLinear
+t: 3.23452e-09 t(sc) 0.323452 iter: 4 repeat_nr_iter: 0 h: 0.00534025 Status: MP BACKE PhiWrapLinear
+t: 3.28784e-09 t(sc) 0.328784 iter: 4 repeat_nr_iter: 0 h: 0.00533221 Status: MP BACKE PhiWrapLinear
+t: 3.34108e-09 t(sc) 0.334108 iter: 4 repeat_nr_iter: 0 h: 0.00532438 Status: MP BACKE PhiWrapLinear
+t: 3.39425e-09 t(sc) 0.339425 iter: 4 repeat_nr_iter: 0 h: 0.00531672 Status: MP BACKE PhiWrapLinear
+t: 3.34307e-09 t(sc) 0.334307 iter: 4 repeat_nr_iter: 0 h: 0.000198681 Status: MP BACKE PhiWrapSimple
+t: 3.34704e-09 t(sc) 0.334704 iter: 4 repeat_nr_iter: 0 h: 0.000397362 Status: MP BACKE PhiWrapLinear
+t: 3.35499e-09 t(sc) 0.335499 iter: 4 repeat_nr_iter: 0 h: 0.000794724 Status: MP BACKE PhiWrapLinear
+t: 3.37088e-09 t(sc) 0.337088 iter: 4 repeat_nr_iter: 0 h: 0.00158945 Status: MP BACKE PhiWrapLinear
+t: 3.35551e-09 t(sc) 0.335551 iter: 3 repeat_nr_iter: 0 h: 5.1648e-05 Status: MP BACKE PhiWrapSimple
+t: 3.35654e-09 t(sc) 0.335654 iter: 4 repeat_nr_iter: 0 h: 0.000103296 Status: MP BACKE PhiWrapLinear
+t: 3.35554e-09 t(sc) 0.335554 iter: 3 repeat_nr_iter: 0 h: 3.35744e-06 Status: MP BACKE PhiWrapSimple
+t: 3.35561e-09 t(sc) 0.335561 iter: 3 repeat_nr_iter: 0 h: 6.71489e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35574e-09 t(sc) 0.335574 iter: 3 repeat_nr_iter: 0 h: 1.34298e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35601e-09 t(sc) 0.335601 iter: 3 repeat_nr_iter: 0 h: 2.68595e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35655e-09 t(sc) 0.335655 iter: 4 repeat_nr_iter: 0 h: 5.37191e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35603e-09 t(sc) 0.335603 iter: 3 repeat_nr_iter: 0 h: 1.74613e-06 Status: MP BACKE PhiWrapSimple
+t: 3.35606e-09 t(sc) 0.335606 iter: 3 repeat_nr_iter: 0 h: 3.49226e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35613e-09 t(sc) 0.335613 iter: 3 repeat_nr_iter: 0 h: 6.98451e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35627e-09 t(sc) 0.335627 iter: 4 repeat_nr_iter: 0 h: 1.3969e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35614e-09 t(sc) 0.335614 iter: 3 repeat_nr_iter: 0 h: 4.54078e-07 Status: MP BACKE PhiWrapSimple
+t: 3.35615e-09 t(sc) 0.335615 iter: 3 repeat_nr_iter: 0 h: 9.08155e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35616e-09 t(sc) 0.335616 iter: 3 repeat_nr_iter: 0 h: 1.81631e-06 Status: MP BACKE PhiWrapLinear
+t: 3.3562e-09 t(sc) 0.33562 iter: 4 repeat_nr_iter: 0 h: 3.63262e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35617e-09 t(sc) 0.335617 iter: 3 repeat_nr_iter: 0 h: 1.18084e-07 Status: MP BACKE PhiWrapSimple
+t: 3.35617e-09 t(sc) 0.335617 iter: 3 repeat_nr_iter: 0 h: 2.36169e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35617e-09 t(sc) 0.335617 iter: 3 repeat_nr_iter: 0 h: 4.72337e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35618e-09 t(sc) 0.335618 iter: 3 repeat_nr_iter: 0 h: 9.44674e-07 Status: MP BACKE PhiWrapLinear
+t: 3.3562e-09 t(sc) 0.33562 iter: 4 repeat_nr_iter: 0 h: 1.88935e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35618e-09 t(sc) 0.335618 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.35618e-09 t(sc) 0.335618 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35619e-09 t(sc) 0.335619 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 3.3562e-09 t(sc) 0.33562 iter: 4 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35619e-09 t(sc) 0.335619 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.35619e-09 t(sc) 0.335619 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 3.3562e-09 t(sc) 0.33562 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35619e-09 t(sc) 0.335619 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.35619e-09 t(sc) 0.335619 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35619e-09 t(sc) 0.335619 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.3562e-09 t(sc) 0.33562 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35619e-09 t(sc) 0.335619 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.3562e-09 t(sc) 0.33562 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.3562e-09 t(sc) 0.33562 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 3.3562e-09 t(sc) 0.33562 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 3.3562e-09 t(sc) 0.33562 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35621e-09 t(sc) 0.335621 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 3.35623e-09 t(sc) 0.335623 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35626e-09 t(sc) 0.335626 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35632e-09 t(sc) 0.335632 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 3.35645e-09 t(sc) 0.335645 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35671e-09 t(sc) 0.335671 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35722e-09 t(sc) 0.335722 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 3.35824e-09 t(sc) 0.335824 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 3.36029e-09 t(sc) 0.336029 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t: 3.36439e-09 t(sc) 0.336439 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 3.37258e-09 t(sc) 0.337258 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 3.38896e-09 t(sc) 0.338896 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 3.42173e-09 t(sc) 0.342173 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 3.47484e-09 t(sc) 0.347484 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t: 3.52796e-09 t(sc) 0.352796 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t = 3.52796e-09 (35%)
+t: 3.58107e-09 t(sc) 0.358107 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t: 3.63418e-09 t(sc) 0.363418 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 3.68729e-09 t(sc) 0.368729 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 3.74041e-09 t(sc) 0.374041 iter: 4 repeat_nr_iter: 0 h: 0.00531155 Status: MP BACKE PhiWrapLinear
+t: 3.79353e-09 t(sc) 0.379353 iter: 4 repeat_nr_iter: 0 h: 0.00531187 Status: MP BACKE PhiWrapLinear
+t: 3.84665e-09 t(sc) 0.384665 iter: 4 repeat_nr_iter: 0 h: 0.00531227 Status: MP BACKE PhiWrapLinear
+t: 3.89978e-09 t(sc) 0.389978 iter: 4 repeat_nr_iter: 0 h: 0.00531274 Status: MP BACKE PhiWrapLinear
+t: 3.95291e-09 t(sc) 0.395291 iter: 4 repeat_nr_iter: 0 h: 0.0053133 Status: MP BACKE PhiWrapLinear
+t: 4.00605e-09 t(sc) 0.400605 iter: 4 repeat_nr_iter: 0 h: 0.00531394 Status: MP BACKE PhiWrapLinear
+t = 4.00605e-09 (40%)
+t: 4.05919e-09 t(sc) 0.405919 iter: 4 repeat_nr_iter: 0 h: 0.0053147 Status: MP BACKE PhiWrapLinear
+t: 4.11235e-09 t(sc) 0.411235 iter: 4 repeat_nr_iter: 0 h: 0.00531558 Status: MP BACKE PhiWrapLinear
+t: 4.16552e-09 t(sc) 0.416552 iter: 4 repeat_nr_iter: 0 h: 0.0053166 Status: MP BACKE PhiWrapLinear
+t: 4.21869e-09 t(sc) 0.421869 iter: 4 repeat_nr_iter: 0 h: 0.00531779 Status: MP BACKE PhiWrapLinear
+t: 4.27189e-09 t(sc) 0.427189 iter: 4 repeat_nr_iter: 0 h: 0.00531919 Status: MP BACKE PhiWrapLinear
+t: 4.32509e-09 t(sc) 0.432509 iter: 4 repeat_nr_iter: 0 h: 0.00532082 Status: MP BACKE PhiWrapLinear
+t: 4.37832e-09 t(sc) 0.437832 iter: 4 repeat_nr_iter: 0 h: 0.00532277 Status: MP BACKE PhiWrapLinear
+t: 4.43157e-09 t(sc) 0.443157 iter: 4 repeat_nr_iter: 0 h: 0.0053251 Status: MP BACKE PhiWrapLinear
+t: 4.48485e-09 t(sc) 0.448485 iter: 4 repeat_nr_iter: 0 h: 0.00532792 Status: MP BACKE PhiWrapLinear
+t: 4.53817e-09 t(sc) 0.453817 iter: 4 repeat_nr_iter: 0 h: 0.00533139 Status: MP BACKE PhiWrapLinear
+t = 4.53817e-09 (45%)
+t: 4.59152e-09 t(sc) 0.459152 iter: 4 repeat_nr_iter: 0 h: 0.00533574 Status: MP BACKE PhiWrapLinear
+t: 4.64494e-09 t(sc) 0.464494 iter: 4 repeat_nr_iter: 0 h: 0.00534135 Status: MP BACKE PhiWrapLinear
+t: 4.69843e-09 t(sc) 0.469843 iter: 4 repeat_nr_iter: 0 h: 0.00534881 Status: MP BACKE PhiWrapLinear
+t: 4.75191e-09 t(sc) 0.475191 iter: 4 repeat_nr_iter: 0 h: 0.0053485 Status: MP BACKE PhiWrapLinear
+t: 4.80531e-09 t(sc) 0.480531 iter: 4 repeat_nr_iter: 0 h: 0.00534025 Status: MP BACKE PhiWrapLinear
+t: 4.85863e-09 t(sc) 0.485863 iter: 4 repeat_nr_iter: 0 h: 0.00533221 Status: MP BACKE PhiWrapLinear
+t: 4.91188e-09 t(sc) 0.491188 iter: 4 repeat_nr_iter: 0 h: 0.00532438 Status: MP BACKE PhiWrapLinear
+t: 4.96505e-09 t(sc) 0.496505 iter: 4 repeat_nr_iter: 0 h: 0.00531672 Status: MP BACKE PhiWrapLinear
+t: 4.91405e-09 t(sc) 0.491405 iter: 4 repeat_nr_iter: 0 h: 0.000216772 Status: MP BACKE PhiWrapSimple
+t: 4.91838e-09 t(sc) 0.491838 iter: 4 repeat_nr_iter: 0 h: 0.000433543 Status: MP BACKE PhiWrapLinear
+t: 4.92705e-09 t(sc) 0.492705 iter: 4 repeat_nr_iter: 0 h: 0.000867087 Status: MP BACKE PhiWrapLinear
+t: 4.91878e-09 t(sc) 0.491878 iter: 3 repeat_nr_iter: 0 h: 3.97977e-05 Status: MP BACKE PhiWrapSimple
+t: 4.91958e-09 t(sc) 0.491958 iter: 3 repeat_nr_iter: 0 h: 7.95954e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92117e-09 t(sc) 0.492117 iter: 4 repeat_nr_iter: 0 h: 0.000159191 Status: MP BACKE PhiWrapLinear
+t: 4.92435e-09 t(sc) 0.492435 iter: 4 repeat_nr_iter: 0 h: 0.000318382 Status: MP BACKE PhiWrapLinear
+t: 4.93072e-09 t(sc) 0.493072 iter: 4 repeat_nr_iter: 0 h: 0.000636763 Status: MP BACKE PhiWrapLinear
+t: 4.92464e-09 t(sc) 0.492464 iter: 3 repeat_nr_iter: 0 h: 2.92093e-05 Status: MP BACKE PhiWrapSimple
+t: 4.92523e-09 t(sc) 0.492523 iter: 3 repeat_nr_iter: 0 h: 5.84186e-05 Status: MP BACKE PhiWrapLinear
+t: 4.9264e-09 t(sc) 0.49264 iter: 3 repeat_nr_iter: 0 h: 0.000116837 Status: MP BACKE PhiWrapLinear
+t: 4.92873e-09 t(sc) 0.492873 iter: 4 repeat_nr_iter: 0 h: 0.000233674 Status: MP BACKE PhiWrapLinear
+t: 4.9265e-09 t(sc) 0.49265 iter: 3 repeat_nr_iter: 0 h: 1.07224e-05 Status: MP BACKE PhiWrapSimple
+t: 4.92672e-09 t(sc) 0.492672 iter: 3 repeat_nr_iter: 0 h: 2.14447e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92715e-09 t(sc) 0.492715 iter: 4 repeat_nr_iter: 0 h: 4.28894e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92674e-09 t(sc) 0.492674 iter: 3 repeat_nr_iter: 0 h: 1.96852e-06 Status: MP BACKE PhiWrapSimple
+t: 4.92678e-09 t(sc) 0.492678 iter: 3 repeat_nr_iter: 0 h: 3.93704e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92686e-09 t(sc) 0.492686 iter: 3 repeat_nr_iter: 0 h: 7.87407e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92701e-09 t(sc) 0.492701 iter: 4 repeat_nr_iter: 0 h: 1.57481e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92686e-09 t(sc) 0.492686 iter: 3 repeat_nr_iter: 0 h: 7.22816e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92688e-09 t(sc) 0.492688 iter: 3 repeat_nr_iter: 0 h: 1.44563e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92691e-09 t(sc) 0.492691 iter: 3 repeat_nr_iter: 0 h: 2.89126e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92696e-09 t(sc) 0.492696 iter: 3 repeat_nr_iter: 0 h: 5.78253e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92708e-09 t(sc) 0.492708 iter: 4 repeat_nr_iter: 0 h: 1.15651e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92697e-09 t(sc) 0.492697 iter: 3 repeat_nr_iter: 0 h: 5.30813e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92698e-09 t(sc) 0.492698 iter: 3 repeat_nr_iter: 0 h: 1.06163e-06 Status: MP BACKE PhiWrapLinear
+t: 4.927e-09 t(sc) 0.4927 iter: 4 repeat_nr_iter: 0 h: 2.12325e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92698e-09 t(sc) 0.492698 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92698e-09 t(sc) 0.492698 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 4 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92699e-09 t(sc) 0.492699 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92699e-09 t(sc) 0.492699 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.92699e-09 t(sc) 0.492699 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 4.927e-09 t(sc) 0.4927 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 4.927e-09 t(sc) 0.4927 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92701e-09 t(sc) 0.492701 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 4.92702e-09 t(sc) 0.492702 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92706e-09 t(sc) 0.492706 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92712e-09 t(sc) 0.492712 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 4.92725e-09 t(sc) 0.492725 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 4.9275e-09 t(sc) 0.49275 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92802e-09 t(sc) 0.492802 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 4.92904e-09 t(sc) 0.492904 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 4.93109e-09 t(sc) 0.493109 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t: 4.93518e-09 t(sc) 0.493518 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 4.94338e-09 t(sc) 0.494338 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 4.95976e-09 t(sc) 0.495976 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 4.99253e-09 t(sc) 0.499253 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 5.04564e-09 t(sc) 0.504564 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t = 5.04564e-09 (50%)
+t: 5.09875e-09 t(sc) 0.509875 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t: 5.15186e-09 t(sc) 0.515186 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t: 5.20498e-09 t(sc) 0.520498 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 5.25809e-09 t(sc) 0.525809 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 5.3112e-09 t(sc) 0.53112 iter: 4 repeat_nr_iter: 0 h: 0.00531155 Status: MP BACKE PhiWrapLinear
+t: 5.36432e-09 t(sc) 0.536432 iter: 4 repeat_nr_iter: 0 h: 0.00531187 Status: MP BACKE PhiWrapLinear
+t: 5.41744e-09 t(sc) 0.541744 iter: 4 repeat_nr_iter: 0 h: 0.00531227 Status: MP BACKE PhiWrapLinear
+t: 5.47057e-09 t(sc) 0.547057 iter: 4 repeat_nr_iter: 0 h: 0.00531274 Status: MP BACKE PhiWrapLinear
+t: 5.52371e-09 t(sc) 0.552371 iter: 4 repeat_nr_iter: 0 h: 0.0053133 Status: MP BACKE PhiWrapLinear
+t = 5.52371e-09 (55%)
+t: 5.57684e-09 t(sc) 0.557684 iter: 4 repeat_nr_iter: 0 h: 0.00531394 Status: MP BACKE PhiWrapLinear
+t: 5.62999e-09 t(sc) 0.562999 iter: 4 repeat_nr_iter: 0 h: 0.0053147 Status: MP BACKE PhiWrapLinear
+t: 5.68315e-09 t(sc) 0.568315 iter: 4 repeat_nr_iter: 0 h: 0.00531558 Status: MP BACKE PhiWrapLinear
+t: 5.73631e-09 t(sc) 0.573631 iter: 4 repeat_nr_iter: 0 h: 0.0053166 Status: MP BACKE PhiWrapLinear
+t: 5.78949e-09 t(sc) 0.578949 iter: 4 repeat_nr_iter: 0 h: 0.00531779 Status: MP BACKE PhiWrapLinear
+t: 5.84268e-09 t(sc) 0.584268 iter: 4 repeat_nr_iter: 0 h: 0.00531919 Status: MP BACKE PhiWrapLinear
+t: 5.89589e-09 t(sc) 0.589589 iter: 4 repeat_nr_iter: 0 h: 0.00532082 Status: MP BACKE PhiWrapLinear
+t: 5.94912e-09 t(sc) 0.594912 iter: 4 repeat_nr_iter: 0 h: 0.00532277 Status: MP BACKE PhiWrapLinear
+t: 6e-09 t(sc) 0.6 iter: 4 repeat_nr_iter: 0 h: 0.00508809 Status: MP BACKE PhiWrapLinear
+t: 6.05324e-09 t(sc) 0.605324 iter: 4 repeat_nr_iter: 0 h: 0.00532445 Status: MP BACKE PhiWrapLinear
+t = 6.05324e-09 (60%)
+t: 6.10659e-09 t(sc) 0.610659 iter: 4 repeat_nr_iter: 0 h: 0.00533501 Status: MP BACKE PhiWrapLinear
+t: 6.15995e-09 t(sc) 0.615995 iter: 4 repeat_nr_iter: 0 h: 0.00533566 Status: MP BACKE PhiWrapLinear
+t: 6.21336e-09 t(sc) 0.621336 iter: 4 repeat_nr_iter: 0 h: 0.00534099 Status: MP BACKE PhiWrapLinear
+t: 6.26685e-09 t(sc) 0.626685 iter: 4 repeat_nr_iter: 0 h: 0.00534842 Status: MP BACKE PhiWrapLinear
+t: 6.32033e-09 t(sc) 0.632033 iter: 4 repeat_nr_iter: 0 h: 0.00534887 Status: MP BACKE PhiWrapLinear
+t: 6.37374e-09 t(sc) 0.637374 iter: 4 repeat_nr_iter: 0 h: 0.00534061 Status: MP BACKE PhiWrapLinear
+t: 6.42707e-09 t(sc) 0.642707 iter: 4 repeat_nr_iter: 0 h: 0.00533256 Status: MP BACKE PhiWrapLinear
+t: 6.48031e-09 t(sc) 0.648031 iter: 4 repeat_nr_iter: 0 h: 0.00532472 Status: MP BACKE PhiWrapLinear
+t: 6.53348e-09 t(sc) 0.653348 iter: 4 repeat_nr_iter: 0 h: 0.00531706 Status: MP BACKE PhiWrapLinear
+t: 6.4823e-09 t(sc) 0.64823 iter: 4 repeat_nr_iter: 0 h: 0.000198544 Status: MP BACKE PhiWrapSimple
+t: 6.48627e-09 t(sc) 0.648627 iter: 4 repeat_nr_iter: 0 h: 0.000397087 Status: MP BACKE PhiWrapLinear
+t: 6.49421e-09 t(sc) 0.649421 iter: 4 repeat_nr_iter: 0 h: 0.000794175 Status: MP BACKE PhiWrapLinear
+t: 6.51009e-09 t(sc) 0.651009 iter: 4 repeat_nr_iter: 0 h: 0.00158835 Status: MP BACKE PhiWrapLinear
+t: 6.49473e-09 t(sc) 0.649473 iter: 3 repeat_nr_iter: 0 h: 5.15735e-05 Status: MP BACKE PhiWrapSimple
+t: 6.49576e-09 t(sc) 0.649576 iter: 3 repeat_nr_iter: 0 h: 0.000103147 Status: MP BACKE PhiWrapLinear
+t: 6.49782e-09 t(sc) 0.649782 iter: 4 repeat_nr_iter: 0 h: 0.000206294 Status: MP BACKE PhiWrapLinear
+t: 6.49583e-09 t(sc) 0.649583 iter: 3 repeat_nr_iter: 0 h: 6.70587e-06 Status: MP BACKE PhiWrapSimple
+t: 6.49596e-09 t(sc) 0.649596 iter: 3 repeat_nr_iter: 0 h: 1.34117e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49623e-09 t(sc) 0.649623 iter: 3 repeat_nr_iter: 0 h: 2.68235e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49676e-09 t(sc) 0.649676 iter: 3 repeat_nr_iter: 0 h: 5.36469e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49784e-09 t(sc) 0.649784 iter: 4 repeat_nr_iter: 0 h: 0.000107294 Status: MP BACKE PhiWrapLinear
+t: 6.4968e-09 t(sc) 0.64968 iter: 3 repeat_nr_iter: 0 h: 3.48771e-06 Status: MP BACKE PhiWrapSimple
+t: 6.49687e-09 t(sc) 0.649687 iter: 3 repeat_nr_iter: 0 h: 6.97543e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49701e-09 t(sc) 0.649701 iter: 3 repeat_nr_iter: 0 h: 1.39509e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49729e-09 t(sc) 0.649729 iter: 3 repeat_nr_iter: 0 h: 2.79017e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49785e-09 t(sc) 0.649785 iter: 4 repeat_nr_iter: 0 h: 5.58034e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49731e-09 t(sc) 0.649731 iter: 3 repeat_nr_iter: 0 h: 1.81395e-06 Status: MP BACKE PhiWrapSimple
+t: 6.49734e-09 t(sc) 0.649734 iter: 3 repeat_nr_iter: 0 h: 3.6279e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49741e-09 t(sc) 0.649741 iter: 3 repeat_nr_iter: 0 h: 7.2558e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49756e-09 t(sc) 0.649756 iter: 3 repeat_nr_iter: 0 h: 1.45116e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49785e-09 t(sc) 0.649785 iter: 4 repeat_nr_iter: 0 h: 2.90232e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49757e-09 t(sc) 0.649757 iter: 3 repeat_nr_iter: 0 h: 9.4343e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49759e-09 t(sc) 0.649759 iter: 3 repeat_nr_iter: 0 h: 1.88686e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49763e-09 t(sc) 0.649763 iter: 3 repeat_nr_iter: 0 h: 3.77372e-06 Status: MP BACKE PhiWrapLinear
+t: 6.4977e-09 t(sc) 0.64977 iter: 3 repeat_nr_iter: 0 h: 7.54744e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49785e-09 t(sc) 0.649785 iter: 4 repeat_nr_iter: 0 h: 1.50949e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49771e-09 t(sc) 0.649771 iter: 3 repeat_nr_iter: 0 h: 4.90674e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49772e-09 t(sc) 0.649772 iter: 3 repeat_nr_iter: 0 h: 9.81349e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49774e-09 t(sc) 0.649774 iter: 3 repeat_nr_iter: 0 h: 1.9627e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49777e-09 t(sc) 0.649777 iter: 3 repeat_nr_iter: 0 h: 3.92539e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49785e-09 t(sc) 0.649785 iter: 4 repeat_nr_iter: 0 h: 7.85079e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49778e-09 t(sc) 0.649778 iter: 3 repeat_nr_iter: 0 h: 2.55202e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49778e-09 t(sc) 0.649778 iter: 3 repeat_nr_iter: 0 h: 5.10404e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49779e-09 t(sc) 0.649779 iter: 4 repeat_nr_iter: 0 h: 1.02081e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49778e-09 t(sc) 0.649778 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49779e-09 t(sc) 0.649779 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49779e-09 t(sc) 0.649779 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 6.49779e-09 t(sc) 0.649779 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 6.4978e-09 t(sc) 0.64978 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 6.4978e-09 t(sc) 0.64978 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 6.49782e-09 t(sc) 0.649782 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49785e-09 t(sc) 0.649785 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49792e-09 t(sc) 0.649792 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 6.49804e-09 t(sc) 0.649804 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 6.4983e-09 t(sc) 0.64983 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49881e-09 t(sc) 0.649881 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 6.49984e-09 t(sc) 0.649984 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 6.50188e-09 t(sc) 0.650188 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t = 6.50188e-09 (65%)
+t: 6.50598e-09 t(sc) 0.650598 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 6.51417e-09 t(sc) 0.651417 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 6.53056e-09 t(sc) 0.653056 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 6.56332e-09 t(sc) 0.656332 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 6.61643e-09 t(sc) 0.661643 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t: 6.66955e-09 t(sc) 0.666955 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t: 6.72266e-09 t(sc) 0.672266 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t: 6.77577e-09 t(sc) 0.677577 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 6.82888e-09 t(sc) 0.682888 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 6.882e-09 t(sc) 0.6882 iter: 4 repeat_nr_iter: 0 h: 0.00531155 Status: MP BACKE PhiWrapLinear
+t: 6.93512e-09 t(sc) 0.693512 iter: 4 repeat_nr_iter: 0 h: 0.00531187 Status: MP BACKE PhiWrapLinear
+t: 6.98824e-09 t(sc) 0.698824 iter: 4 repeat_nr_iter: 0 h: 0.00531227 Status: MP BACKE PhiWrapLinear
+t: 7.04137e-09 t(sc) 0.704137 iter: 4 repeat_nr_iter: 0 h: 0.00531274 Status: MP BACKE PhiWrapLinear
+t = 7.04137e-09 (70%)
+t: 7.0945e-09 t(sc) 0.70945 iter: 4 repeat_nr_iter: 0 h: 0.0053133 Status: MP BACKE PhiWrapLinear
+t: 7.14764e-09 t(sc) 0.714764 iter: 4 repeat_nr_iter: 0 h: 0.00531394 Status: MP BACKE PhiWrapLinear
+t: 7.20079e-09 t(sc) 0.720079 iter: 4 repeat_nr_iter: 0 h: 0.0053147 Status: MP BACKE PhiWrapLinear
+t: 7.25394e-09 t(sc) 0.725394 iter: 4 repeat_nr_iter: 0 h: 0.00531558 Status: MP BACKE PhiWrapLinear
+t: 7.30711e-09 t(sc) 0.730711 iter: 4 repeat_nr_iter: 0 h: 0.0053166 Status: MP BACKE PhiWrapLinear
+t: 7.36029e-09 t(sc) 0.736029 iter: 4 repeat_nr_iter: 0 h: 0.00531779 Status: MP BACKE PhiWrapLinear
+t: 7.41348e-09 t(sc) 0.741348 iter: 4 repeat_nr_iter: 0 h: 0.00531919 Status: MP BACKE PhiWrapLinear
+t: 7.46669e-09 t(sc) 0.746669 iter: 4 repeat_nr_iter: 0 h: 0.00532082 Status: MP BACKE PhiWrapLinear
+t: 7.51992e-09 t(sc) 0.751992 iter: 4 repeat_nr_iter: 0 h: 0.00532277 Status: MP BACKE PhiWrapLinear
+t = 7.51992e-09 (75%)
+t: 7.57317e-09 t(sc) 0.757317 iter: 4 repeat_nr_iter: 0 h: 0.0053251 Status: MP BACKE PhiWrapLinear
+t: 7.62645e-09 t(sc) 0.762645 iter: 4 repeat_nr_iter: 0 h: 0.00532792 Status: MP BACKE PhiWrapLinear
+t: 7.67976e-09 t(sc) 0.767976 iter: 4 repeat_nr_iter: 0 h: 0.00533139 Status: MP BACKE PhiWrapLinear
+t: 7.73312e-09 t(sc) 0.773312 iter: 4 repeat_nr_iter: 0 h: 0.00533574 Status: MP BACKE PhiWrapLinear
+t: 7.78653e-09 t(sc) 0.778653 iter: 4 repeat_nr_iter: 0 h: 0.00534135 Status: MP BACKE PhiWrapLinear
+t: 7.84002e-09 t(sc) 0.784002 iter: 4 repeat_nr_iter: 0 h: 0.00534881 Status: MP BACKE PhiWrapLinear
+t: 7.8935e-09 t(sc) 0.78935 iter: 4 repeat_nr_iter: 0 h: 0.0053485 Status: MP BACKE PhiWrapLinear
+t: 7.94691e-09 t(sc) 0.794691 iter: 4 repeat_nr_iter: 0 h: 0.00534025 Status: MP BACKE PhiWrapLinear
+t: 8.00023e-09 t(sc) 0.800023 iter: 4 repeat_nr_iter: 0 h: 0.00533221 Status: MP BACKE PhiWrapLinear
+t = 8.00023e-09 (80%)
+t: 8.05347e-09 t(sc) 0.805347 iter: 4 repeat_nr_iter: 0 h: 0.00532438 Status: MP BACKE PhiWrapLinear
+t: 8.10664e-09 t(sc) 0.810664 iter: 4 repeat_nr_iter: 0 h: 0.00531672 Status: MP BACKE PhiWrapLinear
+t: 8.05564e-09 t(sc) 0.805564 iter: 4 repeat_nr_iter: 0 h: 0.000216771 Status: MP BACKE PhiWrapSimple
+t: 8.05997e-09 t(sc) 0.805997 iter: 4 repeat_nr_iter: 0 h: 0.000433543 Status: MP BACKE PhiWrapLinear
+t: 8.06865e-09 t(sc) 0.806865 iter: 4 repeat_nr_iter: 0 h: 0.000867086 Status: MP BACKE PhiWrapLinear
+t: 8.06037e-09 t(sc) 0.806037 iter: 3 repeat_nr_iter: 0 h: 3.97977e-05 Status: MP BACKE PhiWrapSimple
+t: 8.06117e-09 t(sc) 0.806117 iter: 3 repeat_nr_iter: 0 h: 7.95953e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06276e-09 t(sc) 0.806276 iter: 4 repeat_nr_iter: 0 h: 0.000159191 Status: MP BACKE PhiWrapLinear
+t: 8.06594e-09 t(sc) 0.806594 iter: 4 repeat_nr_iter: 0 h: 0.000318381 Status: MP BACKE PhiWrapLinear
+t: 8.07231e-09 t(sc) 0.807231 iter: 4 repeat_nr_iter: 0 h: 0.000636762 Status: MP BACKE PhiWrapLinear
+t: 8.06624e-09 t(sc) 0.806624 iter: 3 repeat_nr_iter: 0 h: 2.92092e-05 Status: MP BACKE PhiWrapSimple
+t: 8.06682e-09 t(sc) 0.806682 iter: 3 repeat_nr_iter: 0 h: 5.84185e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06799e-09 t(sc) 0.806799 iter: 3 repeat_nr_iter: 0 h: 0.000116837 Status: MP BACKE PhiWrapLinear
+t: 8.07033e-09 t(sc) 0.807033 iter: 4 repeat_nr_iter: 0 h: 0.000233674 Status: MP BACKE PhiWrapLinear
+t: 8.0681e-09 t(sc) 0.80681 iter: 3 repeat_nr_iter: 0 h: 1.07223e-05 Status: MP BACKE PhiWrapSimple
+t: 8.06831e-09 t(sc) 0.806831 iter: 3 repeat_nr_iter: 0 h: 2.14447e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06874e-09 t(sc) 0.806874 iter: 4 repeat_nr_iter: 0 h: 4.28894e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06833e-09 t(sc) 0.806833 iter: 3 repeat_nr_iter: 0 h: 1.96852e-06 Status: MP BACKE PhiWrapSimple
+t: 8.06837e-09 t(sc) 0.806837 iter: 3 repeat_nr_iter: 0 h: 3.93703e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06845e-09 t(sc) 0.806845 iter: 3 repeat_nr_iter: 0 h: 7.87406e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06861e-09 t(sc) 0.806861 iter: 4 repeat_nr_iter: 0 h: 1.57481e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06846e-09 t(sc) 0.806846 iter: 3 repeat_nr_iter: 0 h: 7.22815e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06847e-09 t(sc) 0.806847 iter: 3 repeat_nr_iter: 0 h: 1.44563e-06 Status: MP BACKE PhiWrapLinear
+t: 8.0685e-09 t(sc) 0.80685 iter: 3 repeat_nr_iter: 0 h: 2.89126e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06856e-09 t(sc) 0.806856 iter: 3 repeat_nr_iter: 0 h: 5.78252e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06867e-09 t(sc) 0.806867 iter: 4 repeat_nr_iter: 0 h: 1.1565e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06856e-09 t(sc) 0.806856 iter: 3 repeat_nr_iter: 0 h: 5.30812e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06857e-09 t(sc) 0.806857 iter: 3 repeat_nr_iter: 0 h: 1.06162e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06859e-09 t(sc) 0.806859 iter: 4 repeat_nr_iter: 0 h: 2.12325e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06857e-09 t(sc) 0.806857 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06858e-09 t(sc) 0.806858 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06858e-09 t(sc) 0.806858 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06859e-09 t(sc) 0.806859 iter: 4 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06858e-09 t(sc) 0.806858 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06858e-09 t(sc) 0.806858 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06859e-09 t(sc) 0.806859 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06858e-09 t(sc) 0.806858 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06859e-09 t(sc) 0.806859 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06859e-09 t(sc) 0.806859 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06859e-09 t(sc) 0.806859 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 8.06859e-09 t(sc) 0.806859 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 8.0686e-09 t(sc) 0.80686 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 8.06862e-09 t(sc) 0.806862 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06865e-09 t(sc) 0.806865 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06871e-09 t(sc) 0.806871 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 8.06884e-09 t(sc) 0.806884 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 8.0691e-09 t(sc) 0.80691 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 8.06961e-09 t(sc) 0.806961 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 8.07063e-09 t(sc) 0.807063 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 8.07268e-09 t(sc) 0.807268 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t: 8.07678e-09 t(sc) 0.807678 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 8.08497e-09 t(sc) 0.808497 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 8.10135e-09 t(sc) 0.810135 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 8.13412e-09 t(sc) 0.813412 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 8.18723e-09 t(sc) 0.818723 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t: 8.24035e-09 t(sc) 0.824035 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t: 8.29346e-09 t(sc) 0.829346 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t: 8.34657e-09 t(sc) 0.834657 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 8.39968e-09 t(sc) 0.839968 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 8.4528e-09 t(sc) 0.84528 iter: 4 repeat_nr_iter: 0 h: 0.00531155 Status: MP BACKE PhiWrapLinear
+t: 8.50591e-09 t(sc) 0.850591 iter: 4 repeat_nr_iter: 0 h: 0.00531187 Status: MP BACKE PhiWrapLinear
+t = 8.50591e-09 (85%)
+t: 8.55904e-09 t(sc) 0.855904 iter: 4 repeat_nr_iter: 0 h: 0.00531227 Status: MP BACKE PhiWrapLinear
+t: 8.61216e-09 t(sc) 0.861216 iter: 4 repeat_nr_iter: 0 h: 0.00531274 Status: MP BACKE PhiWrapLinear
+t: 8.6653e-09 t(sc) 0.86653 iter: 4 repeat_nr_iter: 0 h: 0.0053133 Status: MP BACKE PhiWrapLinear
+t: 8.71844e-09 t(sc) 0.871844 iter: 4 repeat_nr_iter: 0 h: 0.00531394 Status: MP BACKE PhiWrapLinear
+t: 8.77158e-09 t(sc) 0.877158 iter: 4 repeat_nr_iter: 0 h: 0.0053147 Status: MP BACKE PhiWrapLinear
+t: 8.82474e-09 t(sc) 0.882474 iter: 4 repeat_nr_iter: 0 h: 0.00531558 Status: MP BACKE PhiWrapLinear
+t: 8.87791e-09 t(sc) 0.887791 iter: 4 repeat_nr_iter: 0 h: 0.0053166 Status: MP BACKE PhiWrapLinear
+t: 8.93108e-09 t(sc) 0.893108 iter: 4 repeat_nr_iter: 0 h: 0.00531779 Status: MP BACKE PhiWrapLinear
+t: 8.98428e-09 t(sc) 0.898428 iter: 4 repeat_nr_iter: 0 h: 0.00531919 Status: MP BACKE PhiWrapLinear
+t: 9.03748e-09 t(sc) 0.903748 iter: 4 repeat_nr_iter: 0 h: 0.00532082 Status: MP BACKE PhiWrapLinear
+t = 9.03748e-09 (90%)
+t: 9.09071e-09 t(sc) 0.909071 iter: 4 repeat_nr_iter: 0 h: 0.00532277 Status: MP BACKE PhiWrapLinear
+t: 9.14396e-09 t(sc) 0.914396 iter: 4 repeat_nr_iter: 0 h: 0.0053251 Status: MP BACKE PhiWrapLinear
+t: 9.19724e-09 t(sc) 0.919724 iter: 4 repeat_nr_iter: 0 h: 0.00532792 Status: MP BACKE PhiWrapLinear
+t: 9.25056e-09 t(sc) 0.925056 iter: 4 repeat_nr_iter: 0 h: 0.00533139 Status: MP BACKE PhiWrapLinear
+t: 9.30391e-09 t(sc) 0.930391 iter: 4 repeat_nr_iter: 0 h: 0.00533574 Status: MP BACKE PhiWrapLinear
+t: 9.35733e-09 t(sc) 0.935733 iter: 4 repeat_nr_iter: 0 h: 0.00534135 Status: MP BACKE PhiWrapLinear
+t: 9.41081e-09 t(sc) 0.941081 iter: 4 repeat_nr_iter: 0 h: 0.00534881 Status: MP BACKE PhiWrapLinear
+t: 9.4643e-09 t(sc) 0.94643 iter: 4 repeat_nr_iter: 0 h: 0.0053485 Status: MP BACKE PhiWrapLinear
+t: 9.5177e-09 t(sc) 0.95177 iter: 4 repeat_nr_iter: 0 h: 0.00534025 Status: MP BACKE PhiWrapLinear
+t = 9.5177e-09 (95%)
+t: 9.57102e-09 t(sc) 0.957102 iter: 4 repeat_nr_iter: 0 h: 0.00533221 Status: MP BACKE PhiWrapLinear
+t: 9.62427e-09 t(sc) 0.962427 iter: 4 repeat_nr_iter: 0 h: 0.00532438 Status: MP BACKE PhiWrapLinear
+t: 9.67743e-09 t(sc) 0.967743 iter: 4 repeat_nr_iter: 0 h: 0.00531672 Status: MP BACKE PhiWrapLinear
+t: 9.62625e-09 t(sc) 0.962625 iter: 4 repeat_nr_iter: 0 h: 0.000198681 Status: MP BACKE PhiWrapSimple
+t: 9.63023e-09 t(sc) 0.963023 iter: 4 repeat_nr_iter: 0 h: 0.000397362 Status: MP BACKE PhiWrapLinear
+t: 9.63818e-09 t(sc) 0.963818 iter: 4 repeat_nr_iter: 0 h: 0.000794724 Status: MP BACKE PhiWrapLinear
+t: 9.65407e-09 t(sc) 0.965407 iter: 4 repeat_nr_iter: 0 h: 0.00158945 Status: MP BACKE PhiWrapLinear
+t: 9.63869e-09 t(sc) 0.963869 iter: 3 repeat_nr_iter: 0 h: 5.1648e-05 Status: MP BACKE PhiWrapSimple
+t: 9.63972e-09 t(sc) 0.963972 iter: 4 repeat_nr_iter: 0 h: 0.000103296 Status: MP BACKE PhiWrapLinear
+t: 9.63873e-09 t(sc) 0.963873 iter: 3 repeat_nr_iter: 0 h: 3.35744e-06 Status: MP BACKE PhiWrapSimple
+t: 9.63879e-09 t(sc) 0.963879 iter: 3 repeat_nr_iter: 0 h: 6.71489e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63893e-09 t(sc) 0.963893 iter: 3 repeat_nr_iter: 0 h: 1.34298e-05 Status: MP BACKE PhiWrapLinear
+t: 9.6392e-09 t(sc) 0.96392 iter: 3 repeat_nr_iter: 0 h: 2.68596e-05 Status: MP BACKE PhiWrapLinear
+t: 9.63973e-09 t(sc) 0.963973 iter: 4 repeat_nr_iter: 0 h: 5.37191e-05 Status: MP BACKE PhiWrapLinear
+t: 9.63921e-09 t(sc) 0.963921 iter: 3 repeat_nr_iter: 0 h: 1.74613e-06 Status: MP BACKE PhiWrapSimple
+t: 9.63925e-09 t(sc) 0.963925 iter: 3 repeat_nr_iter: 0 h: 3.49226e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63932e-09 t(sc) 0.963932 iter: 3 repeat_nr_iter: 0 h: 6.98451e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63946e-09 t(sc) 0.963946 iter: 4 repeat_nr_iter: 0 h: 1.3969e-05 Status: MP BACKE PhiWrapLinear
+t: 9.63932e-09 t(sc) 0.963932 iter: 3 repeat_nr_iter: 0 h: 4.54078e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63933e-09 t(sc) 0.963933 iter: 3 repeat_nr_iter: 0 h: 9.08155e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63935e-09 t(sc) 0.963935 iter: 3 repeat_nr_iter: 0 h: 1.81631e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63939e-09 t(sc) 0.963939 iter: 4 repeat_nr_iter: 0 h: 3.63262e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63935e-09 t(sc) 0.963935 iter: 3 repeat_nr_iter: 0 h: 1.18084e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63935e-09 t(sc) 0.963935 iter: 3 repeat_nr_iter: 0 h: 2.36169e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63936e-09 t(sc) 0.963936 iter: 3 repeat_nr_iter: 0 h: 4.72337e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63937e-09 t(sc) 0.963937 iter: 3 repeat_nr_iter: 0 h: 9.44674e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63939e-09 t(sc) 0.963939 iter: 4 repeat_nr_iter: 0 h: 1.88935e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63937e-09 t(sc) 0.963937 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63937e-09 t(sc) 0.963937 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63937e-09 t(sc) 0.963937 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 4 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 4 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 4 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63938e-09 t(sc) 0.963938 iter: 4 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 1e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63938e-09 t(sc) 0.963938 iter: 3 repeat_nr_iter: 0 h: 2e-07 Status: MP BACKE PhiWrapSimple
+t: 9.63939e-09 t(sc) 0.963939 iter: 3 repeat_nr_iter: 0 h: 4e-07 Status: MP BACKE PhiWrapLinear
+t: 9.6394e-09 t(sc) 0.96394 iter: 3 repeat_nr_iter: 0 h: 8e-07 Status: MP BACKE PhiWrapLinear
+t: 9.63941e-09 t(sc) 0.963941 iter: 3 repeat_nr_iter: 0 h: 1.6e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63944e-09 t(sc) 0.963944 iter: 3 repeat_nr_iter: 0 h: 3.2e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63951e-09 t(sc) 0.963951 iter: 3 repeat_nr_iter: 0 h: 6.4e-06 Status: MP BACKE PhiWrapLinear
+t: 9.63964e-09 t(sc) 0.963964 iter: 3 repeat_nr_iter: 0 h: 1.28e-05 Status: MP BACKE PhiWrapLinear
+t: 9.63989e-09 t(sc) 0.963989 iter: 3 repeat_nr_iter: 0 h: 2.56e-05 Status: MP BACKE PhiWrapLinear
+t: 9.6404e-09 t(sc) 0.96404 iter: 3 repeat_nr_iter: 0 h: 5.12e-05 Status: MP BACKE PhiWrapLinear
+t: 9.64143e-09 t(sc) 0.964143 iter: 3 repeat_nr_iter: 0 h: 0.0001024 Status: MP BACKE PhiWrapLinear
+t: 9.64348e-09 t(sc) 0.964348 iter: 4 repeat_nr_iter: 0 h: 0.0002048 Status: MP BACKE PhiWrapLinear
+t: 9.64757e-09 t(sc) 0.964757 iter: 4 repeat_nr_iter: 0 h: 0.0004096 Status: MP BACKE PhiWrapLinear
+t: 9.65576e-09 t(sc) 0.965576 iter: 4 repeat_nr_iter: 0 h: 0.0008192 Status: MP BACKE PhiWrapLinear
+t: 9.67215e-09 t(sc) 0.967215 iter: 4 repeat_nr_iter: 0 h: 0.0016384 Status: MP BACKE PhiWrapLinear
+t: 9.70492e-09 t(sc) 0.970492 iter: 4 repeat_nr_iter: 0 h: 0.0032768 Status: MP BACKE PhiWrapLinear
+t: 9.75802e-09 t(sc) 0.975802 iter: 4 repeat_nr_iter: 0 h: 0.00531084 Status: MP BACKE PhiWrapLinear
+t: 9.81114e-09 t(sc) 0.981114 iter: 4 repeat_nr_iter: 0 h: 0.00531188 Status: MP BACKE PhiWrapLinear
+t: 9.86425e-09 t(sc) 0.986425 iter: 4 repeat_nr_iter: 0 h: 0.00531094 Status: MP BACKE PhiWrapLinear
+t: 9.91736e-09 t(sc) 0.991736 iter: 4 repeat_nr_iter: 0 h: 0.00531108 Status: MP BACKE PhiWrapLinear
+t: 9.97048e-09 t(sc) 0.997048 iter: 4 repeat_nr_iter: 0 h: 0.00531128 Status: MP BACKE PhiWrapLinear
+t: 1e-08 t(sc) 1 iter: 4 repeat_nr_iter: 0 h: 0.00295236 Status: MP BACKE PhiWrapLinear
+Number of timesteps: 492
+Transient Simulation Done. Num of Nonlin iters: 1742 
+	Freeing MNA
+Freeing Main Circuit ...
+	Freeing Nodes and Elements
+Cleaning Main Circuit ...
+	Freeing Parsed circuit: 'Main Circuit'
