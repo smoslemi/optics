@@ -146,7 +146,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 
 .param lam=1513
 %.op 
-.DC vcar 1500 1580 .05
+.DC vcar 1500 1580 1
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 
