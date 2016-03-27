@@ -14,6 +14,7 @@ Osp Jobcontrol Verbosity=DEBUG  AllMon=0 AllMon=0
 
 .param Noff = '1.6532'
 .param Non = '1.6532'
+.param NonWG = '1.4'
 
 .param NMODES=1
 
@@ -31,7 +32,10 @@ v41 Mag4 0 DC = 1
 v42 Phi4 0 DC = 0 
 
 v51 Mag5 0 DC = 1 
-v52 Phi5 0 DC = 0 
+v52 Phi5 0 DC = 0
+
+v3p51 Mag3p5 0 DC = 1 
+v3p52 Phi3p5 0 DC = 0 
 
 * lambda sweep Voltage
 vcar vc 0 DC=1513
@@ -70,6 +74,28 @@ Osp MIRROR        Name = Xmir23 Nodes = [x23] MoName = Mmodel
 Osp MIRROR        Name = Xmir24 Nodes = [x24] MoName = Mmodel 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% circuit 3.5, One ring and one cross with waveguides
+
+Osp CWSOURCE      Name = Rcw3p5 Nodes = [Mag3p5 Phi3p5 N61] MoName = CWmodel lambda = lam CarrierFreqNode=vc
+
+Osp OpticalRing   Name = ring6 Nodes = [N61 N62 N63 N64] MoName = RingModel1
+Osp MIRROR        Name = mirN62 Nodes = [N62] MoName = Mmodel
+
+Osp WaveGuide  Name=wg1 Nodes = [N63 x71] MoName=WGmodel  
+Osp WaveGuide  Name=wg2 Nodes = [N64 x72] MoName=WGmodel
+  
+Osp XCOUPLER    Name=wx7 Nodes = [x71 x72 x73 x74] MoName=WXmodel  
+
+Osp WaveGuide  Name=wg3 Nodes = [x73 w3e] MoName=WGmodel  
+Osp WaveGuide  Name=wg4 Nodes = [x74 w4n] MoName=WGmodel 
+
+Osp MIRROR        Name = WGmir3e Nodes = [w3e] MoName = Mmodel 
+Osp MIRROR        Name = WGmir4n Nodes = [w4n] MoName = Mmodel 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 % circuit 4, One ring and two crosses
 
 Osp CWSOURCE      Name = Rcw4 Nodes = [Mag4 Phi4 N31] MoName = CWmodel lambda = lam CarrierFreqNode=vc
@@ -106,6 +132,7 @@ Osp MIRROR        Name = mirx64 Nodes = [x64] MoName = Mmodel
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
 % Mirror Model
 Osp Model Name = Mmodel   type = MIRROR Ref = 0.0 
 
@@ -135,9 +162,14 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 +                         Through=0.8 Right=0.15 Left=0.4 Ref=0.1 
 
 
+
+% WGuide model
+Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[Non]  N0=Non NF=Non
+%Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[NonWG]  N0=Non NF=Non
+
 ** gain is for pwr so sqrt is taken 
-.param gain='1'
-%.param gain='0.9'
+%.param gain='1'
+.param gain='0.85'
 
 .param r1='10.35'
 .param r2='10.30'
@@ -146,7 +178,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 
 .param lam=1513
 %.op 
-.DC vcar 1512 1518 0.01
+.DC vcar 1510 1545 1
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 
@@ -155,7 +187,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 
 %.Monitor OptFields l5 Format=MagPhi Port=1 dir=IN  Pol=TE
 
-% Outputs for circut 1, Ring1
+% Outputs for circut 1, Ring1   //  8 outputs c2-c9
 .Monitor OptPower ring1 Port=1 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring1 Port=2 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring1 Port=3 dir=IN Pol=TE  P0db=1
@@ -167,7 +199,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 .Monitor OptPower ring1 Port=4 dir=OUT Pol=TE  P0db=1
 
 
-% Outputs for circut 2, x1
+% Outputs for circut 2, x1  // 8 outputs c10-c17
 .Monitor OptPower wx1 Port=1 dir=IN Pol=TE  P0db=1
 .Monitor OptPower wx1 Port=2 dir=IN Pol=TE  P0db=1
 .Monitor OptPower wx1 Port=3 dir=IN Pol=TE  P0db=1
@@ -179,7 +211,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 .Monitor OptPower wx1 Port=4 dir=OUT Pol=TE  P0db=1
 
 
-% Outputs for circut 3, (Ring2, x2)
+% Outputs for circut 3, (Ring2, x2) // 16 outputs c18-c33
 .Monitor OptPower ring2 Port=1 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring2 Port=2 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring2 Port=3 dir=IN Pol=TE  P0db=1
@@ -201,7 +233,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 .Monitor OptPower wx2 Port=4 dir=OUT Pol=TE  P0db=1
 
 
-% Outputs for circut 4, (Ring3, x3, x4)
+% Outputs for circut 4, (Ring3, x3, x4) // 24 outputs c34-c57
 .Monitor OptPower ring3 Port=1 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring3 Port=2 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring3 Port=3 dir=IN Pol=TE  P0db=1
@@ -232,7 +264,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 .Monitor OptPower wx4 Port=3 dir=OUT Pol=TE  P0db=1
 .Monitor OptPower wx4 Port=4 dir=OUT Pol=TE  P0db=1
 
-% Outputs for circut 5, (Ring4, Ring5, x5, x6)
+% Outputs for circut 5, (Ring4, Ring5, x5, x6) // 32 outputs c58-c89
 .Monitor OptPower ring4 Port=1 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring4 Port=2 dir=IN Pol=TE  P0db=1
 .Monitor OptPower ring4 Port=3 dir=IN Pol=TE  P0db=1
@@ -272,5 +304,34 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 .Monitor OptPower wx6 Port=2 dir=OUT Pol=TE  P0db=1
 .Monitor OptPower wx6 Port=3 dir=OUT Pol=TE  P0db=1
 .Monitor OptPower wx6 Port=4 dir=OUT Pol=TE  P0db=1
+
+
+
+% Outputs for circut 3.5, (Ring6, x7, x1-4) // 20 outputs c90-c109
+.Monitor OptPower ring6 Port=1 dir=IN Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=2 dir=IN Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=3 dir=IN Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=4 dir=IN Pol=TE  P0db=1
+
+.Monitor OptPower ring6 Port=1 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=2 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=3 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower ring6 Port=4 dir=OUT Pol=TE  P0db=1
+
+.Monitor OptPower wx7 Port=1 dir=IN Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=2 dir=IN Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=3 dir=IN Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=4 dir=IN Pol=TE  P0db=1
+
+.Monitor OptPower wx7 Port=1 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=2 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=3 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower wx7 Port=4 dir=OUT Pol=TE  P0db=1
+
+.Monitor OptPower wg3 Port=2 dir=IN Pol=TE  P0db=1
+.Monitor OptPower wg4 Port=2 dir=IN Pol=TE  P0db=1
+
+.Monitor OptPower wg3 Port=2 dir=OUT Pol=TE  P0db=1
+.Monitor OptPower wg4 Port=2 dir=OUT Pol=TE  P0db=1
 
 .end

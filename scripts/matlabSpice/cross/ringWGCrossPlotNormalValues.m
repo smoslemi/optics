@@ -3,7 +3,7 @@ set(0,'DefaultFigureWindowStyle','docked');
 set(0,'defaultAxesXGrid','on');
 set(0,'defaultAxesYGrid','on');
 %set(groot,'defaultAxesLineStyleOrder',['-' '--' '.' '-.']);
-set(groot,'defaultAxesColorOrder',[1 0 0;0 1 0;0 0 1;1 1 0],'defaultAxesLineStyleOrder',{'-.','--'});
+set(groot,'defaultAxesColorOrder',[1 0 0;0 1 0;0 0 1;1 1 0],'defaultAxesLineStyleOrder',{'--',':+'});
 %set(0,'DefaultAxesColorOrder',[2 7 0 0],'DefaultAxesLineStyleOrder','-|--|:|-.');
 set(0,'DefaultLineMarkerSize',1);
 %set(0,'defaultYGrid','Minor');
@@ -19,7 +19,7 @@ set(0,'DefaultLineMarkerSize',1);
 
 
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
-base = 'ringsCrossComb';
+base = 'ringWGCross';
 outputFile = strcat(base,'.0-DC.2d_dat');
 basefile = strcat(base,'.sp');
 baseFileFull = strcat(basePath,basefile);
@@ -137,7 +137,7 @@ N21Out_TH = 0.1.*x21In_TH;
 N23In_TH = 0.1.*x21In_TH;
 
 x22Out_TH=0.15.*x21In;
-x22In_TH = 0; % (TBD ?)
+
 
 % N22In_TH = Drop port of Ring 2 
 N22Out_TH = 0 ; %(TBD ?)
@@ -148,7 +148,13 @@ x23Out_TH=0.8.*x21In;
 x24In_TH = 0 ; %(TBD ?)
 x24Out_TH=0.4.*x21In;
 
-% N24Out is the Add port of Ring2
+% N24Out is the Add port of Ring 2 AND 
+ % drop port of Ring 2 with Input at N23IN
+% N24Out_TH= 0.3172.*N23In;  % 0.3172 is the ration of In/Add = N21In/N22In
+% N24Out_TH2= 0.3172.*N23In_TH;  % 0.3172 is the ration of In/Add = N21In/N22In
+%x22In_TH = N24Out; % 
+
+
 N24In_TH = x22Out_TH;
 
 %Circuit 4, (Ring3, x3, x4)
@@ -243,31 +249,31 @@ N44In=output(:,61);
 N41Out=output(:,62);
 N42Out=output(:,63);
 N43Out=output(:,64);
-N44Out=output(:,64);
-x51In=output(:,65);
-x52In=output(:,66);
-x53In=output(:,67);
-x54In=output(:,68);
-x51Out=output(:,69);
-x52Out=output(:,70);
-x53Out=output(:,71);
-x54Out=output(:,72);
-N51In=output(:,73);
-N52In=output(:,74);
-N53In=output(:,74);
-N54In=output(:,76);
-N51Out=output(:,77);
-N52Out=output(:,78);
-N53Out=output(:,79);
-N54Out=output(:,80);
-x61In=output(:,81);
-x62In=output(:,82);
-x63In=output(:,83);
-x64In=output(:,84);
-x61Out=output(:,85);
-x62Out=output(:,86);
-x63Out=output(:,87);
-x64Out=output(:,88);
+N44Out=output(:,65);
+x51In=output(:,66);
+x52In=output(:,67);
+x53In=output(:,68);
+x54In=output(:,69);
+x51Out=output(:,70);
+x52Out=output(:,71);
+x53Out=output(:,72);
+x54Out=output(:,73);
+N51In=output(:,74);
+N52In=output(:,75);
+N53In=output(:,76);
+N54In=output(:,77);
+N51Out=output(:,78);
+N52Out=output(:,79);
+N53Out=output(:,80);
+N54Out=output(:,81);
+x61In=output(:,82);
+x62In=output(:,83);
+x63In=output(:,84);
+x64In=output(:,85);
+x61Out=output(:,86);
+x62Out=output(:,87);
+x63Out=output(:,88);
+x64Out=output(:,89);
 
 
 
@@ -334,6 +340,92 @@ N44In_TH = x52Out_TH ;
 x62Out_TH = 0.15 .* x61In_TH;
 x63Out_TH = 0.8 .* x61In_TH;
 x64Out_TH = 0.4 .* x61In_TH;
+
+
+%Circuit 3.5, (Ring6, x7, w1-4)
+N61In=output(:,90);
+N62In=output(:,91);
+N63In=output(:,92);
+N64In=output(:,93);
+N61Out=output(:,94);
+N62Out=output(:,95);
+N63Out=output(:,96);
+N64Out=output(:,97);
+x71In=output(:,98);
+x72In=output(:,99);
+x73In=output(:,100);
+x74In=output(:,101);
+x71Out=output(:,102);
+x72Out=output(:,103);
+x73Out=output(:,104);
+x74Out=output(:,105);
+
+
+w3eIn=output(:,106);
+w4nIn=output(:,107);
+w3eOut=output(:,108);
+w4nOut=output(:,109);
+
+
+N61In=10.^(N61In/20);
+N62In=10.^(N62In/20);
+N63In=10.^(N63In/20);
+N64In=10.^(N64In/20);
+N61Out=10.^(N61Out/20);
+N62Out=10.^(N62Out/20);
+N63Out=10.^(N63Out/20);
+N64Out=10.^(N64Out/20);
+x71In=10.^(x71In/20);
+x72In=10.^(x72In/20);
+x73In=10.^(x73In/20);
+x74In=10.^(x74In/20);
+x71Out=10.^(x71Out/20);
+x72Out=10.^(x72Out/20);
+x73Out=10.^(x73Out/20);
+x74Out=10.^(x74Out/20);
+
+w3eIn=10.^(w3eIn/20);
+w4nIn=10.^(w4nIn/20);
+w3eOut=10.^(w3eOut/20);
+w4nOut=10.^(w4nOut/20);
+
+
+
+%Theory
+
+x71In_TH = N63Out; % will have a phase shift because of the waveguide wg1
+x71Out_TH = 0.1.*x71In_TH;
+
+% N61In_TH = Input of Ring 6, CWSourse 
+N61Out_TH = x71Out_TH; % Through of Ring 6 with input as N63In_TH 
+
+% N63Out is the through port of Ring 6
+N63In_TH = x71Out_TH;
+
+x72Out_TH=0.15.*x71In;
+x72In_TH = N64Out; % will have a phase shift because of the waveguide wg1
+
+% N62In_TH = Drop port of Ring 6 and
+             % % Through of Ring 6 with input as N64In 
+N62Out_TH = 0 ; 
+
+
+x73In_TH = 0 ;%(TBD ?)
+x73Out_TH=0.8.*x71In;
+
+x74In_TH = 0 ; %(TBD ?)
+x74Out_TH=0.4.*x71In;
+
+% N64Out is the Add port of Ring 6 and
+  % Drop of Ring 2 with Input N63In
+
+N64In_TH = x72Out_TH; 
+
+w3eIn_TH= 0;
+w3eOut_TH= x73Out; % will have a phase shift because of the waveguide 
+
+w4nIn_TH= 0;
+w4nOut_TH= x74Out; % will have a phase shift because of the waveguide 
 
 %figure;
 
@@ -402,14 +494,25 @@ subplot(4,2,6);
 plot(x,N23Out);
 subplot(4,2,8);
 plot(x,N24Out);
+%legend('N24Out','N24Out-TH');
 
+figure('name','Circuit 3, Ring 2 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');
+subplot(3,1,1);
+plot(x,N23In,x,N24Out);
+legend('N23In','N24Out');
+subplot(3,1,2);
+plot(x,N21In,x,N22In);
+legend('N21In','N22In');
+subplot(3,1,3);
+plot(x,N23In./N24Out,x,N21In./N22In);
+legend('Ratio 3,4', 'Ratio 1,2');
 figure('name','Circuit 3, xcross 2 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
 plot(x,x21In,x,x21In_TH);
 legend('x21In','x21In-TH');
 subplot(4,2,3);
 plot(x,x22In);
-legend('x22In');
+%legend('x22In','x22In_TH');
 subplot(4,2,5);
 plot(x,x23In);
 legend('x23In');
@@ -485,160 +588,310 @@ subplot(4,2,8);
 plot(x,x24Out,x,x14Out);
 legend('Xcross2','Xcross1');
 
-% %Circuit 4
-figure('name','Circuit 4, Ring 3 IN OUT signals','numbertitle','off');
+
+%Circuit 3.5
+figure('name','Circuit 3.5, Ring 6 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
-plot(x,N31In);
+plot(x,N61In);
 subplot(4,2,3);
-plot(x,N32In);
+plot(x,N62In);
 subplot(4,2,5);
-plot(x,N33In,x,N33In_TH);
-legend('N33In','N33In_TH');
+plot(x,N63In,x,N63In_TH);
+legend('N63In','N63In-TH');
 subplot(4,2,7);
-plot(x,N34In,x,N34In_TH);
-legend('N34In','N34In_TH');
+plot(x,N64In,x,N64In_TH);
+legend('N64In','N64In-TH');
 subplot(4,2,2);
-plot(x,N31Out,x,N31Out_TH);
-legend('N31Out','N31Out_TH');
+plot(x,N61Out,x,N61Out_TH);
+legend('N61Out','N61Out-TH');
 subplot(4,2,4);
-plot(x,N32Out,x,N32Out_TH);
-legend('N32Out','N32Out_TH');
+plot(x,N62Out,x,N62Out_TH);
+legend('N62Out','N62Out-TH');
 subplot(4,2,6);
-plot(x,N33Out);
+plot(x,N63Out);
 subplot(4,2,8);
-plot(x,N34Out);
+plot(x,N64Out);
 
-figure('name','Circuit 4, xcross 3 IN OUT signals','numbertitle','off');
+figure('name','Circuit 3.5, xcross 7 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
-plot(x,x31In,x,x31In_TH);
-legend('x31In','x31In-TH');
+plot(x,x71In,x,x71In_TH);
+legend('x71In','x71In-TH');
 subplot(4,2,3);
-plot(x,x32In);
+plot(x,x72In,x,x72In_TH);
+legend('x72In','x72In-TH');
 subplot(4,2,5);
-plot(x,x33In,x,x33In_TH);
-legend('x33In','x33In-TH');
+plot(x,x73In,x,x73In_TH);
+legend('x73In','x73In-TH');
 subplot(4,2,7);
-plot(x,x34In,x,x34In_TH);
-legend('x34In','x34In-TH');
+plot(x,x74In,x,x74In_TH);
+legend('x74In','x74In-TH');
 subplot(4,2,2);
-plot(x,x31Out,x,x31Out_TH);
-legend('x31Out','x31Out-TH');
+plot(x,x71Out,x,x71Out_TH);
+legend('x71Out','x71Out-TH');
 subplot(4,2,4);
-plot(x,x32Out,x,x32Out_TH);
-legend('x32Out','x32Out-TH');
+plot(x,x72Out,x,x72Out_TH);
+legend('x72Out','x72Out-TH');
 subplot(4,2,6);
-plot(x,x33Out,x,x33Out_TH);
-legend('x33Out','x33Out-TH');
+plot(x,x73Out,x,x73Out_TH);
+legend('x73Out','x73Out-TH');
 subplot(4,2,8);
-plot(x,x34Out,x,x34Out_TH);
-legend('x34Out','x34Out-TH');
+plot(x,x74Out,x,x74Out_TH);
+legend('x74Out','x74Out-TH');
 
-figure('name','Circuit 4, xcross 4 IN OUT signals','numbertitle','off');
+
+figure('name','Circuit 3.5, waveguides 1-4 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
-plot(x,x41In,x,x41In_TH);
-legend('x41OIn','x41In-TH');
-subplot(4,2,3);
-plot(x,x42In,x,x42In_TH);
-legend('x42OIn','x42In-TH');
-subplot(4,2,5);
-plot(x,x43In,x,x43In_TH);
-legend('x43OIn','x43In-TH');
-subplot(4,2,7);
-plot(x,x44In,x,x44In_TH);
-legend('x44OIn','x44In-TH');
+plot(x,N63In,':o',x,x71Out,'*');
+legend('wg1,P1In','wg1 P2Out');
 subplot(4,2,2);
-plot(x,x41Out,x,x41Out_TH);
-legend('x41Out','x41Out-TH');
+plot(x,N63Out,':o',x,x71In,'*');
+legend('wg1,P1Out','wg1 P2In');
+
+subplot(4,2,3);
+plot(x,N64In,':o',x,x72Out,'*');
+legend('wg2,P1In','wg2 P2Out');
 subplot(4,2,4);
-plot(x,x42Out,x,x42Out_TH);
-legend('x42Out','x42Out-TH');
+plot(x,N64Out,':o',x,x72In,'*');
+legend('wg2,P1Out','wg2 P2In');
+
+
+subplot(4,2,5);
+plot(x,x73Out,':o',x,w3eOut,'*');
+legend('wg3,P1Out','wg3 P2Out');
 subplot(4,2,6);
-plot(x,x43Out,x,x43Out_TH);
-legend('x43Out','x43Out-TH');
+plot(x,x73In,':o',x,w3eIn,'*');
+legend('wg3,P1In','wg3 P2In');
+
+subplot(4,2,7);
+plot(x,x74In,':o',x,w4nIn,'*');
+legend('wg4,P1In','wg4 P2In');
 subplot(4,2,8);
-plot(x,x44Out,x,x44Out_TH);
-legend('x44Out','x44Out-TH');
+plot(x,x74Out,':o',x,w4nOut,'*');
+legend('wg4,P1Out','wg4 P2Out');
 
-%Compare Ring3 and Ring1
+%Compare Ring6 and Ring2 and Ring1
 
-figure('name','Ring3 VS Ring1 IN OUT signals','numbertitle','off');
+figure('name','Ring 6 VS Ring2 VS Ring1 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
-plot(x,N31In,x,N11In);
-legend('Ring3','Ring1'); 
+plot(x,N61In,x,N21In,x,N11In);
+legend('Ring6','Ring2','Ring1');
+grid on;
+grid minor;
 subplot(4,2,3);
-plot(x,N32In,x,N12In);
-legend('Ring3','Ring1');
+plot(x,N62In,x,N22In,x,N12In);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,5);
-plot(x,N33In,x,N13In);
-legend('Ring3','Ring1');
+plot(x,N63In,x,N23In,x,N13In);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,7);
-plot(x,N34In,x,N14In);
-legend('Ring3','Ring1');
+plot(x,N64In,x,N24In,x,N14In);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,2);
-plot(x,N31Out,x,N11Out);
-legend('Ring3','Ring1');
+plot(x,N61Out,x,N21Out,x,N11Out);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,4);
-plot(x,N32Out,x,N12Out);
-legend('Ring3','Ring1');
+plot(x,N62Out,x,N22Out,x,N12Out);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,6);
-plot(x,N33Out,x,N13Out);
-legend('Ring3','Ring1');
+plot(x,N63Out,x,N23Out,x,N13Out);
+legend('Ring6','Ring2','Ring1');
 subplot(4,2,8);
-plot(x,N34Out,x,N14Out);
-legend('Ring3','Ring1');
+plot(x,N64Out,x,N24Out,x,N14Out);
+legend('Ring6','Ring2','Ring1');
 
-figure('name','Xcross3 VS XCcross1 IN OUT signals','numbertitle','off');
+
+figure('name','Circuit 3.5, Ring 5 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');
+subplot(3,1,1);
+plot(x,N63In,x,N64Out);
+legend('N63In','N64Out');
+subplot(3,1,2);
+plot(x,N61In,x,N62In);
+legend('N61In','N62In');
+subplot(3,1,3);
+plot(x,N63In./N64Out,x,N61In./N62In);
+legend('Ratio 3,4', 'Ratio 1,2');
+
+
+figure('name','Xcross7 VS Xcross2 VS XCcross1 IN OUT signals','numbertitle','off');
 subplot(4,2,1);
-plot(x,x31In,x,x11In);
-legend('Xcross3','Xcross1');
+plot(x,x71In,x,x21In,x,x11In);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,3);
-plot(x,x32In,x,x12In);
-legend('Xcross3','Xcross1');
+plot(x,x72In,x,x22In,x,x12In);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,5);
-plot(x,x33In,x,x13In);
-legend('Xcross3','Xcross1');
+plot(x,x73In,x,x23In,x,x13In);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,7);
-plot(x,x34In,x,x14In);
-legend('Xcross3','Xcross1');
+plot(x,x74In,x,x24In,x,x14In);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,2);
-plot(x,x31Out,x,x11Out);
-legend('Xcross3','Xcross1');
+plot(x,x71Out,x,x21Out,x,x11Out);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,4);
-plot(x,x32Out,x,x12Out);
-legend('Xcross3','Xcross1');
+plot(x,x72Out,x,x22Out,x,x12Out);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,6);
-plot(x,x33Out,x,x13Out);
-legend('Xcross3','Xcross1');
+plot(x,x73Out,x,x23Out,x,x13Out);
+legend('Xcross7','Xcross2','Xcross1');
 subplot(4,2,8);
-plot(x,x34Out,x,x14Out);
-legend('Xcross3','Xcross1');
+plot(x,x74Out,x,x24Out,x,x14Out);
+legend('Xcross7','Xcross2','Xcross1');
 
-
-figure('name','Xcross4 VS XCcross1 IN OUT signals','numbertitle','off');
-subplot(4,2,1);
-plot(x,x41In,x,x11In);
-legend('Xcross4','Xcross1');
-subplot(4,2,3);
-plot(x,x42In,x,x12In);
-legend('Xcross4','Xcross1');
-subplot(4,2,5);
-plot(x,x43In,x,x13In);
-legend('Xcross4','Xcross1');
-subplot(4,2,7);
-plot(x,x44In,x,x14In);
-legend('Xcross4','Xcross1');
-subplot(4,2,2);
-plot(x,x41Out,x,x11Out);
-legend('Xcross4','Xcross1');
-subplot(4,2,4);
-plot(x,x42Out,x,x12Out);
-legend('Xcross4','Xcross1');
-subplot(4,2,6);
-plot(x,x43Out,x,x13Out);
-legend('Xcross4','Xcross1');
-subplot(4,2,8);
-plot(x,x44Out,x,x14Out);
-legend('Xcross4','Xcross1');
+% % %Circuit 4
+% figure('name','Circuit 4, Ring 3 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,N31In);
+% subplot(4,2,3);
+% plot(x,N32In);
+% subplot(4,2,5);
+% plot(x,N33In,x,N33In_TH);
+% legend('N33In','N33In_TH');
+% subplot(4,2,7);
+% plot(x,N34In,x,N34In_TH);
+% legend('N34In','N34In_TH');
+% subplot(4,2,2);
+% plot(x,N31Out,x,N31Out_TH);
+% legend('N31Out','N31Out_TH');
+% subplot(4,2,4);
+% plot(x,N32Out,x,N32Out_TH);
+% legend('N32Out','N32Out_TH');
+% subplot(4,2,6);
+% plot(x,N33Out);
+% subplot(4,2,8);
+% plot(x,N34Out);
+% 
+% figure('name','Circuit 4, xcross 3 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,x31In,x,x31In_TH);
+% legend('x31In','x31In-TH');
+% subplot(4,2,3);
+% plot(x,x32In);
+% subplot(4,2,5);
+% plot(x,x33In,x,x33In_TH);
+% legend('x33In','x33In-TH');
+% subplot(4,2,7);
+% plot(x,x34In,x,x34In_TH);
+% legend('x34In','x34In-TH');
+% subplot(4,2,2);
+% plot(x,x31Out,x,x31Out_TH);
+% legend('x31Out','x31Out-TH');
+% subplot(4,2,4);
+% plot(x,x32Out,x,x32Out_TH);
+% legend('x32Out','x32Out-TH');
+% subplot(4,2,6);
+% plot(x,x33Out,x,x33Out_TH);
+% legend('x33Out','x33Out-TH');
+% subplot(4,2,8);
+% plot(x,x34Out,x,x34Out_TH);
+% legend('x34Out','x34Out-TH');
+% 
+% figure('name','Circuit 4, xcross 4 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,x41In,x,x41In_TH);
+% legend('x41OIn','x41In-TH');
+% subplot(4,2,3);
+% plot(x,x42In,x,x42In_TH);
+% legend('x42OIn','x42In-TH');
+% subplot(4,2,5);
+% plot(x,x43In,x,x43In_TH);
+% legend('x43OIn','x43In-TH');
+% subplot(4,2,7);
+% plot(x,x44In,x,x44In_TH);
+% legend('x44OIn','x44In-TH');
+% subplot(4,2,2);
+% plot(x,x41Out,x,x41Out_TH);
+% legend('x41Out','x41Out-TH');
+% subplot(4,2,4);
+% plot(x,x42Out,x,x42Out_TH);
+% legend('x42Out','x42Out-TH');
+% subplot(4,2,6);
+% plot(x,x43Out,x,x43Out_TH);
+% legend('x43Out','x43Out-TH');
+% subplot(4,2,8);
+% plot(x,x44Out,x,x44Out_TH);
+% legend('x44Out','x44Out-TH');
+% 
+% %Compare Ring3 and Ring1
+% 
+% figure('name','Ring3 VS Ring1 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,N31In,x,N11In);
+% legend('Ring3','Ring1'); 
+% subplot(4,2,3);
+% plot(x,N32In,x,N12In);
+% legend('Ring3','Ring1');
+% subplot(4,2,5);
+% plot(x,N33In,x,N13In);
+% legend('Ring3','Ring1');
+% subplot(4,2,7);
+% plot(x,N34In,x,N14In);
+% legend('Ring3','Ring1');
+% subplot(4,2,2);
+% plot(x,N31Out,x,N11Out);
+% legend('Ring3','Ring1');
+% subplot(4,2,4);
+% plot(x,N32Out,x,N12Out);
+% legend('Ring3','Ring1');
+% subplot(4,2,6);
+% plot(x,N33Out,x,N13Out);
+% legend('Ring3','Ring1');
+% subplot(4,2,8);
+% plot(x,N34Out,x,N14Out);
+% legend('Ring3','Ring1');
+% 
+% figure('name','Xcross3 VS XCcross1 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,x31In,x,x11In);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,3);
+% plot(x,x32In,x,x12In);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,5);
+% plot(x,x33In,x,x13In);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,7);
+% plot(x,x34In,x,x14In);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,2);
+% plot(x,x31Out,x,x11Out);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,4);
+% plot(x,x32Out,x,x12Out);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,6);
+% plot(x,x33Out,x,x13Out);
+% legend('Xcross3','Xcross1');
+% subplot(4,2,8);
+% plot(x,x34Out,x,x14Out);
+% legend('Xcross3','Xcross1');
+% 
+% 
+% figure('name','Xcross4 VS XCcross1 IN OUT signals','numbertitle','off');
+% subplot(4,2,1);
+% plot(x,x41In,x,x11In);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,3);
+% plot(x,x42In,x,x12In);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,5);
+% plot(x,x43In,x,x13In);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,7);
+% plot(x,x44In,x,x14In);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,2);
+% plot(x,x41Out,x,x11Out);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,4);
+% plot(x,x42Out,x,x12Out);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,6);
+% plot(x,x43Out,x,x13Out);
+% legend('Xcross4','Xcross1');
+% subplot(4,2,8);
+% plot(x,x44Out,x,x14Out);
+% legend('Xcross4','Xcross1');
 
 
 %Circuit 5
