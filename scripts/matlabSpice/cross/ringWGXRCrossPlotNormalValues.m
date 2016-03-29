@@ -49,19 +49,24 @@ TH5=0.7;
 Right5= 0.15;
 Left5= 0.0;
 
-%baseArray= {base1, base2};
+base6= 'ringWGXRCrossRight';
+Ref6=0.0;
+TH6=0.7;
+Right6= 0.30;
+Left6= 0.0;
+
+
+base7= 'ringWGXRCrossLeft';
+Ref7=0.0;
+TH7=0.7;
+Right7= 0.0;
+Left7= 0.2;
+
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
 
 
 
-
-%display(char(baseArray(1)));
-%TestoutputFile1 = strcat(baseArray(1),'.1-DC.2d_dat');
-%display(TestoutputFile1);
-%TestoutputFile2 = eval(TestoutputFile1);
-%display(TestoutputFile2);
-
-for i=1:5
+for i=1:7
     bName=(strcat('base',num2str(i)));
     refName=(strcat('Ref',num2str(i)));
     thName=(strcat('TH',num2str(i)));
@@ -75,7 +80,7 @@ for i=1:5
     display(base)
 
 %base = 'ringWGXRCross';
-display(base)    
+%display(base)    
 outputFile = strcat(base,'.1-DC.2d_dat');
 basefile = strcat(base,'.sp');
 baseFileFull = strcat(basePath,basefile);
@@ -86,7 +91,7 @@ snapshot = strcat('ringCross_', dateStamp);
 % mkdir(snapshot);
 snapshotFull=strcat('./',snapshot);
 % cd(snapshotFull);
-system(pwd);
+%system(pwd);
 %output = load('ringsCrossComb.0-DC.2d_dat');
 display(outputFile)
 output = load(outputFile);
@@ -420,7 +425,7 @@ subplot(4,2,8);
 plot(x,x74Out,':',x,w4nOut);
 legend('wg4,P1Out','wg4 P2Out');
 
-figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/3Th 3In/1Th signals'),'numbertitle','off');
+figure('name',strcat(base,' Circuit 3.5, Ring 6 In/TH relation 1In -> 3Th 3In --> 1Th signals'),'numbertitle','off');
 subplot(3,1,2);
 plot(x,N61In,x,N63Out);
 legend('N61In','N63Out');
@@ -428,10 +433,10 @@ subplot(3,1,1);
 plot(x,N63In,x,N61Out);
 legend('N63In','N61Out');
 subplot(3,1,3);
-plot(x,N61In./N63Out,x,N63In./N61Out);
-legend('Ratio 1,3', 'Ratio 3,1');
+plot(x,N63Out./N61In,x,N61Out./N63In);
+legend('Ratio N3(TH, Output)/N1(Input)', 'Ratio N1(TH, Output)/N3(Input)');
 
-figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/2Drop 3In/4Drop signals'),'numbertitle','off');
+figure('name',strcat(base,' Circuit 3.5, Ring 6 In/Drop relation 1In/2Drop 3In/4Drop signals'),'numbertitle','off');
 subplot(3,1,1);
 plot(x,N61In,x,N62In);
 legend('N61In','N62In');
@@ -439,8 +444,8 @@ subplot(3,1,2);
 plot(x,N63In,x,N64Out);
 legend('N63In','N64Out');
 subplot(3,1,3);
-plot(x,N61In./N62In,x,N63In./N64Out);
-legend('Ratio 1,2', 'Ratio 3,4');
+plot(x,N62In./N61In,x,N64Out./N63In);
+legend('Ratio N2(Drop, Output)/N1(Input)', 'Ratio N4(Drop, Output)/N3(Input)');
 
 
 % %Compare Ring6 and Ring2 and Ring1
@@ -542,6 +547,17 @@ TH5=0.7;
 Right5= 0.15;
 Left5= 0.0;
 
-%baseArray= {base1, base2};
+base6= 'ringWGXRCrossRight';
+Ref6=0.0;
+TH6=0.7;
+Right6= 0.3;
+Left6= 0.0;
+
+base7= 'ringWGXRCrossLeft';
+Ref7=0.0;
+TH7=0.7;
+Right7= 0.0;
+Left7= 0.2;
+
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
 end

@@ -75,22 +75,43 @@ basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
 
 
 x=outputFile(:,1);
-N62InTH=10.^(outputFileTH(:,3)./20);
-N62InRight=10.^(outputFileRight(:,3)./20);
-N64InRight=10.^(outputFileRight(:,5)./20);
-N64OutRight=10.^(outputFileRight(:,9)./20);
+
+% TH circuit
 N61InTH=10.^(outputFileTH(:,2)./20);
+N62InTH=10.^(outputFileTH(:,3)./20);
+N63InTH=10.^(outputFileTH(:,4)./20);
+N64InTH=10.^(outputFileTH(:,5)./20);
+N61OutTH=10.^(outputFileTH(:,6)./20);
+N62OutTH=10.^(outputFileTH(:,7)./20);
 N63OutTH=10.^(outputFileTH(:,8)./20);
+N64OutTH=10.^(outputFileTH(:,9)./20);
+fTH_TH=N63OutTH.*(N61InTH.^(-1));   % Input-Through function
+fDrop_TH=N62InTH.*(N61InTH.^(-1));   % Input-Drop function
+
+
+
+% Right circuit
 N61InRight=10.^(outputFileRight(:,2)./20);
+N62InRight=10.^(outputFileRight(:,3)./20);
+N63InRight=10.^(outputFileRight(:,4)./20);
+N64InRight=10.^(outputFileRight(:,5)./20);
+N61OutRight=10.^(outputFileRight(:,6)./20);
+N62OutRight=10.^(outputFileRight(:,7)./20);
 N63OutRight=10.^(outputFileRight(:,8)./20);
-fTH=N63OutTH.*(N61InTH.^(-1));
-fRight=N63OutRight.*(N61InRight.^(-1));
-N64InRight_fTH= fTH.* N64InRight;
-N64InRight_fRight= fRight.* N64InRight;
+N64OutRight=10.^(outputFileRight(:,9)./20);
+fTH_Right=N63OutRight.*(N61InRight.^(-1));   % Input-Through function
+fTH_Right=N62InRight.*(N61InRight.^(-1));   % Input-Drop function
+
+
+
+%Plot of Right cir.
+N64InRight_fTH= fTH_TH.* N64InRight;
+N64InRight_fRight= fTH_Right.* N64InRight;
 N62InRight_theo1= N62InTH + N64InRight_fTH;
-N62InRight_theo2= N62InTH + N64InRight_fRight;
-figure;
-plot(x,N62InRight,':r',x,N62InRight_theo1,'--xg',x,N62InRight_theo1,'-.b');
+%N62InRight_theo2= N62InTH + N64InRight_fRight;
+figure('name','Circuit Right, Drop(In dir.) Power details','numbertitle','off');
+plot(x,N62InRight,':r',x,N62InRight_theo1,'--g');
+legend('Drop of the Right cir.', 'Drop_theo = Drop of TH cir + Add of Right cir');
 
 
 % Mag and Phi output
@@ -99,23 +120,62 @@ N62InRightPhi=outputFileRight(:,25);
 
 N62InRightEr= N62InRightMag.*cos(N62InRightPhi);
 N62InRightEi= N62InRightMag.*sin(N62InRightPhi);
-figure;
+
+
+
+N62InTHMag=outputFileTH(:,24);
+N62InTHPhi=outputFileTH(:,25);
+
+N62InTHEr= N62InTHMag.*cos(N62InTHPhi);
+N62InTHEi= N62InTHMag.*sin(N62InTHPhi);
+
+
+figure('name','Circuit Right, Drop(In dir.) Field details','numbertitle','off');
 subplot(2,1,1);
 plot(x,N62InRightEr,':r',x,N62InRightEi,'--g',x,N62InRight,'-.b');
+legend('Er','Ei','Drop of the Right cir.');
 subplot(2,1,2);
 plot(x,N62InRightMag,':r',x,N62InRightPhi,'--g',x,N62InRight,'-.b');
-
+legend('Mag','Phi','Drop of the Right cir.');
 
 N64InRightMag=outputFileRight(:,28);
 N64InRightPhi=outputFileRight(:,29);
 
 N64InRightEr= N64InRightMag.*cos(N64InRightPhi);
 N64InRightEi= N64InRightMag.*sin(N64InRightPhi);
-figure;
+figure('name','Circuit Right, Add(In dir.) Field details','numbertitle','off');
 subplot(2,1,1);
 plot(x,N64InRightEr,':r',x,N64InRightEi,'--g',x,N64InRight,'-.b');
+legend('Er','Ei','Add(In dir.) of the Right cir.')
 subplot(2,1,2);
 plot(x,N64InRightMag,':r',x,N64InRightPhi,'--g',x,N64InRight,'-.b');
+legend('Mag','Phi','Add(In dir.) of the Right cir.');
+
+
+N62InRightEr_theo2= N62InTHEr + fTH_TH.*N64InRightEr;
+N62InRightEi_theo2= N62InTHEi + fTH_TH.*N64InRightEi;
+
+N62InRightEr_theo3= N62InTHEr + (fTH_TH.^0.5).*N64InRightEr;
+N62InRightEi_theo3= N62InTHEi + (fTH_TH.^0.5).*N64InRightEi;
+
+
+
+N62InRight_theo2 = sqrt(N62InRightEr_theo2.^2 + N62InRightEi_theo2.^2);
+N62InRight_theo3 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
+
+figure('name','Circuit Right, Drop(In dir.) Field details Phase shift','numbertitle','off');
+
+subplot(1,2,1);
+plot(x,N62InRight_theo2,':r',x,N62InRight,'--g');
+legend('N62InRight_theo2','Drop of the Right cir.');
+subplot(1,2,2);
+plot(x,N62InRight_theo3,':r',x,N62InRight,'--g');
+legend('N62InRight_theo3','Drop of the Right cir.');
+figure;
+plot(x,N62InRight_theo2,':r',x,N62InRight_theo3,'--g');
+legend('N62InRight_theo2','N62InRight_theo3');
+
+
 
 % 
 % for i=1:6
