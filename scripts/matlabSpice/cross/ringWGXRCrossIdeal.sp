@@ -106,7 +106,7 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[Non]  N0=Non NF=Non
 
 .param lam=1513
 .op 
-.DC vcar 1510 1580 0.1
+.DC vcar 1510 1600 0.1
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 

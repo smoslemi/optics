@@ -87,7 +87,7 @@ Osp Model Name = RingFilter1 type = MultiLayerFilter FilterType=Explicit
 
 % Xcouple model
 Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODES 
-+                         Through=0.7 Right=0.3 Left=0.0 Ref=0.0 
++                         Through=1.0 Right=0.0 Left=0.0 Ref=0.0 
 
 
 
@@ -106,7 +106,7 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[Non]  N0=Non NF=Non
 
 .param lam=1513
 .op 
-.DC vcar 1510 1580 0.1
+.DC vcar 1510 1600 0.1
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 
@@ -142,15 +142,5 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[Non]  N0=Non NF=Non
 
 .Monitor OptPower wg3 Port=2 dir=OUT Pol=TE  P0db=1
 .Monitor OptPower wg4 Port=2 dir=OUT Pol=TE  P0db=1
-
-.Monitor OptFields ring6 Format=MagPhi Port=1 dir=IN  Pol=TE %C22,23
-.Monitor OptFields ring6 Format=MagPhi Port=2 dir=IN  Pol=TE %C24,25
-.Monitor OptFields ring6 Format=MagPhi Port=3 dir=IN  Pol=TE %C24,
-.Monitor OptFields ring6 Format=MagPhi Port=4 dir=IN  Pol=TE %C25
-
-.Monitor OptFields ring6 Format=MagPhi Port=1 dir=OUT  Pol=TE %C26
-.Monitor OptFields ring6 Format=MagPhi Port=2 dir=OUT  Pol=TE %C27
-.Monitor OptFields ring6 Format=MagPhi Port=3 dir=OUT  Pol=TE %C28
-.Monitor OptFields ring6 Format=MagPhi Port=4 dir=OUT  Pol=TE %C29
 
 .end

@@ -252,18 +252,11 @@ plot(x,N62InRight,':r',x,N2Right,'--g',x,N62InRight_theo1,'-.b');
 legend('Sim','Theory', 'Thoery without Phase shift');
 subplot(2,2,3);
 plot(x,w3eOutRight,':r',x,N3Right,'--g',x,N63OutRight_theo1,'-.b');
-legend('Sim','Theory', 'Thoery without Phase shift');
+legend('Sim','Theory');
 subplot(2,2,4);
 plot(x,w4nOutRight,':r',x,N4Right,'--g');
 legend('Sim','Theory');
 
-figure('name','Circuit Right, Drop(In dir.)','numbertitle','off');
-plot(x,N62InRight,':r',x,N62InRight_theo1,':g',x,N62InRight_theo2,'-.b',x,N62InRight_theo3,'--y');
-legend('Sim','theo1','theo2','theo3');
-
-figure('name','Circuit Right, Th(Out dir.)','numbertitle','off');
-plot(x,N63OutRight,':r',x,N63OutRight_theo1,':g',x,N63OutRight_theo2,'-.b',x,N63OutRight_theo3,'--y');
-legend('Sim','theo1','theo2','theo3');
 
 %Plot of Right cir.
 % figure('name','Circuit Right, no Phase shift, Drop(In dir.) Power details','numbertitle','off');
@@ -292,7 +285,13 @@ legend('Sim','theo1','theo2','theo3');
 % legend('N64InRight Phi','Drop of N64InRight Phi');
 
 
+figure('name','Circuit Right, Drop(In dir.) Field details','numbertitle','off');
+plot(x,N62InRight,':r',x,N62InRight_theo1,':g',x,N62InRight_theo2,'-.b',x,N62InRight_theo3,'--y');
+legend('Sim','theo1','theo2','theo3');
 
+figure('name','Circuit Right, Th(Out dir.) Field details','numbertitle','off');
+plot(x,N63OutRight,':r',x,N63OutRight_theo1,':g',x,N63OutRight_theo2,'-.b',x,N63OutRight_theo3,'--y');
+legend('Sim','theo1','theo2','theo3');
 
 
 % figure('name','Circuit Right, Th(Out dir.) Field Real Imag','numbertitle','off');

@@ -4,19 +4,16 @@ set(0,'defaultAxesXGrid','on');
 set(0,'defaultAxesYGrid','on');
 %set(groot,'defaultAxesLineStyleOrder',['-' '--' '.' '-.']);
 set(groot,'defaultAxesColorOrder',[1 0 0;0 1 0;0 0 1;1 1 0],'defaultAxesLineStyleOrder',{'--',':'});
-%set(0,'DefaultAxesColorOrder',[2 7 0 0],'DefaultAxesLineStyleOrder','-|--|:|-.');
 set(0,'DefaultLineMarkerSize',1);
-%set(0,'defaultYGrid','Minor');
-%set(0,'AxesYMinorGrid','on');
-%set(0,'color','RED');
-%set(0,'defaultXMinorGrid','on');
-%set(0,'Grid','minor');
-%set(0,'GridVisible','TRUE');
-%GridVisible = TRUE;
-%set(0,'YMinorGrid','on');
 
-%set(gcf, 'position',[0 0 40 100]);
-
+dateStamp = datestr(now,'ddmmmyy_HHMM');
+display(dateStamp);
+snapshot = strcat('ringWGXRCross_', dateStamp);
+display(snapshot);
+mkdir(snapshot);
+snapshotFull=strcat('./',snapshot);
+cd(snapshotFull);
+system(pwd);
 
 
 base1= 'ringWGXRCross';
@@ -78,27 +75,19 @@ for i=1:7
     Right=eval(rightName);
     Left=eval(leftName);
     display(base)
-
-%base = 'ringWGXRCross';
-%display(base)    
-outputFile = strcat(base,'.1-DC.2d_dat');
-basefile = strcat(base,'.sp');
-baseFileFull = strcat(basePath,basefile);
-dateStamp = datestr(now,'ddmmmyy_HHMM');
-%display(dateStamp);
-snapshot = strcat('ringCross_', dateStamp);
-%display(snapshot);
-% mkdir(snapshot);
-snapshotFull=strcat('./',snapshot);
-% cd(snapshotFull);
-%system(pwd);
-%output = load('ringsCrossComb.0-DC.2d_dat');
-display(outputFile)
-output = load(outputFile);
-%outputFile;
-%x=ringCross_0_DC(:,1);
-%N11In=ringCross_0_DC(:,2);
-x=output(:,1);
+    outputFile = strcat(base,'.1-DC.2d_dat');
+    basefile = strcat(base,'.sp');
+    Simfile = strcat(base,'.sp');
+    display(basefile)
+    baseFileFull = strcat(basePath,basefile);
+    display(baseFileFull)
+    copyfile(baseFileFull,basefile);
+    ospice_cmd = sprintf('/Users/sanam/OptispiceBin/ospiceResearch %s ',Simfile);
+    disp(ospice_cmd);
+    system(ospice_cmd);
+    display(outputFile)
+    output = load(outputFile);
+    x=output(:,1);
 
 %Circuit 3.5, (Ring6, x7, w1-4)
 N61In=output(:,2);
@@ -516,48 +505,7 @@ legend('Ratio N2(Drop, Output)/N1(Input)', 'Ratio N4(Drop, Output)/N3(Input)');
 % subplot(4,2,8);
 % plot(x,x74Out,x,x24Out,x,x14Out);
 % legend('Xcross7','Xcross2','Xcross1');
-clear;
-base1= 'ringWGXRCross';
-Ref1=0.1;
-TH1=0.7;
-Right1= 0.15;
-Left1= 0.4;
-
-base2= 'ringWGXRCrossIdeal';
-Ref2=0.0;
-TH2=1.0;
-Right2= 0.0;
-Left2= 0.0;
-
-base3= 'ringWGXRCrossTH';
-Ref3=0.0;
-TH3=0.7;
-Right3= 0.0;
-Left3= 0.0;
-
-base4= 'ringWGXRCrossRef';
-Ref4=0.1;
-TH4=0.7;
-Right4= 0.0;
-Left4= 0.0;
-
-base5= 'ringWGXRCrossRefRight';
-Ref5=0.1;
-TH5=0.7;
-Right5= 0.15;
-Left5= 0.0;
-
-base6= 'ringWGXRCrossRight';
-Ref6=0.0;
-TH6=0.7;
-Right6= 0.15;
-Left6= 0.0;
-
-base7= 'ringWGXRCrossLeft';
-Ref7=0.0;
-TH7=0.7;
-Right7= 0.0;
-Left7= 0.2;
-
-basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
 end
+ringWGXRCrossExtra;
+cd(basePath);
+system(pwd);

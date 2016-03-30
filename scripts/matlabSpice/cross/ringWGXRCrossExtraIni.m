@@ -72,40 +72,13 @@ N63OutTH=10.^(outputFileTH(:,8)./20);
 N64OutTH=10.^(outputFileTH(:,9)./20);
 w3eOutTH=10.^(outputFileTH(:,20)./20);
 w4nOutTH=10.^(outputFileTH(:,21)./20);
-
-% Mag and Phi from dataSet
-N61InTHMag=outputFileTH(:,22);
-N61InTHPhi=outputFileTH(:,23);
-N62InTHMag=outputFileTH(:,24);
-N62InTHPhi=outputFileTH(:,25);
-N63OutTHMag=outputFileTH(:,34);
-N63OutTHPhi=outputFileTH(:,35);
+fTH_TH=N63OutTH.*(N61InTH.^(-1));   % Input-Through function for TH cir.
+fDrop_TH=N62InTH.*(N61InTH.^(-1));   % Input-Drop function for TH cir.
 
 
-% Convert to Real/Imag
-% TH cir.
-N61InTHEr= N61InTHMag.*cos(N61InTHPhi);
-N61InTHEi= N61InTHMag.*sin(N61InTHPhi);
-
-N62InTHEr= N62InTHMag.*cos(N62InTHPhi);
-N62InTHEi= N62InTHMag.*sin(N62InTHPhi);
-
-N63OutTHEr= N63OutTHMag.*cos(N63OutTHPhi);
-N63OutTHEi= N63OutTHMag.*sin(N63OutTHPhi);
-
-% Build the transer functions
-% Power
-fTH_TH=N63OutTH.*(N61InTH.^(-1));   % Input-Through Power transfer function for TH cir.
-fDrop_TH=N62InTH.*(N61InTH.^(-1));   % Input-Drop Power transferfunction for TH cir.
-% Mag/Phase
-fTH_TH_Mag=N63OutTHMag.*(N61InTHMag.^(-1));   % Input-Through Mag transfer function for TH cir.
-fTH_TH_Phi=N63OutTHPhi-N61InTHPhi;   % Input-Through Phase transfer function for TH cir.
-
-fDrop_TH_Mag=N62InTHMag.*(N61InTHMag.^(-1));   % Input-Drop Mag transfer function for TH cir.
-fDrop_TH_Phi=N62InTHPhi-N61InTHPhi;   % Input-Drop Phi transfer function for TH cir.
 
 
-% Expected
+%Expected
 N1TH=N61InTH;
 N2TH=N62InTH;
 N3TH=TH3.*N63OutTH;
@@ -127,15 +100,6 @@ subplot(2,2,4);
 plot(x,w4nOutTH,':r',x,N4TH,'--g');
 legend('Sim','Theory');
 
-figure('name','Circuit TH, Transfer functions','numbertitle','off');
-subplot(2,1,1);
-plot(x,fTH_TH_Mag,':r',x,fDrop_TH_Mag,'--g');
-legend('TH Mag','Drop Mag');
-subplot(2,1,2);
-plot(x,fTH_TH_Phi,':r',x,fDrop_TH_Phi,'--g');
-legend('TH Phi','Drop Phi');
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Right circuit
 N61InRight=10.^(outputFileRight(:,2)./20);
@@ -149,8 +113,29 @@ N64OutRight=10.^(outputFileRight(:,9)./20);
 w3eOutRight=10.^(outputFileRight(:,20)./20);
 w4nOutRight=10.^(outputFileRight(:,21)./20);
 
+fTH_Right=N63OutRight.*(N61InRight.^(-1));   % Input-Through function for Right cir.
+fDrop_Right=N62InRight.*(N61InRight.^(-1));   % Input-Drop function for Right cir.
+
 
 % Mag and Phi from dataSet
+% TH cir.
+N61InTHMag=outputFileTH(:,22);
+N61InTHPhi=outputFileTH(:,23);
+N62InTHMag=outputFileTH(:,24);
+N62InTHPhi=outputFileTH(:,25);
+N63OutTHMag=outputFileTH(:,34);
+N63OutTHPhi=outputFileTH(:,35);
+
+
+
+fTH_TH_Mag=N63OutTHMag.*(N61InTHMag.^(-1));   % Input-Through function for TH cir.
+fTH_TH_Phi=N63OutTHPhi-N61InTHPhi;   % Input-Through function for TH cir.
+
+fDrop_TH_Mag=N62InTHMag.*(N61InTHMag.^(-1));   % Input-Drop function for TH cir.
+fDrop_TH_Phi=N62InTHPhi-N61InTHPhi;   % Input-Drop function for TH cir.
+
+
+% Right cir.
 N62InRightMag=outputFileRight(:,24);
 N62InRightPhi=outputFileRight(:,25);
 N64InRightMag=outputFileRight(:,28);
@@ -158,7 +143,27 @@ N64InRightPhi=outputFileRight(:,29);
 N63OutRightMag=outputFileRight(:,34);
 N63OutRightPhi=outputFileRight(:,35);
 
+
 % Convert to Real/Imag
+% TH cir.
+N61InTHEr= N61InTHMag.*cos(N61InTHPhi);
+N61InTHEi= N61InTHMag.*sin(N61InTHPhi);
+
+N62InTHEr= N62InTHMag.*cos(N62InTHPhi);
+N62InTHEi= N62InTHMag.*sin(N62InTHPhi);
+
+N63OutTHEr= N63OutTHMag.*cos(N63OutTHPhi);
+N63OutTHEi= N63OutTHMag.*sin(N63OutTHPhi);
+
+figure('name','Circuit TH, Transfer functions','numbertitle','off');
+subplot(2,1,1);
+plot(x,fTH_TH_Mag,':r',x,fDrop_TH_Mag,'--g');
+legend('TH Mag','Drop Mag');
+subplot(2,1,2);
+plot(x,fTH_TH_Phi,':r',x,fDrop_TH_Phi,'--g');
+legend('TH Phi','Drop Phi');
+
+
 % Right cir.
 N62InRightEr= N62InRightMag.*cos(N62InRightPhi);
 N62InRightEi= N62InRightMag.*sin(N62InRightPhi);
@@ -172,20 +177,21 @@ N63OutRightEi= N63OutRightMag.*sin(N63OutRightPhi);
 
 
 % Expected 1
-% N64InRight will have 2 components.
- % 1- Out of resonase signals will go through the wg and appear at N62In (N64InRight_fTH)
- % 2- Resonase signals will go through the ring (the Drop filter) and show up at N63Out (N64InRight_fDrop)
+%N64InRight will have 2 components.
+ % 1- Out of resonase will pass through and appear at N62In (N64InRight_fTH)
+ % 2- Resonase signals will path through the ring and go through the Drop
+ % filter and show up at N63Out (N64InRight_fDrop)
 
  
-% ====> % Calculation components of N62IN = 
-            % (1) Drop of Ring with N61In as input (N62InTH) + 
-            % (2) Th of Ring with N64In as input (N64InRight_fTH)
+% Calculation components of N62IN= 
+% Drop of Ring with N61In as input (N62InTH) + 
+% Th of Ring with N64In as input N64InRight_fTH
 
-% Theo1: Not cosidering phase shift, just working with powers transfer function of (fTH_TH)
+% Theo1: Not cosidering phase shift, just working with powers general transfer function of power (fTH_TH)
 N64InRight_fTH= fTH_TH.* N64InRight; %Th of Ring 6 with N64In as input
-N62InRight_theo1= N62InTH + N64InRight_fTH; 
+N62InRight_theo1= N62InTH + N64InRight_fTH; % Not cosidering phase shift, just working with powers.
 
-% Theo2: Working with transfer function of power (fTH_TH) and Real/Imag
+% Theo2: Working with general transfer function of power (fTH_TH) and Real/Imag
 % Still not accurate enough
 N62InRightEr_theo2= N62InTHEr + fTH_TH.*N64InRightEr;
 N62InRightEi_theo2= N62InTHEi + fTH_TH.*N64InRightEi;
@@ -196,7 +202,6 @@ N62InRight_theo2 = sqrt(N62InRightEr_theo2.^2 + N62InRightEi_theo2.^2);
 %N62InRight_theo2 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
 
 % Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase
-% GOOD Match, accurate
 N64InRight_fTH_Mag = fTH_TH_Mag.*N64InRightMag;
 N64InRight_fTH_Phi = fTH_TH_Phi+N64InRightPhi;
  % Convert to Real/Imag
@@ -209,25 +214,24 @@ N62InRight_theo3 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
 
 
 
-% ====> % Calculation components of N63Out= 
-            % (1) Th of Ring with N61In as input (N62InTH) + 
-            % (2) Drop of Ring with N64In as input N64InRight_fDrop
+% Calculation components of N63Out= 
+% Th of Ring with N61In as input (N62InTH) + 
+% Drop of Ring with N64In as input N64InRight_fDrop
 % Theo1: Not cosidering phase shift, just working with powers.
 N64InRight_fDrop= fDrop_TH.* N64InRight; %Dro of Ring 6 with N64In as input
-N63OutRight_theo1= N63OutTH + N64InRight_fDrop; 
+N63OutRight_theo1= N63OutTH + N64InRight_fDrop; % Not cosidering phase shift, just working with powers.
 
-% Theo2: Working with transfer function of power (fDrop_TH) and Real/Imag
-% Still not accurate enough
+% Theo2: Working with general transfer function of power (fDrop_TH) and Real/Imag
+% Not accurate enough
 N63OutRightEr_theo2= N63OutTHEr + fDrop_TH.*N64InRightEr;
 N63OutRightEi_theo2= N63OutTHEi + fDrop_TH.*N64InRightEi;
 N63OutRight_theo2 = sqrt(N63OutRightEr_theo2.^2 + N63OutRightEi_theo2.^2);
 
-% Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase
-% GOOD Match, accurate
+
+% Theo3: working with Mag/Phase
 N64InRight_fDrop_Mag = fDrop_TH_Mag.*N64InRightMag;
 N64InRight_fDrop_Phi = fDrop_TH_Phi+N64InRightPhi;
-
-% Convert to Real/Imag
+ % Convert to Real/Imag
 N64InRight_fDrop_Er= N64InRight_fDrop_Mag.*cos(N64InRight_fDrop_Phi);
 N64InRight_fDrop_Ei= N64InRight_fDrop_Mag.*sin(N64InRight_fDrop_Phi);
 % Add up
@@ -236,34 +240,22 @@ N63OutRightEi_theo3= N63OutTHEi + N64InRight_fDrop_Ei;
 N63OutRight_theo3 = sqrt(N63OutRightEr_theo3.^2 + N63OutRightEi_theo3.^2);
 
 
-% Expected
-N1Right=N61InRight;
-N2Right=N62InRight_theo3;
-N3Right=TH3.*N63OutRight_theo3;
-N4Right= 0;
 
-% Plot of Right cir.
-figure('name','Circuit Right, 4 ports','numbertitle','off');
-subplot(2,2,1);
-plot(x,N61InRight,':r',x,N1Right,'--g');
-legend('Sim','Theory');
-subplot(2,2,2);
-plot(x,N62InRight,':r',x,N2Right,'--g',x,N62InRight_theo1,'-.b');
-legend('Sim','Theory', 'Thoery without Phase shift');
-subplot(2,2,3);
-plot(x,w3eOutRight,':r',x,N3Right,'--g',x,N63OutRight_theo1,'-.b');
-legend('Sim','Theory', 'Thoery without Phase shift');
-subplot(2,2,4);
-plot(x,w4nOutRight,':r',x,N4Right,'--g');
-legend('Sim','Theory');
 
-figure('name','Circuit Right, Drop(In dir.)','numbertitle','off');
-plot(x,N62InRight,':r',x,N62InRight_theo1,':g',x,N62InRight_theo2,'-.b',x,N62InRight_theo3,'--y');
-legend('Sim','theo1','theo2','theo3');
 
-figure('name','Circuit Right, Th(Out dir.)','numbertitle','off');
-plot(x,N63OutRight,':r',x,N63OutRight_theo1,':g',x,N63OutRight_theo2,'-.b',x,N63OutRight_theo3,'--y');
-legend('Sim','theo1','theo2','theo3');
+
+% N3Out= N63OutTH;
+% N4In = 0.3.* N3Out;
+% %N3OutEr= N63OutRightEr_theo2;
+% %N3OutEi= N63OutRightEi_theo2;
+% N2In = N62InRight_theo2;
+% %N2InEr = N62InRightEr_theo2;
+% %N2InEi = N62InRightEi_theo2;
+% rth= N3Out.* (N61InRight.^(-1));
+% rdr= N2In.* (N61InRight.^(-1));
+% N4In_TH= rth.*N4In;
+% N4In_Drop= rdr.*N4In;
+
 
 %Plot of Right cir.
 % figure('name','Circuit Right, no Phase shift, Drop(In dir.) Power details','numbertitle','off');
@@ -292,7 +284,13 @@ legend('Sim','theo1','theo2','theo3');
 % legend('N64InRight Phi','Drop of N64InRight Phi');
 
 
+figure('name','Circuit Right, Drop(In dir.) Field details','numbertitle','off');
+plot(x,N62InRight,':r',x,N62InRight_theo1,':g',x,N62InRight_theo2,'-.b',x,N62InRight_theo3,'--y');
+legend('Sim','theo1','theo2','theo3');
 
+figure('name','Circuit Right, Th(oUT dir.) Field details','numbertitle','off');
+plot(x,N63OutRight,':r',x,N63OutRight_theo1,':g',x,N63OutRight_theo2,'-.b',x,N63OutRight_theo3,'--y');
+legend('Sim','theo1','theo2','theo3');
 
 
 % figure('name','Circuit Right, Th(Out dir.) Field Real Imag','numbertitle','off');
@@ -346,7 +344,24 @@ legend('Sim','theo1','theo2','theo3');
 % plot(x,N63OutRight_theo2,':r',x,N63OutRight_theo3,'--g');
 % %legend('N63OutRight_theo2','N63OutRight_theo3');
 
+N1Right=N61InRight;
+N2Right=N62InRight_theo3;
+N3Right=TH3.*N63OutRight_theo3;
+N4Right= 0;
 
+figure('name','Circuit Right, 4 ports','numbertitle','off');
+subplot(2,2,1);
+plot(x,N61InRight,':r',x,N1Right,'--g');
+legend('Sim','Theory');
+subplot(2,2,2);
+plot(x,N62InRight,':r',x,N2Right,'--g',x,N62InRight_theo1,'-.b');
+legend('Sim','Theory', 'Thoery without Phase shift');
+subplot(2,2,3);
+plot(x,w3eOutRight,':r',x,N3Right,'--g');
+legend('Sim','Theory');
+subplot(2,2,4);
+plot(x,w4nOutRight,':r',x,N4Right,'--g');
+legend('Sim','Theory');
 
 
 % 
