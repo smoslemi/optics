@@ -4,9 +4,9 @@ Copyright 2015 Optiwave Systems Inc. All rights reserved.
 
 	git commit: 651cbe73905eab5871768bdecbe8d86323447f45 MergeFromStaticBuild
 
-Processing Netlist file: /Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/ringWGXRCrossLeft.sp
+Processing Netlist file: ringWGXRCrossLeft.sp
 
-************* FILE: "/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/ringWGXRCrossLeft.sp"  ************
+************* FILE: "ringWGXRCrossLeft.sp"  ************
 
 Title "CW Source check "
 
@@ -275,34 +275,34 @@ Creating: v3p52
 Creating: vcar
 
 Creating: Rcw3p5
-	New Link: n61                                                          Link: 0x7fe428f0c1b0
+	New Link: n61                                                          Link: 0x7fab49f048c0
 
 Creating: ring6
-	New Link: n63                                                          Link: 0x7fe428f0ccb0
-	New Link: ring6:1-2in                                                  Link: 0x7fe428f0ccf0
-	New Link: ring6:1-2out                                                 Link: 0x7fe428f0cd30
-	New Link: ring6:2-2in                                                  Link: 0x7fe428f0d510
-	New Link: ring6:2-2out                                                 Link: 0x7fe428f0d550
-	New Link: n62                                                          Link: 0x7fe428f0d590
-	New Link: n64                                                          Link: 0x7fe428f0d5d0
+	New Link: n63                                                          Link: 0x7fab49f053c0
+	New Link: ring6:1-2in                                                  Link: 0x7fab49f05400
+	New Link: ring6:1-2out                                                 Link: 0x7fab49f05440
+	New Link: ring6:2-2in                                                  Link: 0x7fab49f05c20
+	New Link: ring6:2-2out                                                 Link: 0x7fab49f05c60
+	New Link: n62                                                          Link: 0x7fab49f05ca0
+	New Link: n64                                                          Link: 0x7fab49f05ce0
 
 Creating: mirN62
 
 Creating: wg1
-	New Link: x71                                                          Link: 0x7fe428f11a20
+	New Link: x71                                                          Link: 0x7fab49e13820
 
 Creating: wg2
-	New Link: x72                                                          Link: 0x7fe428f13170
+	New Link: x72                                                          Link: 0x7fab49e14f70
 
 Creating: wx7
-	New Link: x73                                                          Link: 0x7fe428f13a70
-	New Link: x74                                                          Link: 0x7fe428f13ab0
+	New Link: x73                                                          Link: 0x7fab49e15870
+	New Link: x74                                                          Link: 0x7fab49e158b0
 
 Creating: wg3
-	New Link: w3e                                                          Link: 0x7fe428c044b0
+	New Link: w3e                                                          Link: 0x7fab49e16a30
 
 Creating: wg4
-	New Link: w4n                                                          Link: 0x7fe428c05790
+	New Link: w4n                                                          Link: 0x7fab49e18180
 
 Creating: WGmir3e
 
@@ -311,37 +311,37 @@ Creating: WGmir4n
 Circuit after element assignment
 
 Element hash table
-	Key: ring6:filter-1:exp                                           	val: 	713078272 
-	Key: v21                                                          	val: 	686853344 
-	Key: v22                                                          	val: 	686854464 
-	Key: v3p51                                                        	val: 	686862784 
-	Key: v3p52                                                        	val: 	686863904 
-	Key: wg3:exp                                                      	val: 	687896576 
-	Key: rcw3p5                                                       	val: 	713055744 
-	Key: v42                                                          	val: 	686858944 
-	Key: v41                                                          	val: 	686857824 
-	Key: mirn62                                                       	val: 	713085440 
-	Key: ring6                                                        	val: 	713061376 
-	Key: ring6:xc1                                                    	val: 	713064960 
-	Key: ring6:filter-2:exp                                           	val: 	713081856 
-	Key: ring6:xc2                                                    	val: 	713071616 
-	Key: vcar                                                         	val: 	686865024 
-	Key: wg4:exp                                                      	val: 	687903232 
-	Key: wg1:exp                                                      	val: 	713091584 
-	Key: v11                                                          	val: 	686851040 
-	Key: v12                                                          	val: 	686852224 
-	Key: wgmir4n                                                      	val: 	687909888 
-	Key: wg1                                                          	val: 	713088512 
-	Key: wg2                                                          	val: 	713095168 
-	Key: wg3                                                          	val: 	713108480 
-	Key: wg4                                                          	val: 	687900160 
-	Key: v32                                                          	val: 	686856704 
-	Key: v51                                                          	val: 	686860672 
-	Key: v31                                                          	val: 	686855584 
-	Key: v52                                                          	val: 	686861696 
-	Key: wg2:exp                                                      	val: 	713098240 
-	Key: wx7                                                          	val: 	713101824 
-	Key: wgmir3e                                                      	val: 	687906816 
+	Key: ring6:filter-1:exp                                           	val: 	1266702336
+	Key: v21                                                          	val: 	1240470512
+	Key: v22                                                          	val: 	1240471632
+	Key: v3p51                                                        	val: 	1240479952
+	Key: v3p52                                                        	val: 	1240481072
+	Key: wg3:exp                                                      	val: 	1258341888
+	Key: rcw3p5                                                       	val: 	1266679808
+	Key: v42                                                          	val: 	1240476112
+	Key: v41                                                          	val: 	1240474992
+	Key: mirn62                                                       	val: 	1258315776
+	Key: ring6                                                        	val: 	1266685440
+	Key: ring6:xc1                                                    	val: 	1266689024
+	Key: ring6:filter-2:exp                                           	val: 	1258312192
+	Key: ring6:xc2                                                    	val: 	1266695680
+	Key: vcar                                                         	val: 	1240482192
+	Key: wg4:exp                                                      	val: 	1258348544
+	Key: wg1:exp                                                      	val: 	1258321920
+	Key: v11                                                          	val: 	1240468192
+	Key: v12                                                          	val: 	1240469392
+	Key: wgmir4n                                                      	val: 	1258355200
+	Key: wg1                                                          	val: 	1258318848
+	Key: wg2                                                          	val: 	1258325504
+	Key: wg3                                                          	val: 	1258338816
+	Key: wg4                                                          	val: 	1258345472
+	Key: v32                                                          	val: 	1240473872
+	Key: v51                                                          	val: 	1240477840
+	Key: v31                                                          	val: 	1240472752
+	Key: v52                                                          	val: 	1240478864
+	Key: wg2:exp                                                      	val: 	1258328576
+	Key: wx7                                                          	val: 	1258332160
+	Key: wgmir3e                                                      	val: 	1258352128
 
 Delay Element hash table
 
@@ -350,27 +350,27 @@ OptFFT Element hash table
 Noise Element hash table
 
 Optical Element hash table
-	Key: wg2:exp                                                      	val: 	713098240 
-	Key: wg4:exp                                                      	val: 	687903232 
-	Key: wg1                                                          	val: 	713088512 
-	Key: rcw3p5                                                       	val: 	713055744 
-	Key: wg2                                                          	val: 	713095168 
-	Key: wg3                                                          	val: 	713108480 
-	Key: wg4                                                          	val: 	687900160 
-	Key: ring6:filter-2:exp                                           	val: 	713081856 
-	Key: wx7                                                          	val: 	713101824 
-	Key: wgmir3e                                                      	val: 	687906816 
-	Key: wg1:exp                                                      	val: 	713091584 
-	Key: mirn62                                                       	val: 	713085440 
-	Key: ring6:xc1                                                    	val: 	713064960 
-	Key: ring6:xc2                                                    	val: 	713071616 
-	Key: ring6                                                        	val: 	713061376 
-	Key: wg3:exp                                                      	val: 	687896576 
-	Key: ring6:filter-1:exp                                           	val: 	713078272 
-	Key: wgmir4n                                                      	val: 	687909888 
+	Key: wg2:exp                                                      	val: 	1258328576
+	Key: wg4:exp                                                      	val: 	1258348544
+	Key: wg1                                                          	val: 	1258318848
+	Key: rcw3p5                                                       	val: 	1266679808
+	Key: wg2                                                          	val: 	1258325504
+	Key: wg3                                                          	val: 	1258338816
+	Key: wg4                                                          	val: 	1258345472
+	Key: ring6:filter-2:exp                                           	val: 	1258312192
+	Key: wx7                                                          	val: 	1258332160
+	Key: wgmir3e                                                      	val: 	1258352128
+	Key: wg1:exp                                                      	val: 	1258321920
+	Key: mirn62                                                       	val: 	1258315776
+	Key: ring6:xc1                                                    	val: 	1266689024
+	Key: ring6:xc2                                                    	val: 	1266695680
+	Key: ring6                                                        	val: 	1266685440
+	Key: wg3:exp                                                      	val: 	1258341888
+	Key: ring6:filter-1:exp                                           	val: 	1266702336
+	Key: wgmir4n                                                      	val: 	1258355200
 
 Source Optical Element hash table
-	Key: rcw3p5                                                       	val: 	713055744 
+	Key: rcw3p5                                                       	val: 	1266679808
 
 Elec Init Conditions
 
@@ -431,31 +431,31 @@ Stamping: vcar
 
 Stamping: rcw3p5
 Created Optical Mode Shape 'Mode:1 n:1 x:5.0000000000000000e+01 y:5.0000000000000000e+01 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:1.5130000000000000e+03' (5921b893f555e32895dde05c406b338eb97b5fe0)
-Adding Optical Mode:  n61:variable:rcw3p5 	      0x7fe428f14a20
+Adding Optical Mode:  n61:variable:rcw3p5 	      0x7fab49e19630
 
 Stamping: ring6
-Adding Optical Mode: ring6:1-2in:variable:rcw3p5 	      0x7fe428f15810
-Adding Optical Mode:  n63:variable:rcw3p5 	      0x7fe428f16000
-Adding Optical Mode: ring6:1-2out:variable:rcw3p5 	      0x7fe428f16180
+Adding Optical Mode: ring6:1-2in:variable:rcw3p5 	      0x7fab49d02470
+Adding Optical Mode:  n63:variable:rcw3p5 	      0x7fab49d00330
+Adding Optical Mode: ring6:1-2out:variable:rcw3p5 	      0x7fab49d02700
 Stamping OptScatteringVtoV Instance: ring6:xc1:c(0)
 	E to E: n61:variable:rcw3p5 | n63:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:2-2in:variable:rcw3p5 	      0x7fe428f1ac60
-Adding Optical Mode:  n62:variable:rcw3p5 	      0x7fe428f1cc60
-Adding Optical Mode: ring6:2-2out:variable:rcw3p5 	      0x7fe428f1cdf0
-Adding Optical Mode:  n64:variable:rcw3p5 	      0x7fe428f1cf70
+Adding Optical Mode: ring6:2-2in:variable:rcw3p5 	      0x7fab49e1abd0
+Adding Optical Mode:  n62:variable:rcw3p5 	      0x7fab49e1ad00
+Adding Optical Mode: ring6:2-2out:variable:rcw3p5 	      0x7fab49e1ae80
+Adding Optical Mode:  n64:variable:rcw3p5 	      0x7fab49e1b390
 Stamping OptScatteringVtoV Instance: ring6:xc2:c(0)
 	E to E: ring6:2-2in:variable:rcw3p5 | ring6:2-2out:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:filter-1:exp:inter1(0):variable:rcw3p5 	      0x7fe428f23d40
-Adding Optical Mode: ring6:filter-1:exp:inter2(0):variable:rcw3p5 	      0x7fe428f23f30
-Adding Optical Mode: ring6:filter-1:exp:inter3(0):variable:rcw3p5 	      0x7fe428f24380
+Adding Optical Mode: ring6:filter-1:exp:inter1(0):variable:rcw3p5 	      0x7fab49e221c0
+Adding Optical Mode: ring6:filter-1:exp:inter2(0):variable:rcw3p5 	      0x7fab49e223b0
+Adding Optical Mode: ring6:filter-1:exp:inter3(0):variable:rcw3p5 	      0x7fab49e22800
 Splitting OptNode (output flip): ring6:2-2out:variable:rcw3p5
 	Inserting Extra OConn 'ring6:2-2out:split:variable:rcw3p5'
-	New Link: ring6:2-2out:split                                           Link: 0x7fe428f25170
-Adding Optical Mode: ring6:2-2out:split:variable:rcw3p5 	      0x7fe428f24cd0
+	New Link: ring6:2-2out:split                                           Link: 0x7fab49e235f0
+Adding Optical Mode: ring6:2-2out:split:variable:rcw3p5 	      0x7fab49e23150
 Stamping OptScatteringVtoV Instance: ring6:filter-1:exp:c(0):I1(0)
 	E to E: ring6:1-2out:variable:rcw3p5 | ring6:filter-1:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -469,13 +469,13 @@ Stamping OptScatteringVtoV Instance: ring6:filter-1:exp:c(0):I1(1)
 	E to E: ring6:filter-1:exp:inter3(0):variable:rcw3p5 | ring6:2-2out:split:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:filter-2:exp:inter1(0):variable:rcw3p5 	      0x7fe428e0a320
-Adding Optical Mode: ring6:filter-2:exp:inter2(0):variable:rcw3p5 	      0x7fe428e0a510
-Adding Optical Mode: ring6:filter-2:exp:inter3(0):variable:rcw3p5 	      0x7fe428e0a960
+Adding Optical Mode: ring6:filter-2:exp:inter1(0):variable:rcw3p5 	      0x7fab49d0f5c0
+Adding Optical Mode: ring6:filter-2:exp:inter2(0):variable:rcw3p5 	      0x7fab49d0f7b0
+Adding Optical Mode: ring6:filter-2:exp:inter3(0):variable:rcw3p5 	      0x7fab49d0fc00
 Splitting OptNode (input flip): ring6:2-2in:variable:rcw3p5
 	Inserting Extra OConn 'ring6:2-2in:split:variable:rcw3p5'
-	New Link: ring6:2-2in:split                                            Link: 0x7fe428c070e0
-Adding Optical Mode: ring6:2-2in:split:variable:rcw3p5 	      0x7fe428c06c50
+	New Link: ring6:2-2in:split                                            Link: 0x7fab49d109c0
+Adding Optical Mode: ring6:2-2in:split:variable:rcw3p5 	      0x7fab49d10530
 Stamping OptScatteringVtoV Instance: ring6:filter-2:exp:c(0):I1(0)
 	E to E: ring6:2-2in:split:variable:rcw3p5 | ring6:filter-2:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -493,10 +493,10 @@ Stamping OptScatteringVtoV Instance: ring6:filter-2:exp:c(0):I1(1)
 Stamping: mirn62
 
 Stamping: wg1
-Adding Optical Mode: wg1:exp:inter1(0):variable:rcw3p5 	      0x7fe428d164d0
-Adding Optical Mode: wg1:exp:inter2(0):variable:rcw3p5 	      0x7fe428d16680
-Adding Optical Mode: wg1:exp:inter3(0):variable:rcw3p5 	      0x7fe428d16ac0
-Adding Optical Mode:  x71:variable:rcw3p5 	      0x7fe428d17370
+Adding Optical Mode: wg1:exp:inter1(0):variable:rcw3p5 	      0x7fab49c0bdb0
+Adding Optical Mode: wg1:exp:inter2(0):variable:rcw3p5 	      0x7fab49c0bf60
+Adding Optical Mode: wg1:exp:inter3(0):variable:rcw3p5 	      0x7fab49c0c3a0
+Adding Optical Mode:  x71:variable:rcw3p5 	      0x7fab49c0cc50
 Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(0)
 	E to E: n63:variable:rcw3p5 | wg1:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -512,10 +512,10 @@ Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wg2
-Adding Optical Mode: wg2:exp:inter1(0):variable:rcw3p5 	      0x7fe428d20760
-Adding Optical Mode: wg2:exp:inter2(0):variable:rcw3p5 	      0x7fe428d20910
-Adding Optical Mode: wg2:exp:inter3(0):variable:rcw3p5 	      0x7fe428d20d50
-Adding Optical Mode:  x72:variable:rcw3p5 	      0x7fe428d21600
+Adding Optical Mode: wg2:exp:inter1(0):variable:rcw3p5 	      0x7fab49c16040
+Adding Optical Mode: wg2:exp:inter2(0):variable:rcw3p5 	      0x7fab49c161f0
+Adding Optical Mode: wg2:exp:inter3(0):variable:rcw3p5 	      0x7fab49c16630
+Adding Optical Mode:  x72:variable:rcw3p5 	      0x7fab49c16ee0
 Stamping OptScatteringVtoV Instance: wg2:exp:c(0):I1(0)
 	E to E: n64:variable:rcw3p5 | wg2:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -531,18 +531,18 @@ Stamping OptScatteringVtoV Instance: wg2:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wx7
-Adding Optical Mode:  x73:variable:rcw3p5 	      0x7fe428d2a540
-Adding Optical Mode:  x74:variable:rcw3p5 	      0x7fe428d2a6a0
+Adding Optical Mode:  x73:variable:rcw3p5 	      0x7fab49f113b0
+Adding Optical Mode:  x74:variable:rcw3p5 	      0x7fab49f11510
 Stamping OptScatteringVtoV Instance: wx7:c(0)
 	E to E: x71:variable:rcw3p5 | x73:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Stamping: wg3
-Adding Optical Mode: wg3:exp:inter1(0):variable:rcw3p5 	      0x7fe428d33530
-Adding Optical Mode: wg3:exp:inter2(0):variable:rcw3p5 	      0x7fe428d336e0
-Adding Optical Mode: wg3:exp:inter3(0):variable:rcw3p5 	      0x7fe428d33b20
-Adding Optical Mode:  w3e:variable:rcw3p5 	      0x7fe428d343d0
+Adding Optical Mode: wg3:exp:inter1(0):variable:rcw3p5 	      0x7fab49d1cff0
+Adding Optical Mode: wg3:exp:inter2(0):variable:rcw3p5 	      0x7fab49d1d1a0
+Adding Optical Mode: wg3:exp:inter3(0):variable:rcw3p5 	      0x7fab49d1d5e0
+Adding Optical Mode:  w3e:variable:rcw3p5 	      0x7fab49d1de90
 Stamping OptScatteringVtoV Instance: wg3:exp:c(0):I1(0)
 	E to E: x73:variable:rcw3p5 | wg3:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -558,10 +558,10 @@ Stamping OptScatteringVtoV Instance: wg3:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wg4
-Adding Optical Mode: wg4:exp:inter1(0):variable:rcw3p5 	      0x7fe428d3a220
-Adding Optical Mode: wg4:exp:inter2(0):variable:rcw3p5 	      0x7fe428d3a550
-Adding Optical Mode: wg4:exp:inter3(0):variable:rcw3p5 	      0x7fe428e0e540
-Adding Optical Mode:  w4n:variable:rcw3p5 	      0x7fe428e0eb20
+Adding Optical Mode: wg4:exp:inter1(0):variable:rcw3p5 	      0x7fab49d27280
+Adding Optical Mode: wg4:exp:inter2(0):variable:rcw3p5 	      0x7fab49d27930
+Adding Optical Mode: wg4:exp:inter3(0):variable:rcw3p5 	      0x7fab49d27d70
+Adding Optical Mode:  w4n:variable:rcw3p5 	      0x7fab49d28620
 Stamping OptScatteringVtoV Instance: wg4:exp:c(0):I1(0)
 	E to E: x74:variable:rcw3p5 | wg4:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -583,37 +583,37 @@ Stamping: wgmir4n
 Linking optical elements; 
 Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
 Mirror DetModes ... 
-		mirn62 input 0x7fe42a809d20 output 0x7fe42a809d20
+		mirn62 input 0x7fab4b803f20 output 0x7fab4b803f20
 Mirror DetModes ... 
-		wgmir3e input 0x7fe429007920 output 0x7fe429007920
+		wgmir3e input 0x7fab4b00c720 output 0x7fab4b00c720
 Mirror DetModes ... 
-		wgmir4n input 0x7fe429009320 output 0x7fe429009320
+		wgmir4n input 0x7fab4b00e120 output 0x7fab4b00e120
 Oconn DetModes ...
-		ring6:filter-1:exp:split:ring6:2-2out:2 input 0x7fe42a809d20 output 0x7fe42a80b720
+		ring6:filter-1:exp:split:ring6:2-2out:2 input 0x7fab4b803f20 output 0x7fab4b805920
 Oconn DetModes ...
-		ring6:filter-2:exp:split:ring6:2-2in:1 input 0x7fe42a80c520 output 0x7fe42a809d20
+		ring6:filter-2:exp:split:ring6:2-2in:1 input 0x7fab4b005320 output 0x7fab4b803f20
 
 Stamping free mode   optical elements; 
 Processing Mirror: mirn62 Version: 6 Switchable: 1
 Splitting OptNode (input flip): n62:variable:rcw3p5
 	Inserting Extra OConn 'n62:split:variable:rcw3p5'
-	New Link: n62:split                                                    Link: 0x7fe428f270d0
-Adding Optical Mode: n62:split:variable:rcw3p5 	      0x7fe428f26c90
-Adding Optical Mode: mirn62:terminal:variable:rcw3p5 	      0x7fe428f271b0
+	New Link: n62:split                                                    Link: 0x7fab49d31d60
+Adding Optical Mode: n62:split:variable:rcw3p5 	      0x7fab49d31920
+Adding Optical Mode: mirn62:terminal:variable:rcw3p5 	      0x7fab49d31e40
 Stamping OptScatteringVtoV Instance: mirn62:vtov:c(0)
 	E to E: n62:split:variable:rcw3p5 | mirn62:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Processing Mirror: wgmir3e Version: 6 Switchable: 1
-Adding Optical Mode: wgmir3e:terminal:variable:rcw3p5 	      0x7fe428f2a9f0
+Adding Optical Mode: wgmir3e:terminal:variable:rcw3p5 	      0x7fab49d35680
 Stamping OptScatteringVtoV Instance: wgmir3e:vtov:c(0)
 	E to E: w3e:variable:rcw3p5 | wgmir3e:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Processing Mirror: wgmir4n Version: 6 Switchable: 1
-Adding Optical Mode: wgmir4n:terminal:variable:rcw3p5 	      0x7fe428f2e0e0
+Adding Optical Mode: wgmir4n:terminal:variable:rcw3p5 	      0x7fab49d38d70
 Stamping OptScatteringVtoV Instance: wgmir4n:vtov:c(0)
 	E to E: w4n:variable:rcw3p5 | wgmir4n:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -671,94 +671,94 @@ Post Stamping: rcw3p5:c:0:m(0):optmag:iso
 Circuit after node assignment
 
 Element hash table (including internal elements)
-	Key: ring6:filter-1:exp:c(0):I1(0)                                	val: 	713167360 
-	Key: wg2:exp:c(0):I1(0)                                           	val: 	696638976 
-	Key: rcw3p5                                                       	val: 	713055744 
-	Key: ring6:filter-2:exp:c(0):I1(1)                                	val: 	696411136 
-	Key: v3p51                                                        	val: 	686862784 
-	Key: v3p52                                                        	val: 	686863904 
-	Key: wg2:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	684879664 
-	Key: wg1                                                          	val: 	713088512 
-	Key: ring6:xc2:c(0)                                               	val: 	713117184 
-	Key: wg2                                                          	val: 	713095168 
-	Key: wg3                                                          	val: 	713108480 
-	Key: wg4                                                          	val: 	687900160 
-	Key: wgmir3e                                                      	val: 	687906816 
-	Key: mirn62:vtov:split:n62:1:c(0)                                 	val: 	687964160 
-	Key: wx7:c(0)                                                     	val: 	696777216 
-	Key: wg3:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	684953072 
-	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	684791648 
-	Key: mirn62:vtov                                                  	val: 	713170944 
-	Key: ring6:xc1                                                    	val: 	713064960 
-	Key: ring6:xc2                                                    	val: 	713071616 
-	Key: mirn62:vtov:c(0)                                             	val: 	713177600 
-	Key: ring6:filter-2:exp                                           	val: 	713081856 
-	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	684881296 
-	Key: v42                                                          	val: 	686858944 
-	Key: ring6:filter-2:exp:split:ring6:2-2in:1                       	val: 	687912960 
-	Key: ring6:filter-1:exp                                           	val: 	713078272 
-	Key: mirn62                                                       	val: 	713085440 
-	Key: wg2:exp:c(0):I1(1)                                           	val: 	696773632 
-	Key: v41                                                          	val: 	686857824 
-	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	684839680 
-	Key: ring6:filter-1:exp:c(0):I1(1)                                	val: 	704790016 
-	Key: vcar                                                         	val: 	686865024 
-	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	685794816 
-	Key: ring6:xc1:c(0)                                               	val: 	713111552 
-	Key: wg4:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	685847872 
-	Key: wg3:exp:c(0):I1(1)                                           	val: 	704836608 
-	Key: wg4:exp                                                      	val: 	687903232 
-	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	684834192 
-	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	685815024 
-	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	683701664 
-	Key: ring6                                                        	val: 	713061376 
-	Key: wg3:exp                                                      	val: 	687896576 
+	Key: ring6:filter-1:exp:c(0):I1(0)                                	val: 	1249920000
+	Key: wg2:exp:c(0):I1(0)                                           	val: 	1241925120
+	Key: rcw3p5                                                       	val: 	1266679808
+	Key: ring6:filter-2:exp:c(0):I1(1)                                	val: 	1241695232
+	Key: v3p51                                                        	val: 	1240479952
+	Key: v3p52                                                        	val: 	1240481072
+	Key: wg2:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1240522144
+	Key: wg1                                                          	val: 	1258318848
+	Key: ring6:xc2:c(0)                                               	val: 	1258361344
+	Key: wg2                                                          	val: 	1258325504
+	Key: wg3                                                          	val: 	1258338816
+	Key: wg4                                                          	val: 	1258345472
+	Key: wgmir3e                                                      	val: 	1258352128
+	Key: mirn62:vtov:split:n62:1:c(0)                                 	val: 	1250520064
+	Key: wx7:c(0)                                                     	val: 	1250112512
+	Key: wg3:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1238509744
+	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	1237348416
+	Key: mirn62:vtov                                                  	val: 	1250489344
+	Key: ring6:xc1                                                    	val: 	1266689024
+	Key: ring6:xc2                                                    	val: 	1266695680
+	Key: mirn62:vtov:c(0)                                             	val: 	1250496000
+	Key: ring6:filter-2:exp                                           	val: 	1258312192
+	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1240523776
+	Key: v42                                                          	val: 	1240476112
+	Key: ring6:filter-2:exp:split:ring6:2-2in:1                       	val: 	1250105344
+	Key: ring6:filter-1:exp                                           	val: 	1266702336
+	Key: mirn62                                                       	val: 	1258315776
+	Key: wg2:exp:c(0):I1(1)                                           	val: 	1266842112
+	Key: v41                                                          	val: 	1240474992
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1237396448
+	Key: ring6:filter-1:exp:c(0):I1(1)                                	val: 	1250054656
+	Key: vcar                                                         	val: 	1240482192
+	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	1238415520
+	Key: ring6:xc1:c(0)                                               	val: 	1249906688
+	Key: wg4:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1238552640
+	Key: wg3:exp:c(0):I1(1)                                           	val: 	1250300416
+	Key: wg4:exp                                                      	val: 	1258348544
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1237390960
+	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1238515232
+	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1238558128
+	Key: ring6                                                        	val: 	1266685440
+	Key: wg3:exp                                                      	val: 	1258341888
 	Key: ring6:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optmag: ... 
-		... delay                                                   	val: 	684793520 
+		... delay                                                   	val: 	1237350288
 	Key: ring6:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optmag: ... 
-		... delay                                                   	val: 	685793248 
-	Key: wgmir4n                                                      	val: 	687909888 
-	Key: wg2:exp                                                      	val: 	713098240 
-	Key: ring6:filter-1:exp:split:ring6:2-2out:2                      	val: 	713163776 
-	Key: v11                                                          	val: 	686851040 
-	Key: wg1:exp                                                      	val: 	713091584 
-	Key: v12                                                          	val: 	686852224 
-	Key: wgmir3e:vtov                                                 	val: 	713181184 
-	Key: wg1:exp:c(0):I1(1)                                           	val: 	696592384 
-	Key: v51                                                          	val: 	686860672 
-	Key: v52                                                          	val: 	686861696 
-	Key: wg1:exp:c(0):I1(0)                                           	val: 	696457728 
-	Key: wx7                                                          	val: 	713101824 
-	Key: wg4:exp:c(0):I1(0)                                           	val: 	704890880 
-	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	684795552 
-	Key: wg3:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	684956928 
-	Key: wgmir3e:vtov:c(0)                                            	val: 	713184256 
-	Key: wgmir4n:vtov:c(0)                                            	val: 	713190912 
-	Key: wg4:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	685851728 
-	Key: mirn62:vtov:split:n62:1                                      	val: 	713174016 
-	Key: v21                                                          	val: 	686853344 
-	Key: v22                                                          	val: 	686854464 
-	Key: wg2:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	684875808 
-	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	684838048 
-	Key: ring6:filter-2:exp:c(0):I1(0)                                	val: 	696258560 
-	Key: wgmir4n:vtov                                                 	val: 	713187840 
-	Key: wg3:exp:c(0):I1(0)                                           	val: 	696834048 
+		... delay                                                   	val: 	1238413952
+	Key: wgmir4n                                                      	val: 	1258355200
+	Key: wg2:exp                                                      	val: 	1258328576
+	Key: ring6:filter-1:exp:split:ring6:2-2out:2                      	val: 	1258407936
+	Key: v11                                                          	val: 	1240468192
+	Key: wg1:exp                                                      	val: 	1258321920
+	Key: v12                                                          	val: 	1240469392
+	Key: wgmir3e:vtov                                                 	val: 	1250499584
+	Key: wg1:exp:c(0):I1(1)                                           	val: 	1241878528
+	Key: v51                                                          	val: 	1240477840
+	Key: v52                                                          	val: 	1240478864
+	Key: wg1:exp:c(0):I1(0)                                           	val: 	1241743872
+	Key: wx7                                                          	val: 	1258332160
+	Key: wg4:exp:c(0):I1(0)                                           	val: 	1250347008
+	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	1237352320
+	Key: wg3:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1238513600
+	Key: wgmir3e:vtov:c(0)                                            	val: 	1250502656
+	Key: wgmir4n:vtov:c(0)                                            	val: 	1250509312
+	Key: wg4:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1238556496
+	Key: mirn62:vtov:split:n62:1                                      	val: 	1250492416
+	Key: v21                                                          	val: 	1240470512
+	Key: v22                                                          	val: 	1240471632
+	Key: wg2:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1240518288
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1237394816
+	Key: ring6:filter-2:exp:c(0):I1(0)                                	val: 	1250108928
+	Key: wgmir4n:vtov                                                 	val: 	1250506240
+	Key: wg3:exp:c(0):I1(0)                                           	val: 	1250101248
 	Key: ring6:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optphi: ... 
-		... delay                                                   	val: 	684797456 
+		... delay                                                   	val: 	1237354224
 	Key: ring6:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optphi: ... 
-		... delay                                                   	val: 	685796704 
-	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	684836176 
-	Key: wg4:exp:c(0):I1(1)                                           	val: 	687949312 
-	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	685791216 
-	Key: rcw3p5:c:0:m(0):optmag:iso                                   	val: 	686905936 
-	Key: ring6:filter-1:exp:split:ring6:2-2out:2:c(0)                 	val: 	687956992 
-	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	685849856 
-	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	684955056 
-	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	684877792 
-	Key: ring6:filter-2:exp:split:ring6:2-2in:1:c(0)                  	val: 	687960576 
-	Key: v31                                                          	val: 	686855584 
-	Key: v32                                                          	val: 	686856704 
-	Key: rcw3p5:c:0:m(0):optphi:iso                                   	val: 	686908048 
+		... delay                                                   	val: 	1238417408
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1237392944
+	Key: wg4:exp:c(0):I1(1)                                           	val: 	1250481664
+	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	1238411920
+	Key: rcw3p5:c:0:m(0):optmag:iso                                   	val: 	1239525136
+	Key: ring6:filter-1:exp:split:ring6:2-2out:2:c(0)                 	val: 	1250512896
+	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1238554624
+	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1238511728
+	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1240520272
+	Key: ring6:filter-2:exp:split:ring6:2-2in:1:c(0)                  	val: 	1250516480
+	Key: v31                                                          	val: 	1240472752
+	Key: v32                                                          	val: 	1240473872
+	Key: rcw3p5:c:0:m(0):optphi:iso                                   	val: 	1239527248
 
 Node hash table (size: 328)
 	Key: ring6:filter-2:exp:inter2(0):variable:rcw3p5:rev:m(0):o ... 
@@ -1571,46 +1571,46 @@ Optical Node hash table
 		aliases: wg2:exp:inter1(0) -- wg2:exp:inter1(0) -- 
 
 Optical ModeShape hash table
-	Key: 5921b893f555e32895dde05c406b338eb97b5fe0                     	val: 	685778496 
+	Key: 5921b893f555e32895dde05c406b338eb97b5fe0                     	val: 	1239519744
 
 Optical Link hash table
-	Key: n64                                                          n64                                                         	val: 	0x7fe428f0d5d0 
-			E1: 	0x7fe42a809c00 - ring6:xc2                                	E2: 	0x7fe42a810400 - wg2:exp                                 
-	Key: w4n                                                          w4n                                                         	val: 	0x7fe428c05790 
-			E1: 	0x7fe429009200 - wg4:exp                                  	E2: 	0x7fe42900ac00 - wgmir4n                                 
-	Key: n62                                                          n62                                                         	val: 	0x7fe428f0d590 
-			E1: 	0x7fe42a822c00 - mirn62:vtov:split:n62:1                  	E2: 	0x7fe42a809c00 - ring6:xc2                               
-	Key: ring6:2-2in:split                                            ring6:2-2in:split                                           	val: 	0x7fe428c070e0 
-			E1: 	0x7fe42900b800 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fe42a80c400 - ring6:filter-2:exp                      
-	Key: x71                                                          x71                                                         	val: 	0x7fe428f11a20 
-			E1: 	0x7fe42a80ea00 - wg1:exp                                  	E2: 	0x7fe42a811200 - wx7                                     
-	Key: ring6:1-2in                                                  ring6:1-2in                                                 	val: 	0x7fe428f0ccf0 
-			E1: 	0x7fe42a808200 - ring6:xc1                                	E2: 	0x7fe42a80c400 - ring6:filter-2:exp                      
-	Key: x72                                                          x72                                                         	val: 	0x7fe428f13170 
-			E1: 	0x7fe42a810400 - wg2:exp                                  	E2: 	0x7fe42a811200 - wx7                                     
-	Key: x73                                                          x73                                                         	val: 	0x7fe428f13a70 
-			E1: 	0x7fe42a811200 - wx7                                      	E2: 	0x7fe429007800 - wg3:exp                                 
-	Key: x74                                                          x74                                                         	val: 	0x7fe428f13ab0 
-			E1: 	0x7fe42a811200 - wx7                                      	E2: 	0x7fe429009200 - wg4:exp                                 
-	Key: w3e                                                          w3e                                                         	val: 	0x7fe428c044b0 
-			E1: 	0x7fe429007800 - wg3:exp                                  	E2: 	0x7fe42900a000 - wgmir3e                                 
-	Key: ring6:2-2in                                                  ring6:2-2in                                                 	val: 	0x7fe428f0d510 
-			E1: 	0x7fe42900b800 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fe42a809c00 - ring6:xc2                               
-	Key: ring6:2-2out:split                                           ring6:2-2out:split                                          	val: 	0x7fe428f25170 
-			E1: 	0x7fe42a820400 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fe42a80b600 - ring6:filter-1:exp                      
-	Key: n62:split                                                    n62:split                                                   	val: 	0x7fe428f270d0 
-			E1: 	0x7fe42a822c00 - mirn62:vtov:split:n62:1                  	E2: 	0x7fe42a822000 - mirn62:vtov                             
-	Key: n61                                                          n61                                                         	val: 	0x7fe428f0c1b0 
-			E1: 	0x7fe42a805e00 - rcw3p5                                   	E2: 	0x7fe42a808200 - ring6:xc1                               
-	Key: ring6:1-2out                                                 ring6:1-2out                                                	val: 	0x7fe428f0cd30 
-			E1: 	0x7fe42a808200 - ring6:xc1                                	E2: 	0x7fe42a80b600 - ring6:filter-1:exp                      
-	Key: n63                                                          n63                                                         	val: 	0x7fe428f0ccb0 
-			E1: 	0x7fe42a808200 - ring6:xc1                                	E2: 	0x7fe42a80ea00 - wg1:exp                                 
-	Key: ring6:2-2out                                                 ring6:2-2out                                                	val: 	0x7fe428f0d550 
-			E1: 	0x7fe42a820400 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fe42a809c00 - ring6:xc2                               
+	Key: n64                                                          n64                                                         	val: 	0x7fab49f05ce0 
+			E1: 	0x7fab4b803e00 - ring6:xc2                                	E2: 	0x7fab4b009200 - wg2:exp                                 
+	Key: w4n                                                          w4n                                                         	val: 	0x7fab49e18180 
+			E1: 	0x7fab4b00e000 - wg4:exp                                  	E2: 	0x7fab4b00fa00 - wgmir4n                                 
+	Key: n62                                                          n62                                                         	val: 	0x7fab49f05ca0 
+			E1: 	0x7fab4a890000 - mirn62:vtov:split:n62:1                  	E2: 	0x7fab4b803e00 - ring6:xc2                               
+	Key: ring6:2-2in:split                                            ring6:2-2in:split                                           	val: 	0x7fab49d109c0 
+			E1: 	0x7fab4a831800 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fab4b005200 - ring6:filter-2:exp                      
+	Key: x71                                                          x71                                                         	val: 	0x7fab49e13820 
+			E1: 	0x7fab4b007800 - wg1:exp                                  	E2: 	0x7fab4b00a000 - wx7                                     
+	Key: ring6:1-2in                                                  ring6:1-2in                                                 	val: 	0x7fab49f05400 
+			E1: 	0x7fab4b802400 - ring6:xc1                                	E2: 	0x7fab4b005200 - ring6:filter-2:exp                      
+	Key: x72                                                          x72                                                         	val: 	0x7fab49e14f70 
+			E1: 	0x7fab4b009200 - wg2:exp                                  	E2: 	0x7fab4b00a000 - wx7                                     
+	Key: x73                                                          x73                                                         	val: 	0x7fab49e15870 
+			E1: 	0x7fab4b00a000 - wx7                                      	E2: 	0x7fab4b00c600 - wg3:exp                                 
+	Key: x74                                                          x74                                                         	val: 	0x7fab49e158b0 
+			E1: 	0x7fab4b00a000 - wx7                                      	E2: 	0x7fab4b00e000 - wg4:exp                                 
+	Key: w3e                                                          w3e                                                         	val: 	0x7fab49e16a30 
+			E1: 	0x7fab4b00c600 - wg3:exp                                  	E2: 	0x7fab4b00ee00 - wgmir3e                                 
+	Key: ring6:2-2in                                                  ring6:2-2in                                                 	val: 	0x7fab49f05c20 
+			E1: 	0x7fab4a831800 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fab4b803e00 - ring6:xc2                               
+	Key: ring6:2-2out:split                                           ring6:2-2out:split                                          	val: 	0x7fab49e235f0 
+			E1: 	0x7fab4b01c800 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fab4b805800 - ring6:filter-1:exp                      
+	Key: n62:split                                                    n62:split                                                   	val: 	0x7fab49d31d60 
+			E1: 	0x7fab4a890000 - mirn62:vtov:split:n62:1                  	E2: 	0x7fab4a88f400 - mirn62:vtov                             
+	Key: n61                                                          n61                                                         	val: 	0x7fab49f048c0 
+			E1: 	0x7fab4b800000 - rcw3p5                                   	E2: 	0x7fab4b802400 - ring6:xc1                               
+	Key: ring6:1-2out                                                 ring6:1-2out                                                	val: 	0x7fab49f05440 
+			E1: 	0x7fab4b802400 - ring6:xc1                                	E2: 	0x7fab4b805800 - ring6:filter-1:exp                      
+	Key: n63                                                          n63                                                         	val: 	0x7fab49f053c0 
+			E1: 	0x7fab4b802400 - ring6:xc1                                	E2: 	0x7fab4b007800 - wg1:exp                                 
+	Key: ring6:2-2out                                                 ring6:2-2out                                                	val: 	0x7fab49f05c60 
+			E1: 	0x7fab4b01c800 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fab4b803e00 - ring6:xc2                               
 
 Source Optical Channel hash table
-	Key: variable:rcw3p5                                              	lambda: 	1513       dPhi_dt: 	0x7fe42a806630 *dPhi_dt: 	0         
+	Key: variable:rcw3p5                                              	lambda: 	1513       dPhi_dt: 	0x7fab4b800830 *dPhi_dt: 	0         
 
 Optical Matrices hash table
 
@@ -3187,14 +3187,14 @@ Main Circuit Paras:
 	Name=PIover2 String='3.1415926/2.0' Ep = 0x0
 	Name=Noffset String=3.0e-4 Ep = 0x0
 	Name=Noff String='1.6532' Ep = 0x0
-	Name=Non String='1.6532' Ep = 0x7fe428f0d9a0
+	Name=Non String='1.6532' Ep = 0x7fab49f060b0
 	Name=NonWG String='1.4' Ep = 0x0
 	Name=NMODES String=1 Ep = 0x0
-	Name=gain String='0.85' Ep = 0x7fe428f0da20
-	Name=r1 String='10.35' Ep = 0x7fe428f0da80
+	Name=gain String='0.85' Ep = 0x7fab49f06130
+	Name=r1 String='10.35' Ep = 0x7fab49f06190
 	Name=r2 String='10.30' Ep = 0x0
 	Name=r3 String='10.25' Ep = 0x0
-	Name=C String='0.25' Ep = 0x7fe428f0ceb0
+	Name=C String='0.25' Ep = 0x7fab49f055c0
 	Name=lam String=1513 Ep = 0x0
 
 Creating: v11
@@ -3224,34 +3224,34 @@ Creating: v3p52
 Creating: vcar
 
 Creating: Rcw3p5
-	New Link: n61                                                          Link: 0x7fe428d11860
+	New Link: n61                                                          Link: 0x7fab49e1a8e0
 
 Creating: ring6
-	New Link: n63                                                          Link: 0x7fe428d1c650
-	New Link: ring6:1-2in                                                  Link: 0x7fe428d1c690
-	New Link: ring6:1-2out                                                 Link: 0x7fe428f25190
-	New Link: ring6:2-2in                                                  Link: 0x7fe428f135f0
-	New Link: ring6:2-2out                                                 Link: 0x7fe428f24660
-	New Link: n62                                                          Link: 0x7fe428f2a900
-	New Link: n64                                                          Link: 0x7fe428f24210
+	New Link: n63                                                          Link: 0x7fab49e1c060
+	New Link: ring6:1-2in                                                  Link: 0x7fab49e1c0a0
+	New Link: ring6:1-2out                                                 Link: 0x7fab49e1c0e0
+	New Link: ring6:2-2in                                                  Link: 0x7fab49e1c810
+	New Link: ring6:2-2out                                                 Link: 0x7fab49e1c850
+	New Link: n62                                                          Link: 0x7fab49e1c890
+	New Link: n64                                                          Link: 0x7fab49e1c8d0
 
 Creating: mirN62
 
 Creating: wg1
-	New Link: x71                                                          Link: 0x7fe428f339f0
+	New Link: x71                                                          Link: 0x7fab49e205b0
 
 Creating: wg2
-	New Link: x72                                                          Link: 0x7fe428f32b40
+	New Link: x72                                                          Link: 0x7fab49e21d00
 
 Creating: wx7
-	New Link: x73                                                          Link: 0x7fe428f32490
-	New Link: x74                                                          Link: 0x7fe428f324d0
+	New Link: x73                                                          Link: 0x7fab49e17a20
+	New Link: x74                                                          Link: 0x7fab49e17a60
 
 Creating: wg3
-	New Link: w3e                                                          Link: 0x7fe428f16310
+	New Link: w3e                                                          Link: 0x7fab49e14730
 
 Creating: wg4
-	New Link: w4n                                                          Link: 0x7fe428f09680
+	New Link: w4n                                                          Link: 0x7fab49d31480
 
 Creating: WGmir3e
 
@@ -3260,37 +3260,37 @@ Creating: WGmir4n
 Circuit after element assignment
 
 Element hash table
-	Key: ring6:filter-1:exp                                           	val: 	713068032 
-	Key: v21                                                          	val: 	684895792 
-	Key: v22                                                          	val: 	684929552 
-	Key: v3p51                                                        	val: 	684875888 
-	Key: v3p52                                                        	val: 	684953248 
-	Key: wg3:exp                                                      	val: 	713098240 
-	Key: rcw3p5                                                       	val: 	696280064 
-	Key: v42                                                          	val: 	684794192 
-	Key: v41                                                          	val: 	684834976 
-	Key: mirn62                                                       	val: 	713187840 
-	Key: ring6                                                        	val: 	696258560 
-	Key: ring6:xc1                                                    	val: 	696285696 
-	Key: ring6:filter-2:exp                                           	val: 	713071616 
-	Key: ring6:xc2                                                    	val: 	713061376 
-	Key: vcar                                                         	val: 	684833936 
-	Key: wg4:exp                                                      	val: 	713104896 
-	Key: wg1:exp                                                      	val: 	713078272 
-	Key: v11                                                          	val: 	684853696 
-	Key: v12                                                          	val: 	684930960 
-	Key: wgmir4n                                                      	val: 	713111552 
-	Key: wg1                                                          	val: 	713075200 
-	Key: wg2                                                          	val: 	713081856 
-	Key: wg3                                                          	val: 	713095168 
-	Key: wg4                                                          	val: 	713101824 
-	Key: v32                                                          	val: 	684876816 
-	Key: v51                                                          	val: 	684951808 
-	Key: v31                                                          	val: 	684852064 
-	Key: v52                                                          	val: 	684874736 
-	Key: wg2:exp                                                      	val: 	713084928 
-	Key: wx7                                                          	val: 	713088512 
-	Key: wgmir3e                                                      	val: 	713108480 
+	Key: ring6:filter-1:exp                                           	val: 	1258331136
+	Key: v21                                                          	val: 	1239517696
+	Key: v22                                                          	val: 	1239510752
+	Key: v3p51                                                        	val: 	1239527248
+	Key: v3p52                                                        	val: 	1239518288
+	Key: wg3:exp                                                      	val: 	1258365952
+	Key: rcw3p5                                                       	val: 	1258312192
+	Key: v42                                                          	val: 	1239520176
+	Key: v41                                                          	val: 	1239557216
+	Key: mirn62                                                       	val: 	1258338304
+	Key: ring6                                                        	val: 	1258306048
+	Key: ring6:xc1                                                    	val: 	1258317824
+	Key: ring6:filter-2:exp                                           	val: 	1258334720
+	Key: ring6:xc2                                                    	val: 	1258324480
+	Key: vcar                                                         	val: 	1239519104
+	Key: wg4:exp                                                      	val: 	1250516480
+	Key: wg1:exp                                                      	val: 	1258344448
+	Key: v11                                                          	val: 	1239497936
+	Key: v12                                                          	val: 	1239503904
+	Key: wgmir4n                                                      	val: 	1249925632
+	Key: wg1                                                          	val: 	1258341376
+	Key: wg2                                                          	val: 	1258348032
+	Key: wg3                                                          	val: 	1258354688
+	Key: wg4                                                          	val: 	1258369536
+	Key: v32                                                          	val: 	1239558320
+	Key: v51                                                          	val: 	1239560784
+	Key: v31                                                          	val: 	1239516720
+	Key: v52                                                          	val: 	1239555632
+	Key: wg2:exp                                                      	val: 	1258351104
+	Key: wx7                                                          	val: 	1258359296
+	Key: wgmir3e                                                      	val: 	1249906688
 
 Delay Element hash table
 
@@ -3299,27 +3299,27 @@ OptFFT Element hash table
 Noise Element hash table
 
 Optical Element hash table
-	Key: wg2:exp                                                      	val: 	713084928 
-	Key: wg4:exp                                                      	val: 	713104896 
-	Key: wg1                                                          	val: 	713075200 
-	Key: rcw3p5                                                       	val: 	696280064 
-	Key: wg2                                                          	val: 	713081856 
-	Key: wg3                                                          	val: 	713095168 
-	Key: wg4                                                          	val: 	713101824 
-	Key: ring6:filter-2:exp                                           	val: 	713071616 
-	Key: wx7                                                          	val: 	713088512 
-	Key: wgmir3e                                                      	val: 	713108480 
-	Key: wg1:exp                                                      	val: 	713078272 
-	Key: mirn62                                                       	val: 	713187840 
-	Key: ring6:xc1                                                    	val: 	696285696 
-	Key: ring6:xc2                                                    	val: 	713061376 
-	Key: ring6                                                        	val: 	696258560 
-	Key: wg3:exp                                                      	val: 	713098240 
-	Key: ring6:filter-1:exp                                           	val: 	713068032 
-	Key: wgmir4n                                                      	val: 	713111552 
+	Key: wg2:exp                                                      	val: 	1258351104
+	Key: wg4:exp                                                      	val: 	1250516480
+	Key: wg1                                                          	val: 	1258341376
+	Key: rcw3p5                                                       	val: 	1258312192
+	Key: wg2                                                          	val: 	1258348032
+	Key: wg3                                                          	val: 	1258354688
+	Key: wg4                                                          	val: 	1258369536
+	Key: ring6:filter-2:exp                                           	val: 	1258334720
+	Key: wx7                                                          	val: 	1258359296
+	Key: wgmir3e                                                      	val: 	1249906688
+	Key: wg1:exp                                                      	val: 	1258344448
+	Key: mirn62                                                       	val: 	1258338304
+	Key: ring6:xc1                                                    	val: 	1258317824
+	Key: ring6:xc2                                                    	val: 	1258324480
+	Key: ring6                                                        	val: 	1258306048
+	Key: wg3:exp                                                      	val: 	1258365952
+	Key: ring6:filter-1:exp                                           	val: 	1258331136
+	Key: wgmir4n                                                      	val: 	1249925632
 
 Source Optical Element hash table
-	Key: rcw3p5                                                       	val: 	696280064 
+	Key: rcw3p5                                                       	val: 	1258312192
 
 Elec Init Conditions
 
@@ -3380,31 +3380,31 @@ Stamping: vcar
 
 Stamping: rcw3p5
 Created Optical Mode Shape 'Mode:1 n:1 x:5.0000000000000000e+01 y:5.0000000000000000e+01 m:0 n:0 s:5.0000000000000000e+00 1/r:0.0000000000000000e+00 l:1.5130000000000000e+03' (5921b893f555e32895dde05c406b338eb97b5fe0)
-Adding Optical Mode:  n61:variable:rcw3p5 	      0x7fe428c06780
+Adding Optical Mode:  n61:variable:rcw3p5 	      0x7fab49d351e0
 
 Stamping: ring6
-Adding Optical Mode: ring6:1-2in:variable:rcw3p5 	      0x7fe428c0b080
-Adding Optical Mode:  n63:variable:rcw3p5 	      0x7fe428c0b180
-Adding Optical Mode: ring6:1-2out:variable:rcw3p5 	      0x7fe428c0b300
+Adding Optical Mode: ring6:1-2in:variable:rcw3p5 	      0x7fab49d48c70
+Adding Optical Mode:  n63:variable:rcw3p5 	      0x7fab49d48a40
+Adding Optical Mode: ring6:1-2out:variable:rcw3p5 	      0x7fab49d48b80
 Stamping OptScatteringVtoV Instance: ring6:xc1:c(0)
 	E to E: n61:variable:rcw3p5 | n63:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:2-2in:variable:rcw3p5 	      0x7fe428c0ed40
-Adding Optical Mode:  n62:variable:rcw3p5 	      0x7fe428c07920
-Adding Optical Mode: ring6:2-2out:variable:rcw3p5 	      0x7fe428c07aa0
-Adding Optical Mode:  n64:variable:rcw3p5 	      0x7fe428c07c30
+Adding Optical Mode: ring6:2-2in:variable:rcw3p5 	      0x7fab49d3cee0
+Adding Optical Mode:  n62:variable:rcw3p5 	      0x7fab49d3eef0
+Adding Optical Mode: ring6:2-2out:variable:rcw3p5 	      0x7fab49d22fe0
+Adding Optical Mode:  n64:variable:rcw3p5 	      0x7fab49d23170
 Stamping OptScatteringVtoV Instance: ring6:xc2:c(0)
 	E to E: ring6:2-2in:variable:rcw3p5 | ring6:2-2out:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:filter-1:exp:inter1(0):variable:rcw3p5 	      0x7fe428c15770
-Adding Optical Mode: ring6:filter-1:exp:inter2(0):variable:rcw3p5 	      0x7fe428c15960
-Adding Optical Mode: ring6:filter-1:exp:inter3(0):variable:rcw3p5 	      0x7fe428c15db0
+Adding Optical Mode: ring6:filter-1:exp:inter1(0):variable:rcw3p5 	      0x7fab49d09460
+Adding Optical Mode: ring6:filter-1:exp:inter2(0):variable:rcw3p5 	      0x7fab49d098e0
+Adding Optical Mode: ring6:filter-1:exp:inter3(0):variable:rcw3p5 	      0x7fab49d09d30
 Splitting OptNode (output flip): ring6:2-2out:variable:rcw3p5
 	Inserting Extra OConn 'ring6:2-2out:split:variable:rcw3p5'
-	New Link: ring6:2-2out:split                                           Link: 0x7fe428c16ba0
-Adding Optical Mode: ring6:2-2out:split:variable:rcw3p5 	      0x7fe428c16700
+	New Link: ring6:2-2out:split                                           Link: 0x7fab49d0bd70
+Adding Optical Mode: ring6:2-2out:split:variable:rcw3p5 	      0x7fab49d0a3f0
 Stamping OptScatteringVtoV Instance: ring6:filter-1:exp:c(0):I1(0)
 	E to E: ring6:1-2out:variable:rcw3p5 | ring6:filter-1:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3418,13 +3418,13 @@ Stamping OptScatteringVtoV Instance: ring6:filter-1:exp:c(0):I1(1)
 	E to E: ring6:filter-1:exp:inter3(0):variable:rcw3p5 | ring6:2-2out:split:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
-Adding Optical Mode: ring6:filter-2:exp:inter1(0):variable:rcw3p5 	      0x7fe428e0fd90
-Adding Optical Mode: ring6:filter-2:exp:inter2(0):variable:rcw3p5 	      0x7fe428e10210
-Adding Optical Mode: ring6:filter-2:exp:inter3(0):variable:rcw3p5 	      0x7fe428e10660
+Adding Optical Mode: ring6:filter-2:exp:inter1(0):variable:rcw3p5 	      0x7fab49d19840
+Adding Optical Mode: ring6:filter-2:exp:inter2(0):variable:rcw3p5 	      0x7fab49d19cc0
+Adding Optical Mode: ring6:filter-2:exp:inter3(0):variable:rcw3p5 	      0x7fab49d1a110
 Splitting OptNode (input flip): ring6:2-2in:variable:rcw3p5
 	Inserting Extra OConn 'ring6:2-2in:split:variable:rcw3p5'
-	New Link: ring6:2-2in:split                                            Link: 0x7fe428e11190
-Adding Optical Mode: ring6:2-2in:split:variable:rcw3p5 	      0x7fe428e10d00
+	New Link: ring6:2-2in:split                                            Link: 0x7fab49d1aa40
+Adding Optical Mode: ring6:2-2in:split:variable:rcw3p5 	      0x7fab49d1a5b0
 Stamping OptScatteringVtoV Instance: ring6:filter-2:exp:c(0):I1(0)
 	E to E: ring6:2-2in:split:variable:rcw3p5 | ring6:filter-2:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3442,10 +3442,10 @@ Stamping OptScatteringVtoV Instance: ring6:filter-2:exp:c(0):I1(1)
 Stamping: mirn62
 
 Stamping: wg1
-Adding Optical Mode: wg1:exp:inter1(0):variable:rcw3p5 	      0x7fe428e0d600
-Adding Optical Mode: wg1:exp:inter2(0):variable:rcw3p5 	      0x7fe428e0da70
-Adding Optical Mode: wg1:exp:inter3(0):variable:rcw3p5 	      0x7fe428e0deb0
-Adding Optical Mode:  x71:variable:rcw3p5 	      0x7fe428e06280
+Adding Optical Mode: wg1:exp:inter1(0):variable:rcw3p5 	      0x7fab49d26a20
+Adding Optical Mode: wg1:exp:inter2(0):variable:rcw3p5 	      0x7fab49d28bb0
+Adding Optical Mode: wg1:exp:inter3(0):variable:rcw3p5 	      0x7fab49d28fd0
+Adding Optical Mode:  x71:variable:rcw3p5 	      0x7fab49d295d0
 Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(0)
 	E to E: n63:variable:rcw3p5 | wg1:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3461,10 +3461,10 @@ Stamping OptScatteringVtoV Instance: wg1:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wg2
-Adding Optical Mode: wg2:exp:inter1(0):variable:rcw3p5 	      0x7fe428e1a4c0
-Adding Optical Mode: wg2:exp:inter2(0):variable:rcw3p5 	      0x7fe428e1a670
-Adding Optical Mode: wg2:exp:inter3(0):variable:rcw3p5 	      0x7fe428e1aab0
-Adding Optical Mode:  x72:variable:rcw3p5 	      0x7fe428e1b360
+Adding Optical Mode: wg2:exp:inter1(0):variable:rcw3p5 	      0x7fab49d12550
+Adding Optical Mode: wg2:exp:inter2(0):variable:rcw3p5 	      0x7fab49d129c0
+Adding Optical Mode: wg2:exp:inter3(0):variable:rcw3p5 	      0x7fab49d12e00
+Adding Optical Mode:  x72:variable:rcw3p5 	      0x7fab49d13400
 Stamping OptScatteringVtoV Instance: wg2:exp:c(0):I1(0)
 	E to E: n64:variable:rcw3p5 | wg2:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3480,18 +3480,18 @@ Stamping OptScatteringVtoV Instance: wg2:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wx7
-Adding Optical Mode:  x73:variable:rcw3p5 	      0x7fe428c24830
-Adding Optical Mode:  x74:variable:rcw3p5 	      0x7fe428c24990
+Adding Optical Mode:  x73:variable:rcw3p5 	      0x7fab49c089b0
+Adding Optical Mode:  x74:variable:rcw3p5 	      0x7fab49c08b10
 Stamping OptScatteringVtoV Instance: wx7:c(0)
 	E to E: x71:variable:rcw3p5 | x73:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Stamping: wg3
-Adding Optical Mode: wg3:exp:inter1(0):variable:rcw3p5 	      0x7fe428f1edc0
-Adding Optical Mode: wg3:exp:inter2(0):variable:rcw3p5 	      0x7fe428f1f230
-Adding Optical Mode: wg3:exp:inter3(0):variable:rcw3p5 	      0x7fe428f1f670
-Adding Optical Mode:  w3e:variable:rcw3p5 	      0x7fe428f1fc70
+Adding Optical Mode: wg3:exp:inter1(0):variable:rcw3p5 	      0x7fab49c13600
+Adding Optical Mode: wg3:exp:inter2(0):variable:rcw3p5 	      0x7fab49c13a70
+Adding Optical Mode: wg3:exp:inter3(0):variable:rcw3p5 	      0x7fab49c13eb0
+Adding Optical Mode:  w3e:variable:rcw3p5 	      0x7fab49c144b0
 Stamping OptScatteringVtoV Instance: wg3:exp:c(0):I1(0)
 	E to E: x73:variable:rcw3p5 | wg3:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3507,10 +3507,10 @@ Stamping OptScatteringVtoV Instance: wg3:exp:c(0):I1(1)
 	NonLinear Scattering Mode
 
 Stamping: wg4
-Adding Optical Mode: wg4:exp:inter1(0):variable:rcw3p5 	      0x7fe428f13e60
-Adding Optical Mode: wg4:exp:inter2(0):variable:rcw3p5 	      0x7fe428f124b0
-Adding Optical Mode: wg4:exp:inter3(0):variable:rcw3p5 	      0x7fe428f128f0
-Adding Optical Mode:  w4n:variable:rcw3p5 	      0x7fe428f10fd0
+Adding Optical Mode: wg4:exp:inter1(0):variable:rcw3p5 	      0x7fab49c1e1c0
+Adding Optical Mode: wg4:exp:inter2(0):variable:rcw3p5 	      0x7fab49c1e870
+Adding Optical Mode: wg4:exp:inter3(0):variable:rcw3p5 	      0x7fab49c1ecb0
+Adding Optical Mode:  w4n:variable:rcw3p5 	      0x7fab49c1f560
 Stamping OptScatteringVtoV Instance: wg4:exp:c(0):I1(0)
 	E to E: x74:variable:rcw3p5 | wg4:exp:inter1(0):variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3532,37 +3532,37 @@ Stamping: wgmir4n
 Linking optical elements; 
 Pre-processing optical elements; evaluating the Oconn overlap integrals and FSE modes 
 Mirror DetModes ... 
-		mirn62 input 0x7fe42a807520 output 0x7fe42a807520
+		mirn62 input 0x7fab4b008320 output 0x7fab4b008320
 Mirror DetModes ... 
-		wgmir3e input 0x7fe42a810520 output 0x7fe42a810520
+		wgmir3e input 0x7fab4b012520 output 0x7fab4b012520
 Mirror DetModes ... 
-		wgmir4n input 0x7fe42a811f20 output 0x7fe42a811f20
+		wgmir4n input 0x7fab4a895f20 output 0x7fab4a895f20
 Oconn DetModes ...
-		ring6:filter-1:exp:split:ring6:2-2out:2 input 0x7fe42a807520 output 0x7fe42a808f20
+		ring6:filter-1:exp:split:ring6:2-2out:2 input 0x7fab4b008320 output 0x7fab4b009d20
 Oconn DetModes ...
-		ring6:filter-2:exp:split:ring6:2-2in:1 input 0x7fe42a809d20 output 0x7fe42a807520
+		ring6:filter-2:exp:split:ring6:2-2in:1 input 0x7fab4b00ab20 output 0x7fab4b008320
 
 Stamping free mode   optical elements; 
 Processing Mirror: mirn62 Version: 6 Switchable: 1
 Splitting OptNode (input flip): n62:variable:rcw3p5
 	Inserting Extra OConn 'n62:split:variable:rcw3p5'
-	New Link: n62:split                                                    Link: 0x7fe428d0f1f0
-Adding Optical Mode: n62:split:variable:rcw3p5 	      0x7fe428d3a070
-Adding Optical Mode: mirn62:terminal:variable:rcw3p5 	      0x7fe428d0f2d0
+	New Link: n62:split                                                    Link: 0x7fab49c28ca0
+Adding Optical Mode: n62:split:variable:rcw3p5 	      0x7fab49c28860
+Adding Optical Mode: mirn62:terminal:variable:rcw3p5 	      0x7fab49c28d80
 Stamping OptScatteringVtoV Instance: mirn62:vtov:c(0)
 	E to E: n62:split:variable:rcw3p5 | mirn62:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Processing Mirror: wgmir3e Version: 6 Switchable: 1
-Adding Optical Mode: wgmir3e:terminal:variable:rcw3p5 	      0x7fe428d285d0
+Adding Optical Mode: wgmir3e:terminal:variable:rcw3p5 	      0x7fab49c2c5c0
 Stamping OptScatteringVtoV Instance: wgmir3e:vtov:c(0)
 	E to E: w3e:variable:rcw3p5 | wgmir3e:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
 	NonLinear Scattering Mode
 
 Processing Mirror: wgmir4n Version: 6 Switchable: 1
-Adding Optical Mode: wgmir4n:terminal:variable:rcw3p5 	      0x7fe428e1fde0
+Adding Optical Mode: wgmir4n:terminal:variable:rcw3p5 	      0x7fab49f01060
 Stamping OptScatteringVtoV Instance: wgmir4n:vtov:c(0)
 	E to E: w4n:variable:rcw3p5 | wgmir4n:terminal:variable:rcw3p5
 	Linear (E to E) Scattering Mode
@@ -3620,94 +3620,94 @@ Post Stamping: rcw3p5:c:0:m(0):optmag:iso
 Circuit after node assignment
 
 Element hash table (including internal elements)
-	Key: ring6:filter-1:exp:c(0):I1(0)                                	val: 	687951872 
-	Key: wg2:exp:c(0):I1(0)                                           	val: 	705080320 
-	Key: rcw3p5                                                       	val: 	696280064 
-	Key: ring6:filter-2:exp:c(0):I1(1)                                	val: 	704871936 
-	Key: v3p51                                                        	val: 	684875888 
-	Key: v3p52                                                        	val: 	684953248 
-	Key: wg2:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	683807264 
-	Key: wg1                                                          	val: 	713075200 
-	Key: ring6:xc2:c(0)                                               	val: 	687901696 
-	Key: wg2                                                          	val: 	713081856 
-	Key: wg3                                                          	val: 	713095168 
-	Key: wg4                                                          	val: 	713101824 
-	Key: wgmir3e                                                      	val: 	713108480 
-	Key: mirn62:vtov:split:n62:1:c(0)                                 	val: 	696307712 
-	Key: wx7:c(0)                                                     	val: 	688197120 
-	Key: wg3:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	686911952 
-	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	685787744 
-	Key: mirn62:vtov                                                  	val: 	696294400 
-	Key: ring6:xc1                                                    	val: 	696285696 
-	Key: ring6:xc2                                                    	val: 	713061376 
-	Key: mirn62:vtov:c(0)                                             	val: 	696301056 
-	Key: ring6:filter-2:exp                                           	val: 	713071616 
-	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	683808896 
-	Key: v42                                                          	val: 	684794192 
-	Key: ring6:filter-2:exp:split:ring6:2-2in:1                       	val: 	704733696 
-	Key: ring6:filter-1:exp                                           	val: 	713068032 
-	Key: mirn62                                                       	val: 	713187840 
-	Key: wg2:exp:c(0):I1(1)                                           	val: 	688193536 
-	Key: v41                                                          	val: 	684834976 
-	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	685863008 
-	Key: ring6:filter-1:exp:c(0):I1(1)                                	val: 	687955456 
-	Key: vcar                                                         	val: 	684833936 
-	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	683786384 
-	Key: ring6:xc1:c(0)                                               	val: 	687960576 
-	Key: wg4:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	686981296 
-	Key: wg3:exp:c(0):I1(1)                                           	val: 	713305600 
-	Key: wg4:exp                                                      	val: 	713104896 
-	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	685857520 
-	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	686917216 
-	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	686986816 
-	Key: ring6                                                        	val: 	696258560 
-	Key: wg3:exp                                                      	val: 	713098240 
+	Key: ring6:filter-1:exp:c(0):I1(0)                                	val: 	1249982464
+	Key: wg2:exp:c(0):I1(0)                                           	val: 	1250541568
+	Key: rcw3p5                                                       	val: 	1258312192
+	Key: ring6:filter-2:exp:c(0):I1(1)                                	val: 	1250307072
+	Key: v3p51                                                        	val: 	1239527248
+	Key: v3p52                                                        	val: 	1239518288
+	Key: wg2:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1237345072
+	Key: wg1                                                          	val: 	1258341376
+	Key: ring6:xc2:c(0)                                               	val: 	1249932288
+	Key: wg2                                                          	val: 	1258348032
+	Key: wg3                                                          	val: 	1258354688
+	Key: wg4                                                          	val: 	1258369536
+	Key: wgmir3e                                                      	val: 	1249906688
+	Key: mirn62:vtov:split:n62:1:c(0)                                 	val: 	1266864128
+	Key: wx7:c(0)                                                     	val: 	1241635328
+	Key: wg3:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1237424000
+	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	1238502608
+	Key: mirn62:vtov                                                  	val: 	1242015744
+	Key: ring6:xc1                                                    	val: 	1258317824
+	Key: ring6:xc2                                                    	val: 	1258324480
+	Key: mirn62:vtov:c(0)                                             	val: 	1242022400
+	Key: ring6:filter-2:exp                                           	val: 	1258334720
+	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1237346880
+	Key: v42                                                          	val: 	1239520176
+	Key: ring6:filter-2:exp:split:ring6:2-2in:1                       	val: 	1250168832
+	Key: ring6:filter-1:exp                                           	val: 	1258331136
+	Key: mirn62                                                       	val: 	1258338304
+	Key: wg2:exp:c(0):I1(1)                                           	val: 	1241629696
+	Key: v41                                                          	val: 	1239557216
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1238424480
+	Key: ring6:filter-1:exp:c(0):I1(1)                                	val: 	1250117120
+	Key: vcar                                                         	val: 	1239519104
+	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	1238457296
+	Key: ring6:xc1:c(0)                                               	val: 	1249928704
+	Key: wg4:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1237467008
+	Key: wg3:exp:c(0):I1(1)                                           	val: 	1241826816
+	Key: wg4:exp                                                      	val: 	1250516480
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1238419184
+	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1237429792
+	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optphi:delay            	val: 	1237472496
+	Key: ring6                                                        	val: 	1258306048
+	Key: wg3:exp                                                      	val: 	1258365952
 	Key: ring6:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optmag: ... 
-		... delay                                                   	val: 	685789616 
+		... delay                                                   	val: 	1238504480
 	Key: ring6:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optmag: ... 
-		... delay                                                   	val: 	683783216 
-	Key: wgmir4n                                                      	val: 	713111552 
-	Key: wg2:exp                                                      	val: 	713084928 
-	Key: ring6:filter-1:exp:split:ring6:2-2out:2                      	val: 	687948288 
-	Key: v11                                                          	val: 	684853696 
-	Key: wg1:exp                                                      	val: 	713078272 
-	Key: v12                                                          	val: 	684930960 
-	Key: wgmir3e:vtov                                                 	val: 	696304640 
-	Key: wg1:exp:c(0):I1(1)                                           	val: 	705055232 
-	Key: v51                                                          	val: 	684951808 
-	Key: v52                                                          	val: 	684874736 
-	Key: wg1:exp:c(0):I1(0)                                           	val: 	704920576 
-	Key: wx7                                                          	val: 	713088512 
-	Key: wg4:exp:c(0):I1(0)                                           	val: 	713352192 
-	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	685849600 
-	Key: wg3:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	686915616 
-	Key: wgmir3e:vtov:c(0)                                            	val: 	704728576 
-	Key: wgmir4n:vtov:c(0)                                            	val: 	704647168 
-	Key: wg4:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	686984992 
-	Key: mirn62:vtov:split:n62:1                                      	val: 	696297472 
-	Key: v21                                                          	val: 	684895792 
-	Key: v22                                                          	val: 	684929552 
-	Key: wg2:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	683803408 
-	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	685861376 
-	Key: ring6:filter-2:exp:c(0):I1(0)                                	val: 	704737280 
-	Key: wgmir4n:vtov                                                 	val: 	705083904 
-	Key: wg3:exp:c(0):I1(0)                                           	val: 	713167872 
+		... delay                                                   	val: 	1238455456
+	Key: wgmir4n                                                      	val: 	1249925632
+	Key: wg2:exp                                                      	val: 	1258351104
+	Key: ring6:filter-1:exp:split:ring6:2-2out:2                      	val: 	1249978880
+	Key: v11                                                          	val: 	1239497936
+	Key: wg1:exp                                                      	val: 	1258344448
+	Key: v12                                                          	val: 	1239503904
+	Key: wgmir3e:vtov                                                 	val: 	1242025984
+	Key: wg1:exp:c(0):I1(1)                                           	val: 	1250490368
+	Key: v51                                                          	val: 	1239560784
+	Key: v52                                                          	val: 	1239555632
+	Key: wg1:exp:c(0):I1(0)                                           	val: 	1250355712
+	Key: wx7                                                          	val: 	1258359296
+	Key: wg4:exp:c(0):I1(0)                                           	val: 	1241873408
+	Key: ring6:filter-2:exp:c(0):td(0):c(0):m(0):optphi:delay         	val: 	1238506320
+	Key: wg3:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1237427968
+	Key: wgmir3e:vtov:c(0)                                            	val: 	1266846720
+	Key: wgmir4n:vtov:c(0)                                            	val: 	1266853376
+	Key: wg4:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1237470864
+	Key: mirn62:vtov:split:n62:1                                      	val: 	1242018816
+	Key: v21                                                          	val: 	1239517696
+	Key: v22                                                          	val: 	1239510752
+	Key: wg2:exp:c(0):td(0):c(0):m(0):optmag:delay                    	val: 	1238558208
+	Key: wg1:exp:c(0):td(0):c(0):m(0):optphi:delay                    	val: 	1238422880
+	Key: ring6:filter-2:exp:c(0):I1(0)                                	val: 	1250172416
+	Key: wgmir4n:vtov                                                 	val: 	1266850304
+	Key: wg3:exp:c(0):I1(0)                                           	val: 	1241692160
 	Key: ring6:filter-2:exp:c(0):td(0):reverse:c(0):m(0):optphi: ... 
-		... delay                                                   	val: 	685851056 
+		... delay                                                   	val: 	1238489664
 	Key: ring6:filter-1:exp:c(0):td(0):reverse:c(0):m(0):optphi: ... 
-		... delay                                                   	val: 	683788416 
-	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	685859504 
-	Key: wg4:exp:c(0):I1(1)                                           	val: 	713486848 
-	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	683783776 
-	Key: rcw3p5:c:0:m(0):optmag:iso                                   	val: 	683715472 
-	Key: ring6:filter-1:exp:split:ring6:2-2out:2:c(0)                 	val: 	705108480 
-	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	686983136 
-	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	686913760 
-	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	683805392 
-	Key: ring6:filter-2:exp:split:ring6:2-2in:1:c(0)                  	val: 	713490432 
-	Key: v31                                                          	val: 	684852064 
-	Key: v32                                                          	val: 	684876816 
-	Key: rcw3p5:c:0:m(0):optphi:iso                                   	val: 	683717632 
+		... delay                                                   	val: 	1238459216
+	Key: wg1:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1238421024
+	Key: wg4:exp:c(0):I1(1)                                           	val: 	1242008064
+	Key: ring6:filter-1:exp:c(0):td(0):c(0):m(0):optmag:delay         	val: 	1238453520
+	Key: rcw3p5:c:0:m(0):optmag:iso                                   	val: 	1238430256
+	Key: ring6:filter-1:exp:split:ring6:2-2out:2:c(0)                 	val: 	1266856960
+	Key: wg4:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1237468992
+	Key: wg3:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1237425840
+	Key: wg2:exp:c(0):td(0):reverse:c(0):m(0):optmag:delay            	val: 	1238560048
+	Key: ring6:filter-2:exp:split:ring6:2-2in:1:c(0)                  	val: 	1266860544
+	Key: v31                                                          	val: 	1239516720
+	Key: v32                                                          	val: 	1239558320
+	Key: rcw3p5:c:0:m(0):optphi:iso                                   	val: 	1238452368
 
 Node hash table (size: 328)
 	Key: ring6:filter-2:exp:inter2(0):variable:rcw3p5:rev:m(0):o ... 
@@ -4520,46 +4520,46 @@ Optical Node hash table
 		aliases: wg2:exp:inter1(0) -- wg2:exp:inter1(0) -- 
 
 Optical ModeShape hash table
-	Key: 5921b893f555e32895dde05c406b338eb97b5fe0                     	val: 	683697776 
+	Key: 5921b893f555e32895dde05c406b338eb97b5fe0                     	val: 	1239562528
 
 Optical Link hash table
-	Key: n64                                                          n64                                                         	val: 	0x7fe428f24210 
-			E1: 	0x7fe42a807400 - ring6:xc2                                	E2: 	0x7fe42a80d000 - wg2:exp                                 
-	Key: w4n                                                          w4n                                                         	val: 	0x7fe428f09680 
-			E1: 	0x7fe42a811e00 - wg4:exp                                  	E2: 	0x7fe42a813800 - wgmir4n                                 
-	Key: n62                                                          n62                                                         	val: 	0x7fe428f2a900 
-			E1: 	0x7fe42980a800 - mirn62:vtov:split:n62:1                  	E2: 	0x7fe42a807400 - ring6:xc2                               
-	Key: ring6:2-2in:split                                            ring6:2-2in:split                                           	val: 	0x7fe428e11190 
-			E1: 	0x7fe42a016200 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fe42a809c00 - ring6:filter-2:exp                      
-	Key: x71                                                          x71                                                         	val: 	0x7fe428f339f0 
-			E1: 	0x7fe42a80b600 - wg1:exp                                  	E2: 	0x7fe42a80de00 - wx7                                     
-	Key: ring6:1-2in                                                  ring6:1-2in                                                 	val: 	0x7fe428d1c690 
-			E1: 	0x7fe429807a00 - ring6:xc1                                	E2: 	0x7fe42a809c00 - ring6:filter-2:exp                      
-	Key: x72                                                          x72                                                         	val: 	0x7fe428f32b40 
-			E1: 	0x7fe42a80d000 - wg2:exp                                  	E2: 	0x7fe42a80de00 - wx7                                     
-	Key: x73                                                          x73                                                         	val: 	0x7fe428f32490 
-			E1: 	0x7fe42a80de00 - wx7                                      	E2: 	0x7fe42a810400 - wg3:exp                                 
-	Key: x74                                                          x74                                                         	val: 	0x7fe428f324d0 
-			E1: 	0x7fe42a80de00 - wx7                                      	E2: 	0x7fe42a811e00 - wg4:exp                                 
-	Key: w3e                                                          w3e                                                         	val: 	0x7fe428f16310 
-			E1: 	0x7fe42a810400 - wg3:exp                                  	E2: 	0x7fe42a812c00 - wgmir3e                                 
-	Key: ring6:2-2in                                                  ring6:2-2in                                                 	val: 	0x7fe428f135f0 
-			E1: 	0x7fe42a016200 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fe42a807400 - ring6:xc2                               
-	Key: ring6:2-2out:split                                           ring6:2-2out:split                                          	val: 	0x7fe428c16ba0 
-			E1: 	0x7fe429014200 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fe42a808e00 - ring6:filter-1:exp                      
-	Key: n62:split                                                    n62:split                                                   	val: 	0x7fe428d0f1f0 
-			E1: 	0x7fe42980a800 - mirn62:vtov:split:n62:1                  	E2: 	0x7fe429809c00 - mirn62:vtov                             
-	Key: n61                                                          n61                                                         	val: 	0x7fe428d11860 
-			E1: 	0x7fe429806400 - rcw3p5                                   	E2: 	0x7fe429807a00 - ring6:xc1                               
-	Key: ring6:1-2out                                                 ring6:1-2out                                                	val: 	0x7fe428f25190 
-			E1: 	0x7fe429807a00 - ring6:xc1                                	E2: 	0x7fe42a808e00 - ring6:filter-1:exp                      
-	Key: n63                                                          n63                                                         	val: 	0x7fe428d1c650 
-			E1: 	0x7fe429807a00 - ring6:xc1                                	E2: 	0x7fe42a80b600 - wg1:exp                                 
-	Key: ring6:2-2out                                                 ring6:2-2out                                                	val: 	0x7fe428f24660 
-			E1: 	0x7fe429014200 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fe42a807400 - ring6:xc2                               
+	Key: n64                                                          n64                                                         	val: 	0x7fab49e1c8d0 
+			E1: 	0x7fab4b008200 - ring6:xc2                                	E2: 	0x7fab4b00ea00 - wg2:exp                                 
+	Key: w4n                                                          w4n                                                         	val: 	0x7fab49d31480 
+			E1: 	0x7fab4a895e00 - wg4:exp                                  	E2: 	0x7fab4a805a00 - wgmir4n                                 
+	Key: n62                                                          n62                                                         	val: 	0x7fab49e1c890 
+			E1: 	0x7fab4a07b400 - mirn62:vtov:split:n62:1                  	E2: 	0x7fab4b008200 - ring6:xc2                               
+	Key: ring6:2-2in:split                                            ring6:2-2in:split                                           	val: 	0x7fab49d1aa40 
+			E1: 	0x7fab4a841000 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fab4b00aa00 - ring6:filter-2:exp                      
+	Key: x71                                                          x71                                                         	val: 	0x7fab49e205b0 
+			E1: 	0x7fab4b00d000 - wg1:exp                                  	E2: 	0x7fab4b010a00 - wx7                                     
+	Key: ring6:1-2in                                                  ring6:1-2in                                                 	val: 	0x7fab49e1c0a0 
+			E1: 	0x7fab4b006800 - ring6:xc1                                	E2: 	0x7fab4b00aa00 - ring6:filter-2:exp                      
+	Key: x72                                                          x72                                                         	val: 	0x7fab49e21d00 
+			E1: 	0x7fab4b00ea00 - wg2:exp                                  	E2: 	0x7fab4b010a00 - wx7                                     
+	Key: x73                                                          x73                                                         	val: 	0x7fab49e17a20 
+			E1: 	0x7fab4b010a00 - wx7                                      	E2: 	0x7fab4b012400 - wg3:exp                                 
+	Key: x74                                                          x74                                                         	val: 	0x7fab49e17a60 
+			E1: 	0x7fab4b010a00 - wx7                                      	E2: 	0x7fab4a895e00 - wg4:exp                                 
+	Key: w3e                                                          w3e                                                         	val: 	0x7fab49e14730 
+			E1: 	0x7fab4b012400 - wg3:exp                                  	E2: 	0x7fab4a801000 - wgmir3e                                 
+	Key: ring6:2-2in                                                  ring6:2-2in                                                 	val: 	0x7fab49e1c810 
+			E1: 	0x7fab4a841000 - ring6:filter-2:exp:split:ring6:2-2in:1   	E2: 	0x7fab4b008200 - ring6:xc2                               
+	Key: ring6:2-2out:split                                           ring6:2-2out:split                                          	val: 	0x7fab49d0bd70 
+			E1: 	0x7fab4a812a00 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fab4b009c00 - ring6:filter-1:exp                      
+	Key: n62:split                                                    n62:split                                                   	val: 	0x7fab49c28ca0 
+			E1: 	0x7fab4a07b400 - mirn62:vtov:split:n62:1                  	E2: 	0x7fab4a07a800 - mirn62:vtov                             
+	Key: n61                                                          n61                                                         	val: 	0x7fab49e1a8e0 
+			E1: 	0x7fab4b005200 - rcw3p5                                   	E2: 	0x7fab4b006800 - ring6:xc1                               
+	Key: ring6:1-2out                                                 ring6:1-2out                                                	val: 	0x7fab49e1c0e0 
+			E1: 	0x7fab4b006800 - ring6:xc1                                	E2: 	0x7fab4b009c00 - ring6:filter-1:exp                      
+	Key: n63                                                          n63                                                         	val: 	0x7fab49e1c060 
+			E1: 	0x7fab4b006800 - ring6:xc1                                	E2: 	0x7fab4b00d000 - wg1:exp                                 
+	Key: ring6:2-2out                                                 ring6:2-2out                                                	val: 	0x7fab49e1c850 
+			E1: 	0x7fab4a812a00 - ring6:filter-1:exp:split:ring6:2-2out:2  	E2: 	0x7fab4b008200 - ring6:xc2                               
 
 Source Optical Channel hash table
-	Key: variable:rcw3p5                                              	lambda: 	1513       dPhi_dt: 	0x7fe429806c30 *dPhi_dt: 	0         
+	Key: variable:rcw3p5                                              	lambda: 	1513       dPhi_dt: 	0x7fab4b005a30 *dPhi_dt: 	0         
 
 Optical Matrices hash table
 

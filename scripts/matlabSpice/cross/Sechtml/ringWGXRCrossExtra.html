@@ -1,0 +1,1755 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ringWGXRCrossExtra</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-03-30"><meta name="DC.source" content="ringWGXRCrossExtra.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%set(0,'DefaultFigureWindowStyle','docked');</span>
+set(0,<span class="string">'defaultAxesXGrid'</span>,<span class="string">'on'</span>);
+set(0,<span class="string">'defaultAxesYGrid'</span>,<span class="string">'on'</span>);
+set(groot,<span class="string">'defaultAxesColorOrder'</span>,[1 0 0;0 1 0;0 0 1;1 1 0],<span class="string">'defaultAxesLineStyleOrder'</span>,{<span class="string">'--'</span>,<span class="string">':'</span>});
+set(0,<span class="string">'DefaultLineMarkerSize'</span>,1);
+
+base1= <span class="string">'ringWGXRCross'</span>;
+outputFile =load(<span class="string">'ringWGXRCross.1-DC.2d_dat'</span>);
+Ref1=0.1;
+TH1=0.7;
+Right1= 0.15;
+Left1= 0.4;
+
+base2= <span class="string">'ringWGXRCrossIdeal'</span>;
+outputFileIdeal = load(<span class="string">'ringWGXRCrossIdeal.1-DC.2d_dat'</span>);
+Ref2=0.0;
+TH2=1.0;
+Right2= 0.0;
+Left2= 0.0;
+
+base3= <span class="string">'ringWGXRCrossTH'</span>;
+outputFileTH = load(<span class="string">'ringWGXRCrossTH.1-DC.2d_dat'</span>);
+Ref3=0.0;
+TH3=0.7;
+Right3= 0.0;
+Left3= 0.0;
+
+base4= <span class="string">'ringWGXRCrossRef'</span>;
+outputFileRef = load(<span class="string">'ringWGXRCrossRef.1-DC.2d_dat'</span>);
+Ref4=0.1;
+TH4=0.7;
+Right4= 0.0;
+Left4= 0.0;
+
+base5= <span class="string">'ringWGXRCrossRefRight'</span>;
+outputFileRefRight = load(<span class="string">'ringWGXRCrossRefRight.1-DC.2d_dat'</span>);
+Ref5=0.1;
+TH5=0.7;
+Right5= 0.15;
+Left5= 0.0;
+
+base6= <span class="string">'ringWGXRCrossRight'</span>;
+outputFileRight = load(<span class="string">'ringWGXRCrossRight.1-DC.2d_dat'</span>);
+Ref6=0.0;
+TH6=0.7;
+Right6= 0.3;
+Left6= 0.0;
+
+
+base7= <span class="string">'ringWGXRCrossLeft'</span>;
+outputFileLeft = load(<span class="string">'ringWGXRCrossLeft.1-DC.2d_dat'</span>);
+Ref7=0.0;
+TH7=0.7;
+Right7= 0.0;
+Left7= 0.2;
+
+basePath = <span class="string">'/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/'</span>;
+
+
+
+
+x=outputFile(:,1);
+
+<span class="comment">% TH circuit</span>
+N61InTH=10.^(outputFileTH(:,2)./20);
+N62InTH=10.^(outputFileTH(:,3)./20);
+N63InTH=10.^(outputFileTH(:,4)./20);
+N64InTH=10.^(outputFileTH(:,5)./20);
+N61OutTH=10.^(outputFileTH(:,6)./20);
+N62OutTH=10.^(outputFileTH(:,7)./20);
+N63OutTH=10.^(outputFileTH(:,8)./20);
+N64OutTH=10.^(outputFileTH(:,9)./20);
+w3eOutTH=10.^(outputFileTH(:,20)./20);
+w4nOutTH=10.^(outputFileTH(:,21)./20);
+
+<span class="comment">% Mag and Phi from dataSet</span>
+N61InTHMag=outputFileTH(:,22);
+N61InTHPhi=outputFileTH(:,23);
+N62InTHMag=outputFileTH(:,24);
+N62InTHPhi=outputFileTH(:,25);
+N63OutTHMag=outputFileTH(:,34);
+N63OutTHPhi=outputFileTH(:,35);
+
+
+<span class="comment">% Convert to Real/Imag</span>
+<span class="comment">% TH cir.</span>
+N61InTHEr= N61InTHMag.*cos(N61InTHPhi);
+N61InTHEi= N61InTHMag.*sin(N61InTHPhi);
+
+N62InTHEr= N62InTHMag.*cos(N62InTHPhi);
+N62InTHEi= N62InTHMag.*sin(N62InTHPhi);
+
+N63OutTHEr= N63OutTHMag.*cos(N63OutTHPhi);
+N63OutTHEi= N63OutTHMag.*sin(N63OutTHPhi);
+
+<span class="comment">% Build the transer functions</span>
+<span class="comment">% Power</span>
+fTH_TH=N63OutTH.*(N61InTH.^(-1));   <span class="comment">% Input-Through Power transfer function for TH cir.</span>
+fDrop_TH=N62InTH.*(N61InTH.^(-1));   <span class="comment">% Input-Drop Power transferfunction for TH cir.</span>
+<span class="comment">% Mag/Phase</span>
+fTH_TH_Mag=N63OutTHMag.*(N61InTHMag.^(-1));   <span class="comment">% Input-Through Mag transfer function for TH cir.</span>
+fTH_TH_Phi=N63OutTHPhi-N61InTHPhi;   <span class="comment">% Input-Through Phase transfer function for TH cir.</span>
+
+fDrop_TH_Mag=N62InTHMag.*(N61InTHMag.^(-1));   <span class="comment">% Input-Drop Mag transfer function for TH cir.</span>
+fDrop_TH_Phi=N62InTHPhi-N61InTHPhi;   <span class="comment">% Input-Drop Phi transfer function for TH cir.</span>
+
+
+<span class="comment">% Expected</span>
+N1TH=N61InTH;
+N2TH=N62InTH;
+N3TH=TH3.*N63OutTH;
+N4TH= 0;
+
+
+<span class="comment">% Plot of TH circuit</span>
+figure(<span class="string">'name'</span>,<span class="string">'Circuit TH, 4 ports'</span>,<span class="string">'numbertitle'</span>,<span class="string">'off'</span>);
+subplot(2,2,1);
+plot(x,N61InTH,<span class="string">':r'</span>,x,N1TH,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+subplot(2,2,2);
+plot(x,N62InTH,<span class="string">':r'</span>,x,N2TH,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+subplot(2,2,3);
+plot(x,w3eOutTH,<span class="string">':r'</span>,x,N3TH,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+subplot(2,2,4);
+plot(x,w4nOutTH,<span class="string">':r'</span>,x,N4TH,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+
+figure(<span class="string">'name'</span>,<span class="string">'Circuit TH, Transfer functions'</span>,<span class="string">'numbertitle'</span>,<span class="string">'off'</span>);
+subplot(2,1,1);
+plot(x,fTH_TH_Mag,<span class="string">':r'</span>,x,fDrop_TH_Mag,<span class="string">'--g'</span>);
+legend(<span class="string">'TH Mag'</span>,<span class="string">'Drop Mag'</span>);
+subplot(2,1,2);
+plot(x,fTH_TH_Phi,<span class="string">':r'</span>,x,fDrop_TH_Phi,<span class="string">'--g'</span>);
+legend(<span class="string">'TH Phi'</span>,<span class="string">'Drop Phi'</span>);
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">% Right circuit</span>
+N61InRight=10.^(outputFileRight(:,2)./20);
+N62InRight=10.^(outputFileRight(:,3)./20);
+N63InRight=10.^(outputFileRight(:,4)./20);
+N64InRight=10.^(outputFileRight(:,5)./20);
+N61OutRight=10.^(outputFileRight(:,6)./20);
+N62OutRight=10.^(outputFileRight(:,7)./20);
+N63OutRight=10.^(outputFileRight(:,8)./20);
+N64OutRight=10.^(outputFileRight(:,9)./20);
+w3eOutRight=10.^(outputFileRight(:,20)./20);
+w4nOutRight=10.^(outputFileRight(:,21)./20);
+
+
+<span class="comment">% Mag and Phi from dataSet</span>
+N62InRightMag=outputFileRight(:,24);
+N62InRightPhi=outputFileRight(:,25);
+N64InRightMag=outputFileRight(:,28);
+N64InRightPhi=outputFileRight(:,29);
+N63OutRightMag=outputFileRight(:,34);
+N63OutRightPhi=outputFileRight(:,35);
+
+<span class="comment">% Convert to Real/Imag</span>
+<span class="comment">% Right cir.</span>
+N62InRightEr= N62InRightMag.*cos(N62InRightPhi);
+N62InRightEi= N62InRightMag.*sin(N62InRightPhi);
+
+N64InRightEr= N64InRightMag.*cos(N64InRightPhi);
+N64InRightEi= N64InRightMag.*sin(N64InRightPhi);
+
+N63OutRightEr= N63OutRightMag.*cos(N63OutRightPhi);
+N63OutRightEi= N63OutRightMag.*sin(N63OutRightPhi);
+
+
+
+<span class="comment">% Expected 1</span>
+<span class="comment">% N64InRight will have 2 components.</span>
+ <span class="comment">% 1- Out of resonase signals will go through the wg and appear at N62In (N64InRight_fTH)</span>
+ <span class="comment">% 2- Resonase signals will go through the ring (the Drop filter) and show up at N63Out (N64InRight_fDrop)</span>
+
+
+<span class="comment">% ====&gt; % Calculation components of N62IN =</span>
+            <span class="comment">% (1) Drop of Ring with N61In as input (N62InTH) +</span>
+            <span class="comment">% (2) Th of Ring with N64In as input (N64InRight_fTH)</span>
+
+<span class="comment">% Theo1: Not cosidering phase shift, just working with powers transfer function of (fTH_TH)</span>
+N64InRight_fTH= fTH_TH.* N64InRight; <span class="comment">%Th of Ring 6 with N64In as input</span>
+N62InRight_theo1= N62InTH + N64InRight_fTH;
+
+<span class="comment">% Theo2: Working with transfer function of power (fTH_TH) and Real/Imag</span>
+<span class="comment">% Still not accurate enough</span>
+N62InRightEr_theo2= N62InTHEr + fTH_TH.*N64InRightEr;
+N62InRightEi_theo2= N62InTHEi + fTH_TH.*N64InRightEi;
+N62InRight_theo2 = sqrt(N62InRightEr_theo2.^2 + N62InRightEi_theo2.^2);
+
+<span class="comment">%N62InRightEr_theo2= N62InTHEr + (fTH_TH.^0.5).*N64InRightEr;</span>
+<span class="comment">%N62InRightEi_theo2= N62InTHEi + (fTH_TH.^0.5).*N64InRightEi;</span>
+<span class="comment">%N62InRight_theo2 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);</span>
+
+<span class="comment">% Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase</span>
+<span class="comment">% GOOD Match, accurate</span>
+N64InRight_fTH_Mag = fTH_TH_Mag.*N64InRightMag;
+N64InRight_fTH_Phi = fTH_TH_Phi+N64InRightPhi;
+ <span class="comment">% Convert to Real/Imag</span>
+N64InRight_fTH_Er= N64InRight_fTH_Mag.*cos(N64InRight_fTH_Phi);
+N64InRight_fTH_Ei= N64InRight_fTH_Mag.*sin(N64InRight_fTH_Phi);
+<span class="comment">% Add up</span>
+N62InRightEr_theo3= N62InTHEr + N64InRight_fTH_Er;
+N62InRightEi_theo3= N62InTHEi + N64InRight_fTH_Ei;
+N62InRight_theo3 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
+
+
+
+<span class="comment">% ====&gt; % Calculation components of N63Out=</span>
+            <span class="comment">% (1) Th of Ring with N61In as input (N62InTH) +</span>
+            <span class="comment">% (2) Drop of Ring with N64In as input N64InRight_fDrop</span>
+<span class="comment">% Theo1: Not cosidering phase shift, just working with powers.</span>
+N64InRight_fDrop= fDrop_TH.* N64InRight; <span class="comment">%Dro of Ring 6 with N64In as input</span>
+N63OutRight_theo1= N63OutTH + N64InRight_fDrop;
+
+<span class="comment">% Theo2: Working with transfer function of power (fDrop_TH) and Real/Imag</span>
+<span class="comment">% Still not accurate enough</span>
+N63OutRightEr_theo2= N63OutTHEr + fDrop_TH.*N64InRightEr;
+N63OutRightEi_theo2= N63OutTHEi + fDrop_TH.*N64InRightEi;
+N63OutRight_theo2 = sqrt(N63OutRightEr_theo2.^2 + N63OutRightEi_theo2.^2);
+
+<span class="comment">% Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase</span>
+<span class="comment">% GOOD Match, accurate</span>
+N64InRight_fDrop_Mag = fDrop_TH_Mag.*N64InRightMag;
+N64InRight_fDrop_Phi = fDrop_TH_Phi+N64InRightPhi;
+
+<span class="comment">% Convert to Real/Imag</span>
+N64InRight_fDrop_Er= N64InRight_fDrop_Mag.*cos(N64InRight_fDrop_Phi);
+N64InRight_fDrop_Ei= N64InRight_fDrop_Mag.*sin(N64InRight_fDrop_Phi);
+<span class="comment">% Add up</span>
+N63OutRightEr_theo3= N63OutTHEr + N64InRight_fDrop_Er;
+N63OutRightEi_theo3= N63OutTHEi + N64InRight_fDrop_Ei;
+N63OutRight_theo3 = sqrt(N63OutRightEr_theo3.^2 + N63OutRightEi_theo3.^2);
+
+
+<span class="comment">% Expected</span>
+N1Right=N61InRight;
+N2Right=N62InRight_theo3;
+N3Right=TH3.*N63OutRight_theo3;
+N4Right= 0;
+
+<span class="comment">% Plot of Right cir.</span>
+figure(<span class="string">'name'</span>,<span class="string">'Circuit Right, 4 ports'</span>,<span class="string">'numbertitle'</span>,<span class="string">'off'</span>);
+subplot(2,2,1);
+plot(x,N61InRight,<span class="string">':r'</span>,x,N1Right,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+subplot(2,2,2);
+plot(x,N62InRight,<span class="string">':r'</span>,x,N2Right,<span class="string">'--g'</span>,x,N62InRight_theo1,<span class="string">'-.b'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>, <span class="string">'Thoery without Phase shift'</span>);
+subplot(2,2,3);
+plot(x,w3eOutRight,<span class="string">':r'</span>,x,N3Right,<span class="string">'--g'</span>,x,N63OutRight_theo1,<span class="string">'-.b'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>, <span class="string">'Thoery without Phase shift'</span>);
+subplot(2,2,4);
+plot(x,w4nOutRight,<span class="string">':r'</span>,x,N4Right,<span class="string">'--g'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'Theory'</span>);
+
+figure(<span class="string">'name'</span>,<span class="string">'Circuit Right, Drop(In dir.)'</span>,<span class="string">'numbertitle'</span>,<span class="string">'off'</span>);
+plot(x,N62InRight,<span class="string">':r'</span>,x,N62InRight_theo1,<span class="string">':g'</span>,x,N62InRight_theo2,<span class="string">'-.b'</span>,x,N62InRight_theo3,<span class="string">'--y'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'theo1'</span>,<span class="string">'theo2'</span>,<span class="string">'theo3'</span>);
+
+figure(<span class="string">'name'</span>,<span class="string">'Circuit Right, Th(Out dir.)'</span>,<span class="string">'numbertitle'</span>,<span class="string">'off'</span>);
+plot(x,N63OutRight,<span class="string">':r'</span>,x,N63OutRight_theo1,<span class="string">':g'</span>,x,N63OutRight_theo2,<span class="string">'-.b'</span>,x,N63OutRight_theo3,<span class="string">'--y'</span>);
+legend(<span class="string">'Sim'</span>,<span class="string">'theo1'</span>,<span class="string">'theo2'</span>,<span class="string">'theo3'</span>);
+
+<span class="comment">%Plot of Right cir.</span>
+<span class="comment">% figure('name','Circuit Right, no Phase shift, Drop(In dir.) Power details','numbertitle','off');</span>
+<span class="comment">% plot(x,N62InRight,':r',x,N62InRight_theo1,'--g');</span>
+<span class="comment">% legend('Drop of the Right cir.', 'Drop_theo = Drop of TH cir + Add of Right cir');</span>
+
+
+<span class="comment">% figure('name','Circuit Right, no Phase shift, Th(Out dir.) Power details','numbertitle','off');</span>
+<span class="comment">% subplot(2,1,1);</span>
+<span class="comment">% plot(x,N63OutRight,':r',x,N63OutRight_theo1,'--g');</span>
+<span class="comment">% legend('Sim', 'theo1');</span>
+<span class="comment">% subplot(2,1,2);</span>
+<span class="comment">% plot(x,N64InRight,':r',x,N64InRight_fDrop,'--g');</span>
+<span class="comment">% legend('N64InRight','Drop of N64InRight');</span>
+
+
+<span class="comment">% figure('name','Circuit Right, Th(Out dir.) Mag Phase seperate','numbertitle','off');</span>
+<span class="comment">% subplot(3,1,1);</span>
+<span class="comment">% plot(x,N63OutRight,':r',x,N63OutRight_theo3,'--g');</span>
+<span class="comment">% legend('Sim', 'theo1');</span>
+<span class="comment">% subplot(3,1,2);</span>
+<span class="comment">% plot(x,N64InRightMag,':r',x,N64InRight_fDrop_Mag,'--g');</span>
+<span class="comment">% legend('N64InRight Mag','Drop of N64InRight Mag');</span>
+<span class="comment">% subplot(3,1,3);</span>
+<span class="comment">% plot(x,N64InRightPhi,':r',x,N64InRight_fDrop_Phi,'--g');</span>
+<span class="comment">% legend('N64InRight Phi','Drop of N64InRight Phi');</span>
+
+
+
+
+
+<span class="comment">% figure('name','Circuit Right, Th(Out dir.) Field Real Imag','numbertitle','off');</span>
+<span class="comment">% subplot(1,2,1);</span>
+<span class="comment">% plot(x,N63OutRightEr,':r',x,N63OutRightEr_theo2,'--g');</span>
+<span class="comment">% legend('Er Sim','Er theo2');</span>
+<span class="comment">% subplot(1,2,2);</span>
+<span class="comment">% plot(x,N63OutRightEi,':r',x,N63OutRightEi_theo2,'--g');</span>
+<span class="comment">% legend('Ei Sim','Ei theo2');</span>
+
+
+
+<span class="comment">% figure('name','Circuit Right, Drop(In dir.) Field details','numbertitle','off');</span>
+<span class="comment">% subplot(2,1,1);</span>
+<span class="comment">% plot(x,N62InRightEr,':r',x,N62InRightEi,'--g',x,N62InRight,'-.b');</span>
+<span class="comment">% legend('Er','Ei','Drop of the Right cir.');</span>
+<span class="comment">% subplot(2,1,2);</span>
+<span class="comment">% plot(x,N62InRightMag,':r',x,N62InRightPhi,'--g',x,N62InRight,'-.b');</span>
+<span class="comment">% legend('Mag','Phi','Drop of the Right cir.');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name','Circuit Right, Add(In dir.) Field details','numbertitle','off');</span>
+<span class="comment">% subplot(2,1,1);</span>
+<span class="comment">% plot(x,N64InRightEr,':r',x,N64InRightEi,'--g');</span>
+<span class="comment">% legend('Er','Ei')</span>
+<span class="comment">% subplot(2,1,2);</span>
+<span class="comment">% plot(x,N64InRightMag,':r',x,N64InRightPhi,'--g');</span>
+<span class="comment">% legend('Mag','Phi');</span>
+
+<span class="comment">% figure('name','Circuit Right, Drop(In dir.) Field details Phase shift','numbertitle','off');</span>
+<span class="comment">%</span>
+<span class="comment">% subplot(1,2,1);</span>
+<span class="comment">% plot(x,N62InRight_theo2,':r',x,N62InRight,'--g');</span>
+<span class="comment">% legend('N62InRight_theo2','Drop of the Right cir.');</span>
+<span class="comment">% subplot(1,2,2);</span>
+<span class="comment">% plot(x,N62InRight_theo3,':r',x,N62InRight,'--g');</span>
+<span class="comment">% legend('N62InRight_theo3','Drop of the Right cir.');</span>
+<span class="comment">% figure('name','Circuit Right, Drop(In dir.) theo2 vs theo3','numbertitle','off');</span>
+<span class="comment">% plot(x,N62InRight_theo2,':r',x,N62InRight_theo3,'--g');</span>
+<span class="comment">% legend('N62InRight_theo2','N62InRight_theo3');</span>
+
+
+
+<span class="comment">% subplot(1,2,2);</span>
+<span class="comment">% plot(x,N63OutRight_theo3,':r',x,N63OutRight,'--g');</span>
+<span class="comment">% %legend('N63OutRight_theo3','Th of the Right cir.');</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name','Circuit Right, Th(In dir.) theo2 vs theo3','numbertitle','off');</span>
+<span class="comment">% plot(x,N63OutRight_theo2,':r',x,N63OutRight_theo3,'--g');</span>
+<span class="comment">% %legend('N63OutRight_theo2','N63OutRight_theo3');</span>
+
+
+
+
+<span class="comment">%</span>
+<span class="comment">% for i=1:6</span>
+<span class="comment">%     bName=(strcat('base',num2str(i)));</span>
+<span class="comment">%     refName=(strcat('Ref',num2str(i)));</span>
+<span class="comment">%     thName=(strcat('TH',num2str(i)));</span>
+<span class="comment">%     rightName=(strcat('Right',num2str(i)));</span>
+<span class="comment">%     leftName=(strcat('Left',num2str(i)));</span>
+<span class="comment">%     base=eval(bName);</span>
+<span class="comment">%     Ref=eval(refName);</span>
+<span class="comment">%     TH=eval(thName);</span>
+<span class="comment">%     Right=eval(rightName);</span>
+<span class="comment">%     Left=eval(leftName);</span>
+<span class="comment">%     display(base)</span>
+<span class="comment">%</span>
+<span class="comment">% %base = 'ringWGXRCross';</span>
+<span class="comment">% %display(base)</span>
+<span class="comment">% outputFile = strcat(base,'.1-DC.2d_dat');</span>
+<span class="comment">% basefile = strcat(base,'.sp');</span>
+<span class="comment">% baseFileFull = strcat(basePath,basefile);</span>
+<span class="comment">% dateStamp = datestr(now,'ddmmmyy_HHMM');</span>
+<span class="comment">% %display(dateStamp);</span>
+<span class="comment">% snapshot = strcat('ringCross_', dateStamp);</span>
+<span class="comment">% %display(snapshot);</span>
+<span class="comment">% % mkdir(snapshot);</span>
+<span class="comment">% snapshotFull=strcat('./',snapshot);</span>
+<span class="comment">% % cd(snapshotFull);</span>
+<span class="comment">% %system(pwd);</span>
+<span class="comment">% %output = load('ringsCrossComb.0-DC.2d_dat');</span>
+<span class="comment">% display(outputFile)</span>
+<span class="comment">% output = load(outputFile);</span>
+<span class="comment">% %outputFile;</span>
+<span class="comment">% %x=ringCross_0_DC(:,1);</span>
+<span class="comment">% %N11In=ringCross_0_DC(:,2);</span>
+<span class="comment">% x=output(:,1);</span>
+<span class="comment">%</span>
+<span class="comment">% %Circuit 3.5, (Ring6, x7, w1-4)</span>
+<span class="comment">% N61In=output(:,2);</span>
+<span class="comment">% N62In=output(:,3);</span>
+<span class="comment">% N63In=output(:,4);</span>
+<span class="comment">% N64In=output(:,5);</span>
+<span class="comment">% N61Out=output(:,6);</span>
+<span class="comment">% N62Out=output(:,7);</span>
+<span class="comment">% N63Out=output(:,8);</span>
+<span class="comment">% N64Out=output(:,9);</span>
+<span class="comment">% x71In=output(:,10);</span>
+<span class="comment">% x72In=output(:,11);</span>
+<span class="comment">% x73In=output(:,12);</span>
+<span class="comment">% x74In=output(:,13);</span>
+<span class="comment">% x71Out=output(:,14);</span>
+<span class="comment">% x72Out=output(:,15);</span>
+<span class="comment">% x73Out=output(:,16);</span>
+<span class="comment">% x74Out=output(:,17);</span>
+<span class="comment">% w3eIn=output(:,18);</span>
+<span class="comment">% w4nIn=output(:,19);</span>
+<span class="comment">% w3eOut=output(:,20);</span>
+<span class="comment">% w4nOut=output(:,21);</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% N61In=10.^(N61In/20);</span>
+<span class="comment">% N62In=10.^(N62In/20);</span>
+<span class="comment">% N63In=10.^(N63In/20);</span>
+<span class="comment">% N64In=10.^(N64In/20);</span>
+<span class="comment">% N61Out=10.^(N61Out/20);</span>
+<span class="comment">% N62Out=10.^(N62Out/20);</span>
+<span class="comment">% N63Out=10.^(N63Out/20);</span>
+<span class="comment">% N64Out=10.^(N64Out/20);</span>
+<span class="comment">% x71In=10.^(x71In/20);</span>
+<span class="comment">% x72In=10.^(x72In/20);</span>
+<span class="comment">% x73In=10.^(x73In/20);</span>
+<span class="comment">% x74In=10.^(x74In/20);</span>
+<span class="comment">% x71Out=10.^(x71Out/20);</span>
+<span class="comment">% x72Out=10.^(x72Out/20);</span>
+<span class="comment">% x73Out=10.^(x73Out/20);</span>
+<span class="comment">% x74Out=10.^(x74Out/20);</span>
+<span class="comment">%</span>
+<span class="comment">% w3eIn=10.^(w3eIn/20);</span>
+<span class="comment">% w4nIn=10.^(w4nIn/20);</span>
+<span class="comment">% w3eOut=10.^(w3eOut/20);</span>
+<span class="comment">% w4nOut=10.^(w4nOut/20);</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %Theory</span>
+<span class="comment">%</span>
+<span class="comment">% x71In_TH = N63Out; % will have a phase shift because of the waveguide wg1</span>
+<span class="comment">% x71Out_TH = Ref.*x71In_TH;</span>
+<span class="comment">%</span>
+<span class="comment">% % N61In_TH = Input of Ring 6, CWSourse</span>
+<span class="comment">% N61Out_TH = x71Out_TH; % Through of Ring 6 with input as N63In_TH</span>
+<span class="comment">%</span>
+<span class="comment">% % N63Out is the through port of Ring 6</span>
+<span class="comment">% N63In_TH = x71Out_TH;</span>
+<span class="comment">%</span>
+<span class="comment">% x72Out_TH=Right.*x71In;</span>
+<span class="comment">% x72In_TH = N64Out; % will have a phase shift because of the waveguide wg1</span>
+<span class="comment">%</span>
+<span class="comment">% % N62In_TH = Drop port of Ring 6 and</span>
+<span class="comment">%              % % Through of Ring 6 with input as N64In</span>
+<span class="comment">% N62Out_TH = 0 ;</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% x73In_TH = 0 ;%(TBD ?)</span>
+<span class="comment">% x73Out_TH=TH.*x71In;</span>
+<span class="comment">%</span>
+<span class="comment">% x74In_TH = 0 ; %(TBD ?)</span>
+<span class="comment">% x74Out_TH=Left.*x71In;</span>
+<span class="comment">%</span>
+<span class="comment">% % N64Out is the Add port of Ring 6 and</span>
+<span class="comment">%   % Drop of Ring 2 with Input N63In</span>
+<span class="comment">%</span>
+<span class="comment">% N64In_TH = x72Out_TH;</span>
+<span class="comment">%</span>
+<span class="comment">% w3eIn_TH= 0;</span>
+<span class="comment">% w3eOut_TH= x73Out; % will have a phase shift because of the waveguide</span>
+<span class="comment">%</span>
+<span class="comment">% w4nIn_TH= 0;</span>
+<span class="comment">% w4nOut_TH= x74Out; % will have a phase shift because of the waveguide</span>
+<span class="comment">%</span>
+<span class="comment">% %figure;</span>
+<span class="comment">% %</span>
+<span class="comment">% % %%Circuit 1</span>
+<span class="comment">% % % figure('name','Circuit 1, Ring 1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,N11In);</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,N12In);</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,N13In);</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,N14In);</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,N11Out);</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,N12Out);</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,N13Out);</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,N14Out);</span>
+<span class="comment">% %</span>
+<span class="comment">% %</span>
+<span class="comment">% % %Circuit 2</span>
+<span class="comment">% % figure('name','Circuit 2, xcross 1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,x11In);</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,x12In);</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,x13In);</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,x14In);</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,x11Out,x,x11Out_TH);</span>
+<span class="comment">% % legend('x11Out','x11Out-TH');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,x12Out,x,x12Out_TH);</span>
+<span class="comment">% % legend('x12Out','x12Out-TH');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,x13Out,x,x13Out_TH);</span>
+<span class="comment">% % legend('x13Out','x13Out-TH');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,x14Out,x,x14Out_TH);</span>
+<span class="comment">% % legend('x14Out','x14Out-TH');</span>
+<span class="comment">% %</span>
+<span class="comment">% % %Circuit 3</span>
+<span class="comment">% % figure('name','Circuit 3, Ring 2 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,N21In);</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,N22In);</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,N23In,x,N23In_TH);</span>
+<span class="comment">% % legend('N23In','N23In-TH');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,N24In,x,N24In_TH);</span>
+<span class="comment">% % legend('N24In','N24In-TH');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,N21Out,x,N21Out_TH);</span>
+<span class="comment">% % legend('N21Out','N21Out-TH');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,N22Out,x,N22Out_TH);</span>
+<span class="comment">% % legend('N22Out','N22Out-TH');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,N23Out);</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,N24Out);</span>
+<span class="comment">% % %legend('N24Out','N24Out-TH');</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Circuit 3, Ring 2 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(3,1,1);</span>
+<span class="comment">% % plot(x,N23In,x,N24Out);</span>
+<span class="comment">% % legend('N23In','N24Out');</span>
+<span class="comment">% % subplot(3,1,2);</span>
+<span class="comment">% % plot(x,N21In,x,N22In);</span>
+<span class="comment">% % legend('N21In','N22In');</span>
+<span class="comment">% % subplot(3,1,3);</span>
+<span class="comment">% % plot(x,N23In./N24Out,x,N21In./N22In);</span>
+<span class="comment">% % legend('Ratio 3,4', 'Ratio 1,2');</span>
+<span class="comment">% % figure('name','Circuit 3, xcross 2 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,x21In,x,x21In_TH);</span>
+<span class="comment">% % legend('x21In','x21In-TH');</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,x22In);</span>
+<span class="comment">% % %legend('x22In','x22In_TH');</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,x23In);</span>
+<span class="comment">% % legend('x23In');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,x24In);</span>
+<span class="comment">% % legend('x24In');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,x21Out,x,x21Out_TH);</span>
+<span class="comment">% % legend('x21Out','x21Out-TH');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,x22Out,x,x22Out_TH);</span>
+<span class="comment">% % legend('x22Out','x22Out-TH');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,x23Out,x,x23Out_TH);</span>
+<span class="comment">% % legend('x23Out','x23Out-TH');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,x24Out,x,x24Out_TH);</span>
+<span class="comment">% % legend('x24Out','x24Out-TH');</span>
+<span class="comment">% %</span>
+<span class="comment">% % %Compare Ring2 and Ring1</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Ring2 VS Ring1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,N21In,x,N11In);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % grid on;</span>
+<span class="comment">% % grid minor;</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,N22In,x,N12In);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,N23In,x,N13In);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,N24In,x,N14In);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,N21Out,x,N11Out);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,N22Out,x,N12Out);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,N23Out,x,N13Out);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,N24Out,x,N14Out);</span>
+<span class="comment">% % legend('Ring2','Ring1');</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Xcross2 VS XCcross1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,x21In,x,x11In);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,x22In,x,x12In);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,x23In,x,x13In);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,x24In,x,x14In);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,x21Out,x,x11Out);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,x22Out,x,x12Out);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,x23Out,x,x13Out);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,x24Out,x,x14Out);</span>
+<span class="comment">% % legend('Xcross2','Xcross1');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %Circuit 3.5</span>
+<span class="comment">% figure('name',strcat(base,' Circuit 3.5, Ring 6 IN OUT signals'),'numbertitle','off');</span>
+<span class="comment">% subplot(4,2,1);</span>
+<span class="comment">% plot(x,N61In);</span>
+<span class="comment">% subplot(4,2,3);</span>
+<span class="comment">% plot(x,N62In);</span>
+<span class="comment">% subplot(4,2,5);</span>
+<span class="comment">% plot(x,N63In,':',x,N63In_TH);</span>
+<span class="comment">% legend('N63In','N63In-TH');</span>
+<span class="comment">% subplot(4,2,7);</span>
+<span class="comment">% plot(x,N64In,':',x,N64In_TH);</span>
+<span class="comment">% legend('N64In','N64In-TH');</span>
+<span class="comment">% subplot(4,2,2);</span>
+<span class="comment">% plot(x,N61Out,':',x,N61Out_TH);</span>
+<span class="comment">% legend('N61Out','N61Out-TH');</span>
+<span class="comment">% subplot(4,2,4);</span>
+<span class="comment">% plot(x,N62Out,':',x,N62Out_TH);</span>
+<span class="comment">% legend('N62Out','N62Out-TH');</span>
+<span class="comment">% subplot(4,2,6);</span>
+<span class="comment">% plot(x,N63Out);</span>
+<span class="comment">% subplot(4,2,8);</span>
+<span class="comment">% plot(x,N64Out);</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name', strcat(base,' Circuit 3.5, xcross 7 IN OUT signals'),'numbertitle','off');</span>
+<span class="comment">% subplot(4,2,1);</span>
+<span class="comment">% plot(x,x71In,':',x,x71In_TH);</span>
+<span class="comment">% legend('x71In','x71In-TH');</span>
+<span class="comment">% subplot(4,2,3);</span>
+<span class="comment">% plot(x,x72In,':',x,x72In_TH);</span>
+<span class="comment">% legend('x72In','x72In-TH');</span>
+<span class="comment">% subplot(4,2,5);</span>
+<span class="comment">% plot(x,x73In,':',x,x73In_TH);</span>
+<span class="comment">% legend('x73In','x73In-TH');</span>
+<span class="comment">% subplot(4,2,7);</span>
+<span class="comment">% plot(x,x74In,':',x,x74In_TH);</span>
+<span class="comment">% legend('x74In','x74In-TH');</span>
+<span class="comment">% subplot(4,2,2);</span>
+<span class="comment">% plot(x,x71Out,':',x,x71Out_TH);</span>
+<span class="comment">% legend('x71Out','x71Out-TH');</span>
+<span class="comment">% subplot(4,2,4);</span>
+<span class="comment">% plot(x,x72Out,':',x,x72Out_TH);</span>
+<span class="comment">% legend('x72Out','x72Out-TH');</span>
+<span class="comment">% subplot(4,2,6);</span>
+<span class="comment">% plot(x,x73Out,':',x,x73Out_TH);</span>
+<span class="comment">% legend('x73Out','x73Out-TH');</span>
+<span class="comment">% subplot(4,2,8);</span>
+<span class="comment">% plot(x,x74Out,':',x,x74Out_TH);</span>
+<span class="comment">% legend('x74Out','x74Out-TH');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name',strcat(base,' Circuit 3.5, waveguides 1-4 IN OUT signals'),'numbertitle','off');</span>
+<span class="comment">% subplot(4,2,1);</span>
+<span class="comment">% plot(x,N63In,':',x,x71Out);</span>
+<span class="comment">% legend('wg1,P1In','wg1 P2Out');</span>
+<span class="comment">% subplot(4,2,2);</span>
+<span class="comment">% plot(x,N63Out,':',x,x71In);</span>
+<span class="comment">% legend('wg1,P1Out','wg1 P2In');</span>
+<span class="comment">%</span>
+<span class="comment">% subplot(4,2,3);</span>
+<span class="comment">% plot(x,N64In,':',x,x72Out);</span>
+<span class="comment">% legend('wg2,P1In','wg2 P2Out');</span>
+<span class="comment">% subplot(4,2,4);</span>
+<span class="comment">% plot(x,N64Out,':',x,x72In);</span>
+<span class="comment">% legend('wg2,P1Out','wg2 P2In');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subplot(4,2,5);</span>
+<span class="comment">% plot(x,x73Out,':',x,w3eOut);</span>
+<span class="comment">% legend('wg3,P1Out','wg3 P2Out');</span>
+<span class="comment">% subplot(4,2,6);</span>
+<span class="comment">% plot(x,x73In,':',x,w3eIn);</span>
+<span class="comment">% legend('wg3,P1In','wg3 P2In');</span>
+<span class="comment">%</span>
+<span class="comment">% subplot(4,2,7);</span>
+<span class="comment">% plot(x,x74In,':',x,w4nIn);</span>
+<span class="comment">% legend('wg4,P1In','wg4 P2In');</span>
+<span class="comment">% subplot(4,2,8);</span>
+<span class="comment">% plot(x,x74Out,':',x,w4nOut);</span>
+<span class="comment">% legend('wg4,P1Out','wg4 P2Out');</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/3Th 3In/1Th signals'),'numbertitle','off');</span>
+<span class="comment">% subplot(3,1,2);</span>
+<span class="comment">% plot(x,N61In,x,N63Out);</span>
+<span class="comment">% legend('N61In','N63Out');</span>
+<span class="comment">% subplot(3,1,1);</span>
+<span class="comment">% plot(x,N63In,x,N61Out);</span>
+<span class="comment">% legend('N63In','N61Out');</span>
+<span class="comment">% subplot(3,1,3);</span>
+<span class="comment">% plot(x,N61In./N63Out,x,N63In./N61Out);</span>
+<span class="comment">% legend('Ratio 1,3', 'Ratio 3,1');</span>
+<span class="comment">%</span>
+<span class="comment">% figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/2Drop 3In/4Drop signals'),'numbertitle','off');</span>
+<span class="comment">% subplot(3,1,1);</span>
+<span class="comment">% plot(x,N61In,x,N62In);</span>
+<span class="comment">% legend('N61In','N62In');</span>
+<span class="comment">% subplot(3,1,2);</span>
+<span class="comment">% plot(x,N63In,x,N64Out);</span>
+<span class="comment">% legend('N63In','N64Out');</span>
+<span class="comment">% subplot(3,1,3);</span>
+<span class="comment">% plot(x,N61In./N62In,x,N63In./N64Out);</span>
+<span class="comment">% legend('Ratio 1,2', 'Ratio 3,4');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% % %Compare Ring6 and Ring2 and Ring1</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Ring 6 VS Ring2 VS Ring1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,N61In,x,N21In,x,N11In);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % grid on;</span>
+<span class="comment">% % grid minor;</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,N62In,x,N22In,x,N12In);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,N63In,x,N23In,x,N13In);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,N64In,x,N24In,x,N14In);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,N61Out,x,N21Out,x,N11Out);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,N62Out,x,N22Out,x,N12Out);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,N63Out,x,N23Out,x,N13Out);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,N64Out,x,N24Out,x,N14Out);</span>
+<span class="comment">% % legend('Ring6','Ring2','Ring1');</span>
+<span class="comment">% %</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Circuit 3.5, Ring 5 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(3,1,1);</span>
+<span class="comment">% % plot(x,N63In,x,N64Out);</span>
+<span class="comment">% % legend('N63In','N64Out');</span>
+<span class="comment">% % subplot(3,1,2);</span>
+<span class="comment">% % plot(x,N61In,x,N62In);</span>
+<span class="comment">% % legend('N61In','N62In');</span>
+<span class="comment">% % subplot(3,1,3);</span>
+<span class="comment">% % plot(x,N63In./N64Out,x,N61In./N62In);</span>
+<span class="comment">% % legend('Ratio 3,4', 'Ratio 1,2');</span>
+<span class="comment">% %</span>
+<span class="comment">% %</span>
+<span class="comment">% % figure('name','Xcross7 VS Xcross2 VS XCcross1 IN OUT signals','numbertitle','off');</span>
+<span class="comment">% % subplot(4,2,1);</span>
+<span class="comment">% % plot(x,x71In,x,x21In,x,x11In);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,3);</span>
+<span class="comment">% % plot(x,x72In,x,x22In,x,x12In);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,5);</span>
+<span class="comment">% % plot(x,x73In,x,x23In,x,x13In);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,7);</span>
+<span class="comment">% % plot(x,x74In,x,x24In,x,x14In);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,2);</span>
+<span class="comment">% % plot(x,x71Out,x,x21Out,x,x11Out);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,4);</span>
+<span class="comment">% % plot(x,x72Out,x,x22Out,x,x12Out);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,6);</span>
+<span class="comment">% % plot(x,x73Out,x,x23Out,x,x13Out);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% % subplot(4,2,8);</span>
+<span class="comment">% % plot(x,x74Out,x,x24Out,x,x14Out);</span>
+<span class="comment">% % legend('Xcross7','Xcross2','Xcross1');</span>
+<span class="comment">% clear;</span>
+<span class="comment">% base1= 'ringWGXRCross';</span>
+<span class="comment">% Ref1=0.1;</span>
+<span class="comment">% TH1=0.7;</span>
+<span class="comment">% Right1= 0.15;</span>
+<span class="comment">% Left1= 0.4;</span>
+<span class="comment">%</span>
+<span class="comment">% base2= 'ringWGXRCrossIdeal';</span>
+<span class="comment">% Ref2=0.0;</span>
+<span class="comment">% TH2=1.0;</span>
+<span class="comment">% Right2= 0.0;</span>
+<span class="comment">% Left2= 0.0;</span>
+<span class="comment">%</span>
+<span class="comment">% base3= 'ringWGXRCrossTH';</span>
+<span class="comment">% Ref3=0.0;</span>
+<span class="comment">% TH3=0.7;</span>
+<span class="comment">% Right3= 0.0;</span>
+<span class="comment">% Left3= 0.0;</span>
+<span class="comment">%</span>
+<span class="comment">% base4= 'ringWGXRCrossRef';</span>
+<span class="comment">% Ref4=0.1;</span>
+<span class="comment">% TH4=0.7;</span>
+<span class="comment">% Right4= 0.0;</span>
+<span class="comment">% Left4= 0.0;</span>
+<span class="comment">%</span>
+<span class="comment">% base5= 'ringWGXRCrossRefRight';</span>
+<span class="comment">% Ref5=0.1;</span>
+<span class="comment">% TH5=0.7;</span>
+<span class="comment">% Right5= 0.15;</span>
+<span class="comment">% Left5= 0.0;</span>
+<span class="comment">%</span>
+<span class="comment">% base6= 'ringWGXRCrossRight';</span>
+<span class="comment">% Ref6=0.0;</span>
+<span class="comment">% TH6=0.7;</span>
+<span class="comment">% Right6= 0.3;</span>
+<span class="comment">% Left6= 0.0;</span>
+<span class="comment">% %baseArray= {base1, base2};</span>
+<span class="comment">% basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';</span>
+<span class="comment">% end</span>
+</pre><img vspace="5" hspace="5" src="ringWGXRCrossExtra_01.png" alt=""> <img vspace="5" hspace="5" src="ringWGXRCrossExtra_02.png" alt=""> <img vspace="5" hspace="5" src="ringWGXRCrossExtra_03.png" alt=""> <img vspace="5" hspace="5" src="ringWGXRCrossExtra_04.png" alt=""> <img vspace="5" hspace="5" src="ringWGXRCrossExtra_05.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%set(0,'DefaultFigureWindowStyle','docked');
+set(0,'defaultAxesXGrid','on');
+set(0,'defaultAxesYGrid','on');
+set(groot,'defaultAxesColorOrder',[1 0 0;0 1 0;0 0 1;1 1 0],'defaultAxesLineStyleOrder',{'REPLACE_WITH_DASH_DASH',':'});
+set(0,'DefaultLineMarkerSize',1);
+
+base1= 'ringWGXRCross';
+outputFile =load('ringWGXRCross.1-DC.2d_dat');
+Ref1=0.1;
+TH1=0.7;
+Right1= 0.15;
+Left1= 0.4;
+
+base2= 'ringWGXRCrossIdeal';
+outputFileIdeal = load('ringWGXRCrossIdeal.1-DC.2d_dat');
+Ref2=0.0;
+TH2=1.0;
+Right2= 0.0;
+Left2= 0.0;
+
+base3= 'ringWGXRCrossTH';
+outputFileTH = load('ringWGXRCrossTH.1-DC.2d_dat');
+Ref3=0.0;
+TH3=0.7;
+Right3= 0.0;
+Left3= 0.0;
+
+base4= 'ringWGXRCrossRef';
+outputFileRef = load('ringWGXRCrossRef.1-DC.2d_dat');
+Ref4=0.1;
+TH4=0.7;
+Right4= 0.0;
+Left4= 0.0;
+
+base5= 'ringWGXRCrossRefRight';
+outputFileRefRight = load('ringWGXRCrossRefRight.1-DC.2d_dat');
+Ref5=0.1;
+TH5=0.7;
+Right5= 0.15;
+Left5= 0.0;
+
+base6= 'ringWGXRCrossRight';
+outputFileRight = load('ringWGXRCrossRight.1-DC.2d_dat');
+Ref6=0.0;
+TH6=0.7;
+Right6= 0.3;
+Left6= 0.0;
+
+
+base7= 'ringWGXRCrossLeft';
+outputFileLeft = load('ringWGXRCrossLeft.1-DC.2d_dat');
+Ref7=0.0;
+TH7=0.7;
+Right7= 0.0;
+Left7= 0.2;
+
+basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
+
+
+
+
+x=outputFile(:,1);
+
+% TH circuit
+N61InTH=10.^(outputFileTH(:,2)./20);
+N62InTH=10.^(outputFileTH(:,3)./20);
+N63InTH=10.^(outputFileTH(:,4)./20);
+N64InTH=10.^(outputFileTH(:,5)./20);
+N61OutTH=10.^(outputFileTH(:,6)./20);
+N62OutTH=10.^(outputFileTH(:,7)./20);
+N63OutTH=10.^(outputFileTH(:,8)./20);
+N64OutTH=10.^(outputFileTH(:,9)./20);
+w3eOutTH=10.^(outputFileTH(:,20)./20);
+w4nOutTH=10.^(outputFileTH(:,21)./20);
+
+% Mag and Phi from dataSet
+N61InTHMag=outputFileTH(:,22);
+N61InTHPhi=outputFileTH(:,23);
+N62InTHMag=outputFileTH(:,24);
+N62InTHPhi=outputFileTH(:,25);
+N63OutTHMag=outputFileTH(:,34);
+N63OutTHPhi=outputFileTH(:,35);
+
+
+% Convert to Real/Imag
+% TH cir.
+N61InTHEr= N61InTHMag.*cos(N61InTHPhi);
+N61InTHEi= N61InTHMag.*sin(N61InTHPhi);
+
+N62InTHEr= N62InTHMag.*cos(N62InTHPhi);
+N62InTHEi= N62InTHMag.*sin(N62InTHPhi);
+
+N63OutTHEr= N63OutTHMag.*cos(N63OutTHPhi);
+N63OutTHEi= N63OutTHMag.*sin(N63OutTHPhi);
+
+% Build the transer functions
+% Power
+fTH_TH=N63OutTH.*(N61InTH.^(-1));   % Input-Through Power transfer function for TH cir.
+fDrop_TH=N62InTH.*(N61InTH.^(-1));   % Input-Drop Power transferfunction for TH cir.
+% Mag/Phase
+fTH_TH_Mag=N63OutTHMag.*(N61InTHMag.^(-1));   % Input-Through Mag transfer function for TH cir.
+fTH_TH_Phi=N63OutTHPhi-N61InTHPhi;   % Input-Through Phase transfer function for TH cir.
+
+fDrop_TH_Mag=N62InTHMag.*(N61InTHMag.^(-1));   % Input-Drop Mag transfer function for TH cir.
+fDrop_TH_Phi=N62InTHPhi-N61InTHPhi;   % Input-Drop Phi transfer function for TH cir.
+
+
+% Expected
+N1TH=N61InTH;
+N2TH=N62InTH;
+N3TH=TH3.*N63OutTH;
+N4TH= 0;
+
+
+% Plot of TH circuit
+figure('name','Circuit TH, 4 ports','numbertitle','off');
+subplot(2,2,1);
+plot(x,N61InTH,':r',x,N1TH,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+subplot(2,2,2);
+plot(x,N62InTH,':r',x,N2TH,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+subplot(2,2,3);
+plot(x,w3eOutTH,':r',x,N3TH,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+subplot(2,2,4);
+plot(x,w4nOutTH,':r',x,N4TH,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+
+figure('name','Circuit TH, Transfer functions','numbertitle','off');
+subplot(2,1,1);
+plot(x,fTH_TH_Mag,':r',x,fDrop_TH_Mag,'REPLACE_WITH_DASH_DASHg');
+legend('TH Mag','Drop Mag');
+subplot(2,1,2);
+plot(x,fTH_TH_Phi,':r',x,fDrop_TH_Phi,'REPLACE_WITH_DASH_DASHg');
+legend('TH Phi','Drop Phi');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Right circuit
+N61InRight=10.^(outputFileRight(:,2)./20);
+N62InRight=10.^(outputFileRight(:,3)./20);
+N63InRight=10.^(outputFileRight(:,4)./20);
+N64InRight=10.^(outputFileRight(:,5)./20);
+N61OutRight=10.^(outputFileRight(:,6)./20);
+N62OutRight=10.^(outputFileRight(:,7)./20);
+N63OutRight=10.^(outputFileRight(:,8)./20);
+N64OutRight=10.^(outputFileRight(:,9)./20);
+w3eOutRight=10.^(outputFileRight(:,20)./20);
+w4nOutRight=10.^(outputFileRight(:,21)./20);
+
+
+% Mag and Phi from dataSet
+N62InRightMag=outputFileRight(:,24);
+N62InRightPhi=outputFileRight(:,25);
+N64InRightMag=outputFileRight(:,28);
+N64InRightPhi=outputFileRight(:,29);
+N63OutRightMag=outputFileRight(:,34);
+N63OutRightPhi=outputFileRight(:,35);
+
+% Convert to Real/Imag
+% Right cir.
+N62InRightEr= N62InRightMag.*cos(N62InRightPhi);
+N62InRightEi= N62InRightMag.*sin(N62InRightPhi);
+
+N64InRightEr= N64InRightMag.*cos(N64InRightPhi);
+N64InRightEi= N64InRightMag.*sin(N64InRightPhi);
+
+N63OutRightEr= N63OutRightMag.*cos(N63OutRightPhi);
+N63OutRightEi= N63OutRightMag.*sin(N63OutRightPhi);
+
+
+
+% Expected 1
+% N64InRight will have 2 components.
+ % 1- Out of resonase signals will go through the wg and appear at N62In (N64InRight_fTH)
+ % 2- Resonase signals will go through the ring (the Drop filter) and show up at N63Out (N64InRight_fDrop)
+
+ 
+% ====> % Calculation components of N62IN = 
+            % (1) Drop of Ring with N61In as input (N62InTH) + 
+            % (2) Th of Ring with N64In as input (N64InRight_fTH)
+
+% Theo1: Not cosidering phase shift, just working with powers transfer function of (fTH_TH)
+N64InRight_fTH= fTH_TH.* N64InRight; %Th of Ring 6 with N64In as input
+N62InRight_theo1= N62InTH + N64InRight_fTH; 
+
+% Theo2: Working with transfer function of power (fTH_TH) and Real/Imag
+% Still not accurate enough
+N62InRightEr_theo2= N62InTHEr + fTH_TH.*N64InRightEr;
+N62InRightEi_theo2= N62InTHEi + fTH_TH.*N64InRightEi;
+N62InRight_theo2 = sqrt(N62InRightEr_theo2.^2 + N62InRightEi_theo2.^2);
+
+%N62InRightEr_theo2= N62InTHEr + (fTH_TH.^0.5).*N64InRightEr;
+%N62InRightEi_theo2= N62InTHEi + (fTH_TH.^0.5).*N64InRightEi;
+%N62InRight_theo2 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
+
+% Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase
+% GOOD Match, accurate
+N64InRight_fTH_Mag = fTH_TH_Mag.*N64InRightMag;
+N64InRight_fTH_Phi = fTH_TH_Phi+N64InRightPhi;
+ % Convert to Real/Imag
+N64InRight_fTH_Er= N64InRight_fTH_Mag.*cos(N64InRight_fTH_Phi);
+N64InRight_fTH_Ei= N64InRight_fTH_Mag.*sin(N64InRight_fTH_Phi);
+% Add up
+N62InRightEr_theo3= N62InTHEr + N64InRight_fTH_Er;
+N62InRightEi_theo3= N62InTHEi + N64InRight_fTH_Ei;
+N62InRight_theo3 = sqrt(N62InRightEr_theo3.^2 + N62InRightEi_theo3.^2);
+
+
+
+% ====> % Calculation components of N63Out= 
+            % (1) Th of Ring with N61In as input (N62InTH) + 
+            % (2) Drop of Ring with N64In as input N64InRight_fDrop
+% Theo1: Not cosidering phase shift, just working with powers.
+N64InRight_fDrop= fDrop_TH.* N64InRight; %Dro of Ring 6 with N64In as input
+N63OutRight_theo1= N63OutTH + N64InRight_fDrop; 
+
+% Theo2: Working with transfer function of power (fDrop_TH) and Real/Imag
+% Still not accurate enough
+N63OutRightEr_theo2= N63OutTHEr + fDrop_TH.*N64InRightEr;
+N63OutRightEi_theo2= N63OutTHEi + fDrop_TH.*N64InRightEi;
+N63OutRight_theo2 = sqrt(N63OutRightEr_theo2.^2 + N63OutRightEi_theo2.^2);
+
+% Theo3: working with Mag/Phase and seperate transfer functions for Mag/Phase
+% GOOD Match, accurate
+N64InRight_fDrop_Mag = fDrop_TH_Mag.*N64InRightMag;
+N64InRight_fDrop_Phi = fDrop_TH_Phi+N64InRightPhi;
+
+% Convert to Real/Imag
+N64InRight_fDrop_Er= N64InRight_fDrop_Mag.*cos(N64InRight_fDrop_Phi);
+N64InRight_fDrop_Ei= N64InRight_fDrop_Mag.*sin(N64InRight_fDrop_Phi);
+% Add up
+N63OutRightEr_theo3= N63OutTHEr + N64InRight_fDrop_Er;
+N63OutRightEi_theo3= N63OutTHEi + N64InRight_fDrop_Ei;
+N63OutRight_theo3 = sqrt(N63OutRightEr_theo3.^2 + N63OutRightEi_theo3.^2);
+
+
+% Expected
+N1Right=N61InRight;
+N2Right=N62InRight_theo3;
+N3Right=TH3.*N63OutRight_theo3;
+N4Right= 0;
+
+% Plot of Right cir.
+figure('name','Circuit Right, 4 ports','numbertitle','off');
+subplot(2,2,1);
+plot(x,N61InRight,':r',x,N1Right,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+subplot(2,2,2);
+plot(x,N62InRight,':r',x,N2Right,'REPLACE_WITH_DASH_DASHg',x,N62InRight_theo1,'-.b');
+legend('Sim','Theory', 'Thoery without Phase shift');
+subplot(2,2,3);
+plot(x,w3eOutRight,':r',x,N3Right,'REPLACE_WITH_DASH_DASHg',x,N63OutRight_theo1,'-.b');
+legend('Sim','Theory', 'Thoery without Phase shift');
+subplot(2,2,4);
+plot(x,w4nOutRight,':r',x,N4Right,'REPLACE_WITH_DASH_DASHg');
+legend('Sim','Theory');
+
+figure('name','Circuit Right, Drop(In dir.)','numbertitle','off');
+plot(x,N62InRight,':r',x,N62InRight_theo1,':g',x,N62InRight_theo2,'-.b',x,N62InRight_theo3,'REPLACE_WITH_DASH_DASHy');
+legend('Sim','theo1','theo2','theo3');
+
+figure('name','Circuit Right, Th(Out dir.)','numbertitle','off');
+plot(x,N63OutRight,':r',x,N63OutRight_theo1,':g',x,N63OutRight_theo2,'-.b',x,N63OutRight_theo3,'REPLACE_WITH_DASH_DASHy');
+legend('Sim','theo1','theo2','theo3');
+
+%Plot of Right cir.
+% figure('name','Circuit Right, no Phase shift, Drop(In dir.) Power details','numbertitle','off');
+% plot(x,N62InRight,':r',x,N62InRight_theo1,'REPLACE_WITH_DASH_DASHg');
+% legend('Drop of the Right cir.', 'Drop_theo = Drop of TH cir + Add of Right cir');
+
+
+% figure('name','Circuit Right, no Phase shift, Th(Out dir.) Power details','numbertitle','off');
+% subplot(2,1,1);
+% plot(x,N63OutRight,':r',x,N63OutRight_theo1,'REPLACE_WITH_DASH_DASHg');
+% legend('Sim', 'theo1');
+% subplot(2,1,2);
+% plot(x,N64InRight,':r',x,N64InRight_fDrop,'REPLACE_WITH_DASH_DASHg');
+% legend('N64InRight','Drop of N64InRight');
+
+
+% figure('name','Circuit Right, Th(Out dir.) Mag Phase seperate','numbertitle','off');
+% subplot(3,1,1);
+% plot(x,N63OutRight,':r',x,N63OutRight_theo3,'REPLACE_WITH_DASH_DASHg');
+% legend('Sim', 'theo1');
+% subplot(3,1,2);
+% plot(x,N64InRightMag,':r',x,N64InRight_fDrop_Mag,'REPLACE_WITH_DASH_DASHg');
+% legend('N64InRight Mag','Drop of N64InRight Mag');
+% subplot(3,1,3);
+% plot(x,N64InRightPhi,':r',x,N64InRight_fDrop_Phi,'REPLACE_WITH_DASH_DASHg');
+% legend('N64InRight Phi','Drop of N64InRight Phi');
+
+
+
+
+
+% figure('name','Circuit Right, Th(Out dir.) Field Real Imag','numbertitle','off');
+% subplot(1,2,1);
+% plot(x,N63OutRightEr,':r',x,N63OutRightEr_theo2,'REPLACE_WITH_DASH_DASHg');
+% legend('Er Sim','Er theo2');
+% subplot(1,2,2);
+% plot(x,N63OutRightEi,':r',x,N63OutRightEi_theo2,'REPLACE_WITH_DASH_DASHg');
+% legend('Ei Sim','Ei theo2');
+
+
+
+% figure('name','Circuit Right, Drop(In dir.) Field details','numbertitle','off');
+% subplot(2,1,1);
+% plot(x,N62InRightEr,':r',x,N62InRightEi,'REPLACE_WITH_DASH_DASHg',x,N62InRight,'-.b');
+% legend('Er','Ei','Drop of the Right cir.');
+% subplot(2,1,2);
+% plot(x,N62InRightMag,':r',x,N62InRightPhi,'REPLACE_WITH_DASH_DASHg',x,N62InRight,'-.b');
+% legend('Mag','Phi','Drop of the Right cir.');
+% 
+% 
+% 
+% 
+% figure('name','Circuit Right, Add(In dir.) Field details','numbertitle','off');
+% subplot(2,1,1);
+% plot(x,N64InRightEr,':r',x,N64InRightEi,'REPLACE_WITH_DASH_DASHg');
+% legend('Er','Ei')
+% subplot(2,1,2);
+% plot(x,N64InRightMag,':r',x,N64InRightPhi,'REPLACE_WITH_DASH_DASHg');
+% legend('Mag','Phi');
+
+% figure('name','Circuit Right, Drop(In dir.) Field details Phase shift','numbertitle','off');
+% 
+% subplot(1,2,1);
+% plot(x,N62InRight_theo2,':r',x,N62InRight,'REPLACE_WITH_DASH_DASHg');
+% legend('N62InRight_theo2','Drop of the Right cir.');
+% subplot(1,2,2);
+% plot(x,N62InRight_theo3,':r',x,N62InRight,'REPLACE_WITH_DASH_DASHg');
+% legend('N62InRight_theo3','Drop of the Right cir.');
+% figure('name','Circuit Right, Drop(In dir.) theo2 vs theo3','numbertitle','off');
+% plot(x,N62InRight_theo2,':r',x,N62InRight_theo3,'REPLACE_WITH_DASH_DASHg');
+% legend('N62InRight_theo2','N62InRight_theo3');
+
+
+
+% subplot(1,2,2);
+% plot(x,N63OutRight_theo3,':r',x,N63OutRight,'REPLACE_WITH_DASH_DASHg');
+% %legend('N63OutRight_theo3','Th of the Right cir.');
+% 
+% figure('name','Circuit Right, Th(In dir.) theo2 vs theo3','numbertitle','off');
+% plot(x,N63OutRight_theo2,':r',x,N63OutRight_theo3,'REPLACE_WITH_DASH_DASHg');
+% %legend('N63OutRight_theo2','N63OutRight_theo3');
+
+
+
+
+% 
+% for i=1:6
+%     bName=(strcat('base',num2str(i)));
+%     refName=(strcat('Ref',num2str(i)));
+%     thName=(strcat('TH',num2str(i)));
+%     rightName=(strcat('Right',num2str(i)));
+%     leftName=(strcat('Left',num2str(i)));
+%     base=eval(bName);
+%     Ref=eval(refName);
+%     TH=eval(thName);
+%     Right=eval(rightName);
+%     Left=eval(leftName);
+%     display(base)
+% 
+% %base = 'ringWGXRCross';
+% %display(base)    
+% outputFile = strcat(base,'.1-DC.2d_dat');
+% basefile = strcat(base,'.sp');
+% baseFileFull = strcat(basePath,basefile);
+% dateStamp = datestr(now,'ddmmmyy_HHMM');
+% %display(dateStamp);
+% snapshot = strcat('ringCross_', dateStamp);
+% %display(snapshot);
+% % mkdir(snapshot);
+% snapshotFull=strcat('./',snapshot);
+% % cd(snapshotFull);
+% %system(pwd);
+% %output = load('ringsCrossComb.0-DC.2d_dat');
+% display(outputFile)
+% output = load(outputFile);
+% %outputFile;
+% %x=ringCross_0_DC(:,1);
+% %N11In=ringCross_0_DC(:,2);
+% x=output(:,1);
+% 
+% %Circuit 3.5, (Ring6, x7, w1-4)
+% N61In=output(:,2);
+% N62In=output(:,3);
+% N63In=output(:,4);
+% N64In=output(:,5);
+% N61Out=output(:,6);
+% N62Out=output(:,7);
+% N63Out=output(:,8);
+% N64Out=output(:,9);
+% x71In=output(:,10);
+% x72In=output(:,11);
+% x73In=output(:,12);
+% x74In=output(:,13);
+% x71Out=output(:,14);
+% x72Out=output(:,15);
+% x73Out=output(:,16);
+% x74Out=output(:,17);
+% w3eIn=output(:,18);
+% w4nIn=output(:,19);
+% w3eOut=output(:,20);
+% w4nOut=output(:,21);
+% 
+% 
+% N61In=10.^(N61In/20);
+% N62In=10.^(N62In/20);
+% N63In=10.^(N63In/20);
+% N64In=10.^(N64In/20);
+% N61Out=10.^(N61Out/20);
+% N62Out=10.^(N62Out/20);
+% N63Out=10.^(N63Out/20);
+% N64Out=10.^(N64Out/20);
+% x71In=10.^(x71In/20);
+% x72In=10.^(x72In/20);
+% x73In=10.^(x73In/20);
+% x74In=10.^(x74In/20);
+% x71Out=10.^(x71Out/20);
+% x72Out=10.^(x72Out/20);
+% x73Out=10.^(x73Out/20);
+% x74Out=10.^(x74Out/20);
+% 
+% w3eIn=10.^(w3eIn/20);
+% w4nIn=10.^(w4nIn/20);
+% w3eOut=10.^(w3eOut/20);
+% w4nOut=10.^(w4nOut/20);
+% 
+% 
+% 
+% %Theory
+% 
+% x71In_TH = N63Out; % will have a phase shift because of the waveguide wg1
+% x71Out_TH = Ref.*x71In_TH;
+% 
+% % N61In_TH = Input of Ring 6, CWSourse 
+% N61Out_TH = x71Out_TH; % Through of Ring 6 with input as N63In_TH 
+% 
+% % N63Out is the through port of Ring 6
+% N63In_TH = x71Out_TH;
+% 
+% x72Out_TH=Right.*x71In;
+% x72In_TH = N64Out; % will have a phase shift because of the waveguide wg1
+% 
+% % N62In_TH = Drop port of Ring 6 and
+%              % % Through of Ring 6 with input as N64In 
+% N62Out_TH = 0 ; 
+% 
+% 
+% x73In_TH = 0 ;%(TBD ?)
+% x73Out_TH=TH.*x71In;
+% 
+% x74In_TH = 0 ; %(TBD ?)
+% x74Out_TH=Left.*x71In;
+% 
+% % N64Out is the Add port of Ring 6 and
+%   % Drop of Ring 2 with Input N63In
+% 
+% N64In_TH = x72Out_TH; 
+% 
+% w3eIn_TH= 0;
+% w3eOut_TH= x73Out; % will have a phase shift because of the waveguide 
+% 
+% w4nIn_TH= 0;
+% w4nOut_TH= x74Out; % will have a phase shift because of the waveguide 
+% 
+% %figure;
+% % 
+% % %%Circuit 1
+% % % figure('name','Circuit 1, Ring 1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,N11In);
+% % subplot(4,2,3);
+% % plot(x,N12In);
+% % subplot(4,2,5);
+% % plot(x,N13In);
+% % subplot(4,2,7);
+% % plot(x,N14In);
+% % subplot(4,2,2);
+% % plot(x,N11Out);
+% % subplot(4,2,4);
+% % plot(x,N12Out);
+% % subplot(4,2,6);  
+% % plot(x,N13Out);
+% % subplot(4,2,8);
+% % plot(x,N14Out);
+% % 
+% % 
+% % %Circuit 2
+% % figure('name','Circuit 2, xcross 1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,x11In);
+% % subplot(4,2,3);
+% % plot(x,x12In);
+% % subplot(4,2,5);
+% % plot(x,x13In);
+% % subplot(4,2,7);
+% % plot(x,x14In);
+% % subplot(4,2,2);
+% % plot(x,x11Out,x,x11Out_TH);
+% % legend('x11Out','x11Out-TH');
+% % subplot(4,2,4);
+% % plot(x,x12Out,x,x12Out_TH);
+% % legend('x12Out','x12Out-TH');
+% % subplot(4,2,6);
+% % plot(x,x13Out,x,x13Out_TH);
+% % legend('x13Out','x13Out-TH');
+% % subplot(4,2,8);
+% % plot(x,x14Out,x,x14Out_TH);
+% % legend('x14Out','x14Out-TH');
+% % 
+% % %Circuit 3
+% % figure('name','Circuit 3, Ring 2 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,N21In);
+% % subplot(4,2,3);
+% % plot(x,N22In);
+% % subplot(4,2,5);
+% % plot(x,N23In,x,N23In_TH);
+% % legend('N23In','N23In-TH');
+% % subplot(4,2,7);
+% % plot(x,N24In,x,N24In_TH);
+% % legend('N24In','N24In-TH');
+% % subplot(4,2,2);
+% % plot(x,N21Out,x,N21Out_TH);
+% % legend('N21Out','N21Out-TH');
+% % subplot(4,2,4);
+% % plot(x,N22Out,x,N22Out_TH);
+% % legend('N22Out','N22Out-TH');
+% % subplot(4,2,6);
+% % plot(x,N23Out);
+% % subplot(4,2,8);
+% % plot(x,N24Out);
+% % %legend('N24Out','N24Out-TH');
+% % 
+% % figure('name','Circuit 3, Ring 2 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');
+% % subplot(3,1,1);
+% % plot(x,N23In,x,N24Out);
+% % legend('N23In','N24Out');
+% % subplot(3,1,2);
+% % plot(x,N21In,x,N22In);
+% % legend('N21In','N22In');
+% % subplot(3,1,3);
+% % plot(x,N23In./N24Out,x,N21In./N22In);
+% % legend('Ratio 3,4', 'Ratio 1,2');
+% % figure('name','Circuit 3, xcross 2 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,x21In,x,x21In_TH);
+% % legend('x21In','x21In-TH');
+% % subplot(4,2,3);
+% % plot(x,x22In);
+% % %legend('x22In','x22In_TH');
+% % subplot(4,2,5);
+% % plot(x,x23In);
+% % legend('x23In');
+% % subplot(4,2,7);
+% % plot(x,x24In);
+% % legend('x24In');
+% % subplot(4,2,2);
+% % plot(x,x21Out,x,x21Out_TH);
+% % legend('x21Out','x21Out-TH');
+% % subplot(4,2,4);
+% % plot(x,x22Out,x,x22Out_TH);
+% % legend('x22Out','x22Out-TH');
+% % subplot(4,2,6);
+% % plot(x,x23Out,x,x23Out_TH);
+% % legend('x23Out','x23Out-TH');
+% % subplot(4,2,8);
+% % plot(x,x24Out,x,x24Out_TH);
+% % legend('x24Out','x24Out-TH');
+% % 
+% % %Compare Ring2 and Ring1
+% % 
+% % figure('name','Ring2 VS Ring1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,N21In,x,N11In);
+% % legend('Ring2','Ring1');
+% % grid on;
+% % grid minor;
+% % subplot(4,2,3);
+% % plot(x,N22In,x,N12In);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,5);
+% % plot(x,N23In,x,N13In);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,7);
+% % plot(x,N24In,x,N14In);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,2);
+% % plot(x,N21Out,x,N11Out);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,4);
+% % plot(x,N22Out,x,N12Out);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,6);
+% % plot(x,N23Out,x,N13Out);
+% % legend('Ring2','Ring1');
+% % subplot(4,2,8);
+% % plot(x,N24Out,x,N14Out);
+% % legend('Ring2','Ring1');
+% % 
+% % figure('name','Xcross2 VS XCcross1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,x21In,x,x11In);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,3);
+% % plot(x,x22In,x,x12In);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,5);
+% % plot(x,x23In,x,x13In);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,7);
+% % plot(x,x24In,x,x14In);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,2);
+% % plot(x,x21Out,x,x11Out);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,4);
+% % plot(x,x22Out,x,x12Out);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,6);
+% % plot(x,x23Out,x,x13Out);
+% % legend('Xcross2','Xcross1');
+% % subplot(4,2,8);
+% % plot(x,x24Out,x,x14Out);
+% % legend('Xcross2','Xcross1');
+% 
+% 
+% %Circuit 3.5
+% figure('name',strcat(base,' Circuit 3.5, Ring 6 IN OUT signals'),'numbertitle','off');
+% subplot(4,2,1);
+% plot(x,N61In);
+% subplot(4,2,3);
+% plot(x,N62In);
+% subplot(4,2,5);
+% plot(x,N63In,':',x,N63In_TH);
+% legend('N63In','N63In-TH');
+% subplot(4,2,7);
+% plot(x,N64In,':',x,N64In_TH);
+% legend('N64In','N64In-TH');
+% subplot(4,2,2);
+% plot(x,N61Out,':',x,N61Out_TH);
+% legend('N61Out','N61Out-TH');
+% subplot(4,2,4);
+% plot(x,N62Out,':',x,N62Out_TH);
+% legend('N62Out','N62Out-TH');
+% subplot(4,2,6);
+% plot(x,N63Out);
+% subplot(4,2,8);
+% plot(x,N64Out);
+% 
+% figure('name', strcat(base,' Circuit 3.5, xcross 7 IN OUT signals'),'numbertitle','off');
+% subplot(4,2,1);
+% plot(x,x71In,':',x,x71In_TH);
+% legend('x71In','x71In-TH');
+% subplot(4,2,3);
+% plot(x,x72In,':',x,x72In_TH);
+% legend('x72In','x72In-TH');
+% subplot(4,2,5);
+% plot(x,x73In,':',x,x73In_TH);
+% legend('x73In','x73In-TH');
+% subplot(4,2,7);
+% plot(x,x74In,':',x,x74In_TH);
+% legend('x74In','x74In-TH');
+% subplot(4,2,2);
+% plot(x,x71Out,':',x,x71Out_TH);
+% legend('x71Out','x71Out-TH');
+% subplot(4,2,4);
+% plot(x,x72Out,':',x,x72Out_TH);
+% legend('x72Out','x72Out-TH');
+% subplot(4,2,6);
+% plot(x,x73Out,':',x,x73Out_TH);
+% legend('x73Out','x73Out-TH');
+% subplot(4,2,8);
+% plot(x,x74Out,':',x,x74Out_TH);
+% legend('x74Out','x74Out-TH');
+% 
+% 
+% figure('name',strcat(base,' Circuit 3.5, waveguides 1-4 IN OUT signals'),'numbertitle','off');
+% subplot(4,2,1);
+% plot(x,N63In,':',x,x71Out);
+% legend('wg1,P1In','wg1 P2Out');
+% subplot(4,2,2);
+% plot(x,N63Out,':',x,x71In);
+% legend('wg1,P1Out','wg1 P2In');
+% 
+% subplot(4,2,3);
+% plot(x,N64In,':',x,x72Out);
+% legend('wg2,P1In','wg2 P2Out');
+% subplot(4,2,4);
+% plot(x,N64Out,':',x,x72In);
+% legend('wg2,P1Out','wg2 P2In');
+% 
+% 
+% subplot(4,2,5);
+% plot(x,x73Out,':',x,w3eOut);
+% legend('wg3,P1Out','wg3 P2Out');
+% subplot(4,2,6);
+% plot(x,x73In,':',x,w3eIn);
+% legend('wg3,P1In','wg3 P2In');
+% 
+% subplot(4,2,7);
+% plot(x,x74In,':',x,w4nIn);
+% legend('wg4,P1In','wg4 P2In');
+% subplot(4,2,8);
+% plot(x,x74Out,':',x,w4nOut);
+% legend('wg4,P1Out','wg4 P2Out');
+% 
+% figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/3Th 3In/1Th signals'),'numbertitle','off');
+% subplot(3,1,2);
+% plot(x,N61In,x,N63Out);
+% legend('N61In','N63Out');
+% subplot(3,1,1);
+% plot(x,N63In,x,N61Out);
+% legend('N63In','N61Out');
+% subplot(3,1,3);
+% plot(x,N61In./N63Out,x,N63In./N61Out);
+% legend('Ratio 1,3', 'Ratio 3,1');
+% 
+% figure('name',strcat(base,' Circuit 3.5, Ring 6 Add/drop relation 1In/2Drop 3In/4Drop signals'),'numbertitle','off');
+% subplot(3,1,1);
+% plot(x,N61In,x,N62In);
+% legend('N61In','N62In');
+% subplot(3,1,2);
+% plot(x,N63In,x,N64Out);
+% legend('N63In','N64Out');
+% subplot(3,1,3);
+% plot(x,N61In./N62In,x,N63In./N64Out);
+% legend('Ratio 1,2', 'Ratio 3,4');
+% 
+% 
+% % %Compare Ring6 and Ring2 and Ring1
+% % 
+% % figure('name','Ring 6 VS Ring2 VS Ring1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,N61In,x,N21In,x,N11In);
+% % legend('Ring6','Ring2','Ring1');
+% % grid on;
+% % grid minor;
+% % subplot(4,2,3);
+% % plot(x,N62In,x,N22In,x,N12In);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,5);
+% % plot(x,N63In,x,N23In,x,N13In);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,7);
+% % plot(x,N64In,x,N24In,x,N14In);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,2);
+% % plot(x,N61Out,x,N21Out,x,N11Out);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,4);
+% % plot(x,N62Out,x,N22Out,x,N12Out);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,6);
+% % plot(x,N63Out,x,N23Out,x,N13Out);
+% % legend('Ring6','Ring2','Ring1');
+% % subplot(4,2,8);
+% % plot(x,N64Out,x,N24Out,x,N14Out);
+% % legend('Ring6','Ring2','Ring1');
+% % 
+% % 
+% % figure('name','Circuit 3.5, Ring 5 Add/drop relation 3IN/4OUT 1IN/2OUT signals','numbertitle','off');
+% % subplot(3,1,1);
+% % plot(x,N63In,x,N64Out);
+% % legend('N63In','N64Out');
+% % subplot(3,1,2);
+% % plot(x,N61In,x,N62In);
+% % legend('N61In','N62In');
+% % subplot(3,1,3);
+% % plot(x,N63In./N64Out,x,N61In./N62In);
+% % legend('Ratio 3,4', 'Ratio 1,2');
+% % 
+% % 
+% % figure('name','Xcross7 VS Xcross2 VS XCcross1 IN OUT signals','numbertitle','off');
+% % subplot(4,2,1);
+% % plot(x,x71In,x,x21In,x,x11In);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,3);
+% % plot(x,x72In,x,x22In,x,x12In);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,5);
+% % plot(x,x73In,x,x23In,x,x13In);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,7);
+% % plot(x,x74In,x,x24In,x,x14In);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,2);
+% % plot(x,x71Out,x,x21Out,x,x11Out);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,4);
+% % plot(x,x72Out,x,x22Out,x,x12Out);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,6);
+% % plot(x,x73Out,x,x23Out,x,x13Out);
+% % legend('Xcross7','Xcross2','Xcross1');
+% % subplot(4,2,8);
+% % plot(x,x74Out,x,x24Out,x,x14Out);
+% % legend('Xcross7','Xcross2','Xcross1');
+% clear;
+% base1= 'ringWGXRCross';
+% Ref1=0.1;
+% TH1=0.7;
+% Right1= 0.15;
+% Left1= 0.4;
+% 
+% base2= 'ringWGXRCrossIdeal';
+% Ref2=0.0;
+% TH2=1.0;
+% Right2= 0.0;
+% Left2= 0.0;
+% 
+% base3= 'ringWGXRCrossTH';
+% Ref3=0.0;
+% TH3=0.7;
+% Right3= 0.0;
+% Left3= 0.0;
+% 
+% base4= 'ringWGXRCrossRef';
+% Ref4=0.1;
+% TH4=0.7;
+% Right4= 0.0;
+% Left4= 0.0;
+% 
+% base5= 'ringWGXRCrossRefRight';
+% Ref5=0.1;
+% TH5=0.7;
+% Right5= 0.15;
+% Left5= 0.0;
+% 
+% base6= 'ringWGXRCrossRight';
+% Ref6=0.0;
+% TH6=0.7;
+% Right6= 0.3;
+% Left6= 0.0;
+% %baseArray= {base1, base2};
+% basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
+% end
+
+##### SOURCE END #####
+--></body></html>

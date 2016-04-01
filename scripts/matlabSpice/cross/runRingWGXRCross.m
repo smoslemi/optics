@@ -12,7 +12,8 @@ snapshot = strcat('ringWGXRCross_', dateStamp);
 display(snapshot);
 mkdir(snapshot);
 snapshotFull=strcat('./',snapshot);
-cd(snapshotFull);
+% to store the data in a timestamped folder
+%cd(snapshotFull);
 system(pwd);
 
 
@@ -75,7 +76,7 @@ for i=1:7
     display(basefile)
     baseFileFull = strcat(basePath,basefile);
     display(baseFileFull)
-    copyfile(baseFileFull,basefile);
+    %copyfile(baseFileFull,basefile);
     ospice_cmd = sprintf('/Users/sanam/OptispiceBin/ospiceResearch %s ',basefile);
     disp(ospice_cmd);
     system(ospice_cmd);

@@ -153,4 +153,20 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=1   neff=[Non]  N0=Non NF=Non
 .Monitor OptFields ring6 Format=MagPhi Port=3 dir=OUT  Pol=TE %C34,35
 .Monitor OptFields ring6 Format=MagPhi Port=4 dir=OUT  Pol=TE %C36,37
 
+.Monitor OptFields wx7 Format=MagPhi Port=1 dir=IN  Pol=TE %C38,39
+.Monitor OptFields wx7 Format=MagPhi Port=2 dir=IN  Pol=TE %C40,41
+.Monitor OptFields wx7 Format=MagPhi Port=3 dir=IN  Pol=TE %C42,43
+.Monitor OptFields wx7 Format=MagPhi Port=4 dir=IN  Pol=TE %C44,45
+
+.Monitor OptFields wx7 Format=MagPhi Port=1 dir=OUT  Pol=TE %C46,47
+.Monitor OptFields wx7 Format=MagPhi Port=2 dir=OUT  Pol=TE %C48,49
+.Monitor OptFields wx7 Format=MagPhi Port=3 dir=OUT  Pol=TE %C50,51
+.Monitor OptFields wx7 Format=MagPhi Port=4 dir=OUT  Pol=TE %C52,53
+
+.Monitor OptFields wg3 Format=MagPhi Port=2 dir=IN  Pol=TE %C54,55
+.Monitor OptFields wg4 Format=MagPhi Port=2 dir=IN  Pol=TE %C56,57
+
+.Monitor OptFields wg3 Format=MagPhi Port=2 dir=Out  Pol=TE %58,59
+.Monitor OptFields wg4 Format=MagPhi Port=2 dir=Out  Pol=TE %C60,61
+
 .end

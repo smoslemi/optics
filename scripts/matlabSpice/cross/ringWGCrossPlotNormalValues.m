@@ -20,7 +20,7 @@ set(0,'DefaultLineMarkerSize',1);
 
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/cross/';
 base = 'ringWGCross';
-outputFile = strcat(base,'.0-DC.2d_dat');
+outputFile = strcat(base,'.1-DC.2d_dat');
 basefile = strcat(base,'.sp');
 baseFileFull = strcat(basePath,basefile);
 dateStamp = datestr(now,'ddmmmyy_HHMM');
