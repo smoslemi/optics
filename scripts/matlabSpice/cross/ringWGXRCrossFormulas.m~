@@ -1,30 +1,25 @@
-1  n61in:
++1  n61in:
 +2      n63out-p1
 +3          x71in-p1
 +4              x71out-p1
 +5                  n63in-p1
 +7                      n64out-p1
 +8                          x72in_p1
-+9                              x73out_p2
+9                               x73out_p2
+20                                  w3eout_p1
 +10                             x71out-p2
-+22                                 x71out-p3 = x71out-p1 +x71out-p2
-+21                                     n63in_p
++22                                 x71out = x71out-p1 +x71out-p2
++21                                     n63in_p2
 +6                                          n61out-p1
-+1                              x74out-p2
-+12             x72out-p1 
-+13                 n64in-p1
-+14                     n62in-p2
-+15                     n63out-p2
-+27                         n63out-p3 = n63out-p1 + n63out-p2 
-
-+16             x73out-p1
-+24                 x73out = x73out-p1 +x73out-p2                    
-+20                     w3eout_p1
-+17             x74out-p1
-+25                 x74Out= x74Out-p1 + x74Out-p2
-+21                      w4nout_p1
-+18     n62in-p1
-+26          n62in_p = n62in-p1 + n62in-p2
+11                              x74out-p2
+21                                  w4nout_p1
+12              x72out-p1
+13                  n64in-p1
+14                      n62in-p2
+15                      n63out-p2
+16              x73out-p1
+17              x74out-p1           
+18      n62in-p1
 %%%%%%%%%%%%%%%%%%%%%%%%
 1:      n61in = Input
 18+14   y1: n62in = DROP(n61in) + TH(n64in)
