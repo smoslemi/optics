@@ -11,13 +11,6 @@ Osp Jobcontrol Verbosity=DEBUG  AllMon=0 AllMon=0
 .param NonWG = '1.4'
 
 .param NMODES=1
-
-** gain is for pwr so sqrt is taken 
-%.param gain='1'
-%.param r1='10.35'
-%.param r2='10.30'
-%.param C = '0.25'
-
 .param lam=1514
 
 * Voltage sources
@@ -30,14 +23,14 @@ v22 Phi2 0 DC = 0
 * lambda sweep Voltage
 vcar vc 0 DC=1513
 
-
 %%%%%%%%%%%%%%%%%%%%%%%% START SUBCKT %%%%%%%%%%%%%%%%%%%%%%%%
 
-.SUBCKT X6rings inS drS thS adS r1
+.SUBCKT X6rings inS drS thS adS
 
-Osp OpticalRing   Name = Xsring1 Nodes = [inS s12 s13 s14] MoName = RingModel1
-Osp OpticalRing   Name = Xsring2 Nodes = [s12 s22 s23 s24] MoName = RingModel1
-Osp OpticalRing   Name = Xsring3 Nodes = [s22 drS s33 adS] MoName = RingModel1
+%Osp OpticalRing   Name = Xsring1 Nodes = [inS s12 s13 s14] MoName = RingModelx1
+Osp OpticalRing   Name = Xsring1 Nodes = [inS s12 thS s14] MoName = RingModelx1
+Osp OpticalRing   Name = Xsring2 Nodes = [s12 s22 s23 s24] MoName = RingModelx1
+Osp OpticalRing   Name = Xsring3 Nodes = [s22 drS s33 adS] MoName = RingModelx1
 
 
 Osp MIRROR        Name = mirXsring1P4 Nodes = [s14] MoName = Mmodel
@@ -46,27 +39,27 @@ Osp MIRROR        Name = mirXsring2P4 Nodes = [s24] MoName = Mmodel
 Osp MIRROR        Name = mirXsring3P2 Nodes = [s33] MoName = Mmodel
 
 
-Osp OpticalRing   Name = Xpring1 Nodes = [s13 p12 p13 p14] MoName = RingModel1
-Osp OpticalRing   Name = Xpring2 Nodes = [p13 p22 p23 p24] MoName = RingModel1
-Osp OpticalRing   Name = Xpring3 Nodes = [p23 p32 thS p34] MoName = RingModel1
+%Osp OpticalRing   Name = Xpring1 Nodes = [s13 p12 p13 p14] MoName = RingModelx1
+%Osp OpticalRing   Name = Xpring2 Nodes = [p13 p22 p23 p24] MoName = RingModelx1
+%Osp OpticalRing   Name = Xpring3 Nodes = [p23 p32 thS p34] MoName = RingModelx1
 
-Osp MIRROR        Name = mirXpring1P2 Nodes = [p12] MoName = Mmodel
-Osp MIRROR        Name = mirXpring1P4 Nodes = [p14] MoName = Mmodel
-Osp MIRROR        Name = mirXpring2P2 Nodes = [p22] MoName = Mmodel
-Osp MIRROR        Name = mirXpring2P4 Nodes = [p24] MoName = Mmodel
-Osp MIRROR        Name = mirXpring3P2 Nodes = [p32] MoName = Mmodel
-Osp MIRROR        Name = mirXpring3P4 Nodes = [p34] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring1P2 Nodes = [p12] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring1P4 Nodes = [p14] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring2P2 Nodes = [p22] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring2P4 Nodes = [p24] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring3P2 Nodes = [p32] MoName = Mmodel
+%Osp MIRROR        Name = mirXpring3P4 Nodes = [p34] MoName = Mmodel
 
 
 .param gain='1'
-.param C = '0.65'
-.param r1='10.35'
-.param r2='10.35'
+.param C = '0.25'
+
+
 
 % Mirror Model
 Osp Model Name = Mmodel   type = MIRROR Ref = 0.0 
 %Ring general Model statment
-Osp Model Name = RingModel1 type = OptRing XC_model = XCmodel1 RingModel=RingFilter1 Radius = r1
+Osp Model Name = RingModelx1 type = OptRing XC_model = XCmodel1 RingModel=RingFilter1 Radius = xr1
 % Coupling Model
 Osp Model Name = XCmodel1  type = XCOUPLER Conjugate=0 c = C
 
@@ -84,8 +77,8 @@ Osp Model Name = RingFilter1 type = MultiLayerFilter FilterType=Explicit
 
 Osp CWSOURCE      Name = Rcw1 Nodes = [Mag1 Phi1 c1N11] MoName = CWmodel lambda = lam CarrierFreqNode=vc
 
-X1 c1N11 c1N12 c1N13 c1N14 X6rings
-X2 c1N21 c1N22 c1N23 c1N24 X6rings
+X1 c1N11 c1N12 c1N13 c1N14 X6rings xr1='10.35'
+X2 c1N21 c1N22 c1N23 c1N24 X6rings xr1='10.30'
 
 Osp XCOUPLER    Name=wx1 Nodes = [c1N13 c1N14 c1N21 c1x14] MoName=WXmodel  
 Osp XCOUPLER    Name=wx2 Nodes = [c1N23 c1N24 c1x23 c1x24] MoName=WXmodel 
@@ -99,13 +92,9 @@ Osp MIRROR        Name = mirWx2P4 Nodes = [c1x24] MoName = Mmodel
 % extras
 Osp MIRROR        Name = mirx2P3 Nodes = [c1x23] MoName = Mmodel
 
-%.param r1='10.35'
-%.param gain='1'
-%.param C = '0.65'
 
-
-%%%%%%%%%%%%%%%%%%%%%%%% END CIR1 %%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%% END CIR2 %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% END CIR1 %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% START CIR2 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % circuit 2, 2 channel add-drop filter
 % 1 cw source just rings
@@ -164,14 +153,14 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 %Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[NonWG]  N0=NonWG NF=NonWG
 
 .param gain='1'
-.param C = '0.65'
+.param C = '0.25'
 .param r1='10.35'
-.param r2='10.35'
-
+.param r2='10.30'
+.param lam=1514
 .op 
 .DC vcar 1500 1580 1
 
-% Outputs for circut 1, (2 subs, 2 cross) // 11x2=22 outputs c2-23
+% Outputs for circut 1, (2 subs, 2 cross) // 8x2=16 outputs c2-17
 
 .Monitor OptPower c1N11 dir=BOTH Pol=TE  P0db=1 % C2,6
 .Monitor OptPower c1N12 dir=BOTH Pol=TE  P0db=1 % C3,7
@@ -183,26 +172,18 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 .Monitor OptPower c1N23 dir=BOTH Pol=TE  P0db=1 % C14,15
 .Monitor OptPower c1N24 dir=BOTH Pol=TE  P0db=1 % C16,17
 
-% wx1, wx2
-.Monitor OptPower c1x14 dir=BOTH Pol=TE  P0db=1 % C18,19
-.Monitor OptPower c1x23 dir=BOTH Pol=TE  P0db=1 % C20,21
-.Monitor OptPower c1x24 dir=BOTH Pol=TE  P0db=1 % C22,23
+% Outputs for circut 2, (2 rings , 2 cross) // 8x2=16 outputs c18-33
 
-% Outputs for circut 2, (2 rings , 2 cross) // 11x2=22 outputs c24-45
+.Monitor OptPower rN11 dir=BOTH Pol=TE  P0db=1 % C18,19
+.Monitor OptPower rN12 dir=BOTH Pol=TE  P0db=1 % C20,21
+.Monitor OptPower rN13 dir=BOTH Pol=TE  P0db=1 % C22,23
+.Monitor OptPower rN14 dir=BOTH Pol=TE  P0db=1 % C24,25
 
-.Monitor OptPower rN11 dir=BOTH Pol=TE  P0db=1 % C24,25
-.Monitor OptPower rN12 dir=BOTH Pol=TE  P0db=1 % C26,27
-.Monitor OptPower rN13 dir=BOTH Pol=TE  P0db=1 % C28,29
-.Monitor OptPower rN14 dir=BOTH Pol=TE  P0db=1 % C30,31
+.Monitor OptPower rN21 dir=BOTH Pol=TE  P0db=1 % C26,27
+.Monitor OptPower rN22 dir=BOTH Pol=TE  P0db=1 % C28,29
+.Monitor OptPower rN23 dir=BOTH Pol=TE  P0db=1 % C30,31
+.Monitor OptPower rN24 dir=BOTH Pol=TE  P0db=1 % C32,33
 
-.Monitor OptPower rN21 dir=BOTH Pol=TE  P0db=1 % C32,33
-.Monitor OptPower rN22 dir=BOTH Pol=TE  P0db=1 % C34,35
-.Monitor OptPower rN23 dir=BOTH Pol=TE  P0db=1 % C36,37
-.Monitor OptPower rN24 dir=BOTH Pol=TE  P0db=1 % C38,39
 
-% wx1, wx2
-.Monitor OptPower rx14 dir=BOTH Pol=TE  P0db=1 % C40,41
-.Monitor OptPower rx23 dir=BOTH Pol=TE  P0db=1 % C42,43
-.Monitor OptPower rx24 dir=BOTH Pol=TE  P0db=1 % C44,45
 
 .end

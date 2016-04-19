@@ -1,0 +1,57 @@
+1 P_fwd(c1n11:variable:rcw1) Mode=1 Pol=0
+2 P_back(c1n11:variable:rcw1) Mode=1 Pol=0
+3 P_fwd(x1.drs:variable:rcw1) Mode=1 Pol=0
+4 P_back(x1.drs:variable:rcw1) Mode=1 Pol=0
+5 P_fwd(x1.ths:variable:rcw1) Mode=1 Pol=0
+6 P_back(x1.ths:variable:rcw1) Mode=1 Pol=0
+7 P_fwd(x1.ads:variable:rcw1) Mode=1 Pol=0
+8 P_back(x1.ads:variable:rcw1) Mode=1 Pol=0
+9 P_fwd(x2.ins:variable:rcw1) Mode=1 Pol=0
+10 P_back(x2.ins:variable:rcw1) Mode=1 Pol=0
+11 P_fwd(x2.drs:variable:rcw1) Mode=1 Pol=0
+12 P_back(x2.drs:variable:rcw1) Mode=1 Pol=0
+13 P_fwd(x2.ths:variable:rcw1) Mode=1 Pol=0
+14 P_back(x2.ths:variable:rcw1) Mode=1 Pol=0
+15 P_fwd(x2.ads:variable:rcw1) Mode=1 Pol=0
+16 P_back(x2.ads:variable:rcw1) Mode=1 Pol=0
+17 P_fwd(rn11:variable:rcw2) Mode=1 Pol=0
+18 P_back(rn11:variable:rcw2) Mode=1 Pol=0
+19 P_fwd(rn12:variable:rcw2) Mode=1 Pol=0
+20 P_back(rn12:variable:rcw2) Mode=1 Pol=0
+21 P_fwd(rn13:variable:rcw2) Mode=1 Pol=0
+22 P_back(rn13:variable:rcw2) Mode=1 Pol=0
+23 P_fwd(rn14:variable:rcw2) Mode=1 Pol=0
+24 P_back(rn14:variable:rcw2) Mode=1 Pol=0
+25 P_fwd(rn21:variable:rcw2) Mode=1 Pol=0
+26 P_back(rn21:variable:rcw2) Mode=1 Pol=0
+27 P_fwd(rn22:variable:rcw2) Mode=1 Pol=0
+28 P_back(rn22:variable:rcw2) Mode=1 Pol=0
+29 P_fwd(rn23:variable:rcw2) Mode=1 Pol=0
+30 P_back(rn23:variable:rcw2) Mode=1 Pol=0
+31 P_fwd(rn24:variable:rcw2) Mode=1 Pol=0
+32 P_back(rn24:variable:rcw2) Mode=1 Pol=0
+
+
+% Outputs for circut 1, (2 subs, 2 cross) // 8x2=16 outputs c2-17
+
+.Monitor OptPower c1N11 dir=BOTH Pol=TE  P0db=1 % C2,6
+.Monitor OptPower c1N12 dir=BOTH Pol=TE  P0db=1 % C3,7
+.Monitor OptPower c1N13 dir=BOTH Pol=TE  P0db=1 % C4,8
+.Monitor OptPower c1N14 dir=BOTH Pol=TE  P0db=1 % C5,9
+
+.Monitor OptPower c1N21 dir=BOTH Pol=TE  P0db=1 % C10,11
+.Monitor OptPower c1N22 dir=BOTH Pol=TE  P0db=1 % C12,13
+.Monitor OptPower c1N23 dir=BOTH Pol=TE  P0db=1 % C14,15
+.Monitor OptPower c1N24 dir=BOTH Pol=TE  P0db=1 % C16,17
+
+% Outputs for circut 2, (2 rings , 2 cross) // 8x2=16 outputs c18-33
+
+.Monitor OptPower rN11 dir=BOTH Pol=TE  P0db=1 % C18,19
+.Monitor OptPower rN12 dir=BOTH Pol=TE  P0db=1 % C20,21
+.Monitor OptPower rN13 dir=BOTH Pol=TE  P0db=1 % C22,23
+.Monitor OptPower rN14 dir=BOTH Pol=TE  P0db=1 % C24,25
+
+.Monitor OptPower rN21 dir=BOTH Pol=TE  P0db=1 % C26,27
+.Monitor OptPower rN22 dir=BOTH Pol=TE  P0db=1 % C28,29
+.Monitor OptPower rN23 dir=BOTH Pol=TE  P0db=1 % C30,31
+.Monitor OptPower rN24 dir=BOTH Pol=TE  P0db=1 % C32,33
