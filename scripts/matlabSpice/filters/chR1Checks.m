@@ -4,9 +4,9 @@ set(0,'defaultAxesYGrid','on');
 set(groot,'defaultAxesColorOrder',[1 0 0;0 1 0;0 0 1;1 1 0],'defaultAxesLineStyleOrder',{'--',':'});
 set(0,'DefaultLineMarkerSize',1);
 
-base1= 'chChecks';
-outputFile =load('chChecks.1-DC.2d_dat');
-mFile =load('chChecks.1-DC.2d_dat');
+base1= 'chR1Checks';
+outputFile =load('chR1Checks.1-DC.2d_dat');
+mFile =load('chR1Checks.1-DC.2d_dat');
 Ref1=0.1;
 TH1=0.9;
 Right1= 0.1;
@@ -14,7 +14,6 @@ Left1= 0.1;
 
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/filter/';
 
-%TestM=[1.1,2,3,4,5,6,7,8,9,10;1.2,4,9,16,25,36,49,64,81,100];
 
 
 [nroutputFile,ncoutputFile]=size(outputFile);
@@ -40,32 +39,32 @@ for i=1:NDiv
         %N14O(5)
     end;
     if i==2
-        [N21I, N22I, N23I, N24I,N21O, N22O, N23O, N24O] = c{(i-1)*NPort+1:i*NPort};
-        %[x21I, x22I, x23I, x24I,x21O, x22O, x23O, x24O] = c{(i-1)*NPort+1:i*NPort};
+        %[N21I, N22I, N23I, N24I,N21O, N22O, N23O, N24O] = c{(i-1)*NPort+1:i*NPort};
+        [x21I, x22I, x23I, x24I,x21O, x22O, x23O, x24O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==3
-        [N31I, N32I, N33I, N34I, N31O, N32O, N33O, N34O] = c{(i-1)*NPort+1:i*NPort};
-        %[x31I,x32I, x33I, x34I, x31O, x32O, x33O, x34O] = c{(i-1)*NPort+1:i*NPort};
+        %[N31I, N32I, N33I, N34I, N31O, N32O, N33O, N34O] = c{(i-1)*NPort+1:i*NPort};
+        [x31I,x32I, x33I, x34I, x31O, x32O, x33O, x34O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==4
-        [N41I, N42I, N43I, N44I, N41O, N42O, N43O, N44O] = c{(i-1)*NPort+1:i*NPort};
-        %[x41I, x42I, x43I, x44I, x41O, x42O, x43O, x44O] = c{(i-1)*NPort+1:i*NPort};
+        %[N41I, N42I, N43I, N44I, N41O, N42O, N43O, N44O] = c{(i-1)*NPort+1:i*NPort};
+        [x41I, x42I, x43I, x44I, x41O, x42O, x43O, x44O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==5
-        [N51I, N52I, N53I, N54I, N51O, N52O, N53O, N54O] = c{(i-1)*NPort+1:i*NPort};
-        %[x51I, x52I, x53I, x54I, x51O, x52O, x53O, x54O] = c{(i-1)*NPort+1:i*NPort};
+        %[N51I, N52I, N53I, N54I, N51O, N52O, N53O, N54O] = c{(i-1)*NPort+1:i*NPort};
+        [x51I, x52I, x53I, x54I, x51O, x52O, x53O, x54O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==6
-        [N61I, N62I, N63I, N64I, N61O, N62O, N63O, N64O] = c{(i-1)*NPort+1:i*NPort};
-        %[x61I, x62I, x63I, x64I, x61O, x62O, x63O, x64O] = c{(i-1)*NPort+1:i*NPort};
+        %[N61I, N62I, N63I, N64I, N61O, N62O, N63O, N64O] = c{(i-1)*NPort+1:i*NPort};
+        [x61I, x62I, x63I, x64I, x61O, x62O, x63O, x64O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==7
-        [N71I, N72I, N73I, N74I, N71O, N72O, N73O, N74O] = c{(i-1)*NPort+1:i*NPort};
-        %[x71I, x72I, x73I, x74I, x71O, x72O, x73O, x74O] = c{(i-1)*NPort+1:i*NPort};
+        %[N71I, N72I, N73I, N74I, N71O, N72O, N73O, N74O] = c{(i-1)*NPort+1:i*NPort};
+        [x71I, x72I, x73I, x74I, x71O, x72O, x73O, x74O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==8
-        [N81I, N82I, N83I, N84I, N81O, N82O, N83O, N84O] = c{(i-1)*NPort+1:i*NPort};
-        %[x81I, x82I, x83I, x84I, x81O, x82O, x83O, x84O] = c{(i-1)*NPort+1:i*NPort};
+        %[N81I, N82I, N83I, N84I, N81O, N82O, N83O, N84O] = c{(i-1)*NPort+1:i*NPort};
+        [x81I, x82I, x83I, x84I, x81O, x82O, x83O, x84O] = c{(i-1)*NPort+1:i*NPort};
     end;
     %c
     %clear c;
@@ -79,25 +78,236 @@ end;
 x=outputFile(:,1);
 
 
-% Only ch 6 outs
+
+
+
+figure('name','D1 Ring1','numbertitle','off');
+subplot(4,2,1);
+plot(x,N11I);
+legend('N11I');
+subplot(4,2,3);
+plot(x,N12I);
+legend('N12I');
+subplot(4,2,5);
+plot(x,N13I);
+legend('N13I');
+subplot(4,2,7);
+plot(x,N14I);
+legend('N14I');
+
+subplot(4,2,2);
+plot(x,N11O);
+legend('N11O');
+subplot(4,2,4);
+plot(x,N12O);
+legend('N12O');
+subplot(4,2,6);
+plot(x,N13O);
+legend('N13O');
+subplot(4,2,8);
+plot(x,N14O);
+legend('N14O');
+
+figure('name','D2','numbertitle','off');
+subplot(4,2,1);
+plot(x,x21I);
+legend('x21I');
+subplot(4,2,3);
+plot(x,x22I);
+legend('x22I');
+subplot(4,2,5);
+plot(x,x23I);
+legend('x23I');
+subplot(4,2,7);
+plot(x,x24I);
+legend('x24I');
+
+subplot(4,2,2);
+plot(x,x21O);
+legend('x21O');
+subplot(4,2,4);
+plot(x,x22O);
+legend('x22O');
+subplot(4,2,6);
+plot(x,x23O);
+legend('x23O');
+subplot(4,2,8);
+plot(x,x24O);
+legend('x24O');
+
+figure('name','D3','numbertitle','off');
+subplot(4,2,1);
+plot(x,x31I);
+legend('x31I');
+subplot(4,2,3);
+plot(x,x32I);
+legend('x32I');
+subplot(4,2,5);
+plot(x,x33I);
+legend('x33I');
+subplot(4,2,7);
+plot(x,x34I);
+legend('x34I');
+
+subplot(4,2,2);
+plot(x,x31O);
+legend('x31O');
+subplot(4,2,4);
+plot(x,x32O);
+legend('x32O');
+subplot(4,2,6);
+plot(x,x33O);
+legend('x33O');
+subplot(4,2,8);
+plot(x,x34O);
+legend('x34O');
+
+figure('name','D4','numbertitle','off');
+subplot(4,2,1);
+plot(x,x41I);
+legend('x41I');
+subplot(4,2,3);
+plot(x,x42I);
+legend('x42I');
+subplot(4,2,5);
+plot(x,x43I);
+legend('x43I');
+subplot(4,2,7);
+plot(x,x44I);
+legend('x44I');
+
+subplot(4,2,2);
+plot(x,x41O);
+legend('x41O');
+subplot(4,2,4);
+plot(x,x42O);
+legend('x42O');
+subplot(4,2,6);
+plot(x,x43O);
+legend('x43O');
+subplot(4,2,8);
+plot(x,x44O);
+legend('x44O');
+
+
+figure('name','D5','numbertitle','off');
+subplot(4,2,1);
+plot(x,x51I);
+legend('x51I');
+subplot(4,2,3);
+plot(x,x52I);
+legend('x52I');
+subplot(4,2,5);
+plot(x,x53I);
+legend('x53I');
+subplot(4,2,7);
+plot(x,x54I);
+legend('x54I');
+
+subplot(4,2,2);
+plot(x,x51O);
+legend('x51O');
+subplot(4,2,4);
+plot(x,x52O);
+legend('x52O');
+subplot(4,2,6);
+plot(x,x53O);
+legend('x53O');
+subplot(4,2,8);
+plot(x,x54O);
+legend('x54O');
+
+figure('name','D6','numbertitle','off');
+subplot(4,2,1);
+plot(x,x61I);
+legend('x61I');
+subplot(4,2,3);
+plot(x,x62I);
+legend('x62I');
+subplot(4,2,5);
+plot(x,x63I);
+legend('x63I');
+subplot(4,2,7);
+plot(x,x64I);
+legend('x64I');
+
+subplot(4,2,2);
+plot(x,x61O);
+legend('x61O');
+subplot(4,2,4);
+plot(x,x62O);
+legend('x62O');
+subplot(4,2,6);
+plot(x,x63O);
+legend('x63O');
+subplot(4,2,8);
+plot(x,x64O);
+legend('x64O');
+
+figure('name','D7','numbertitle','off');
+subplot(4,2,1);
+plot(x,x71I);
+legend('x71I');
+subplot(4,2,3);
+plot(x,x72I);
+legend('x72I');
+subplot(4,2,5);
+plot(x,x73I);
+legend('x73I');
+subplot(4,2,7);
+plot(x,x74I);
+legend('x74I');
+
+subplot(4,2,2);
+plot(x,x71O);
+legend('x71O');
+subplot(4,2,4);
+plot(x,x72O);
+legend('x72O');
+subplot(4,2,6);
+plot(x,x73O);
+legend('x73O');
+subplot(4,2,8);
+plot(x,x74O);
+legend('x74O');
+
+figure('name','D8','numbertitle','off');
+subplot(4,2,1);
+plot(x,x81I);
+legend('x81I');
+subplot(4,2,3);
+plot(x,x82I);
+legend('x82I');
+subplot(4,2,5);
+plot(x,x83I);
+legend('x83I');
+subplot(4,2,7);
+plot(x,x84I);
+legend('x84I');
+
+subplot(4,2,2);
+plot(x,x81O);
+legend('x81O');
+subplot(4,2,4);
+plot(x,x82O);
+legend('x82O');
+subplot(4,2,6);
+plot(x,x83O);
+legend('x83O');
+subplot(4,2,8);
+plot(x,x84O);
+legend('x84O');
+
+
+
+% All outs
 figure('name','Array TH ports','numbertitle','off');
-plot(x,N13O,'r',x,N23O,'g');
-legend('N13O','N23O');
+plot(x,N13O,'r',x,x23O,'g',x,x33O,'b',x,x43O,'y',x,x53O,'m',x,x63O,'c',x,x73O,'k',x,x83O,':r');
+legend('N13O','x23O','x33O','x43O','x53O','x63O','x73O','x83O');
 
 figure('name','Array Drop ports','numbertitle','off');
-plot(x,N12I,'r',x,N22I,'g');
-legend('N12I','N22I');
-
-
-% % 2 ch outs
-% figure('name','Array TH ports','numbertitle','off');
-% plot(x,N13O,'r',x,N23O,'g');
-% legend('N13O','N23O');
-% 
-% figure('name','Array Drop ports','numbertitle','off');
-% plot(x,N12I,'r',x,N22I,'g');
-% legend('N12I','N22I');
-
+plot(x,N12I,'r',x,x22O,'g',x,x32O,'b',x,x42O,'y',x,x52O,'m',x,x62O,'c',x,x72O,'k',x,x82O,':r');
+legend('N12I','x22O','x32O','x42O','x52O','x62O','x72O','x82O');
 
 % % 8 ch outs
 % figure('name','Array TH ports','numbertitle','off');
@@ -107,6 +317,38 @@ legend('N12I','N22I');
 % figure('name','Array Drop ports','numbertitle','off');
 % plot(x,N12I,'r',x,N22I,'g',x,N32I,'b',x,N42I,'y',x,N52I,'m',x,N62I,'c',x,N72I,'k',x,N82I,':r');
 % legend('N12I','N22I','N32I','N42I','N52I','N62I','N72I','N82I');
+
+
+
+
+% % Only ch 6 outs
+% figure('name','Array TH ports','numbertitle','off');
+% plot(x,N13O,'r');
+% legend('N13O');
+% 
+% figure('name','Array Drop ports','numbertitle','off');
+% plot(x,N12I,'r');
+% legend('N12I');
+% 
+% 
+% % % 2 ch outs
+% % figure('name','Array TH ports','numbertitle','off');
+% % plot(x,N13O,'r',x,N23O,'g');
+% % legend('N13O','N23O');
+% % 
+% % figure('name','Array Drop ports','numbertitle','off');
+% % plot(x,N12I,'r',x,N22I,'g');
+% % legend('N12I','N22I');
+% 
+% 
+% % % 8 ch outs
+% % figure('name','Array TH ports','numbertitle','off');
+% % plot(x,N13O,'r',x,N23O,'g',x,N33O,'b',x,N43O,'y',x,N53O,'m',x,N63O,'c',x,N73O,'k',x,N83O,':r');
+% % legend('N13O','N23O','N33O','N43O','N53O','N63O','N73O','N83O');
+% % 
+% % figure('name','Array Drop ports','numbertitle','off');
+% % plot(x,N12I,'r',x,N22I,'g',x,N32I,'b',x,N42I,'y',x,N52I,'m',x,N62I,'c',x,N72I,'k',x,N82I,':r');
+% % legend('N12I','N22I','N32I','N42I','N52I','N62I','N72I','N82I');
 
 % 
 % % 
@@ -211,7 +453,7 @@ legend('N12I','N22I');
 % % plot(x,N13InDB);
 % % legend('N13InDB');
 % % subplot(4,2,7);
-% % plot(x,N14InDB);
+% % plot(x,N13InDB);
 % % legend('N14InDB');
 % % 
 % % subplot(4,2,2);
@@ -224,7 +466,7 @@ legend('N12I','N22I');
 % % plot(x,N13OutDB);
 % % legend('N13OutDB');
 % % subplot(4,2,8);
-% % plot(x,N14OutDB);
+% % plot(x,N13OutDB);
 % % legend('N14OutDB');
 % % 
 % % 
@@ -250,7 +492,7 @@ legend('N12I','N22I');
 % % plot(x,N23InDB);
 % % legend('N23InDB');
 % % subplot(4,2,7);
-% % plot(x,N24InDB);
+% % plot(x,N23InDB);
 % % legend('N24InDB');
 % % 
 % % subplot(4,2,2);
@@ -263,7 +505,7 @@ legend('N12I','N22I');
 % % plot(x,N23OutDB);
 % % legend('N23OutDB');
 % % subplot(4,2,8);
-% % plot(x,N24OutDB);
+% % plot(x,N23OutDB);
 % % legend('N24OutDB');
 % % 
 % % 
@@ -294,7 +536,7 @@ legend('N12I','N22I');
 % % plot(x,N33InDB);
 % % legend('N33InDB');
 % % subplot(4,2,7);
-% % plot(x,N34InDB);
+% % plot(x,N33InDB);
 % % legend('N34InDB');
 % % 
 % % subplot(4,2,2);
@@ -307,7 +549,7 @@ legend('N12I','N22I');
 % % plot(x,N33OutDB);
 % % legend('N33OutDB');
 % % subplot(4,2,8);
-% % plot(x,N34OutDB);
+% % plot(x,N33OutDB);
 % % legend('N34OutDB');
 % % 
 % % 
@@ -332,7 +574,7 @@ legend('N12I','N22I');
 % % plot(x,N43InDB);
 % % legend('N43InDB');
 % % subplot(4,2,7);
-% % plot(x,N44InDB);
+% % plot(x,N43InDB);
 % % legend('N44InDB');
 % % 
 % % subplot(4,2,2);
@@ -345,7 +587,7 @@ legend('N12I','N22I');
 % % plot(x,N43OutDB);
 % % legend('N43OutDB');
 % % subplot(4,2,8);
-% % plot(x,N44OutDB);
+% % plot(x,N43OutDB);
 % % legend('N44OutDB');
 % % 
 % % 
@@ -371,7 +613,7 @@ legend('N12I','N22I');
 % % plot(x,N53InDB);
 % % legend('N53InDB');
 % % subplot(4,2,7);
-% % plot(x,N54InDB);
+% % plot(x,N53InDB);
 % % legend('N54InDB');
 % % 
 % % subplot(4,2,2);
@@ -384,7 +626,7 @@ legend('N12I','N22I');
 % % plot(x,N53OutDB);
 % % legend('N53OutDB');
 % % subplot(4,2,8);
-% % plot(x,N54OutDB);
+% % plot(x,N53OutDB);
 % % legend('N54OutDB');
 % % 
 % % 
@@ -410,7 +652,7 @@ legend('N12I','N22I');
 % % plot(x,N63InDB);
 % % legend('N63InDB');
 % % subplot(4,2,7);
-% % plot(x,N64InDB);
+% % plot(x,N63InDB);
 % % legend('N64InDB');
 % % 
 % % subplot(4,2,2);
@@ -423,7 +665,7 @@ legend('N12I','N22I');
 % % plot(x,N63OutDB);
 % % legend('N63OutDB');
 % % subplot(4,2,8);
-% % plot(x,N64OutDB);
+% % plot(x,N63OutDB);
 % % legend('N64OutDB');
 % % 
 % % 
@@ -449,7 +691,7 @@ legend('N12I','N22I');
 % % plot(x,N73InDB);
 % % legend('N73InDB');
 % % subplot(4,2,7);
-% % plot(x,N74InDB);
+% % plot(x,N73InDB);
 % % legend('N74InDB');
 % % 
 % % subplot(4,2,2);
@@ -462,7 +704,7 @@ legend('N12I','N22I');
 % % plot(x,N73OutDB);
 % % legend('N73OutDB');
 % % subplot(4,2,8);
-% % plot(x,N74OutDB);
+% % plot(x,N73OutDB);
 % % legend('N74OutDB');
 % % 
 % % 
@@ -488,7 +730,7 @@ legend('N12I','N22I');
 % % plot(x,N83InDB);
 % % legend('N83InDB');
 % % subplot(4,2,7);
-% % plot(x,N84InDB);
+% % plot(x,N83InDB);
 % % legend('N84InDB');
 % % 
 % % subplot(4,2,2);
@@ -501,7 +743,7 @@ legend('N12I','N22I');
 % % plot(x,N83OutDB);
 % % legend('N83OutDB');
 % % subplot(4,2,8);
-% % plot(x,N84OutDB);
+% % plot(x,N83OutDB);
 % % legend('N84OutDB');
 % % 
 % % 

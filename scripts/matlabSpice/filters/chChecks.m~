@@ -449,7 +449,7 @@ legend('N12I','N22I');
 % % plot(x,N73InDB);
 % % legend('N73InDB');
 % % subplot(4,2,7);
-% % plot(x,N74InDB);
+% % plot(x,N73InDB);
 % % legend('N74InDB');
 % % 
 % % subplot(4,2,2);
@@ -462,7 +462,7 @@ legend('N12I','N22I');
 % % plot(x,N73OutDB);
 % % legend('N73OutDB');
 % % subplot(4,2,8);
-% % plot(x,N74OutDB);
+% % plot(x,N73OutDB);
 % % legend('N74OutDB');
 % % 
 % % 
@@ -488,7 +488,7 @@ legend('N12I','N22I');
 % % plot(x,N83InDB);
 % % legend('N83InDB');
 % % subplot(4,2,7);
-% % plot(x,N84InDB);
+% % plot(x,N83InDB);
 % % legend('N84InDB');
 % % 
 % % subplot(4,2,2);
@@ -501,7 +501,7 @@ legend('N12I','N22I');
 % % plot(x,N83OutDB);
 % % legend('N83OutDB');
 % % subplot(4,2,8);
-% % plot(x,N84OutDB);
+% % plot(x,N83OutDB);
 % % legend('N84OutDB');
 % % 
 % % 

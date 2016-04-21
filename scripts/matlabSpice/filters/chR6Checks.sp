@@ -72,12 +72,6 @@ Osp MIRROR        Name = mirWx6P4 Nodes = [x64] MoName = Mmodel
 Osp MIRROR        Name = mirWx7P4 Nodes = [x74] MoName = Mmodel 
 Osp MIRROR        Name = mirWx8P3 Nodes = [x83] MoName = Mmodel
 Osp MIRROR        Name = mirWx8P4 Nodes = [x84] MoName = Mmodel 
-
-
-% Extra for specail circuits
-%Osp MIRROR        Name = mirR2P1 Nodes = [N21] MoName = Mmodel
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Mirror Model
@@ -113,12 +107,15 @@ Osp Model Name = RingFilter1 type = MultiLayerFilter FilterType=Explicit
 Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODES Through=0.98 Right=0.01 Left=0.01 Ref=0.0 
 
 
+
 % WGuide model
 Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF=Non
 %Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[NonWG]  N0=NonWG NF=NonWG
 
 ** gain is for pwr so sqrt is taken 
 .param gain='1'
+%.param gain='0.85'
+
 .param r1='10.35'
 .param r2='10.30'
 .param r3='10.25'
@@ -127,13 +124,23 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 .param r6='10.10'
 .param r7='10.05'
 .param r8='10.00'
-.param C = '0.25'
+%.param C = '0.25'
 
 
+
+%.param r1='10.35'
+%.param r2='10.25'
+%.param r3='10.15'
+%.param r4='10.05'
+%.param r5='9.95'
+%.param r6='9.85'
+%.param r7='9.75'
+%.param r8='9.65'
+.param C = '0.15'
 
 .param lam=1514
 .op 
-.DC vcar 1500 1580 1
+.DC vcar 1500 1580 0.1
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 
@@ -144,7 +151,7 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 
 
 % Outputs for circut 3.5, (ring1, x1, x1-4) // 20 outputs c2-
-% D1 Ring1
+% Ring 1
 .Monitor OptPower ring1 Port=1 dir=IN Pol=TE  P0db=1 % C2
 .Monitor OptPower ring1 Port=2 dir=IN Pol=TE  P0db=1 % C3
 .Monitor OptPower ring1 Port=3 dir=IN Pol=TE  P0db=1 % C4

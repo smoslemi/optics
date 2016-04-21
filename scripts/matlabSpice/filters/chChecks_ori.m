@@ -14,8 +14,7 @@ Left1= 0.1;
 
 basePath = '/Users/sanam/phd/GitThesis/optics/scripts/matlabSpice/filter/';
 
-%TestM=[1.1,2,3,4,5,6,7,8,9,10;1.2,4,9,16,25,36,49,64,81,100];
-
+TestM=[1.1,2,3,4,5,6,7,8,9,10;1.2,4,9,16,25,36,49,64,81,100];
 
 [nroutputFile,ncoutputFile]=size(outputFile);
 
@@ -36,36 +35,34 @@ for i=1:NDiv
     if i==1
         [N11I, N12I, N13I, N14I,N11O, N12O, N13O, N14O] = c{(i-1)*NPort+1:i*NPort};
         %[x11I, x12I, x13I, x14I,x11O, x12O, x13O, x14O] = c{(i-1)*NPort+1:i*NPort};
-        %N13O(5)
-        %N14O(5)
     end;
     if i==2
-        [N21I, N22I, N23I, N24I,N21O, N22O, N23O, N24O] = c{(i-1)*NPort+1:i*NPort};
-        %[x21I, x22I, x23I, x24I,x21O, x22O, x23O, x24O] = c{(i-1)*NPort+1:i*NPort};
+        %[N21I, N22I, N23I, N24I,N21O, N22O, N23O, N24O] = c{(i-1)*NPort+1:i*NPort};
+        [x21I, x22I, x23I, x24I,x21O, x22O, x23O, x24O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==3
-        [N31I, N32I, N33I, N34I, N31O, N32O, N33O, N34O] = c{(i-1)*NPort+1:i*NPort};
-        %[x31I,x32I, x33I, x34I, x31O, x32O, x33O, x34O] = c{(i-1)*NPort+1:i*NPort};
+        %[N31I, N32I, N33I, N34I, N31O, N32O, N33O, N34O] = c{(i-1)*NPort+1:i*NPort};
+        [x31I,x32I, x33I, x34I, x31O, x32O, x33O, x34O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==4
-        [N41I, N42I, N43I, N44I, N41O, N42O, N43O, N44O] = c{(i-1)*NPort+1:i*NPort};
-        %[x41I, x42I, x43I, x44I, x41O, x42O, x43O, x44O] = c{(i-1)*NPort+1:i*NPort};
+        %[N41I, N42I, N43I, N44I, N41O, N42O, N43O, N44O] = c{(i-1)*NPort+1:i*NPort};
+        [x41I, x42I, x43I, x44I, x41O, x42O, x43O, x44O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==5
-        [N51I, N52I, N53I, N54I, N51O, N52O, N53O, N54O] = c{(i-1)*NPort+1:i*NPort};
-        %[x51I, x52I, x53I, x54I, x51O, x52O, x53O, x54O] = c{(i-1)*NPort+1:i*NPort};
+        %[N51I, N52I, N53I, N54I, N51O, N52O, N53O, N54O] = c{(i-1)*NPort+1:i*NPort};
+        [x51I, x52I, x53I, x54I, x51O, x52O, x53O, x54O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==6
-        [N61I, N62I, N63I, N64I, N61O, N62O, N63O, N64O] = c{(i-1)*NPort+1:i*NPort};
-        %[x61I, x62I, x63I, x64I, x61O, x62O, x63O, x64O] = c{(i-1)*NPort+1:i*NPort};
+        %[N61I, N62I, N63I, N64I, N61O, N62O, N63O, N64O] = c{(i-1)*NPort+1:i*NPort};
+        [x61I, x62I, x63I, x64I, x61O, x62O, x63O, x64O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==7
-        [N71I, N72I, N73I, N74I, N71O, N72O, N73O, N74O] = c{(i-1)*NPort+1:i*NPort};
-        %[x71I, x72I, x73I, x74I, x71O, x72O, x73O, x74O] = c{(i-1)*NPort+1:i*NPort};
+        %[N71I, N72I, N73I, N74I, N71O, N72O, N73O, N74O] = c{(i-1)*NPort+1:i*NPort};
+        [x71I, x72I, x73I, x74I, x71O, x72O, x73O, x74O] = c{(i-1)*NPort+1:i*NPort};
     end;
     if i==8
-        [N81I, N82I, N83I, N84I, N81O, N82O, N83O, N84O] = c{(i-1)*NPort+1:i*NPort};
-        %[x81I, x82I, x83I, x84I, x81O, x82O, x83O, x84O] = c{(i-1)*NPort+1:i*NPort};
+        %[N81I, N82I, N83I, N84I, N81O, N82O, N83O, N84O] = c{(i-1)*NPort+1:i*NPort};
+        [x81I, x82I, x83I, x84I, x81O, x82O, x83O, x84O] = c{(i-1)*NPort+1:i*NPort};
     end;
     %c
     %clear c;
@@ -79,14 +76,35 @@ end;
 x=outputFile(:,1);
 
 
-% Only ch 6 outs
-figure('name','Array TH ports','numbertitle','off');
-plot(x,N13O,'r',x,N23O,'g');
-legend('N13O','N23O');
+% Only ch 1 outs
+figure('name','Circuit Main DB values, Ring1','numbertitle','off');
+subplot(4,2,1);
+plot(x,N11I);
+legend('N11I');
+subplot(4,2,3);
+plot(x,N12I);
+legend('N12I');
+subplot(4,2,5);
+plot(x,N13I);
+legend('N13I');
+subplot(4,2,7);
+plot(x,N13I);
+legend('N14I');
 
-figure('name','Array Drop ports','numbertitle','off');
-plot(x,N12I,'r',x,N22I,'g');
-legend('N12I','N22I');
+subplot(4,2,2);
+plot(x,N11OutDB);
+legend('N11OutDB');
+subplot(4,2,4);
+plot(x,N12OutDB);
+legend('N12OutDB');
+subplot(4,2,6);
+plot(x,N13OutDB);
+legend('N13OutDB');
+subplot(4,2,8);
+plot(x,N13OutDB);
+legend('N14OutDB');
+
+
 
 
 % % 2 ch outs
@@ -211,7 +229,7 @@ legend('N12I','N22I');
 % % plot(x,N13InDB);
 % % legend('N13InDB');
 % % subplot(4,2,7);
-% % plot(x,N14InDB);
+% % plot(x,N13InDB);
 % % legend('N14InDB');
 % % 
 % % subplot(4,2,2);
@@ -224,7 +242,7 @@ legend('N12I','N22I');
 % % plot(x,N13OutDB);
 % % legend('N13OutDB');
 % % subplot(4,2,8);
-% % plot(x,N14OutDB);
+% % plot(x,N13OutDB);
 % % legend('N14OutDB');
 % % 
 % % 
@@ -250,7 +268,7 @@ legend('N12I','N22I');
 % % plot(x,N23InDB);
 % % legend('N23InDB');
 % % subplot(4,2,7);
-% % plot(x,N24InDB);
+% % plot(x,N23InDB);
 % % legend('N24InDB');
 % % 
 % % subplot(4,2,2);
@@ -263,7 +281,7 @@ legend('N12I','N22I');
 % % plot(x,N23OutDB);
 % % legend('N23OutDB');
 % % subplot(4,2,8);
-% % plot(x,N24OutDB);
+% % plot(x,N23OutDB);
 % % legend('N24OutDB');
 % % 
 % % 
@@ -294,7 +312,7 @@ legend('N12I','N22I');
 % % plot(x,N33InDB);
 % % legend('N33InDB');
 % % subplot(4,2,7);
-% % plot(x,N34InDB);
+% % plot(x,N33InDB);
 % % legend('N34InDB');
 % % 
 % % subplot(4,2,2);
@@ -307,7 +325,7 @@ legend('N12I','N22I');
 % % plot(x,N33OutDB);
 % % legend('N33OutDB');
 % % subplot(4,2,8);
-% % plot(x,N34OutDB);
+% % plot(x,N33OutDB);
 % % legend('N34OutDB');
 % % 
 % % 
@@ -332,7 +350,7 @@ legend('N12I','N22I');
 % % plot(x,N43InDB);
 % % legend('N43InDB');
 % % subplot(4,2,7);
-% % plot(x,N44InDB);
+% % plot(x,N43InDB);
 % % legend('N44InDB');
 % % 
 % % subplot(4,2,2);
@@ -345,7 +363,7 @@ legend('N12I','N22I');
 % % plot(x,N43OutDB);
 % % legend('N43OutDB');
 % % subplot(4,2,8);
-% % plot(x,N44OutDB);
+% % plot(x,N43OutDB);
 % % legend('N44OutDB');
 % % 
 % % 
@@ -371,7 +389,7 @@ legend('N12I','N22I');
 % % plot(x,N53InDB);
 % % legend('N53InDB');
 % % subplot(4,2,7);
-% % plot(x,N54InDB);
+% % plot(x,N53InDB);
 % % legend('N54InDB');
 % % 
 % % subplot(4,2,2);
@@ -384,7 +402,7 @@ legend('N12I','N22I');
 % % plot(x,N53OutDB);
 % % legend('N53OutDB');
 % % subplot(4,2,8);
-% % plot(x,N54OutDB);
+% % plot(x,N53OutDB);
 % % legend('N54OutDB');
 % % 
 % % 
@@ -410,7 +428,7 @@ legend('N12I','N22I');
 % % plot(x,N63InDB);
 % % legend('N63InDB');
 % % subplot(4,2,7);
-% % plot(x,N64InDB);
+% % plot(x,N63InDB);
 % % legend('N64InDB');
 % % 
 % % subplot(4,2,2);
@@ -423,7 +441,7 @@ legend('N12I','N22I');
 % % plot(x,N63OutDB);
 % % legend('N63OutDB');
 % % subplot(4,2,8);
-% % plot(x,N64OutDB);
+% % plot(x,N63OutDB);
 % % legend('N64OutDB');
 % % 
 % % 
@@ -449,7 +467,7 @@ legend('N12I','N22I');
 % % plot(x,N73InDB);
 % % legend('N73InDB');
 % % subplot(4,2,7);
-% % plot(x,N74InDB);
+% % plot(x,N73InDB);
 % % legend('N74InDB');
 % % 
 % % subplot(4,2,2);
@@ -462,7 +480,7 @@ legend('N12I','N22I');
 % % plot(x,N73OutDB);
 % % legend('N73OutDB');
 % % subplot(4,2,8);
-% % plot(x,N74OutDB);
+% % plot(x,N73OutDB);
 % % legend('N74OutDB');
 % % 
 % % 
@@ -488,7 +506,7 @@ legend('N12I','N22I');
 % % plot(x,N83InDB);
 % % legend('N83InDB');
 % % subplot(4,2,7);
-% % plot(x,N84InDB);
+% % plot(x,N83InDB);
 % % legend('N84InDB');
 % % 
 % % subplot(4,2,2);
@@ -501,7 +519,7 @@ legend('N12I','N22I');
 % % plot(x,N83OutDB);
 % % legend('N83OutDB');
 % % subplot(4,2,8);
-% % plot(x,N84OutDB);
+% % plot(x,N83OutDB);
 % % legend('N84OutDB');
 % % 
 % % 
