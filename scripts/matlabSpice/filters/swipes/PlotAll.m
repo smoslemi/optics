@@ -1,6 +1,5 @@
 function PlotAll(FileName)
     oFile =load(FileName);
-# Hello
     %mFile =load('chChecks.1-DC.2d_dat');
     % Ref1=0.1;
     % TH1=0.9;
