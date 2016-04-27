@@ -17,20 +17,20 @@ base = 'chChecks';
 basefile = strcat(base,'.sp');
 baseFileFull = strcat(basePath,basefile);
 
-display(baseFileFull);
+%display(baseFileFull);
 
 currentDir = pwd;
 
 
-display(currentDir);
+%display(currentDir);
 dateStamp = datestr(now,'ddmmmyy_HHMM');
-display(dateStamp);
+%display(dateStamp);
 snapshot = strcat('run_', dateStamp);
-display(snapshot);
+%display(snapshot);
 mkdir(snapshot);
 snapshotFull=strcat('./',snapshot)
 cd(snapshotFull);
-system(pwd);
+%system(pwd);
 
 % Setting for run_16Feb2016_1526
 %l = 1:0.2:5;
@@ -72,4 +72,4 @@ rad = 10.35;
 % % figure
 % % plot(L,eye);
 % 
-% cd(currentDir);
+cd(currentDir);

@@ -85,4 +85,7 @@ function PlotAll(FileName)
     figure('name',strcat( FileName, 'Drop'),'numbertitle','off');
     plot(x,N12I,'r',x,N22I,'g',x,N32I,'b',x,N42I,'y',x,N52I,'m',x,N62I,'c',x,N72I,'k',x,N82I,':r');
     legend('N12I','N22I','N32I','N42I','N52I','N62I','N72I','N82I');
+
+    
 end
+

@@ -110,10 +110,10 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 
 ** gain is for pwr so sqrt is taken 
 .param gain='1'
-.param C = 'CCOEF'
-.param Non = 'NEFF'
-.param dr = 'DIFFR'
-.param r1='RAD1'
+.param C = '2.500000e-01'
+.param Non = '1.100000e+00'
+.param dr = '4.000000e-02'
+.param r1='1.035000e+01'
 .param r2='r1-dr'
 .param r3='r2-dr'
 .param r4='r3-dr'
