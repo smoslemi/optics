@@ -32,15 +32,18 @@ snapshotFull=strcat('./',snapshot)
 cd(snapshotFull);
 %system(pwd);
 
-% Setting for run_16Feb2016_1526
-%l = 1:0.2:5;
-%lam = 600:10:1500; 
-%neff = 1.1:0.2:3.0;
+% a complete set sweep run
+%coup = 0.15:0.1:0.5;
+%diffr = 0.04:0.01:0.08; 
+%neff = 1.1:0.1:2.0;
+%rad = 8.35:0.5:12.35;    
 
-coup = 0.15:0.1:0.3;
-diffr = 0.04:0.02:0.08; 
+
+coup = 0.15:0.1:0.5;
+diffr = 0.06:0.01:0.08;  
 neff = 1.1:0.2:1.7;
-rad = 10.35;    
+rad = 10.35;  
+
     %for c = drange(1:10)
     
     for i = coup

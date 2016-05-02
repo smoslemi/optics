@@ -11,12 +11,20 @@ base = 'chChecks';
 
 outs = 'outPlots';
 mkdir(outs);
+% 
+% coup = 0.15:0.1:0.3;
+% diffr = 0.04:0.02:0.08; 
+% neff = 1.1:0.2:1.7;
+% rad = 10.35;    
 
-coup = 0.15:0.1:0.3;
-diffr = 0.04:0.02:0.08; 
-neff = 1.1:0.2:1.7;
-rad = 10.35;    
 %for c = drange(1:10)
+
+
+coup = 0.15;
+diffr = 0.06; 
+neff = 1.1;
+rad = 8.35:0.5:12.35; 
+
 NCir = 0;
 
     for i = coup
@@ -25,18 +33,16 @@ NCir = 0;
                 for h = rad
                 BaseSimFile = sprintf('%s_C%1.2f_Dr%1.2f_Neff%1.1f_Rad%2.2f_end',base,i,j,k,h);
                 DataFile = strcat(BaseSimFile,'.1-DC.2d_dat');
-                NCir
+                NCir;
                 PlotAll(DataFile);
                 NCir = NCir +1 ;
                 end
-                save_all_figs_dir_name(outs);
-                close all;
+                %save_all_figs_dir_name(outs);
+                %close all;
             end
         end
     end
-%outs = 'outPlots';
-%mkdir(outs);
-save_all_figs_dir_name(outs);
+
 
     
 
