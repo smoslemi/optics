@@ -24,6 +24,23 @@ vcar vc 0 DC=1514
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+** gain is for pwr so sqrt is taken 
+.param gain='1'
+.param C = '3.500000e-01'
+.param Non = '1.653200e+00'
+.param dr = '0.018'
+.param r1='10.300000e+00'
+.param r2='r1-dr'
+.param r3='r2-dr'
+.param r4='r3-dr'
+.param r5='r4-dr'
+.param r6='r5-dr'
+.param r7='r6-dr'
+.param r8='r7-dr'
+.param lam=1514
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % circuit 1, 8 channel add-drop filter
 % 1 cw source 8 rings, 8 cross,
 
@@ -101,38 +118,15 @@ Osp Model Name = RingFilter1 type = MultiLayerFilter FilterType=Explicit
 % Ring related Models  END
 
 % Xcouple model
-Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODES Through=0.98 Right=0.3 Left=0.1 Ref=0.0
+Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODES Through=0.98 Right=0.1 Left=0.1 Ref=0.1
 
 
 % WGuide model
 Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF=Non
 %Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[NonWG]  N0=NonWG NF=NonWG
 
-** gain is for pwr so sqrt is taken 
-.param gain='1'
-.param C = '1.500000e-01'
-.param Non = '1.100000e+00'
-.param dr = '6.000000e-02'
-.param r1='8.850000e+00'
-.param r2='r1-dr'
-.param r3='r2-dr'
-.param r4='r3-dr'
-.param r5='r4-dr'
-.param r6='r5-dr'
-.param r7='r6-dr'
-.param r8='r7-dr'
 
 
-
-%.param r3='r1-(2*dr)'
-%.param r4='r1-(3*dr)'
-%.param r5='r1-(4*dr)'
-%.param r6='r5-(5*dr)'
-%.param r7='r6-(6*dr)'
-%.param r8='r7-(7*dr)'
-
-
-.param lam=1514
 .op 
 .DC vcar 1500 1580 0.1
 %.tran .1e-9 10e-9 nsolver=BACKE 
