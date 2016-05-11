@@ -1,6 +1,0 @@
-1 V(mag1)
-2 P_fwd(rin1:fixed:1557.81) Mode=1 Pol=0
-3 P_back(rin2:fixed:1557.81) Mode=1 Pol=0
-4 P_fwd(rout1:fixed:1557.81) Mode=1 Pol=0
-5 P_fwd(rout2:fixed:1557.81) Mode=1 Pol=0
-6 V(vn)
