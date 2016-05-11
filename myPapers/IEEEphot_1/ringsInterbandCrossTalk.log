@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  9 MAY 2016 16:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  11 MAY 2016 01:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -161,18 +161,18 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 (./ringsInterbandCrossTalk.aux)
 \openout1 = `ringsInterbandCrossTalk.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -235,24 +235,16 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-
-LaTeX Warning: Reference `resSpliting' on page 1 undefined on input line 82.
-
-
-LaTeX Warning: Reference `resSpliting' on page 1 undefined on input line 82.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 50.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 50.
 
 <resSpliting.jpg, id=1, 1225.57875pt x 708.6475pt>
 File: resSpliting.jpg Graphic file (type jpg)
  <use resSpliting.jpg>
-Package pdftex.def Info: resSpliting.jpg used on input line 85.
+Package pdftex.def Info: resSpliting.jpg used on input line 54.
 (pdftex.def)             Requested size: 360.0pt x 208.15172pt.
-
-<crosstalkCH1NoDesignImv.jpg, id=2, 674.52pt x 439.6425pt>
-File: crosstalkCH1NoDesignImv.jpg Graphic file (type jpg)
-
-<use crosstalkCH1NoDesignImv.jpg>
-Package pdftex.def Info: crosstalkCH1NoDesignImv.jpg used on input line 93.
-(pdftex.def)             Requested size: 360.0pt x 234.64626pt.
 
 Overfull \vbox (7.25pt too high) has occurred while \output is active []
 
@@ -280,10 +272,12 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored! <./resSpliting.jpg>]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 100.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 100.
+<crosstalkCH1NoDesignImv.jpg, id=11, 674.52pt x 439.6425pt>
+File: crosstalkCH1NoDesignImv.jpg Graphic file (type jpg)
+
+<use crosstalkCH1NoDesignImv.jpg>
+Package pdftex.def Info: crosstalkCH1NoDesignImv.jpg used on input line 63.
+(pdftex.def)             Requested size: 360.0pt x 234.64626pt.
 
 Overfull \vbox (7.25pt too high) has occurred while \output is active []
 
@@ -299,18 +293,7 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
 Non-PDF special ignored! <./crosstalkCH1NoDesignImv.jpg>]
-Missing character: There is no × in font phvr7t!
-Missing character: There is no – in font phvr7t!
-
-
-LaTeX Warning: Reference `fig_env2' on page 3 undefined on input line 160.
-
-
 Overfull \vbox (7.25pt too high) has occurred while \output is active []
 
  [3
@@ -333,61 +316,30 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
 Non-PDF special ignored!]
-
-LaTeX Warning: Citation `Mizuuchi2002' on page 4 undefined on input line 173.
-
-
-LaTeX Warning: Citation `Mizuuchi2003' on page 4 undefined on input line 173.
-
-
-LaTeX Warning: Citation `Mizuuchi2003' on page 4 undefined on input line 173.
-
-
-LaTeX Warning: Citation `Mizuuchi2005' on page 4 undefined on input line 174.
-
-
-LaTeX Warning: Citation `Nakanishi2007' on page 4 undefined on input line 174.
-
-
-LaTeX Warning: Citation `Ott2006' on page 4 undefined on input line 176.
-
-
-LaTeX Warning: Citation `Or2006a' on page 4 undefined on input line 178.
-
-
-LaTeX Warning: Citation `Mizuuchi2007' on page 4 undefined on input line 178.
-
-
-LaTeX Warning: Citation `Or2005a' on page 4 undefined on input line 178.
-
-
-LaTeX Warning: Citation `Or2007' on page 4 undefined on input line 178.
-
-
-LaTeX Warning: Citation `Or2008' on page 4 undefined on input line 178.
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 202.
+(Font)              <8> on input line 144.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 202.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 210.
+(Font)              <6> on input line 144.
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
+<noResSpliYesCrstalk.jpg, id=23, 976.64874pt x 417.56pt>
+File: noResSpliYesCrstalk.jpg Graphic file (type jpg)
+
+<use noResSpliYesCrstalk.jpg>
+Package pdftex.def Info: noResSpliYesCrstalk.jpg used on input line 190.
+(pdftex.def)             Requested size: 360.0pt x 153.91496pt.
+
+<noResSpliNoCrstalk.jpg, id=24, 857.2025pt x 397.485pt>
+File: noResSpliNoCrstalk.jpg Graphic file (type jpg)
+
+<use noResSpliNoCrstalk.jpg>
+Package pdftex.def Info: noResSpliNoCrstalk.jpg used on input line 198.
+(pdftex.def)             Requested size: 360.0pt x 166.93042pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./ringsInterbandCrossTalk.bbl
 Overfull \vbox (7.25pt too high) has occurred while \output is active []
 
  [4
@@ -402,11 +354,7 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!]
-
-LaTeX Warning: Reference `fig_env2' on page 5 undefined on input line 285.
-
-
+Non-PDF special ignored! <./noResSpliYesCrstalk.jpg>])
 Overfull \vbox (7.25pt too high) has occurred while \output is active []
 
  [5
@@ -423,101 +371,31 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!]
-
-LaTeX Warning: Reference `fig_env2' on page 6 undefined on input line 289.
-
-
-LaTeX Warning: Reference `fig_env2' on page 6 undefined on input line 295.
-
-
-LaTeX Warning: Reference `fig_env2' on page 6 undefined on input line 301.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \vbox (7.25pt too high) has occurred while \output is active []
-
- [6
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!]
-No file ringsInterbandCrossTalk.bbl.
-
-Overfull \vbox (7.25pt too high) has occurred while \output is active []
-
- [7
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!] (./ringsInterbandCrossTalk.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+Non-PDF special ignored! <./noResSpliNoCrstalk.jpg>]
+(./ringsInterbandCrossTalk.aux) ) 
 Here is how much of TeX's memory you used:
- 2304 strings out of 493117
- 36447 string characters out of 6135433
- 108958 words of memory out of 5000000
- 5753 multiletter control sequences out of 15000+600000
- 47414 words of font info for 77 fonts, out of 8000000 for 9000
+ 2272 strings out of 493117
+ 36191 string characters out of 6135433
+ 98005 words of memory out of 5000000
+ 5726 multiletter control sequences out of 15000+600000
+ 41017 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,13n,23p,1334b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
-ve/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
-/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2
-014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
-4/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2014/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1
-/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/he
-lvetic/uhvbo8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic
-/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvro8
-a.pfb>
-Output written on ringsInterbandCrossTalk.pdf (7 pages, 293812 bytes).
+ 37i,9n,23p,1319b,307s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/
+dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
+</usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on ringsInterbandCrossTalk.pdf (5 pages, 367460 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
