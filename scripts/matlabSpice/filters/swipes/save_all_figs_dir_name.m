@@ -8,6 +8,7 @@ function save_all_figs_dir_name(dirName)
             text = regexprep(text, '_', '-');
             text = regexprep(text, '\.', 'p');
             saveas(f,text,'fig');
+            saveas(f,text,'jpg');
         end
 cd ('../');
 end

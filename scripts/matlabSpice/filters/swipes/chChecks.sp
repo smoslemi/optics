@@ -24,6 +24,23 @@ vcar vc 0 DC=1514
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+** gain is for pwr so sqrt is taken 
+.param gain='1'
+.param C = 'CCOEF'
+.param Non = 'NEFF'
+.param dr = 'DIFFR'
+.param r1='RAD1'
+.param r2='r1-dr'
+.param r3='r2-dr'
+.param r4='r3-dr'
+.param r5='r4-dr'
+.param r6='r5-dr'
+.param r7='r6-dr'
+.param r8='r7-dr'
+.param lam=1514
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % circuit 1, 8 channel add-drop filter
 % 1 cw source 8 rings, 8 cross,
 
@@ -108,31 +125,7 @@ Osp Model Name = WXmodel  type = XCOUPLER ElemType=WGUIDECROSS  NumModes = NMODE
 Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF=Non
 %Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[NonWG]  N0=NonWG NF=NonWG
 
-** gain is for pwr so sqrt is taken 
-.param gain='1'
-.param C = 'CCOEF'
-.param Non = 'NEFF'
-.param dr = 'DIFFR'
-.param r1='RAD1'
-.param r2='r1-dr'
-.param r3='r2-dr'
-.param r4='r3-dr'
-.param r5='r4-dr'
-.param r6='r5-dr'
-.param r7='r6-dr'
-.param r8='r7-dr'
 
-
-
-%.param r3='r1-(2*dr)'
-%.param r4='r1-(3*dr)'
-%.param r5='r1-(4*dr)'
-%.param r6='r5-(5*dr)'
-%.param r7='r6-(6*dr)'
-%.param r8='r7-(7*dr)'
-
-
-.param lam=1514
 .op 
 .DC vcar 1500 1580 0.1
 %.tran .1e-9 10e-9 nsolver=BACKE 
