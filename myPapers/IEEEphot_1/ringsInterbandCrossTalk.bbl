@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{vahala}
+Brent~E. Little and Milos A. Popovic Michael R. Watts Christina~Manolatou Sai
+  T.~Chu, Hermann A.~Haus.
+\newblock "optical resonators and filters".
+
+\bibitem{dgrabus}
+Dominik~G. Rabus.
+\newblock {\em Integrated Ring Resonators}.
+\newblock Springer, 2007.
+
+\bibitem{pub3105fsr}
+Thomas Van Vaerenbergh Katrien DeVos Shankar Kumar Selvaraja Tom Claes Pieter
+  Dumon Peter Bienstman Dries Van Thourhout Roel~Baets Wim~Bogaerts*, Peter
+  De~Heyn.
+\newblock "silicon microring resonators".
+\newblock 2012.
+
+\bibitem{littlecbu1999}
+Wugen Pan Taro Kaneko Shinya Sato Yasuo~Kokubun Sai T.~Chu, Brent E.~Little.
+\newblock "an eight-channel add?drop filter using vertically coupled microring
+  resonators over a cross grid".
+\newblock 1999.
+
+\bibitem{oe1493872}
+Lidija~Sekaric Fengnian~Xia and Yurii~A. Vlasov.
+\newblock "mode conversion losses in silicon-on-insulator photonic wire based
+  racetrack resonators".
+\newblock 2006.
+
+\end{thebibliography}
