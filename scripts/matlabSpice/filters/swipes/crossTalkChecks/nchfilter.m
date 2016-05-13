@@ -32,7 +32,6 @@ lam(1)=lam11;
 r(1)=r1;
 fsr(1)=fsr1;
 fwhm(1)=0; % just to initialize fwhm
-
 c = 299792458; % speed of light
 
 for i=2:1:n
@@ -51,7 +50,7 @@ kmin=minK(c,neff,Mlam,r,lam,a,n,BW);
 csmax = sqrt(kmax); % cs is the cross-coupling factor used is ospcie
 csmin = sqrt(kmin); % cs is the cross-coupling factor used is ospcie
 
-b= 0.2 % just a random number to pick k between kmin and kmax
+b= 0.5 % just a random number to pick k between kmin and kmax
 k = b*kmax; % That is just a pick of a value less than kmax
 % loop to make sure k is greater than kmin
 while k < kmin
@@ -59,13 +58,7 @@ while k < kmin
     k=b*kmax;
 end
 
-kmax
-kmin
-k
-
-
-
-cs= sqrt(k) % c is the cross-coupling factor used is ospcie
+cs= k^2; % c is the cross-coupling factor used is ospcie
 % Assumption: All rings have same cross-coupling coeff.
 % 'rc' is the self-coupling factros (trasmission factor)
 rc = sqrt(1-k^2);
@@ -84,9 +77,22 @@ end
 lam;
 r;
 outID=fopen('designSpecPara.txt','w');
-fprintf(outID,'%s\n','Design Spec');
-
+fprintf(outID,'%s\n','Design Spec:');
+SpecFormat ='lam11=%1.5e\nm=%d\nn=%d\nBW=%1.5e\n';
+fprintf(outID,SpecFormat, lam11, m, n, BW);
+fprintf(outID,'Design param and outputs\n');
+fprintf(outID,'neff=%1.5e\n', neff);
+fprintf(outID,'k=%1.5e ==> cs=%1.5e\n', eval(k), eval(cs));
+fprintf(outID,'a=%1.5e\n', a);
+fprintf(outID,'%10s , %10s , %10s, %10s\n','lam' , 'R' , 'FSR' , 'FWHM');
+for i=1:1:n
+    fprintf(outID,'%1.4e , %1.4e , %1.4e, %1.4e\n',r(i),lam(i),fwhm(i),fsr(i));
 end
+end
+
+
+
+
 function [r,fsr,lamf,dlam]= getCH1(neff,lam11,m,n)
 r=(m*lam11)/(neff*2*pi);
 fsr=(lam11^2)/(neff*2*pi*r);
