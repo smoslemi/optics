@@ -74,7 +74,7 @@ totDlam = sum(fwhm);
 %dlam1_8= 8*fwhm(4)
 totBW= c*(totDlam/Mlam^2);
 for i=1:1
-    sprintf('%1.4e , %1.4e , %1.4e, %1.4e',r(i),lam(i),fwhm(i),fsr(i)) 
+    sprintf('%1.4e , %1.4e , %1.4e, %1.4e',lam(i),r(i),fsr(i),fwhm(i)) 
 end
 
 lam;
@@ -89,7 +89,7 @@ fprintf(outID,'k=%1.5e ==> cs=%1.5e\n', eval(k), eval(cs));
 fprintf(outID,'a=%1.5e\n', a);
 fprintf(outID,'%10s , %10s , %10s, %10s\n','lam' , 'R' , 'FSR' , 'FWHM');
 for i=1:1:n
-    fprintf(outID,'%1.4e , %1.4e , %1.4e, %1.4e\n',r(i),lam(i),fwhm(i),fsr(i));
+    fprintf(outID,'%1.4e , %1.4e , %1.4e, %1.4e\n',lam(i),r(i),fsr(i),fwhm(i));
 end
 end
 
