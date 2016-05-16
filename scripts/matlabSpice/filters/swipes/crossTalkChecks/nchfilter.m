@@ -4,7 +4,7 @@ function nchfilter(neff,lam11,m,n,BW)
 % params
 % p1- neff: material/structure dependent.
 % p2- m:    wavelenght number (I chosed by trial and error based on the
-% results ring sizes. 
+% results ring sizes. m=Lam/FSR
 % Spec
 % S1- n:    Nomber of channels.
 % S2- lam11:    Wavelength window = [lam11, lam11+FSR1], the upper limist is not choosen it. it
