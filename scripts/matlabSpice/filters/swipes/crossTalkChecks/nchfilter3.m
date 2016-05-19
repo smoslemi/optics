@@ -1,4 +1,4 @@
-function nchfilter2(neff,lam11,m,n,BW)
+function nchfilter2(neff,lam11,dlam1,m,n,BW)
 
 % Straight forward theory and design specs
 % params
@@ -26,7 +26,7 @@ function nchfilter2(neff,lam11,m,n,BW)
 % n=8 for an 8-ch filter
 % Note: We chose to have equally spced channeles with wavelength difference as dlam1
 
-[r1,fsr1,lam12,dlam1]= getCH1(neff,lam11,m,n);
+[r1,fsr1,lam12]= getCH1(neff,lam11,dlam1,m,n);
 
 lam(1)=lam11;
 r(1)=r1;
@@ -70,10 +70,9 @@ end
 totDlam = sum(fwhm);
 %dlam1_8= 8*fwhm(4)
 totBW= c*(totDlam/Mlam^2);
-for i=1:1
-    sprintf('%1.4e , %1.4e , %1.4e, %1.4e',lam(i),r(i),fsr(i),fwhm(i)) 
-end
-
+% for i=1:8
+%     text(i)=sprintf('%1.4e , %1.4e , %1.4e, %1.4e\n',lam(i),lam(i)+fsr(i), lam(i)+2*fsr(i),lam(i)+3*fsr(i)); 
+% end
 lam;
 r;
 outID=fopen('designSpecPara.txt','w');
@@ -88,12 +87,19 @@ fprintf(outID,'%10s , %10s , %10s, %10s\n','lam' , 'R' , 'FSR' , 'FWHM');
 for i=1:1:n
     fprintf(outID,'%1.4e , %1.4e , %1.4e, %1.4e\n',lam(i),r(i),fsr(i),fwhm(i));
 end
+
+fprintf(outID,'%s\n','table of wavelength for each channel');
+for i=1:1:n
+    fprintf(outID,'%1.4e , %1.4e , %1.4e, %1.4e\n',lam(i),lam(i)+fsr(i), lam(i)+2*fsr(i),lam(i)+3*fsr(i)); 
+end
+
+
 end
 
 
 
 
-function [r,fsr,lamf,dlam]= getCH1(neff,lam11,m,n)
+function [r,fsr,lamf,dlam]= getCH1(neff,lam11,dlam,m,n)
 r=(m*lam11)/(neff*2*pi);
 fsr=(lam11^2)/(neff*2*pi*r);
 lamf=lam11+fsr;
@@ -103,7 +109,7 @@ lamf=lam11+fsr;
 % Note: We chose to have equally spced channeles with wavelength difference as dlam1
 %dlam = fsr/n;
 % Design with a given channle diff lam
-dlam = 3*(10^(-9));
+%dlam = 3*(10^(-9));
 end
 
 function k1 = maxK(neff,r1,lam1,r2,lam2,a)
