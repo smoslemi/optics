@@ -56,7 +56,7 @@ vcar vc 0 DC=1530
 
 ** gain is for pwr so sqrt is taken 
 .param gain='1'
-.param C = '2.21667e-01'
+.param C = '2.20423e-01'
 .param Non = '1.65320e+00'
 .param lam=1530
 
@@ -71,9 +71,9 @@ vcar vc 0 DC=1530
 % neff is choosen as desgin spec.
 
 
-.param dr1 = '0.0176'
-.param r11='9.2755e+00'
-.param r12='9.2516'
+.param dr1 = '0.018'
+.param r11='13.846e+00'
+.param r12='13.825'
 .param r13='r12-dr1'
 .param r14='r13-dr1'
 .param r15='r14-dr1'
@@ -82,9 +82,9 @@ vcar vc 0 DC=1530
 .param r18='r17-dr1'
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-.param dr2 = '0.0176'
-.param r21='9.1323e+00'
-.param r22='9.1106'
+.param dr2 = '0.018'
+.param r21='13.99e+00'
+.param r22='13.969'
 .param r23='r22-dr2'
 .param r24='r23-dr2'
 .param r25='r24-dr2'
@@ -227,7 +227,7 @@ Osp Model Name = WGmodel  type = WaveGuide  Length=0.125   neff=[Non]  N0=Non NF
 
 
 .op 
-.DC vcar 1520 1580 0.1
+.DC vcar 1520 1580 0.2
 %.tran .1e-9 10e-9 nsolver=BACKE 
 
 %.Monitor V Mag1 
